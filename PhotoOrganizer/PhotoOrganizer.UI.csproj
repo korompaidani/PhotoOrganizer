@@ -113,6 +113,7 @@
     <Compile Include="View\PhotoDetailView.xaml.cs">
       <DependentUpon>PhotoDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrapper\PhotoWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
