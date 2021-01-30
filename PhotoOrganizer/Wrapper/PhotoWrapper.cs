@@ -1,5 +1,7 @@
 ﻿using PhotoOrganizer.Model;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PhotoOrganizer.Wrapper
 {
@@ -15,7 +17,7 @@ namespace PhotoOrganizer.Wrapper
             { 
                 Model.Title = value;
                 OnPropertyChanged();
-                ValidateProperty(nameof(Title));
+                ValidateProperty(nameof(Title), Model.Title);
             }
         }
 
@@ -26,7 +28,7 @@ namespace PhotoOrganizer.Wrapper
             {
                 Model.FullPath = value;
                 OnPropertyChanged();
-                ValidateProperty(nameof(Title));
+                ValidateProperty(nameof(FullPath), Model.FullPath);
             }
         }
 
@@ -69,15 +71,27 @@ namespace PhotoOrganizer.Wrapper
             }
         }
 
-        private void ValidateProperty(string propertyName)
+        private void ValidateProperty(string propertyName, object currentValue)
         {
             ClearErrors(propertyName);
+
+            // 1.Validate Data Annotations
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(Model) { MemberName = propertyName };
+            Validator.TryValidateProperty(currentValue, context, results);
+
+            foreach(var result in results)
+            {
+                AddError(propertyName, result.ErrorMessage);
+            }
+
+            // 2. Validate User errors
             switch (propertyName)
             {
                 case nameof(Title):
-                    if (String.Equals(Title, String.Empty, StringComparison.OrdinalIgnoreCase))
+                    if (String.Equals(Title, "xd", StringComparison.OrdinalIgnoreCase))
                     {
-                        AddError(propertyName, "Title cannot be empty");
+                        AddError(propertyName, "Title cannot be xd");
                     }
                     break;
             }
