@@ -27,7 +27,7 @@ namespace PhotoOrganizer.Data
                     new LookupItem
                     {
                         Id = p.Id,
-                        DisplayMember = p.Title
+                        Title = p.Title
                     }).ToListAsync();
             }
         }

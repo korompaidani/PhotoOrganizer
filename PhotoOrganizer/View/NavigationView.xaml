@@ -9,7 +9,7 @@
     <Grid>
         <ListView ItemsSource="{Binding Photos}"
                   SelectedItem="{Binding SelectedPhoto, Mode=TwoWay}"
-                  DisplayMemberPath="DisplayMember"/>
+                  DisplayMemberPath="Title"/>
 
     </Grid>
 </UserControl>

@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="400"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Title" Margin="10,10,10,0"/>
         <TextBox Grid.Row="1" Text="{Binding Photo.Title,
@@ -30,5 +31,9 @@
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <Image Grid.Row="6" Source="{Binding Photo.FullPath}" Margin="10 0 10 10"/>
+        <StackPanel Grid.Row="8" Orientation="Horizontal">
+            <Button Content="Save" Width="125" Margin="10"
+                    Command="{Binding SaveCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -10,5 +10,6 @@ namespace PhotoOrganizer
     public interface IPhotoDataService
     {
         Task<Photo> GetByIdAsync(int photoId);
+        Task SaveAsync(Photo photo);
     }
 }

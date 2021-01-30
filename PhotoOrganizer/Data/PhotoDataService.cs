@@ -25,5 +25,15 @@ namespace PhotoOrganizer
                 return await context.Photos.AsNoTracking().SingleAsync(p => p.Id == photoId);
             }
         }
+
+        public async Task SaveAsync(Photo photo)
+        {
+            using (var context = _contextCreator())
+            {
+                context.Photos.Attach(photo);
+                context.Entry(photo).State = EntityState.Modified;
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

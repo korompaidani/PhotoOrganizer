@@ -1,8 +1,10 @@
 ﻿using PhotoOrganizer.Event;
 using PhotoOrganizer.Model;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.ViewModel
 {
@@ -11,6 +13,8 @@ namespace PhotoOrganizer.ViewModel
         private Photo _photo;
         private IPhotoDataService _dataService;
         private IEventAggregator _eventAggregator;
+
+        public ICommand SaveCommand { get; }
 
         public Photo Photo
         { 
@@ -27,6 +31,26 @@ namespace PhotoOrganizer.ViewModel
             _dataService = dataService;
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+        }
+
+        private void OnSaveExecute()
+        {
+            _dataService.SaveAsync(Photo);
+            _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Publish(
+                new AfterPhotoSavedEventArgs
+                {
+                    Id = Photo.Id,
+                    Title = $"{Photo.Title}"
+                });
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            //Check if Photo attr is valid
+
+            return true;
         }
 
         private async void OnOpenFriendDetailView(int photoId)

@@ -15,11 +15,11 @@ namespace PhotoOrganizer.ViewModel
     {
         private IPhotoLookupDataService _photoLookupDataService;
         private IEventAggregator _eventAggregator;
-        private LookupItem _selectedPhoto;
+        private NavigationItemViewModel _selectedPhoto;
 
-        public ObservableCollection<LookupItem> Photos { get; set; }
+        public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
 
-        public LookupItem SelectedPhoto
+        public NavigationItemViewModel SelectedPhoto
         {
             get { return _selectedPhoto; }
             set
@@ -37,7 +37,14 @@ namespace PhotoOrganizer.ViewModel
         {
             _photoLookupDataService = photoLookupDataService;
             _eventAggregator = eventAggregator;
-            Photos = new ObservableCollection<LookupItem>();
+            Photos = new ObservableCollection<NavigationItemViewModel>();
+            _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Subscribe(AfterPhotoSaved);
+        }
+
+        private void AfterPhotoSaved(AfterPhotoSavedEventArgs obj)
+        {
+            var lookupItem = Photos.Single(p => p.Id == obj.Id);
+            lookupItem.Title = obj.Title;
         }
 
         public async Task LoadAsync()
@@ -46,7 +53,7 @@ namespace PhotoOrganizer.ViewModel
             Photos.Clear();
             foreach (var photo in photos)
             {
-                Photos.Add(photo);
+                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title));
             }
         }
     }
