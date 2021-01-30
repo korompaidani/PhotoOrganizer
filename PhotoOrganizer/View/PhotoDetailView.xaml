@@ -27,7 +27,8 @@
                 UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <Label Grid.Row="4" Content="Year" Margin="10,0,10,0"/>
-        <TextBox Grid.Row="5" Text="{Binding Photo.Year,
+        <TextBox Grid.Row="5" Text="{Binding Photo.Year, 
+            TargetNullValue='',
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
 
         <Image Grid.Row="6" Source="{Binding Photo.FullPath}" Margin="10 0 10 10"/>
