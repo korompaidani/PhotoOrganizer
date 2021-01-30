@@ -8,35 +8,18 @@ namespace PhotoOrganizer.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IPhotoDataService _photoDataService;
-        private Photo _selectedPhoto;
+        public INavigationViewModel NavigationViewModel { get; }
+        public IPhotoDetailViewModel PhotoDetailViewModel { get; }
 
-        public ObservableCollection<Photo> Photos { get; set; }
-
-        public Photo SelectedPhoto
+        public MainViewModel(INavigationViewModel navigationViewModel, IPhotoDetailViewModel photoDetailViewModel)
         {
-            get { return _selectedPhoto; }
-            set 
-            { 
-                _selectedPhoto = value;
-                OnPropertyChanged();
-            }
+            NavigationViewModel = navigationViewModel;
+            PhotoDetailViewModel = photoDetailViewModel;
         }
-
-        public MainViewModel(IPhotoDataService photoDataService)
-        {
-            Photos = new ObservableCollection<Photo>();
-            _photoDataService = photoDataService;
-        }        
 
         public async Task LoadAsync()
         {
-            var photos = await _photoDataService.GetAllAsync();
-            Photos.Clear();
-            foreach (var photo in photos)
-            {
-                Photos.Add(photo);
-            }
+            await NavigationViewModel.LoadAsync();
         }
     }
 }

@@ -18,11 +18,11 @@ namespace PhotoOrganizer
             _contextCreator = contextCreator;
         }
 
-        public async Task<List<Photo>> GetAllAsync()
+        public async Task<Photo> GetByIdAsync(int photoId)
         {
             using(var context = _contextCreator())
             {
-                return await context.Photos.AsNoTracking().ToListAsync();
+                return await context.Photos.AsNoTracking().SingleAsync(p => p.Id == photoId);
             }
         }
     }

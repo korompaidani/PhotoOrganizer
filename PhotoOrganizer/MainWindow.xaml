@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoOrganizer"
+        xmlns:view="clr-namespace:PhotoOrganizer.View"
         mc:Ignorable="d"
         Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20">
     <Grid>
@@ -11,34 +12,7 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" ItemsSource="{Binding Photos}"
-                  SelectedItem="{Binding SelectedPhoto, Mode=TwoWay}"
-                  DisplayMemberPath="Title"/>
-
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="400"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Title" Margin="10,10,10,0"/>
-            <TextBox Grid.Row="1" Text="{Binding SelectedPhoto.Title,
-                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-            
-            <Label Grid.Row="2" Content="Path" Margin="10,0,10,0"/>
-            <TextBox Grid.Row="3" Text="{Binding SelectedPhoto.FullPath,
-                UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-
-            <Label Grid.Row="4" Content="Year" Margin="10,0,10,0"/>
-            <TextBox Grid.Row="5" Text="{Binding SelectedPhoto.Year,
-                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-
-            <Image Grid.Row="6" Source="{Binding SelectedPhoto.FullPath}" Margin="10 0 10 10"/>
-        </Grid>
+        <view:NavigationView Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
+        <view:PhotoDetailView Grid.Column="1" DataContext="{Binding PhotoDetailViewModel}"/>
     </Grid>
 </Window>
