@@ -1,10 +1,5 @@
-﻿using PhotoOrganizer.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac;
+using PhotoOrganizer.Startup;
 using System.Windows;
 
 namespace PhotoOrganizer
@@ -16,9 +11,9 @@ namespace PhotoOrganizer
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var mainWindow = new MainWindow(
-                new MainViewModel(
-                    new PhotoDataService()));
+            var bootstrapper = new Bootstrapper();
+            var container = bootstrapper.Bootstrap();
+            var mainWindow = container.Resolve<MainWindow>();
             mainWindow.Show();
         }
     }
