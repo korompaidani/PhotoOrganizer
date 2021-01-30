@@ -40,6 +40,16 @@ namespace PhotoOrganizer.ViewModel
         {
             var photo = await _dataService.GetByIdAsync(photoId);
             Photo = new PhotoWrapper(photo);
+
+            Photo.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(Photo.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         private void OnSaveExecute()
@@ -55,9 +65,9 @@ namespace PhotoOrganizer.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            //Check if Photo attr is valid
+            //Check if Photo in addition if photo has changes
 
-            return true;
+            return Photo != null && !Photo.HasErrors;
         }
 
         private async void OnOpenFriendDetailView(int photoId)
