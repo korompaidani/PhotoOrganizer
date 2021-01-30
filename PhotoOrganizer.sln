@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer", "PhotoOrganizer\PhotoOrganizer.csproj", "{EEB810D4-625A-491A-A376-4900BF9D5C42}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.UI", "PhotoOrganizer\PhotoOrganizer.UI.csproj", "{EEB810D4-625A-491A-A376-4900BF9D5C42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.DataAccess", "PhotoOrganizer.DataAccess\PhotoOrganizer.DataAccess.csproj", "{15A32C07-E81E-4B3D-9157-F1F91168D967}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Model", "PhotoOrganizer.Model\PhotoOrganizer.Model.csproj", "{B548D6AE-15A1-42A2-834F-877368B881EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B548D6AE-15A1-42A2-834F-877368B881EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B548D6AE-15A1-42A2-834F-877368B881EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B548D6AE-15A1-42A2-834F-877368B881EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B548D6AE-15A1-42A2-834F-877368B881EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

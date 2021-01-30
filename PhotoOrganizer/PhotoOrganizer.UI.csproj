@@ -94,5 +94,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoOrganizer.DataAccess\PhotoOrganizer.DataAccess.csproj">
+      <Project>{15a32c07-e81e-4b3d-9157-f1f91168d967}</Project>
+      <Name>PhotoOrganizer.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.Model\PhotoOrganizer.Model.csproj">
+      <Project>{b548d6ae-15a1-42a2-834f-877368b881ea}</Project>
+      <Name>PhotoOrganizer.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
