@@ -28,17 +28,5 @@
                 }
                 );
         }
-
-        private Photo[] ConvertFileNamesToPhotos()
-        {
-            var directoryReader = new DirectoryReader();
-            var list = new List<Photo>();
-            foreach (var file in directoryReader.FileList)
-            {
-                list.Add(new Photo { FullPath = file.Key, Title = file.Value });
-            }
-            
-            return list.ToArray();
-        }
     }
 }
