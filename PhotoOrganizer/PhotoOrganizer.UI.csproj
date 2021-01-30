@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\IPhotoDataService.cs" />
+    <Compile Include="Data\PhotoDataService.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,6 +106,16 @@
       <Project>{b548d6ae-15a1-42a2-834f-877368b881ea}</Project>
       <Name>PhotoOrganizer.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\SAN_20190314_072446_Canon_EOS_450D_IMG_1606.JPG" />
+    <Resource Include="Resources\TestResources\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG" />
+    <Resource Include="Resources\TestResources\SAN_20190314_141615_Canon_EOS_450D_IMG_1866.JPG" />
+    <Resource Include="Resources\TestResources\SAN_20190315_100244_Canon_EOS_450D_IMG_2123.JPG" />
+    <Resource Include="Resources\TestResources\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Photos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
