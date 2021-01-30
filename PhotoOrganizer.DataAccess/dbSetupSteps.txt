@@ -1,0 +1,24 @@
+﻿Install Entity Framework from Nuget on .DataAccess project
+Create the dbContext class which is inherited from DbContext
+
+create the connection string in App.config of .DataAccess project
+         <connectionStrings>
+            <add name="PhotoOrganizerDb"
+                 connectionString="Data Source=KOROMPAI-HP-PC\SQLEXPRESS;Initial Catalog=PhotoOrganizer;Integrated Security=True"
+                 providerName="System.Data.SqlClient"/>
+          </connectionStrings>
+
+create ctor and add connection string name value as parameter to base class ("PhotoOrganizerDb")
+void OnModelCreating can be overriden and set eg. remove conventions, pluralizing etc...
+
+Open Tools/NugetPackage Manager/Nuget package manager console
+Set the dataAccess project as selected in console and enable migration with this command:
+Enable-Migrations
+
+Configuration.cs has been generated. You can use the feed method to feed the table
+
+Add-Migration InitialDatabase
+
+set Startup project or move connection string to startup app.config
+Update-Database
+Which applies the migrations if it is any and runs the seed method

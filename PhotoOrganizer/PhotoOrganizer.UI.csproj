@@ -130,20 +130,30 @@
       <Project>{15a32c07-e81e-4b3d-9157-f1f91168d967}</Project>
       <Name>PhotoOrganizer.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.FileHandler\PhotoOrganizer.FileHandler.csproj">
+      <Project>{16bbe06d-3fa6-4267-9ff7-7e6b74773ed4}</Project>
+      <Name>PhotoOrganizer.FileHandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoOrganizer.Model\PhotoOrganizer.Model.csproj">
       <Project>{b548d6ae-15a1-42a2-834f-877368b881ea}</Project>
       <Name>PhotoOrganizer.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\TestResources\SAN_20190314_072446_Canon_EOS_450D_IMG_1606.JPG" />
-    <Resource Include="Resources\TestResources\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG" />
-    <Resource Include="Resources\TestResources\SAN_20190314_141615_Canon_EOS_450D_IMG_1866.JPG" />
-    <Resource Include="Resources\TestResources\SAN_20190315_100244_Canon_EOS_450D_IMG_2123.JPG" />
-    <Resource Include="Resources\TestResources\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_072446_Canon_EOS_450D_IMG_1606.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_141615_Canon_EOS_450D_IMG_1866.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190315_100244_Canon_EOS_450D_IMG_2123.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Photos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\Folder1\Folder2\SAN_20190315_094802_Canon_EOS_450D_IMG_2107.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\Folder1\SAN_20190314_085317_Canon_EOS_450D_IMG_1676.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

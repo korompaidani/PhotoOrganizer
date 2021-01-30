@@ -1,4 +1,6 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.FileHandler;
+using PhotoOrganizer.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace PhotoOrganizer.ViewModel
@@ -24,7 +26,7 @@ namespace PhotoOrganizer.ViewModel
         {
             Photos = new ObservableCollection<Photo>();
             _photoDataService = photoDataService;
-        }
+        }        
 
         public void Load()
         {

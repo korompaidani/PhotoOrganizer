@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Model", "PhotoOrganizer.Model\PhotoOrganizer.Model.csproj", "{B548D6AE-15A1-42A2-834F-877368B881EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.FileHandler", "PhotoOrganizer.FileHandler\PhotoOrganizer.FileHandler.csproj", "{16BBE06D-3FA6-4267-9FF7-7E6B74773ED4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B548D6AE-15A1-42A2-834F-877368B881EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B548D6AE-15A1-42A2-834F-877368B881EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B548D6AE-15A1-42A2-834F-877368B881EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BBE06D-3FA6-4267-9FF7-7E6B74773ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BBE06D-3FA6-4267-9FF7-7E6B74773ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BBE06D-3FA6-4267-9FF7-7E6B74773ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BBE06D-3FA6-4267-9FF7-7E6B74773ED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
