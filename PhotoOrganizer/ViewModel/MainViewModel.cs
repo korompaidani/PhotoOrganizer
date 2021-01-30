@@ -3,18 +3,21 @@ using System.Collections.ObjectModel;
 
 namespace PhotoOrganizer.ViewModel
 {
-    public class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
         private IPhotoDataService _photoDataService;
         private Photo _selectedPhoto;
 
         public ObservableCollection<Photo> Photos { get; set; }
 
-
         public Photo SelectedPhoto
         {
             get { return _selectedPhoto; }
-            set { _selectedPhoto = value; }
+            set 
+            { 
+                _selectedPhoto = value;
+                OnPropertyChanged();
+            }
         }
 
         public MainViewModel(IPhotoDataService photoDataService)
