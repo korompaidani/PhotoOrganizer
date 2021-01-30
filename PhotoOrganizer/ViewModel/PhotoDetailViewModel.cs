@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Event;
 using PhotoOrganizer.Model;
+using PhotoOrganizer.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
@@ -10,13 +11,13 @@ namespace PhotoOrganizer.ViewModel
 {
     public class PhotoDetailViewModel : ViewModelBase, IPhotoDetailViewModel
     {
-        private Photo _photo;
+        private PhotoWrapper _photo;
         private IPhotoDataService _dataService;
         private IEventAggregator _eventAggregator;
 
         public ICommand SaveCommand { get; }
 
-        public Photo Photo
+        public PhotoWrapper Photo
         { 
             get { return _photo; }
             private set 
@@ -35,9 +36,15 @@ namespace PhotoOrganizer.ViewModel
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
+        public async Task LoadAsync(int photoId)
+        {
+            var photo = await _dataService.GetByIdAsync(photoId);
+            Photo = new PhotoWrapper(photo);
+        }
+
         private void OnSaveExecute()
         {
-            _dataService.SaveAsync(Photo);
+            _dataService.SaveAsync(Photo.Model);
             _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Publish(
                 new AfterPhotoSavedEventArgs
                 {
@@ -58,9 +65,6 @@ namespace PhotoOrganizer.ViewModel
             await LoadAsync(photoId);
         }
 
-        public async Task LoadAsync(int photoId)
-        {
-            Photo = await _dataService.GetByIdAsync(photoId);
-        }
+        
     }
 }

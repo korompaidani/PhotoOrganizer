@@ -113,6 +113,7 @@
     <Compile Include="View\PhotoDetailView.xaml.cs">
       <DependentUpon>PhotoDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\PhotoWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -184,7 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Photos\" />
-    <Folder Include="Wrapper\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\TestResources\Photos\Folder1\Folder2\SAN_20190315_094802_Canon_EOS_450D_IMG_2107.JPG" />
