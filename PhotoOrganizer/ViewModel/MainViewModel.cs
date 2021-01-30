@@ -2,6 +2,7 @@
 using PhotoOrganizer.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace PhotoOrganizer.ViewModel
 {
@@ -28,9 +29,9 @@ namespace PhotoOrganizer.ViewModel
             _photoDataService = photoDataService;
         }        
 
-        public void Load()
+        public async Task LoadAsync()
         {
-            var photos = _photoDataService.GetAll();
+            var photos = await _photoDataService.GetAllAsync();
             Photos.Clear();
             foreach (var photo in photos)
             {

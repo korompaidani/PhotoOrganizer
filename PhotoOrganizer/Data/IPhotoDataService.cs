@@ -9,6 +9,6 @@ namespace PhotoOrganizer
 {
     public interface IPhotoDataService
     {
-        IEnumerable<Photo> GetAll();
+        Task<List<Photo>> GetAllAsync();
     }
 }

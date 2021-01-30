@@ -1,6 +1,8 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.DataAccess;
+using PhotoOrganizer.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,19 @@ namespace PhotoOrganizer
 {
     public class PhotoDataService : IPhotoDataService
     {
-        public IEnumerable<Photo> GetAll()
+        private Func<PhotoOrganizerDbContext> _contextCreator;
+
+        public PhotoDataService(Func<PhotoOrganizerDbContext> contextCreator)
         {
-            yield return new Photo { Title = "SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG", FullPath = @".\..\..\Resources\TestResources\Photos\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" };
+            _contextCreator = contextCreator;
+        }
+
+        public async Task<List<Photo>> GetAllAsync()
+        {
+            using(var context = _contextCreator())
+            {
+                return await context.Photos.AsNoTracking().ToListAsync();
+            }
         }
     }
 }

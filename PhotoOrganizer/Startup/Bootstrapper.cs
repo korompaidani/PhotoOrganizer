@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.ViewModel;
 
 namespace PhotoOrganizer.Startup
@@ -8,6 +9,9 @@ namespace PhotoOrganizer.Startup
         public IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<PhotoOrganizerDbContext>().AsSelf();
+
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<PhotoDataService>().As<IPhotoDataService>();
