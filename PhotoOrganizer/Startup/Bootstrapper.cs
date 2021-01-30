@@ -2,6 +2,7 @@
 using PhotoOrganizer.Data;
 using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.ViewModel;
+using Prism.Events;
 
 namespace PhotoOrganizer.Startup
 {
@@ -12,6 +13,8 @@ namespace PhotoOrganizer.Startup
             var builder = new ContainerBuilder();
 
             builder.RegisterType<PhotoOrganizerDbContext>().AsSelf();
+
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();

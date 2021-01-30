@@ -1,5 +1,7 @@
 ﻿using PhotoOrganizer.Data;
+using PhotoOrganizer.Event;
 using PhotoOrganizer.Model;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,14 +11,32 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.ViewModel
 {
-    public class NavigationViewModel : INavigationViewModel
+    public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
         private IPhotoLookupDataService _photoLookupDataService;
+        private IEventAggregator _eventAggregator;
+        private LookupItem _selectedPhoto;
+
         public ObservableCollection<LookupItem> Photos { get; set; }
 
-        public NavigationViewModel(IPhotoLookupDataService photoLookupDataService)
+        public LookupItem SelectedPhoto
+        {
+            get { return _selectedPhoto; }
+            set
+            {
+                _selectedPhoto = value;
+                OnPropertyChanged();
+                if(_selectedPhoto != null)
+                {
+                    _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Publish(_selectedPhoto.Id);
+                }
+            }
+        }
+
+        public NavigationViewModel(IPhotoLookupDataService photoLookupDataService, IEventAggregator eventAggregator)
         {
             _photoLookupDataService = photoLookupDataService;
+            _eventAggregator = eventAggregator;
             Photos = new ObservableCollection<LookupItem>();
         }
 

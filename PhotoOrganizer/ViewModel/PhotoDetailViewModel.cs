@@ -1,4 +1,7 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.Event;
+using PhotoOrganizer.Model;
+using Prism.Events;
+using System;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.ViewModel
@@ -7,12 +10,28 @@ namespace PhotoOrganizer.ViewModel
     {
         private Photo _photo;
         private IPhotoDataService _dataService;
+        private IEventAggregator _eventAggregator;
 
-        public Photo Photo { get; set; }
+        public Photo Photo
+        { 
+            get { return _photo; }
+            private set 
+            {
+                _photo = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public PhotoDetailViewModel(IPhotoDataService dataService)
+        public PhotoDetailViewModel(IPhotoDataService dataService, IEventAggregator eventAggregator)
         {
             _dataService = dataService;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+        }
+
+        private async void OnOpenFriendDetailView(int photoId)
+        {
+            await LoadAsync(photoId);
         }
 
         public async Task LoadAsync(int photoId)
