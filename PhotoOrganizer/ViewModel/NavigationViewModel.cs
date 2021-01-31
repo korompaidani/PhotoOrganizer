@@ -30,7 +30,7 @@ namespace PhotoOrganizer.UI.ViewModel
             Photos.Clear();
             foreach (var photo in photos)
             {
-                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title, _eventAggregator));
+                Photos.Add(new NavigationItemViewModel(photo.Id, photo.DisplayMemberItem, _eventAggregator));
             }
         }
 
@@ -43,7 +43,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
             else
             {
-                lookupItem.Title = obj.Title;
+                lookupItem.DisplayMemberItem = obj.Title;
             }
         }
 

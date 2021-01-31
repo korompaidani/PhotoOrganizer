@@ -27,7 +27,7 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     new LookupItem
                     {
                         Id = p.Id,
-                        Title = p.Title
+                        DisplayMemberItem = p.Title
                     }).ToListAsync();
             }
         }
@@ -41,7 +41,7 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     new LookupItem
                     {
                         Id = p.Id,
-                        Title = p.PhotoTakenYear.ToString()
+                        DisplayMemberItem = p.PhotoTakenYear.ToString()
                     }).ToListAsync();
             }
         }

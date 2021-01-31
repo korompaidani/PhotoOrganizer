@@ -8,28 +8,28 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class NavigationItemViewModel : ViewModelBase
     {
-        private string _title;
+        private string _displayMemberItem;
         private IEventAggregator _eventAggregator;
 
         public ICommand OpenPhotoDetailViewCommand { get; }
 
-        public NavigationItemViewModel(int id, string title,
+        public NavigationItemViewModel(int id, string displayMemberItem,
             IEventAggregator eventAggregator)
         {
             Id = id;
-            _title = title;
+            _displayMemberItem = displayMemberItem;
             _eventAggregator = eventAggregator;
             OpenPhotoDetailViewCommand = new DelegateCommand(OnOpenPhotoDetailView);
         }               
 
         public int Id { get; }
 
-        public string Title
+        public string DisplayMemberItem
         {
-            get { return _title; }
+            get { return _displayMemberItem; }
             set
             {
-                _title = value;
+                _displayMemberItem = value;
                 OnPropertyChanged();
             }
         }

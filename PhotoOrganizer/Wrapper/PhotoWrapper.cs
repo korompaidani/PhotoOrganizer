@@ -32,12 +32,12 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
-        public int Year
+        public int? YearId
         {
-            get { return Model.Year; }
+            get { return Model.YearId; }
             set
             {
-                Model.Year = value;
+                Model.YearId = value;
                 OnPropertyChanged();
             }
         }

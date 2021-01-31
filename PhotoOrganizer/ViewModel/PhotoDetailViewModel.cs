@@ -103,6 +103,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async Task LoadYearLookupAsync()
         {
             Years.Clear();
+            Years.Add(new NullLookupItem { DisplayMemberItem = "-" });
             var lookup = await _yearLookupDataService.GetYearLookupAsync();
             foreach (var lookupItem in lookup)
             {
