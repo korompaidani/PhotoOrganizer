@@ -20,7 +20,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public PhotoWrapper Photo
         { 
             get { return _photo; }
-            private set 
+            set 
             {
                 _photo = value;
                 OnPropertyChanged();                
@@ -30,7 +30,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public bool HasChanges
         {
             get { return _hasChanges; }
-            set 
+            private set 
             { 
                 if(_hasChanges != value)
                 {
