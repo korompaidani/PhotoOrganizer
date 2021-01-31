@@ -6,6 +6,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
     public interface IPhotoRepository
     {
         Task<Photo> GetByIdAsync(int photoId);
-        Task SaveAsync(Photo photo);
+        Task SaveAsync();
+        bool HasChanges();
     }
 }

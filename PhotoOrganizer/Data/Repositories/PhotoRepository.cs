@@ -8,29 +8,26 @@ namespace PhotoOrganizer.UI.Data.Repositories
 {
     public class PhotoRepository : IPhotoRepository
     {
-        private Func<PhotoOrganizerDbContext> _contextCreator;
+        private PhotoOrganizerDbContext _context;
 
-        public PhotoRepository(Func<PhotoOrganizerDbContext> contextCreator)
+        public PhotoRepository(PhotoOrganizerDbContext context)
         {
-            _contextCreator = contextCreator;
+            _context = context;
         }
 
         public async Task<Photo> GetByIdAsync(int photoId)
         {
-            using(var context = _contextCreator())
-            {
-                return await context.Photos.AsNoTracking().SingleAsync(p => p.Id == photoId);
-            }
+            return await _context.Photos.SingleAsync(p => p.Id == photoId);
         }
 
-        public async Task SaveAsync(Photo photo)
+        public bool HasChanges()
         {
-            using (var context = _contextCreator())
-            {
-                context.Photos.Attach(photo);
-                context.Entry(photo).State = EntityState.Modified;
-                await context.SaveChangesAsync();
-            }
+            return _context.ChangeTracker.HasChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

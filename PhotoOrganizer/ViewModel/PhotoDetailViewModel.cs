@@ -11,8 +11,9 @@ namespace PhotoOrganizer.UI.ViewModel
     public class PhotoDetailViewModel : ViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
-        private IPhotoRepository _dataService;
+        private IPhotoRepository _photoRepository;
         private IEventAggregator _eventAggregator;
+        private bool _hasChanges;
 
         public ICommand SaveCommand { get; }
 
@@ -22,26 +23,43 @@ namespace PhotoOrganizer.UI.ViewModel
             private set 
             {
                 _photo = value;
-                OnPropertyChanged();
+                OnPropertyChanged();                
+            }
+        }
+        
+        public bool HasChanges
+        {
+            get { return _hasChanges; }
+            set 
+            { 
+                if(_hasChanges != value)
+                {
+                    _hasChanges = value;
+                    OnPropertyChanged();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
             }
         }
 
-        public PhotoDetailViewModel(IPhotoRepository dataService, IEventAggregator eventAggregator)
+        public PhotoDetailViewModel(IPhotoRepository photoRepository, IEventAggregator eventAggregator)
         {
-            _dataService = dataService;
+            _photoRepository = photoRepository;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
-
+            
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
         public async Task LoadAsync(int photoId)
         {
-            var photo = await _dataService.GetByIdAsync(photoId);
+            var photo = await _photoRepository.GetByIdAsync(photoId);
+            
             Photo = new PhotoWrapper(photo);
-
             Photo.PropertyChanged += (s, e) =>
             {
+                if (!HasChanges)
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                }
                 if (e.PropertyName == nameof(Photo.HasErrors))
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
@@ -51,9 +69,10 @@ namespace PhotoOrganizer.UI.ViewModel
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
-        private void OnSaveExecute()
+        private async void OnSaveExecute()
         {
-            _dataService.SaveAsync(Photo.Model);
+            await _photoRepository.SaveAsync();
+            HasChanges = _photoRepository.HasChanges();
             _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Publish(
                 new AfterPhotoSavedEventArgs
                 {
@@ -64,16 +83,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            //Check if Photo in addition if photo has changes
-
-            return Photo != null && !Photo.HasErrors;
-        }
-
-        private async void OnOpenFriendDetailView(int photoId)
-        {
-            await LoadAsync(photoId);
-        }
-
-        
+            return Photo != null && !Photo.HasErrors && HasChanges;
+        }        
     }
 }
