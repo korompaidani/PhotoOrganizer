@@ -11,23 +11,8 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IPhotoLookupDataService _photoLookupDataService;
         private IEventAggregator _eventAggregator;
-        private NavigationItemViewModel _selectedPhoto;
 
         public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
-
-        public NavigationItemViewModel SelectedPhoto
-        {
-            get { return _selectedPhoto; }
-            set
-            {
-                _selectedPhoto = value;
-                OnPropertyChanged();
-                if(_selectedPhoto != null)
-                {
-                    _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Publish(_selectedPhoto.Id);
-                }
-            }
-        }
 
         public NavigationViewModel(IPhotoLookupDataService photoLookupDataService, IEventAggregator eventAggregator)
         {
@@ -49,7 +34,7 @@ namespace PhotoOrganizer.UI.ViewModel
             Photos.Clear();
             foreach (var photo in photos)
             {
-                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title));
+                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title, _eventAggregator));
             }
         }
     }

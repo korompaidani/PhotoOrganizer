@@ -7,9 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView ItemsSource="{Binding Photos}"
-                  SelectedItem="{Binding SelectedPhoto, Mode=TwoWay}"
-                  DisplayMemberPath="Title"/>
-
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+                    
+            <ItemsControl ItemsSource="{Binding Photos}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content ="{Binding Title}"
+                                Command="{Binding OpenPhotoDetailViewCommand}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>
