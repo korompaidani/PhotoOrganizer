@@ -10,6 +10,7 @@ namespace PhotoOrganizer.DataAccess
         }
 
         public DbSet<Photo> Photos { get; set; }
+        public DbSet<Year> Years { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -27,6 +27,10 @@
                     FullPath = @".\..\..\Resources\TestResources\Photos\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG"
                 }
                 );
+
+            context.Years.AddOrUpdate(y => y.PhotoTakenYear,
+                new Year { PhotoTakenYear = 2019},
+                new Year { PhotoTakenYear = 1988 });
         }
     }
 }

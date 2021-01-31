@@ -17,6 +17,10 @@ namespace PhotoOrganizer.Model
 
         [Required]
         public string FullPath { get; set; }
+
+        public int? YearId { get; set; }
+        public Year YearPhotoTaken { get; set; }
+
         public int Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
