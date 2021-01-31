@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.ViewModel;
+﻿using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace PhotoOrganizer.UI.Wrapper
             return _errorsByPropertyName.ContainsKey(propertyName)
                 ? _errorsByPropertyName[propertyName]
                 : null;
+        }
+
+        public NotifyDataErrorInfoBase(IPhotoRepository photoRepository) : base(photoRepository)
+        {
         }
 
         protected virtual void OnErrorsChanged(string propertyName)
@@ -51,6 +56,4 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
     }
-
-
 }

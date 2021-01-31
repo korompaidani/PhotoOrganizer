@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Event;
+﻿using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Event;
 using Prism.Commands;
 using Prism.Events;
 using System;
@@ -14,7 +15,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenPhotoDetailViewCommand { get; }
 
         public NavigationItemViewModel(int id, string displayMemberItem,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IPhotoRepository photoRepository) : base(photoRepository)
         {
             Id = id;
             _displayMemberItem = displayMemberItem;

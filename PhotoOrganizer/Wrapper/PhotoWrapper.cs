@@ -1,4 +1,5 @@
 ﻿using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -71,6 +72,11 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
+        public PhotoWrapper(Photo model, IPhotoRepository photoRepository) : base(photoRepository)
+        {
+            Model = model;
+        }
+
         private void ValidateProperty(string propertyName, object currentValue)
         {
             ClearErrors(propertyName);
@@ -99,11 +105,6 @@ namespace PhotoOrganizer.UI.Wrapper
                     break;
             }
 
-        }
-
-        public PhotoWrapper(Photo model)
-        {
-            Model = model;
         }
     }
 }

@@ -101,6 +101,8 @@
     <Compile Include="Event\AfterPhotoDeleteEvent.cs" />
     <Compile Include="Event\AfterPhotoSavedEvent.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
+    <Compile Include="Services\DirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />

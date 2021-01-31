@@ -15,8 +15,7 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class PhotoDetailViewModel : ViewModelBase, IPhotoDetailViewModel
     {
-        private PhotoWrapper _photo;
-        private IPhotoRepository _photoRepository;
+        private PhotoWrapper _photo;        
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
         private IYearLookupDataService _yearLookupDataService;
@@ -54,9 +53,8 @@ namespace PhotoOrganizer.UI.ViewModel
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             IYearLookupDataService yearLookupDataService
-            )
-        {
-            _photoRepository = photoRepository;
+            ) : base(photoRepository)
+        {            
             _eventAggregator = eventAggregator;
             _messageDialogService = messageDialogService;
             _yearLookupDataService = yearLookupDataService;
@@ -79,7 +77,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void InitializePhoto(Photo photo)
         {
-            Photo = new PhotoWrapper(photo);
+            Photo = new PhotoWrapper(photo, _photoRepository);
             Photo.PropertyChanged += (s, e) =>
             {
                 if (!HasChanges)
@@ -109,13 +107,6 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 Years.Add(lookupItem);
             }
-        }
-
-        private Photo CreateNewPhoto()
-        {
-            var photo = new Photo();
-            _photoRepository.Add(photo);
-            return photo;
         }
 
         private async void OnSaveExecute()
