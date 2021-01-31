@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using PhotoOrganizer.Startup;
+using PhotoOrganizer.UI.Startup;
 using System.Windows;
 
-namespace PhotoOrganizer
+namespace PhotoOrganizer.UI
 {
     /// <summary>
     /// Interaction logic for App.xaml

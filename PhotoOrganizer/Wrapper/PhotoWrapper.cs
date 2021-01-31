@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PhotoOrganizer.Wrapper
+namespace PhotoOrganizer.UI.Wrapper
 {
     public class PhotoWrapper : NotifyDataErrorInfoBase
     {

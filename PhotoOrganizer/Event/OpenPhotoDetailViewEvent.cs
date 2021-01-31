@@ -1,6 +1,6 @@
 ﻿using Prism.Events;
 
-namespace PhotoOrganizer.Event
+namespace PhotoOrganizer.UI.Event
 {
     public class OpenPhotoDetailViewEvent : PubSubEvent<int>
     {

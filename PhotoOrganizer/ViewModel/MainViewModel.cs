@@ -1,10 +1,6 @@
-﻿using PhotoOrganizer.FileHandler;
-using PhotoOrganizer.Model;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace PhotoOrganizer.ViewModel
+namespace PhotoOrganizer.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PhotoOrganizer.ViewModel
+namespace PhotoOrganizer.UI.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

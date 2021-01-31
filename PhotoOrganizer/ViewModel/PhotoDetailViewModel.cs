@@ -1,18 +1,17 @@
-﻿using PhotoOrganizer.Event;
-using PhotoOrganizer.Model;
-using PhotoOrganizer.Wrapper;
+﻿using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace PhotoOrganizer.ViewModel
+namespace PhotoOrganizer.UI.ViewModel
 {
     public class PhotoDetailViewModel : ViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
-        private IPhotoDataService _dataService;
+        private IPhotoRepository _dataService;
         private IEventAggregator _eventAggregator;
 
         public ICommand SaveCommand { get; }
@@ -27,7 +26,7 @@ namespace PhotoOrganizer.ViewModel
             }
         }
 
-        public PhotoDetailViewModel(IPhotoDataService dataService, IEventAggregator eventAggregator)
+        public PhotoDetailViewModel(IPhotoRepository dataService, IEventAggregator eventAggregator)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;

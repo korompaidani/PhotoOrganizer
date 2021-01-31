@@ -1,19 +1,16 @@
 ﻿using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.Model;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoOrganizer
+namespace PhotoOrganizer.UI.Data.Repositories
 {
-    public class PhotoDataService : IPhotoDataService
+    public class PhotoRepository : IPhotoRepository
     {
         private Func<PhotoOrganizerDbContext> _contextCreator;
 
-        public PhotoDataService(Func<PhotoOrganizerDbContext> contextCreator)
+        public PhotoRepository(Func<PhotoOrganizerDbContext> contextCreator)
         {
             _contextCreator = contextCreator;
         }

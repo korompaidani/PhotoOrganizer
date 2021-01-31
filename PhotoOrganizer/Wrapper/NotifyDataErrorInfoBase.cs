@@ -1,11 +1,11 @@
-﻿using PhotoOrganizer.ViewModel;
+﻿using PhotoOrganizer.UI.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace PhotoOrganizer.Wrapper
+namespace PhotoOrganizer.UI.Wrapper
 {
     public class NotifyDataErrorInfoBase : ViewModelBase, INotifyDataErrorInfo
     {

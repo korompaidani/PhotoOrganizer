@@ -1,15 +1,11 @@
-﻿using PhotoOrganizer.Data;
-using PhotoOrganizer.Event;
-using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.UI.Event;
 using Prism.Events;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using PhotoOrganizer.UI.Data.Lookups;
 
-namespace PhotoOrganizer.ViewModel
+namespace PhotoOrganizer.UI.ViewModel
 {
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {

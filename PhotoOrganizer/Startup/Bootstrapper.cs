@@ -1,10 +1,11 @@
 ﻿using Autofac;
-using PhotoOrganizer.Data;
 using PhotoOrganizer.DataAccess;
-using PhotoOrganizer.ViewModel;
+using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
+using PhotoOrganizer.UI.Data.Lookups;
+using PhotoOrganizer.UI.Data.Repositories;
 
-namespace PhotoOrganizer.Startup
+namespace PhotoOrganizer.UI.Startup
 {
     public class Bootstrapper
     {
@@ -22,7 +23,7 @@ namespace PhotoOrganizer.Startup
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<PhotoDetailViewModel>().As<IPhotoDetailViewModel>();
-            builder.RegisterType<PhotoDataService>().As<IPhotoDataService>();
+            builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
 
             return builder.Build();
         }

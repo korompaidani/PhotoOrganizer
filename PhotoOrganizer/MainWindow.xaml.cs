@@ -1,8 +1,7 @@
-﻿using PhotoOrganizer.ViewModel;
-using System;
+﻿using PhotoOrganizer.UI.ViewModel;
 using System.Windows;
 
-namespace PhotoOrganizer
+namespace PhotoOrganizer.UI
 {
     public partial class MainWindow : Window
     {

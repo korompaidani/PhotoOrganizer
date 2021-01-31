@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoOrganizer.Data
+namespace PhotoOrganizer.UI.Data.Lookups
 {
     public class LookupDataService : IPhotoLookupDataService
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PhotoOrganizer.Data
+namespace PhotoOrganizer.UI.Data.Lookups
 {
     public interface IPhotoLookupDataService
     {

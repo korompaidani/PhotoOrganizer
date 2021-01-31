@@ -1,13 +1,9 @@
 ﻿using PhotoOrganizer.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoOrganizer
+namespace PhotoOrganizer.UI.Data.Repositories
 {
-    public interface IPhotoDataService
+    public interface IPhotoRepository
     {
         Task<Photo> GetByIdAsync(int photoId);
         Task SaveAsync(Photo photo);

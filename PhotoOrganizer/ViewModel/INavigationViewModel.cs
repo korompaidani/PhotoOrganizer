@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace PhotoOrganizer.ViewModel
+namespace PhotoOrganizer.UI.ViewModel
 {
     public interface INavigationViewModel
     {
