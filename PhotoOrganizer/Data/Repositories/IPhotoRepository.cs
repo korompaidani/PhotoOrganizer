@@ -9,5 +9,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
         Task SaveAsync();
         bool HasChanges();
         void Add(Photo photo);
+        void Remove(Photo model);
     }
 }

@@ -34,6 +34,8 @@
         <StackPanel Grid.Row="6" Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="5"
                     Command="{Binding SaveCommand}"/>
+            <Button Content="Delete" Width="125" Margin="5"
+                    Command="{Binding DeleteCommand}"/>
         </StackPanel>
 
         <Image Grid.Row="7" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>

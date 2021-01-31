@@ -4,6 +4,7 @@ using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -17,6 +18,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool _hasChanges;
 
         public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; }
 
         public PhotoWrapper Photo
         { 
@@ -48,6 +50,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator = eventAggregator;
             
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
 
         public async Task LoadAsync(int? photoId)
@@ -99,6 +102,12 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool OnSaveCanExecute()
         {
             return Photo != null && !Photo.HasErrors && HasChanges;
-        }        
+        }
+
+        private async void OnDeleteExecute()
+        {
+            _photoRepository.Remove(Photo.Model);
+            await _photoRepository.SaveAsync();
+        }
     }
 }

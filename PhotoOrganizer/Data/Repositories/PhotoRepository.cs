@@ -30,6 +30,11 @@ namespace PhotoOrganizer.UI.Data.Repositories
             return _context.ChangeTracker.HasChanges();
         }
 
+        public void Remove(Photo model)
+        {
+            _context.Photos.Remove(model);
+        }
+
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
