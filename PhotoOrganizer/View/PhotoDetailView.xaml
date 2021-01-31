@@ -14,27 +14,28 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="400"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="390"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Title" Margin="10,10,10,0"/>
         <TextBox Grid.Row="1" Text="{Binding Photo.Title,
-                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
 
-        <Label Grid.Row="2" Content="Path" Margin="10,0,10,0"/>
+        <Label Grid.Row="2" Content="Path" Margin="5,0,5,0"/>
         <TextBox Grid.Row="3" Text="{Binding Photo.FullPath,
-                UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
+                UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
 
-        <Label Grid.Row="4" Content="Year" Margin="10,0,10,0"/>
+        <Label Grid.Row="4" Content="Year" Margin="5,0,5,0"/>
         <TextBox Grid.Row="5" Text="{Binding Photo.Year, 
             TargetNullValue='',
-                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10"/>
-
-        <Image Grid.Row="6" Source="{Binding Photo.FullPath}" Margin="10 0 10 10"/>
-        <StackPanel Grid.Row="8" Orientation="Horizontal">
-            <Button Content="Save" Width="125" Margin="10"
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
+        
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Button Content="Save" Width="125" Margin="5"
                     Command="{Binding SaveCommand}"/>
         </StackPanel>
+
+        <Image Grid.Row="7" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
     </Grid>
 </UserControl>
