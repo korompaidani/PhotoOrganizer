@@ -2,7 +2,7 @@
 
 namespace PhotoOrganizer.UI.Event
 {
-    public class OpenPhotoDetailViewEvent : PubSubEvent<int>
+    public class OpenPhotoDetailViewEvent : PubSubEvent<int?>
     {
     }
 }

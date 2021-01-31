@@ -1,8 +1,10 @@
 ﻿using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -13,6 +15,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
+        public ICommand CreateNewPhotoCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
         public IPhotoDetailViewModel PhotoDetailViewModel 
         { 
@@ -38,6 +41,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+
+            CreateNewPhotoCommand = new DelegateCommand(OnCreateNewPhotoExecute);
         }
 
         public async Task LoadAsync()
@@ -45,7 +50,7 @@ namespace PhotoOrganizer.UI.ViewModel
             await NavigationViewModel.LoadAsync();
         }
 
-        private async void OnOpenFriendDetailView(int photoId)
+        private async void OnOpenFriendDetailView(int? photoId)
         {
             if(PhotoDetailViewModel != null && PhotoDetailViewModel.HasChanges)
             {
@@ -57,6 +62,11 @@ namespace PhotoOrganizer.UI.ViewModel
             }
             PhotoDetailViewModel = _photoDetailViewModelCreator();
             await PhotoDetailViewModel.LoadAsync(photoId);
+        }
+
+        private void OnCreateNewPhotoExecute()
+        {
+            OnOpenFriendDetailView(null);
         }
     }
 }

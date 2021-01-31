@@ -8,11 +8,20 @@
         mc:Ignorable="d"
         Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <view:NavigationView Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
-        <view:PhotoDetailView Grid.Column="1" DataContext="{Binding PhotoDetailViewModel}"/>
+        <Menu Grid.ColumnSpan="2" FontSize="20">
+            <MenuItem Header="Create">
+                <MenuItem Header="New Photo" Command="{Binding CreateNewPhotoCommand}"/>
+            </MenuItem>
+        </Menu>
+        <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
+        <view:PhotoDetailView Grid.Row="1" Grid.Column="1" DataContext="{Binding PhotoDetailViewModel}"/>
     </Grid>
 </Window>

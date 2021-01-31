@@ -8,5 +8,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
         Task<Photo> GetByIdAsync(int photoId);
         Task SaveAsync();
         bool HasChanges();
+        void Add(Photo photo);
     }
 }

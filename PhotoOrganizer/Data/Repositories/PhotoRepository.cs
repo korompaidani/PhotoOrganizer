@@ -15,6 +15,11 @@ namespace PhotoOrganizer.UI.Data.Repositories
             _context = context;
         }
 
+        public void Add(Photo photo)
+        {
+            _context.Photos.Add(photo);
+        }
+
         public async Task<Photo> GetByIdAsync(int photoId)
         {
             return await _context.Photos.SingleAsync(p => p.Id == photoId);

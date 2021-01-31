@@ -24,8 +24,15 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void AfterPhotoSaved(AfterPhotoSavedEventArgs obj)
         {
-            var lookupItem = Photos.Single(p => p.Id == obj.Id);
-            lookupItem.Title = obj.Title;
+            var lookupItem = Photos.SingleOrDefault(p => p.Id == obj.Id);
+            if(lookupItem == null)
+            {
+                Photos.Add(new NavigationItemViewModel(obj.Id, obj.Title, _eventAggregator));
+            }
+            else
+            {
+                lookupItem.Title = obj.Title;
+            }
         }
 
         public async Task LoadAsync()

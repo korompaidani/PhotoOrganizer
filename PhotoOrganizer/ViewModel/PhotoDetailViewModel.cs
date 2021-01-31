@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Data.Repositories;
+﻿using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -49,9 +50,11 @@ namespace PhotoOrganizer.UI.ViewModel
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
         }
 
-        public async Task LoadAsync(int photoId)
+        public async Task LoadAsync(int? photoId)
         {
-            var photo = await _photoRepository.GetByIdAsync(photoId);
+            var photo = photoId.HasValue
+                ? await _photoRepository.GetByIdAsync(photoId.Value)
+                : CreateNewPhoto();
             
             Photo = new PhotoWrapper(photo);
             Photo.PropertyChanged += (s, e) =>
@@ -67,6 +70,18 @@ namespace PhotoOrganizer.UI.ViewModel
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if(Photo.Id == 0)
+            {
+                Photo.Title = "";
+                Photo.FullPath = "";
+            }
+        }
+
+        private Photo CreateNewPhoto()
+        {
+            var photo = new Photo();
+            _photoRepository.Add(photo);
+            return photo;
         }
 
         private async void OnSaveExecute()
