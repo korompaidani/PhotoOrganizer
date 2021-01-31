@@ -40,17 +40,18 @@ namespace PhotoOrganizer.UI.ViewModel
             _messageDialogService = messageDialogService;
 
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenPhotoDetailView);
+            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Subscribe(AfterPhotoDeleted);
 
             CreateNewPhotoCommand = new DelegateCommand(OnCreateNewPhotoExecute);
-        }
+        }        
 
         public async Task LoadAsync()
         {
             await NavigationViewModel.LoadAsync();
         }
 
-        private async void OnOpenFriendDetailView(int? photoId)
+        private async void OnOpenPhotoDetailView(int? photoId)
         {
             if(PhotoDetailViewModel != null && PhotoDetailViewModel.HasChanges)
             {
@@ -66,7 +67,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnCreateNewPhotoExecute()
         {
-            OnOpenFriendDetailView(null);
+            OnOpenPhotoDetailView(null);
+        }
+
+        private void AfterPhotoDeleted(int photoId)
+        {
+            PhotoDetailViewModel = null;
         }
     }
 }

@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoOrganizer.UI"
         xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
+        xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
         mc:Ignorable="d"
         Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
+            <view:PhotoDetailView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,6 +28,6 @@
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
-        <view:PhotoDetailView Grid.Row="1" Grid.Column="1" DataContext="{Binding PhotoDetailViewModel}"/>
+        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding PhotoDetailViewModel}"/>
     </Grid>
 </Window>
