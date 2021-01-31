@@ -10,5 +10,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
         bool HasChanges();
         void Add(Photo photo);
         void Remove(Photo model);
+        Task TruncatePhotoTable();
     }
 }

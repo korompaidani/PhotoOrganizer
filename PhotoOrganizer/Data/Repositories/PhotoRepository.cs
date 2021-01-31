@@ -39,5 +39,16 @@ namespace PhotoOrganizer.UI.Data.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+        public async Task TruncatePhotoTable()
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Photos]");
+            }
+            catch
+            {
+            }
+        }
     }
 }

@@ -82,11 +82,22 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnCreatePhotosFromLibraryExecute()
         {
             // TODO:
-            // 1. show leave form question
-            // 2. Detect that database has entries
-            // 3. if yes: ask to save --> and if yes than save
-            // 4. Read data from library
-            // 5. show progressbar during load
+            // 1.        Detect that database has entries
+            // 2.        if yes: ask to save --> and if yes than save
+            // 3.        Delete all data from photo table
+            // 3. DONE   Read data from library
+            // 4.        show progressbar during load
+
+            var result = _messageDialogService.ShowOkCancelDialog("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+            if (result == MessageDialogResult.Cancel)
+            {
+                return;
+            }
+            else
+            {
+                await _photoRepository.TruncatePhotoTable();
+            }
+
             await LoadAllFromLibraryAsync();
         }
 
