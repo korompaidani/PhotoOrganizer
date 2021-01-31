@@ -94,6 +94,9 @@ namespace PhotoOrganizer.UI.Wrapper
                         AddError(propertyName, "Title cannot be xd");
                     }
                     break;
+                case nameof(FullPath):
+                    // TODO: Validate that Does the file exist
+                    break;
             }
 
         }
