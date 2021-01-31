@@ -1,8 +1,8 @@
 ﻿using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.View.Services;
 using Prism.Events;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -10,6 +10,7 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IPhotoDetailViewModel _photoDetailViewModel;
         private Func<IPhotoDetailViewModel> _photoDetailViewModelCreator;
+        private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
         public INavigationViewModel NavigationViewModel { get; }
@@ -28,11 +29,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
             Func<IPhotoDetailViewModel> photoDetailViewModelCreator,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IMessageDialogService messageDialogService)
         {
             NavigationViewModel = navigationViewModel;
             _photoDetailViewModelCreator = photoDetailViewModelCreator;
-            
+            _messageDialogService = messageDialogService;
+
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
         }
@@ -46,9 +49,8 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if(PhotoDetailViewModel != null && PhotoDetailViewModel.HasChanges)
             {
-               var result =  MessageBox.Show("Are you sure to leave this form? Changes will lost.", "Question",
-                   MessageBoxButton.OKCancel);
-                if(result == MessageBoxResult.Cancel)
+                var result = _messageDialogService.ShowOkCancelDialog("Are you sure to leave this form? Changes will lost.", "Question");
+                if(result == MessageDialogResult.Cancel)
                 {
                     return;
                 }

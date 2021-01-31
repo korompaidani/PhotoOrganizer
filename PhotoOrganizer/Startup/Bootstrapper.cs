@@ -4,6 +4,7 @@ using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.View.Services;
 
 namespace PhotoOrganizer.UI.Startup
 {
@@ -19,7 +20,9 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
-            
+
+            builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
+
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<PhotoDetailViewModel>().As<IPhotoDetailViewModel>();
