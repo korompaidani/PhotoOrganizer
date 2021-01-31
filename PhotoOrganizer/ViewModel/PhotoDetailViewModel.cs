@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
@@ -15,6 +16,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private PhotoWrapper _photo;
         private IPhotoRepository _photoRepository;
         private IEventAggregator _eventAggregator;
+        private IMessageDialogService _messageDialogService;
         private bool _hasChanges;
 
         public ICommand SaveCommand { get; }
@@ -44,11 +46,14 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public PhotoDetailViewModel(IPhotoRepository photoRepository, IEventAggregator eventAggregator)
+        public PhotoDetailViewModel(IPhotoRepository photoRepository, 
+            IEventAggregator eventAggregator,
+            IMessageDialogService messageDialogService)
         {
             _photoRepository = photoRepository;
             _eventAggregator = eventAggregator;
-            
+            _messageDialogService = messageDialogService;
+
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
@@ -106,9 +111,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnDeleteExecute()
         {
-            _photoRepository.Remove(Photo.Model);
-            await _photoRepository.SaveAsync();
-            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Publish(Photo.Id);
+            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
+            if(result == MessageDialogResult.Ok)
+            {
+                _photoRepository.Remove(Photo.Model);
+                await _photoRepository.SaveAsync();
+                _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Publish(Photo.Id);
+            }
         }
     }
 }
