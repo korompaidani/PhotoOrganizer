@@ -84,7 +84,7 @@ namespace PhotoOrganizer.UI.ViewModel
             // TODO:
             // 1.        Detect that database has entries
             // 2.        if yes: ask to save --> and if yes than save
-            // 3.        Delete all data from photo table
+            // 3. DONE   Delete all data from photo table
             // 3. DONE   Read data from library
             // 4.        show progressbar during load
 
