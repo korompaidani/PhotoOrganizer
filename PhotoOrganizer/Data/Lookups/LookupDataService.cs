@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Lookups
 {
-    public class LookupDataService : IPhotoLookupDataService
+    public class LookupDataService : IPhotoLookupDataService, IYearLookupDataService
     {
         private Func<PhotoOrganizerDbContext> _contextCreator;
 
@@ -28,6 +28,20 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     {
                         Id = p.Id,
                         Title = p.Title
+                    }).ToListAsync();
+            }
+        }
+
+        public async Task<IEnumerable<LookupItem>> GetYearLookupAsync()
+        {
+            using (var context = _contextCreator())
+            {
+                return await context.Years.AsNoTracking()
+                    .Select(p =>
+                    new LookupItem
+                    {
+                        Id = p.Id,
+                        Title = p.PhotoTakenYear.ToString()
                     }).ToListAsync();
             }
         }

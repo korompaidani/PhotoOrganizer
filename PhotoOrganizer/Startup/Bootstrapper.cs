@@ -24,6 +24,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
+
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<PhotoDetailViewModel>().As<IPhotoDetailViewModel>();
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();

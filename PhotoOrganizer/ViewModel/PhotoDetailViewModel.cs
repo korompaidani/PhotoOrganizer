@@ -1,4 +1,5 @@
 ﻿using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
@@ -6,6 +7,7 @@ using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -17,10 +19,12 @@ namespace PhotoOrganizer.UI.ViewModel
         private IPhotoRepository _photoRepository;
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogService;
+        private IYearLookupDataService _yearLookupDataService;
         private bool _hasChanges;
 
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ObservableCollection<LookupItem> Years { get; }
 
         public PhotoWrapper Photo
         { 
@@ -48,14 +52,19 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public PhotoDetailViewModel(IPhotoRepository photoRepository, 
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService)
+            IMessageDialogService messageDialogService,
+            IYearLookupDataService yearLookupDataService
+            )
         {
             _photoRepository = photoRepository;
             _eventAggregator = eventAggregator;
             _messageDialogService = messageDialogService;
+            _yearLookupDataService = yearLookupDataService;
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
+
+            Years = new ObservableCollection<LookupItem>();
         }
 
         public async Task LoadAsync(int? photoId)
@@ -64,6 +73,12 @@ namespace PhotoOrganizer.UI.ViewModel
                 ? await _photoRepository.GetByIdAsync(photoId.Value)
                 : CreateNewPhoto();
             
+            InitializePhoto(photo);
+            await LoadYearLookupAsync();
+        }
+
+        private void InitializePhoto(Photo photo)
+        {
             Photo = new PhotoWrapper(photo);
             Photo.PropertyChanged += (s, e) =>
             {
@@ -78,10 +93,20 @@ namespace PhotoOrganizer.UI.ViewModel
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-            if(Photo.Id == 0)
+            if (Photo.Id == 0)
             {
                 Photo.Title = "";
                 Photo.FullPath = "";
+            }
+        }
+
+        private async Task LoadYearLookupAsync()
+        {
+            Years.Clear();
+            var lookup = await _yearLookupDataService.GetYearLookupAsync();
+            foreach (var lookupItem in lookup)
+            {
+                Years.Add(lookupItem);
             }
         }
 

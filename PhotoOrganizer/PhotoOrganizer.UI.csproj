@@ -93,6 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Lookups\IYearLookupDataService.cs" />
     <Compile Include="Data\Repositories\IPhotoRepository.cs" />
     <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
