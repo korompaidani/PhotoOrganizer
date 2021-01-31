@@ -97,6 +97,7 @@
     <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
+    <Compile Include="Event\AfterPhotoDeleteEvent.cs" />
     <Compile Include="Event\AfterPhotoSavedEvent.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />

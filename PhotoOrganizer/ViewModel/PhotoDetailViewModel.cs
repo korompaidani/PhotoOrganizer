@@ -108,6 +108,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             _photoRepository.Remove(Photo.Model);
             await _photoRepository.SaveAsync();
+            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Publish(Photo.Id);
         }
     }
 }

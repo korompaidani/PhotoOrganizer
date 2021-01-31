@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using PhotoOrganizer.UI.Data.Lookups;
+using System;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -20,6 +21,17 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator = eventAggregator;
             Photos = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Subscribe(AfterPhotoSaved);
+            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Subscribe(AfterPhotoDeleted);
+        }
+
+        public async Task LoadAsync()
+        {
+            var photos = await _photoLookupDataService.GetPhotoLookupAsync();
+            Photos.Clear();
+            foreach (var photo in photos)
+            {
+                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title, _eventAggregator));
+            }
         }
 
         private void AfterPhotoSaved(AfterPhotoSavedEventArgs obj)
@@ -35,13 +47,12 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public async Task LoadAsync()
+        private void AfterPhotoDeleted(int photoId)
         {
-            var photos = await _photoLookupDataService.GetPhotoLookupAsync();
-            Photos.Clear();
-            foreach (var photo in photos)
+            var photo = Photos.SingleOrDefault(p => p.Id == photoId);
+            if(photo != null)
             {
-                Photos.Add(new NavigationItemViewModel(photo.Id, photo.Title, _eventAggregator));
+                Photos.Remove(photo);
             }
         }
     }
