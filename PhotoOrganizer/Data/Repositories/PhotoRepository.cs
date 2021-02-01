@@ -2,8 +2,8 @@
 using PhotoOrganizer.Model;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PhotoOrganizer.UI.Data.Repositories
 {
@@ -26,24 +26,69 @@ namespace PhotoOrganizer.UI.Data.Repositories
             _context.Photos.AddRange(photos);            
         }
 
-        public async Task AddRangeAsync(Photo[] photos)
+        private PhotoOrganizerDbContext AddToContext(PhotoOrganizerDbContext context,
+        Photo entity, int count, int commitCount, bool recreateContext)
         {
-            // Close context after 100
-            // context.Configuration.AutoDetectChangesEnabled = false;
-            const int bufferSize = 100;
-            int bufferCounter = 0;
+            context.Photos.Add(entity);
 
-            foreach(var photo in photos)
+            if (count % commitCount == 0)
             {
-                if(bufferCounter++ == bufferSize)
+                context.SaveChanges();
+                if (recreateContext)
                 {
-
+                    context.Dispose();
+                    context = new PhotoOrganizerDbContext();
+                    context.Configuration.AutoDetectChangesEnabled = false;
                 }
-                
-                _context.Photos.Add(photo);
             }
 
-            await SaveAsync();
+            return context;
+        }
+
+        public async Task AddRangeAsync(Photo[] photos)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                PhotoOrganizerDbContext context = null;
+                try
+                {
+                    context = new PhotoOrganizerDbContext();
+                    context.Configuration.AutoDetectChangesEnabled = false;
+
+                    int count = 0;
+                    foreach (var entityToInsert in photos)
+                    {
+                        ++count;
+                        context = AddToContext(context, entityToInsert, count, 100, true);
+                    }
+
+                    await context.SaveChangesAsync();
+                }
+                finally
+                {
+                    if (context != null)
+                        context.Dispose();
+                }
+
+                scope.Complete();
+            }
+
+            // Close context after 100
+            // context.Configuration.AutoDetectChangesEnabled = false;
+            //const int bufferSize = 100;
+            //int bufferCounter = 0;
+
+            //foreach(var photo in photos)
+            //{
+            //    if(bufferCounter++ == bufferSize)
+            //    {
+
+            //    }
+                
+            //    _context.Photos.Add(photo);
+            //}
+
+            //await SaveAsync();
         }
 
         public async Task<int?> GetMaxPhotoIdAsync()
