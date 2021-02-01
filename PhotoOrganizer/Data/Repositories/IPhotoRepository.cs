@@ -16,6 +16,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
         void AddRange(Photo[] photos);
         Task AddRangeAsync(Photo[] photos);
         void Remove(Photo model);
-        Task TruncatePhotoTable();
+        Task DeleteAllEntriesFromTableAsync();
     }
 }

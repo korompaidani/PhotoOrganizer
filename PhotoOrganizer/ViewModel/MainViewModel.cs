@@ -1,5 +1,4 @@
-﻿using PhotoOrganizer.FileHandler;
-using PhotoOrganizer.UI.Data.Repositories;
+﻿using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
@@ -22,6 +21,9 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand CreateNewPhotoCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
+
+        private IBackupService _backupService;
+
         public IPhotoDetailViewModel PhotoDetailViewModel 
         { 
             get 
@@ -35,15 +37,17 @@ namespace PhotoOrganizer.UI.ViewModel
             } 
         }
 
-        public MainViewModel(
+        public MainViewModel(            
             IPhotoRepository photoRepository,
             INavigationViewModel navigationViewModel, 
             Func<IPhotoDetailViewModel> photoDetailViewModelCreator,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            IDirectoryReaderWrapperService directoryReaderWrapperService) : base(photoRepository)
+            IDirectoryReaderWrapperService directoryReaderWrapperService,
+            IBackupService backupService) : base(photoRepository)
         {
             NavigationViewModel = navigationViewModel;
+            _backupService = backupService;
             _photoDetailViewModelCreator = photoDetailViewModelCreator;
             _messageDialogService = messageDialogService;
             _directoryReaderWrapperService = directoryReaderWrapperService;
@@ -96,7 +100,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     // save data here
                     var entities = await _photoRepository.GetAllPhotosAsync();
-                    XmlExporter.ReadTableValues(entities);
+                    _backupService.CreateBackup(null);
                 }
 
                 var result = _messageDialogService.ShowOkCancelDialog("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
@@ -106,7 +110,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 }
                 else
                 {
-                    await _photoRepository.TruncatePhotoTable();
+                    await _photoRepository.DeleteAllEntriesFromTableAsync();
                 }
             }
 

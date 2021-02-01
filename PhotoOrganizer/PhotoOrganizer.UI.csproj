@@ -102,7 +102,9 @@
     <Compile Include="Event\AfterPhotoDeleteEvent.cs" />
     <Compile Include="Event\AfterPhotoSavedEvent.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
+    <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\DirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IBackupService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
@@ -192,6 +194,7 @@
     <Resource Include="Resources\TestResources\Photos\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Resources\Backup\" />
     <Folder Include="Resources\Photos\" />
   </ItemGroup>
   <ItemGroup>

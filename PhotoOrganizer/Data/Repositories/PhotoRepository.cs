@@ -72,23 +72,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
 
                 scope.Complete();
             }
-
-            // Close context after 100
-            // context.Configuration.AutoDetectChangesEnabled = false;
-            //const int bufferSize = 100;
-            //int bufferCounter = 0;
-
-            //foreach(var photo in photos)
-            //{
-            //    if(bufferCounter++ == bufferSize)
-            //    {
-
-            //    }
-                
-            //    _context.Photos.Add(photo);
-            //}
-
-            //await SaveAsync();
         }
 
         public async Task<int?> GetMaxPhotoIdAsync()
@@ -126,7 +109,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task TruncatePhotoTable()
+        public async Task DeleteAllEntriesFromTableAsync()
         {
             var photos = await GetAllPhotosAsync();
             foreach (var photo in photos)

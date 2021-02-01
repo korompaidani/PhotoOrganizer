@@ -8,7 +8,6 @@ namespace PhotoOrganizer.DataAccess
         public PhotoOrganizerDbContext() : base("PhotoOrganizerDb")
         {
         }
-
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Year> Years { get; set; }
 
