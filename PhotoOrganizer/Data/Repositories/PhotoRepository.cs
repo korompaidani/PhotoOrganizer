@@ -1,7 +1,8 @@
 ﻿using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.Model;
-using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Repositories
@@ -20,8 +21,43 @@ namespace PhotoOrganizer.UI.Data.Repositories
             _context.Photos.Add(photo);
         }
 
-        public async Task<Photo> GetByIdAsync(int photoId)
+        public void AddRange(Photo[] photos)
         {
+            _context.Photos.AddRange(photos);            
+        }
+
+        public async Task AddRangeAsync(Photo[] photos)
+        {
+            // Close context after 100
+            // context.Configuration.AutoDetectChangesEnabled = false;
+            const int bufferSize = 100;
+            int bufferCounter = 0;
+
+            foreach(var photo in photos)
+            {
+                if(bufferCounter++ == bufferSize)
+                {
+
+                }
+                
+                _context.Photos.Add(photo);
+            }
+
+            await SaveAsync();
+        }
+
+        public async Task<int?> GetMaxPhotoIdAsync()
+        {
+            return await _context.Photos.MaxAsync(p => (int?)p.Id);
+        }
+
+        public async Task<List<Photo>> GetAllPhotosAsync()
+        {
+            return await _context.Photos.ToListAsync();
+        }
+
+        public async Task<Photo> GetByIdAsync(int photoId)
+        {            
             return await _context.Photos.SingleAsync(p => p.Id == photoId);
         }
 
@@ -30,7 +66,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
             return _context.ChangeTracker.HasChanges();
         }
 
-        public async Task<bool> HasPhotos()
+        public async Task<bool> HasPhotosAsync()
         {
             return await _context.Photos.CountAsync() != 0 ? true : false;
         }
@@ -47,13 +83,13 @@ namespace PhotoOrganizer.UI.Data.Repositories
 
         public async Task TruncatePhotoTable()
         {
-            try
+            var photos = await GetAllPhotosAsync();
+            foreach (var photo in photos)
             {
-                await _context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Photos]");
+                _context.Photos.Remove(photo);
             }
-            catch
-            {
-            }
+
+            await SaveAsync();
         }
     }
 }

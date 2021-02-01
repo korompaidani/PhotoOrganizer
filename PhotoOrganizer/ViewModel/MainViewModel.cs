@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Data.Repositories;
+﻿using PhotoOrganizer.FileHandler;
+using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
@@ -88,12 +89,14 @@ namespace PhotoOrganizer.UI.ViewModel
             // 3. DONE   Read data from library
             // 4.        show progressbar during load
 
-            if (await _photoRepository.HasPhotos())
+            if (await _photoRepository.HasPhotosAsync())
             {
-                var answer = _messageDialogService.ShowOkCancelDialog("The database has entry(s). Would you like to save data first before erase all photo data?", "Question");
+                var answer = _messageDialogService.ShowYesOrNoDialog("The database has entry(s). Would you like to save data first before erase all photo data?", "Question");
                 if (answer == MessageDialogResult.Yes)
                 {
                     // save data here
+                    var entities = await _photoRepository.GetAllPhotosAsync();
+                    XmlExporter.ReadTableValues(entities);
                 }
 
                 var result = _messageDialogService.ShowOkCancelDialog("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
@@ -112,12 +115,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
 
         public async Task LoadAllFromLibraryAsync()
-        {
-            foreach (var photo in _directoryReaderWrapperService.ConvertFileNamesToPhotos())
-            {
-                CreateNewPhoto(photo);
-            }
-            await _photoRepository.SaveAsync();
+        {            
+            await _photoRepository.AddRangeAsync(_directoryReaderWrapperService.ConvertFileNamesToPhotos());
             await LoadAsync();
         }
 

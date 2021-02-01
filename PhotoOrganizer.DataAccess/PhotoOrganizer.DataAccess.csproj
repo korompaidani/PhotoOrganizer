@@ -59,6 +59,14 @@
     <Compile Include="Migrations\202101311336463_AddedYears.designer.cs">
       <DependentUpon>202101311336463_AddedYears.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101312202377_NewTablesAndSetIdentity.cs" />
+    <Compile Include="Migrations\202101312202377_NewTablesAndSetIdentity.designer.cs">
+      <DependentUpon>202101312202377_NewTablesAndSetIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101312205179_RemoveIdentityShemaFromPhoto.cs" />
+    <Compile Include="Migrations\202101312205179_RemoveIdentityShemaFromPhoto.designer.cs">
+      <DependentUpon>202101312205179_RemoveIdentityShemaFromPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101311336463_AddedYears.resx">
       <DependentUpon>202101311336463_AddedYears.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101312202377_NewTablesAndSetIdentity.resx">
+      <DependentUpon>202101312202377_NewTablesAndSetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101312205179_RemoveIdentityShemaFromPhoto.resx">
+      <DependentUpon>202101312205179_RemoveIdentityShemaFromPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

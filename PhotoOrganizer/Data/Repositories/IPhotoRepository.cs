@@ -1,4 +1,5 @@
 ﻿using PhotoOrganizer.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Repositories
@@ -8,8 +9,12 @@ namespace PhotoOrganizer.UI.Data.Repositories
         Task<Photo> GetByIdAsync(int photoId);
         Task SaveAsync();
         bool HasChanges();
-        Task<bool> HasPhotos();
+        Task<bool> HasPhotosAsync();
+        Task<int?> GetMaxPhotoIdAsync();
+        Task<List<Photo>> GetAllPhotosAsync();
         void Add(Photo photo);
+        void AddRange(Photo[] photos);
+        Task AddRangeAsync(Photo[] photos);
         void Remove(Photo model);
         Task TruncatePhotoTable();
     }

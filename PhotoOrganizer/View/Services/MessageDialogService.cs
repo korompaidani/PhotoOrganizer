@@ -15,7 +15,7 @@ namespace PhotoOrganizer.UI.View.Services
         public MessageDialogResult ShowYesOrNoDialog(string text, string title)
         {
             var result = MessageBox.Show(text, title, MessageBoxButton.YesNo);
-            return result == MessageBoxResult.OK
+            return result == MessageBoxResult.Yes
                 ? MessageDialogResult.Yes
                 : MessageDialogResult.No;
         }
