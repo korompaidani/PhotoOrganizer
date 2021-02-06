@@ -19,6 +19,9 @@ namespace PhotoOrganizer.Model
 
         public string LastName { get; set; }
 
+        public int PhotoId { get; set; }
+        public Photo Photo { get; set; }
+
         public ICollection<Alias> Aliases { get; set; }
     }
 }

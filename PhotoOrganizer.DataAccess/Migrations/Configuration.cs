@@ -31,6 +31,11 @@
             context.Years.AddOrUpdate(y => y.PhotoTakenYear,
                 new Year { PhotoTakenYear = 2019},
                 new Year { PhotoTakenYear = 1988 });
+
+            context.SaveChanges();
+
+            context.People.AddOrUpdate(p => p.FirstName,
+                new People { FirstName = "Daniel", PhotoId = context.Photos.First().Id });
         }
     }
 }
