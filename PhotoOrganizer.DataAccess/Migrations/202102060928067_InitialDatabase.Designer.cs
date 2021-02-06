@@ -7,13 +7,13 @@ namespace PhotoOrganizer.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddedYears : IMigrationMetadata
+    public sealed partial class InitialDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedYears));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101311336463_AddedYears"; }
+            get { return "202102060928067_InitialDatabase"; }
         }
         
         string IMigrationMetadata.Source
