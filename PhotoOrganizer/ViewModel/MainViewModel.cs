@@ -10,22 +10,22 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IPhotoDetailViewModel _photoDetailViewModel;
+        private IDetailViewModel _detailViewModel;
         private Func<IPhotoDetailViewModel> _photoDetailViewModelCreator;
         private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
-        public ICommand CreateNewPhotoCommand { get; }
+        public ICommand CreateNewDetailCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
-        public IPhotoDetailViewModel PhotoDetailViewModel 
+        public IDetailViewModel DetailViewModel 
         { 
             get 
             {
-                return _photoDetailViewModel;
+                return _detailViewModel;
             } 
             private set 
             {
-                _photoDetailViewModel = value;
+                _detailViewModel = value;
                 OnPropertyChanged();
             } 
         }
@@ -40,10 +40,11 @@ namespace PhotoOrganizer.UI.ViewModel
             _messageDialogService = messageDialogService;
 
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Subscribe(OnOpenPhotoDetailView);
-            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Subscribe(AfterPhotoDeleted);
+            _eventAggregator.GetEvent<OpenDetailViewEvent>().Subscribe(OnOpenDetailView);
+            _eventAggregator.GetEvent<AfterDetailDeletedEvent>().
+                Subscribe(AfterDetailDeleted);
 
-            CreateNewPhotoCommand = new DelegateCommand(OnCreateNewPhotoExecute);
+            CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
         }        
 
         public async Task LoadAsync()
@@ -51,9 +52,9 @@ namespace PhotoOrganizer.UI.ViewModel
             await NavigationViewModel.LoadAsync();
         }
 
-        private async void OnOpenPhotoDetailView(int? photoId)
+        private async void OnOpenDetailView(OpenDetailViewEventArgs args)
         {
-            if(PhotoDetailViewModel != null && PhotoDetailViewModel.HasChanges)
+            if(DetailViewModel != null && DetailViewModel.HasChanges)
             {
                 var result = _messageDialogService.ShowOkCancelDialog("Are you sure to leave this form? Changes will lost.", "Question");
                 if(result == MessageDialogResult.Cancel)
@@ -61,18 +62,24 @@ namespace PhotoOrganizer.UI.ViewModel
                     return;
                 }
             }
-            PhotoDetailViewModel = _photoDetailViewModelCreator();
-            await PhotoDetailViewModel.LoadAsync(photoId);
+            switch (args.ViewModelName)
+            {
+                case nameof(PhotoDetailViewModel):
+                    DetailViewModel = _photoDetailViewModelCreator();
+                    break;
+            }
+
+            await DetailViewModel.LoadAsync(args.Id);
         }
 
-        private void OnCreateNewPhotoExecute()
+        private void OnCreateNewDetailExecute(Type viewModelType)
         {
-            OnOpenPhotoDetailView(null);
+            OnOpenDetailView(new OpenDetailViewEventArgs { ViewModelName = viewModelType.Name });
         }
 
-        private void AfterPhotoDeleted(int photoId)
+        private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            PhotoDetailViewModel = null;
+            DetailViewModel = null;
         }
     }
 }

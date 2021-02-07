@@ -16,7 +16,7 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class PhotoDetailViewModel : ViewModelBase, IPhotoDetailViewModel
+    public class PhotoDetailViewModel : DetailViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
         private IPhotoRepository _photoRepository;
@@ -24,10 +24,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private PeopleWrapper _selectedPeople;
         private IMessageDialogService _messageDialogService;
         private IYearLookupDataService _yearLookupDataService;
-        private bool _hasChanges;
 
-        public ICommand SaveCommand { get; }
-        public ICommand DeleteCommand { get; }
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
 
@@ -54,33 +51,16 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public bool HasChanges
-        {
-            get { return _hasChanges; }
-            private set 
-            { 
-                if(_hasChanges != value)
-                {
-                    _hasChanges = value;
-                    OnPropertyChanged();
-                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-                }
-            }
-        }
-
         public PhotoDetailViewModel(IPhotoRepository photoRepository, 
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             IYearLookupDataService yearLookupDataService
-            )
+            ) : base(eventAggregator)
         {
             _photoRepository = photoRepository;
-            _eventAggregator = eventAggregator;
             _messageDialogService = messageDialogService;
             _yearLookupDataService = yearLookupDataService;
 
-            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
-            DeleteCommand = new DelegateCommand(OnDeleteExecute);
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
@@ -112,7 +92,7 @@ namespace PhotoOrganizer.UI.ViewModel
             newPeople.FirstName = "";
         }
 
-        public async Task LoadAsync(int? photoId)
+        public override async Task LoadAsync(int? photoId)
         {
             var photo = photoId.HasValue
                 ? await _photoRepository.GetByIdAsync(photoId.Value)
@@ -193,19 +173,14 @@ namespace PhotoOrganizer.UI.ViewModel
             return photo;
         }
 
-        private async void OnSaveExecute()
+        protected override async void OnSaveExecute()
         {
             await _photoRepository.SaveAsync();
             HasChanges = _photoRepository.HasChanges();
-            _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Publish(
-                new AfterPhotoSavedEventArgs
-                {
-                    Id = Photo.Id,
-                    Title = $"{Photo.Title}"
-                });
+            RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");            
         }
 
-        private bool OnSaveCanExecute()
+        protected override bool OnSaveCanExecute()
         {
             return Photo != null 
                 && !Photo.HasErrors 
@@ -213,14 +188,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 && HasChanges;
         }
 
-        private async void OnDeleteExecute()
+        protected override async void OnDeleteExecute()
         {
             var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
             if(result == MessageDialogResult.Ok)
             {
                 _photoRepository.Remove(Photo.Model);
                 await _photoRepository.SaveAsync();
-                _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Publish(Photo.Id);
+                RaiseDetailDeletedEvent(Photo.Id);                
             }
         }
     }

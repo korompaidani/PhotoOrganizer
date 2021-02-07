@@ -1,10 +1,6 @@
-﻿using System.Threading.Tasks;
-
-namespace PhotoOrganizer.UI.ViewModel
+﻿namespace PhotoOrganizer.UI.ViewModel
 {
-    public interface IPhotoDetailViewModel
+    public interface IPhotoDetailViewModel : IDetailViewModel
     {
-        bool HasChanges { get; }
-        Task LoadAsync(int? photoId);        
     }
 }

@@ -10,16 +10,19 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private string _displayMemberItem;
         private IEventAggregator _eventAggregator;
+        private string _detailViewModelName;
 
-        public ICommand OpenPhotoDetailViewCommand { get; }
+        public ICommand OpenDetailViewCommand { get; }
 
         public NavigationItemViewModel(int id, string displayMemberItem,
+            string detailViewModelName,
             IEventAggregator eventAggregator)
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
             _eventAggregator = eventAggregator;
-            OpenPhotoDetailViewCommand = new DelegateCommand(OnOpenPhotoDetailView);
+            _detailViewModelName = detailViewModelName;
+            OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
         }               
 
         public int Id { get; }
@@ -34,9 +37,15 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void OnOpenPhotoDetailView()
+        private void OnOpenDetailViewExecute()
         {
-            _eventAggregator.GetEvent<OpenPhotoDetailViewEvent>().Publish(Id);
+            _eventAggregator.GetEvent<OpenDetailViewEvent>().
+                Publish(
+                    new OpenDetailViewEventArgs 
+                    {
+                        Id = Id,
+                        ViewModelName = _detailViewModelName
+                    });
         }
     }
 }

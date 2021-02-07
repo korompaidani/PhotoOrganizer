@@ -20,8 +20,8 @@ namespace PhotoOrganizer.UI.ViewModel
             _photoLookupDataService = photoLookupDataService;
             _eventAggregator = eventAggregator;
             Photos = new ObservableCollection<NavigationItemViewModel>();
-            _eventAggregator.GetEvent<AfterPhotoSavedEvent>().Subscribe(AfterPhotoSaved);
-            _eventAggregator.GetEvent<AfterPhotoDeleteEvent>().Subscribe(AfterPhotoDeleted);
+            _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
+            _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
         }
 
         public async Task LoadAsync()
@@ -30,29 +30,39 @@ namespace PhotoOrganizer.UI.ViewModel
             Photos.Clear();
             foreach (var photo in photos)
             {
-                Photos.Add(new NavigationItemViewModel(photo.Id, photo.DisplayMemberItem, _eventAggregator));
+                Photos.Add(new NavigationItemViewModel(photo.Id, photo.DisplayMemberItem, nameof(PhotoDetailViewModel), _eventAggregator));
             }
         }
 
-        private void AfterPhotoSaved(AfterPhotoSavedEventArgs obj)
+        private void AfterDetailSaved(AfterDetailSavedEventArgs obj)
         {
-            var lookupItem = Photos.SingleOrDefault(p => p.Id == obj.Id);
-            if(lookupItem == null)
+            switch (obj.ViewModelName)
             {
-                Photos.Add(new NavigationItemViewModel(obj.Id, obj.Title, _eventAggregator));
-            }
-            else
-            {
-                lookupItem.DisplayMemberItem = obj.Title;
+                case nameof(PhotoDetailViewModel):
+                    var lookupItem = Photos.SingleOrDefault(p => p.Id == obj.Id);
+                    if (lookupItem == null)
+                    {
+                        Photos.Add(new NavigationItemViewModel(obj.Id, obj.Title, nameof(PhotoDetailViewModel), _eventAggregator));
+                    }
+                    else
+                    {
+                        lookupItem.DisplayMemberItem = obj.Title;
+                    }
+                    break;
             }
         }
 
-        private void AfterPhotoDeleted(int photoId)
+        private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            var photo = Photos.SingleOrDefault(p => p.Id == photoId);
-            if(photo != null)
+            switch (args.ViewModelName)
             {
-                Photos.Remove(photo);
+                case nameof(PhotoDetailViewModel):
+                    var photo = Photos.SingleOrDefault(p => p.Id == args.Id);
+                    if (photo != null)
+                    {
+                        Photos.Remove(photo);
+                    }
+                    break;
             }
         }
     }

@@ -25,10 +25,12 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="20">
             <MenuItem Header="Create">
-                <MenuItem Header="New Photo" Command="{Binding CreateNewPhotoCommand}"/>
+                <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
-        <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding PhotoDetailViewModel}"/>
+        <ContentControl Grid.Row="1" Grid.Column="1" 
+                        Content="{Binding DetailViewModel}"/>
     </Grid>
 </Window>
