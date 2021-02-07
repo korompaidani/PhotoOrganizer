@@ -7,7 +7,8 @@
         xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
         xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
         mc:Ignorable="d"
-        Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20">
+        Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
             <view:PhotoDetailView/>

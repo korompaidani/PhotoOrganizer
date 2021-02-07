@@ -40,6 +40,27 @@
                     Command="{Binding DeleteCommand}"/>
         </StackPanel>
 
-        <Image Grid.Row="7" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
+        <DockPanel Grid.Row="7">
+            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
+            <DockPanel Margin="5 0 5 5">
+                <StackPanel DockPanel.Dock="Right">
+                    <Button Content="Add" Width="125" Margin="5 0 5 5"
+                            Command="{Binding AddPeopleCommand}"/>
+                    <Button Content="Remove" Width="125" Margin="5"
+                            Command="{Binding RemovePeopleCommand}"/>
+                </StackPanel>
+                <DataGrid ItemsSource="{Binding Peoples}"
+                          SelectedItem="{Binding SelectedPeople, Mode=TwoWay}"
+                          AutoGenerateColumns="False" RowHeaderWidth="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="People" Width="*"
+                                            ElementStyle="{StaticResource DataGridColumnStyle}"
+                                            EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
+                                            Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+        
     </Grid>
 </UserControl>

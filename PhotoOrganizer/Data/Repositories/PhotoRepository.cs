@@ -22,7 +22,9 @@ namespace PhotoOrganizer.UI.Data.Repositories
 
         public async Task<Photo> GetByIdAsync(int photoId)
         {
-            return await _context.Photos.SingleAsync(p => p.Id == photoId);
+            return await _context.Photos
+                .Include(p => p.Peoples)
+                .SingleAsync(p => p.Id == photoId);
         }
 
         public bool HasChanges()
@@ -33,6 +35,11 @@ namespace PhotoOrganizer.UI.Data.Repositories
         public void Remove(Photo model)
         {
             _context.Photos.Remove(model);
+        }
+
+        public void RemovePeople(People model)
+        {
+            _context.People.Remove(model);
         }
 
         public async Task SaveAsync()

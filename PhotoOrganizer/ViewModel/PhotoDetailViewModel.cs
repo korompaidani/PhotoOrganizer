@@ -7,7 +7,10 @@ using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -18,13 +21,18 @@ namespace PhotoOrganizer.UI.ViewModel
         private PhotoWrapper _photo;
         private IPhotoRepository _photoRepository;
         private IEventAggregator _eventAggregator;
+        private PeopleWrapper _selectedPeople;
         private IMessageDialogService _messageDialogService;
         private IYearLookupDataService _yearLookupDataService;
         private bool _hasChanges;
 
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ICommand AddPeopleCommand { get; }
+        public ICommand RemovePeopleCommand { get; }
+
         public ObservableCollection<LookupItem> Years { get; }
+        public ObservableCollection<PeopleWrapper> Peoples { get; }
 
         public PhotoWrapper Photo
         { 
@@ -35,7 +43,17 @@ namespace PhotoOrganizer.UI.ViewModel
                 OnPropertyChanged();                
             }
         }
-        
+
+        public PeopleWrapper SelectedPeople {
+            get { return _selectedPeople; } 
+            set 
+            {
+                _selectedPeople = value;
+                OnPropertyChanged();
+                ((DelegateCommand)RemovePeopleCommand).RaiseCanExecuteChanged();
+            }
+        }
+
         public bool HasChanges
         {
             get { return _hasChanges; }
@@ -63,8 +81,35 @@ namespace PhotoOrganizer.UI.ViewModel
 
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
+            AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
+            RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
             Years = new ObservableCollection<LookupItem>();
+            Peoples = new ObservableCollection<PeopleWrapper>();
+        }
+
+        private bool OnRemovePeopleCanExecute()
+        {
+            return SelectedPeople != null;
+        }
+
+        private void OnRemovePeopleExecute()
+        {
+            SelectedPeople.PropertyChanged -= PeopleWrapper_PropertyChanged;
+            _photoRepository.RemovePeople(SelectedPeople.Model);
+            Peoples.Remove(SelectedPeople);
+            SelectedPeople = null;
+            HasChanges = _photoRepository.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private void OnAddPeopleExecute()
+        {
+            var newPeople = new PeopleWrapper(new People());
+            newPeople.PropertyChanged += PeopleWrapper_PropertyChanged;
+            Peoples.Add(newPeople);
+            Photo.Model.Peoples.Add(newPeople.Model);
+            newPeople.FirstName = "";
         }
 
         public async Task LoadAsync(int? photoId)
@@ -74,7 +119,37 @@ namespace PhotoOrganizer.UI.ViewModel
                 : CreateNewPhoto();
             
             InitializePhoto(photo);
+
+            InitializePeople(photo.Peoples);
+
             await LoadYearLookupAsync();
+        }
+
+        private void InitializePeople(ICollection<People> peoples)
+        {
+            foreach(var people in Peoples)
+            {
+                people.PropertyChanged -= PeopleWrapper_PropertyChanged;
+            }
+            Peoples.Clear();
+            foreach(var people in peoples)
+            {
+                var wrapper = new PeopleWrapper(people);
+                Peoples.Add(wrapper);
+                wrapper.PropertyChanged += PeopleWrapper_PropertyChanged;
+            }
+        }
+
+        private void PeopleWrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (!HasChanges)
+            {
+                HasChanges = _photoRepository.HasChanges();
+            }
+            if(e.PropertyName == nameof(PeopleWrapper.HasErrors))
+            {
+                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            }
         }
 
         private void InitializePhoto(Photo photo)
@@ -132,7 +207,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnSaveCanExecute()
         {
-            return Photo != null && !Photo.HasErrors && HasChanges;
+            return Photo != null 
+                && !Photo.HasErrors 
+                && Peoples.All(p => !p.HasErrors)
+                && HasChanges;
         }
 
         private async void OnDeleteExecute()
