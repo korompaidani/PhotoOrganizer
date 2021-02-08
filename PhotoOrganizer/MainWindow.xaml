@@ -30,6 +30,8 @@
             <MenuItem Header="Create">
                 <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
+                <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>

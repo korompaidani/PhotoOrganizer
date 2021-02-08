@@ -82,6 +82,11 @@ namespace PhotoOrganizer.UI.ViewModel
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+
+            if(Album.Id == 0)
+            {
+                Album.Title = "";
+            }
         }
 
         private Album CreateNewAlbum()
