@@ -59,6 +59,10 @@
     <Compile Include="Migrations\202102060945569_AddedPeopleToPhoto.designer.cs">
       <DependentUpon>202102060945569_AddedPeopleToPhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102081717530_AddAlbum.cs" />
+    <Compile Include="Migrations\202102081717530_AddAlbum.designer.cs">
+      <DependentUpon>202102081717530_AddAlbum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102060945569_AddedPeopleToPhoto.resx">
       <DependentUpon>202102060945569_AddedPeopleToPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102081717530_AddAlbum.resx">
+      <DependentUpon>202102081717530_AddAlbum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

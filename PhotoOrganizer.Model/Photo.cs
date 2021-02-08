@@ -10,6 +10,7 @@ namespace PhotoOrganizer.Model
         public Photo()
         {
             Peoples = new Collection<People>();
+            Albums = new Collection<Album>();
         }
 
         [Key]
@@ -30,5 +31,7 @@ namespace PhotoOrganizer.Model
         public TimeSpan HHMMSS { get; set; }
 
         public ICollection<People> Peoples { get; set; }
+
+        public ICollection<Album> Albums { get; set; }
     }
 }
