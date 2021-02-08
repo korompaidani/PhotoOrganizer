@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Event;
+﻿using Autofac.Features.Indexed;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -11,13 +12,14 @@ namespace PhotoOrganizer.UI.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private IDetailViewModel _detailViewModel;
-        private Func<IPhotoDetailViewModel> _photoDetailViewModelCreator;
-        private Func<IAlbumDetailViewModel> _albumDetailViewModelCreator;
         private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
         public ICommand CreateNewDetailCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
+
+        private IIndex<string, IDetailViewModel> _detailViewModelCreator;
+
         public IDetailViewModel DetailViewModel 
         { 
             get 
@@ -32,14 +34,13 @@ namespace PhotoOrganizer.UI.ViewModel
         }
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
-            Func<IPhotoDetailViewModel> photoDetailViewModelCreator,
-            Func<IAlbumDetailViewModel> albumDetailViewModelCreator,
+            IIndex<string, IDetailViewModel> detailViewModelCreator,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService)
         {
             NavigationViewModel = navigationViewModel;
-            _photoDetailViewModelCreator = photoDetailViewModelCreator;
-            _albumDetailViewModelCreator = albumDetailViewModelCreator;
+
+            _detailViewModelCreator = detailViewModelCreator;
             _messageDialogService = messageDialogService;
 
             _eventAggregator = eventAggregator;
@@ -65,18 +66,8 @@ namespace PhotoOrganizer.UI.ViewModel
                     return;
                 }
             }
-            switch (args.ViewModelName)
-            {
-                case nameof(PhotoDetailViewModel):
-                    DetailViewModel = _photoDetailViewModelCreator();
-                    break;
-                case nameof(AlbumDetailViewModel):
-                    DetailViewModel = _albumDetailViewModelCreator();
-                    break;
-                default:
-                    throw new Exception($"ViewModel {args.ViewModelName} not mapped");
-            }
 
+            DetailViewModel = _detailViewModelCreator[args.ViewModelName];
             await DetailViewModel.LoadAsync(args.Id);
         }
 
