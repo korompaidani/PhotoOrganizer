@@ -2,6 +2,7 @@
 using PhotoOrganizer.Model;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace PhotoOrganizer.UI.Data.Repositories
 {
@@ -16,6 +17,12 @@ namespace PhotoOrganizer.UI.Data.Repositories
             return await Context.Albums
                 .Include(a => a.Photos)
                 .SingleAsync(a => a.Id == id);
+        }
+
+        public async Task<List<Photo>> GetAllFriendAsync()
+        {
+            return await Context.Set<Photo>()
+                .ToListAsync();
         }
     }
 }

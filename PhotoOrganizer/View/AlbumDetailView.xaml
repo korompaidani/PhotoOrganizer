@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PhotoOrganizer.UI.View" xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:PhotoOrganizer.UI.View" 
+             xmlns:model="clr-namespace:PhotoOrganizer.Model;assembly=PhotoOrganizer.Model" 
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -26,6 +28,39 @@
         <Label Grid.Row="4" Content="End" Margin="5 0"/>
         <toolkit:DateTimePicker Grid.Row="5" Value="{Binding Album.DateTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+        <Grid Grid.Row="6" Margin="5">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type model:Photo}">
+                    <TextBlock>
+                        <Run Text="{Binding Title}"/>
+                        <Run Text="{Binding Year}"/>
+                    </TextBlock>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Added Photos"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding AddedPhotos}"
+                      SelectedItem="{Binding SelectedAddedPhoto}"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Button Content="&lt;&lt;" Margin="5" Command="{Binding AddPhotoCommand}"/>
+                <Button Content="&gt;&gt;" Margin="5 0 5 5" Command="{Binding RemovePhotoCommand}"/>
+            </StackPanel>
+
+            <Label Content="Available Photos" Grid.Column="2"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding AvailablePhotos}"
+                      SelectedItem="{Binding SelectedAvailablePhoto}" Grid.Column="2"/>
+        </Grid>
+        
         <StackPanel Grid.Row="7" Orientation="Horizontal">
             <Button Content="Save" Width="75" Margin="5" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="75" Margin="5" Command="{Binding DeleteCommand}"/>

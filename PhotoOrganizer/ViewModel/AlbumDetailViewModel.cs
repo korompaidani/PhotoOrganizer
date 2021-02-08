@@ -5,7 +5,11 @@ using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -14,6 +18,37 @@ namespace PhotoOrganizer.UI.ViewModel
         private IAlbumRepository _albumRepository;
         private AlbumWrapper _selectedAlbum;
         private IMessageDialogService _messageDialogService;
+        
+        private Photo _selectedAvailablePhoto;
+        private Photo _selectedAddedPhoto;
+        private List<Photo> _allPhotos;
+
+        public ObservableCollection<Photo> AddedPhotos { get; }
+        public ObservableCollection<Photo> AvailablePhotos { get; }
+        public ICommand AddPhotoCommand { get; }
+        public ICommand RemovePhotoCommand { get; }
+
+        public Photo SelectedAvailablePhoto
+        {
+            get { return _selectedAvailablePhoto; }
+            set
+            {
+                _selectedAvailablePhoto = value;
+                OnPropertyChanged();
+                ((DelegateCommand)AddPhotoCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        public Photo SelectedAddedPhoto
+        {
+            get { return _selectedAddedPhoto; }
+            set
+            {
+                _selectedAddedPhoto = value;
+                OnPropertyChanged();
+                ((DelegateCommand)RemovePhotoCommand).RaiseCanExecuteChanged();
+            }
+        }
 
         public AlbumWrapper Album
         {
@@ -31,7 +66,12 @@ namespace PhotoOrganizer.UI.ViewModel
             ) : base(eventAggregator)
         {
             _albumRepository = albumRepository;
-            _messageDialogService = messageDialogService;           
+            _messageDialogService = messageDialogService;
+
+            AddedPhotos = new ObservableCollection<Photo>();
+            AvailablePhotos = new ObservableCollection<Photo>();
+            AddPhotoCommand = new DelegateCommand(OnAddPhotoExecute, OnAddPhotoCanExecute);
+            RemovePhotoCommand = new DelegateCommand(OnRemovePhotoExecute, OnRemovePhotoCanExecute);
         }
 
         public async override Task LoadAsync(int? id)
@@ -41,7 +81,11 @@ namespace PhotoOrganizer.UI.ViewModel
                 : CreateNewAlbum();
 
             InitializeAlbum(album);
-        }
+
+            _allPhotos = await _albumRepository.GetAllFriendAsync();
+
+            SetupPicklist();
+        }        
 
         protected async override void OnDeleteExecute()
         {
@@ -64,6 +108,38 @@ namespace PhotoOrganizer.UI.ViewModel
             await _albumRepository.SaveAsync();
             HasChanges = _albumRepository.HasChanges();
             RaiseDetailSavedEvent(Album.Id, Album.Title);
+        }
+
+        private bool OnRemovePhotoCanExecute()
+        {
+            return SelectedAddedPhoto != null;
+        }
+
+        private void OnRemovePhotoExecute()
+        {
+            var photoToRemove = SelectedAddedPhoto;
+
+            Album.Model.Photos.Remove(photoToRemove);
+            AddedPhotos.Remove(photoToRemove);
+            AvailablePhotos.Add(photoToRemove);
+            HasChanges = _albumRepository.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private bool OnAddPhotoCanExecute()
+        {
+            return SelectedAvailablePhoto != null;
+        }
+
+        private void OnAddPhotoExecute()
+        {
+            var photoToAdd = SelectedAvailablePhoto;
+
+            Album.Model.Photos.Add(photoToAdd);
+            AddedPhotos.Add(photoToAdd);
+            AvailablePhotos.Remove(photoToAdd);
+            HasChanges = _albumRepository.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         private void InitializeAlbum(object album)
@@ -99,6 +175,25 @@ namespace PhotoOrganizer.UI.ViewModel
 
             _albumRepository.Add(album);
             return album;
+        }
+
+        private void SetupPicklist()
+        {
+            var albumPhotoIds = Album.Model.Photos.Select(p => p.Id).ToList();
+            var addedPhotos = _allPhotos.Where(p => albumPhotoIds.Contains(p.Id)).OrderBy(p => p.Title);
+            var availablePhotos = _allPhotos.Except(addedPhotos).OrderBy(p => p.Title);
+
+            AddedPhotos.Clear();
+            AvailablePhotos.Clear();
+
+            foreach(var addedPhoto in addedPhotos)
+            {
+                AddedPhotos.Add(addedPhoto);
+            }
+            foreach (var availablePhoto in availablePhotos)
+            {
+                AvailablePhotos.Add(availablePhoto);
+            }
         }
     }
 }
