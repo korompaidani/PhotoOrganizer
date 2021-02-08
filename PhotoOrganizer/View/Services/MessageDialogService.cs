@@ -11,7 +11,12 @@ namespace PhotoOrganizer.UI.View.Services
                 ? MessageDialogResult.Ok
                 : MessageDialogResult.Cancel;
         }
-    }
+
+        public void ShowInfoDialog(string text)
+        {
+            MessageBox.Show(text, "Info");
+        }
+    }    
 
     public enum MessageDialogResult
     {

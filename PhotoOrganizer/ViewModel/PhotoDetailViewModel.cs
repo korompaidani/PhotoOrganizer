@@ -189,6 +189,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
+            if(await _photoRepository.HasAlbums(Photo.Id))
+            {
+                _messageDialogService.ShowInfoDialog($"{Photo.Title} can't be deleted as it is part of at least one album.");
+                return;
+            }
+
             var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
             if(result == MessageDialogResult.Ok)
             {
