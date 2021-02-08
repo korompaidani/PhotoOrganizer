@@ -28,6 +28,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<PhotoDetailViewModel>().As<IPhotoDetailViewModel>();
             builder.RegisterType<AlbumDetailViewModel>().As<IAlbumDetailViewModel>();
+            
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
             builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             return builder.Build();

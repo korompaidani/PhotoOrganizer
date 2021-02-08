@@ -12,6 +12,7 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IDetailViewModel _detailViewModel;
         private Func<IPhotoDetailViewModel> _photoDetailViewModelCreator;
+        private Func<IAlbumDetailViewModel> _albumDetailViewModelCreator;
         private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
@@ -32,11 +33,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
             Func<IPhotoDetailViewModel> photoDetailViewModelCreator,
+            Func<IAlbumDetailViewModel> albumDetailViewModelCreator,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService)
         {
             NavigationViewModel = navigationViewModel;
             _photoDetailViewModelCreator = photoDetailViewModelCreator;
+            _albumDetailViewModelCreator = albumDetailViewModelCreator;
             _messageDialogService = messageDialogService;
 
             _eventAggregator = eventAggregator;
@@ -67,6 +70,11 @@ namespace PhotoOrganizer.UI.ViewModel
                 case nameof(PhotoDetailViewModel):
                     DetailViewModel = _photoDetailViewModelCreator();
                     break;
+                case nameof(AlbumDetailViewModel):
+                    DetailViewModel = _albumDetailViewModelCreator();
+                    break;
+                default:
+                    throw new Exception($"ViewModel {args.ViewModelName} not mapped");
             }
 
             await DetailViewModel.LoadAsync(args.Id);

@@ -24,7 +24,7 @@
         <toolkit:DateTimePicker Grid.Row="3" Value="{Binding Album.DateFrom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="4" Content="End" Margin="5 0"/>
-        <toolkit:DateTimePicker Grid.Row="3" Value="{Binding Album.DateTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <toolkit:DateTimePicker Grid.Row="5" Value="{Binding Album.DateTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Row="7" Orientation="Horizontal">
             <Button Content="Save" Width="75" Margin="5" Command="{Binding SaveCommand}"/>

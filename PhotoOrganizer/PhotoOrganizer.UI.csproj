@@ -108,6 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
     <Compile Include="Data\Lookups\IYearLookupDataService.cs" />
     <Compile Include="Data\Repositories\AlbumRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
