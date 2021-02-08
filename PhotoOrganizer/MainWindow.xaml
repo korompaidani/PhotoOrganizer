@@ -13,6 +13,9 @@
         <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
             <view:PhotoDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
+            <view:AlbumDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
