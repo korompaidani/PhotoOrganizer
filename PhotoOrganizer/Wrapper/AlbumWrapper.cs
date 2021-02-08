@@ -28,7 +28,11 @@ namespace PhotoOrganizer.UI.Wrapper
             {
                 Model.DateFrom = value;
                 OnPropertyChanged();
-                ValidateProperty(nameof(Title), Model.DateFrom);
+                if(DateTo < DateFrom)
+                {
+                    DateTo = DateFrom;
+                }
+                ValidateProperty(nameof(DateFrom), Model.DateFrom);
             }
         }
 
@@ -39,7 +43,11 @@ namespace PhotoOrganizer.UI.Wrapper
             {
                 Model.DateTo = value;
                 OnPropertyChanged();
-                ValidateProperty(nameof(Title), Model.DateTo);
+                if (DateTo < DateFrom)
+                {
+                    DateTo = DateFrom;
+                }
+                ValidateProperty(nameof(DateTo), Model.DateTo);
             }
         }
 
@@ -62,8 +70,7 @@ namespace PhotoOrganizer.UI.Wrapper
                 AddError(propertyName, result.ErrorMessage);
             }
 
-            // 2. Validate User errors           
-
+            // 2. Validate User errors                      
         }
     }
 }
