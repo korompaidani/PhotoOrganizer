@@ -20,7 +20,6 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private PhotoWrapper _photo;
         private IPhotoRepository _photoRepository;
-        private IEventAggregator _eventAggregator;
         private PeopleWrapper _selectedPeople;
         private IMessageDialogService _messageDialogService;
         private IYearLookupDataService _yearLookupDataService;
