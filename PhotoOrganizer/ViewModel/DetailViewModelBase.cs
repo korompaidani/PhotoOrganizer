@@ -9,6 +9,7 @@ namespace PhotoOrganizer.UI.ViewModel
     public abstract class DetailViewModelBase : ViewModelBase, IDetailViewModel
     {
         private bool _hasChanges;
+        private int _id;
         protected readonly IEventAggregator EventAggregator;
         public ICommand SaveCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -24,6 +25,15 @@ namespace PhotoOrganizer.UI.ViewModel
                     OnPropertyChanged();
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            protected set
+            {
+                _id = value;
             }
         }
 

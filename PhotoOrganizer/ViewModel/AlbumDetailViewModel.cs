@@ -80,6 +80,8 @@ namespace PhotoOrganizer.UI.ViewModel
                 ? await _albumRepository.GetByIdAsync(id.Value)
                 : CreateNewAlbum();
 
+            Id = album.Id;
+
             InitializeAlbum(album);
 
             _allPhotos = await _albumRepository.GetAllFriendAsync();
@@ -107,6 +109,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await _albumRepository.SaveAsync();
             HasChanges = _albumRepository.HasChanges();
+            Id = Album.Id;
             RaiseDetailSavedEvent(Album.Id, Album.Title);
         }
 

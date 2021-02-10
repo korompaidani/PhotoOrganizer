@@ -4,6 +4,8 @@ using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,7 +13,7 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private IDetailViewModel _detailViewModel;
+        private IDetailViewModel _selectedDetailViewModel;
         private IMessageDialogService _messageDialogService;
         private IEventAggregator _eventAggregator;        
 
@@ -20,15 +22,17 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
 
-        public IDetailViewModel DetailViewModel 
+        public ObservableCollection<IDetailViewModel> DetailViewModels { get; }
+
+        public IDetailViewModel SelectedDetailViewModel 
         { 
             get 
             {
-                return _detailViewModel;
+                return _selectedDetailViewModel;
             } 
-            private set 
+            set 
             {
-                _detailViewModel = value;
+                _selectedDetailViewModel = value;
                 OnPropertyChanged();
             } 
         }
@@ -48,6 +52,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().
                 Subscribe(AfterDetailDeleted);
 
+            DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
         }        
 
@@ -58,17 +63,18 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnOpenDetailView(OpenDetailViewEventArgs args)
         {
-            if(DetailViewModel != null && DetailViewModel.HasChanges)
+            var detailViewModel = DetailViewModels
+                .SingleOrDefault(vm => vm.Id == args.Id
+                && vm.GetType().Name == args.ViewModelName);
+
+            if(detailViewModel == null)
             {
-                var result = _messageDialogService.ShowOkCancelDialog("Are you sure to leave this form? Changes will lost.", "Question");
-                if(result == MessageDialogResult.Cancel)
-                {
-                    return;
-                }
+                detailViewModel = _detailViewModelCreator[args.ViewModelName];
+                await detailViewModel.LoadAsync(args.Id);
+                DetailViewModels.Add(detailViewModel);
             }
 
-            DetailViewModel = _detailViewModelCreator[args.ViewModelName];
-            await DetailViewModel.LoadAsync(args.Id);
+            SelectedDetailViewModel = detailViewModel;
         }
 
         private void OnCreateNewDetailExecute(Type viewModelType)
@@ -78,7 +84,14 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            DetailViewModel = null;
+            var detailViewModel = DetailViewModels
+               .SingleOrDefault(vm => vm.Id == args.Id
+               && vm.GetType().Name == args.ViewModelName);
+
+            if (detailViewModel == null)
+            {
+                DetailViewModels.Remove(detailViewModel);
+            }
         }
     }
 }

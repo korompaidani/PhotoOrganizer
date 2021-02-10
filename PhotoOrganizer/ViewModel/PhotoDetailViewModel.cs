@@ -96,7 +96,9 @@ namespace PhotoOrganizer.UI.ViewModel
             var photo = photoId.HasValue
                 ? await _photoRepository.GetByIdAsync(photoId.Value)
                 : CreateNewPhoto();
-            
+
+            Id = photo.Id;
+
             InitializePhoto(photo);
 
             InitializePeople(photo.Peoples);
@@ -176,6 +178,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await _photoRepository.SaveAsync();
             HasChanges = _photoRepository.HasChanges();
+            Id = Photo.Id;
             RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");            
         }
 

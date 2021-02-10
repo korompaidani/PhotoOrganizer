@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:PhotoOrganizer.UI"
              Startup="Application_Startup">
     <Application.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
         <Style TargetType="TextBox">
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
