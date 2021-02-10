@@ -158,6 +158,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+                if (e.PropertyName == nameof(Photo.Title))
+                {
+                    SetTitle();
+                }
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
@@ -166,6 +170,13 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 Album.Title = "";
             }
+
+            SetTitle();
+        }
+
+        private void SetTitle()
+        {
+            Title = Album.Title;
         }
 
         private Album CreateNewAlbum()

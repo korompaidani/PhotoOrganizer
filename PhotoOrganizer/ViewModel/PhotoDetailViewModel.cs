@@ -146,6 +146,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+                if(e.PropertyName == nameof(Photo.Title))
+                {
+                    SetTitle();
+                }
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
@@ -154,6 +158,13 @@ namespace PhotoOrganizer.UI.ViewModel
                 Photo.Title = "";
                 Photo.FullPath = "";
             }
+
+            SetTitle();
+        }
+
+        private void SetTitle()
+        {
+            Title = $"{Photo.Title}";
         }
 
         private async Task LoadYearLookupAsync()
