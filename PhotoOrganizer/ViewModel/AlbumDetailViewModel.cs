@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -65,12 +66,13 @@ namespace PhotoOrganizer.UI.ViewModel
             ) : base(eventAggregator, messageDialogService)
         {
             _albumRepository = albumRepository;
+            EventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
 
             AddedPhotos = new ObservableCollection<Photo>();
             AvailablePhotos = new ObservableCollection<Photo>();
             AddPhotoCommand = new DelegateCommand(OnAddPhotoExecute, OnAddPhotoCanExecute);
             RemovePhotoCommand = new DelegateCommand(OnRemovePhotoExecute, OnRemovePhotoCanExecute);
-        }
+        }        
 
         public async override Task LoadAsync(int? id)
         {
@@ -141,6 +143,16 @@ namespace PhotoOrganizer.UI.ViewModel
             AvailablePhotos.Remove(photoToAdd);
             HasChanges = _albumRepository.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private async void AfterDetailSaved(AfterDetailSavedEventArgs args)
+        {
+            if (args.ViewModelName == nameof(PhotoDetailViewModel))
+            {
+                await _albumRepository.ReloadPhotoAsync(args.Id);
+                _allPhotos = await _albumRepository.GetAllFriendAsync();
+                SetupPicklist();
+            }
         }
 
         private void InitializeAlbum(object album)
