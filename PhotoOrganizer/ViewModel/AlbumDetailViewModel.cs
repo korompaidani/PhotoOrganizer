@@ -67,12 +67,13 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             _albumRepository = albumRepository;
             EventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
+            EventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
 
             AddedPhotos = new ObservableCollection<Photo>();
             AvailablePhotos = new ObservableCollection<Photo>();
             AddPhotoCommand = new DelegateCommand(OnAddPhotoExecute, OnAddPhotoCanExecute);
             RemovePhotoCommand = new DelegateCommand(OnRemovePhotoExecute, OnRemovePhotoCanExecute);
-        }        
+        }
 
         public async override Task LoadAsync(int? id)
         {
@@ -150,6 +151,15 @@ namespace PhotoOrganizer.UI.ViewModel
             if (args.ViewModelName == nameof(PhotoDetailViewModel))
             {
                 await _albumRepository.ReloadPhotoAsync(args.Id);
+                _allPhotos = await _albumRepository.GetAllFriendAsync();
+                SetupPicklist();
+            }
+        }
+
+        private async void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
+        {
+            if (args.ViewModelName == nameof(PhotoDetailViewModel))
+            {
                 _allPhotos = await _albumRepository.GetAllFriendAsync();
                 SetupPicklist();
             }
