@@ -17,7 +17,6 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IAlbumRepository _albumRepository;
         private AlbumWrapper _selectedAlbum;
-        private IMessageDialogService _messageDialogService;
         
         private Photo _selectedAvailablePhoto;
         private Photo _selectedAddedPhoto;
@@ -63,10 +62,9 @@ namespace PhotoOrganizer.UI.ViewModel
         public AlbumDetailViewModel(IAlbumRepository albumRepository,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService            
-            ) : base(eventAggregator)
+            ) : base(eventAggregator, messageDialogService)
         {
             _albumRepository = albumRepository;
-            _messageDialogService = messageDialogService;
 
             AddedPhotos = new ObservableCollection<Photo>();
             AvailablePhotos = new ObservableCollection<Photo>();
@@ -91,7 +89,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete {Album.Title}?", "Question");
+            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete {Album.Title}?", "Question");
             if (result == MessageDialogResult.Ok)
             {
                 _albumRepository.Remove(Album.Model);

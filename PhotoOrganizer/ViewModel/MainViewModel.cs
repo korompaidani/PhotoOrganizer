@@ -51,10 +51,12 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<OpenDetailViewEvent>().Subscribe(OnOpenDetailView);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().
                 Subscribe(AfterDetailDeleted);
+            _eventAggregator.GetEvent<AfterDetailClosedEvent>().
+                Subscribe(AfterDetailClosed);
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
-        }        
+        }
 
         public async Task LoadAsync()
         {
@@ -84,11 +86,21 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
         {
-            var detailViewModel = DetailViewModels
-               .SingleOrDefault(vm => vm.Id == args.Id
-               && vm.GetType().Name == args.ViewModelName);
+            RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
 
-            if (detailViewModel == null)
+        private void AfterDetailClosed(AfterDetailClosedEventArgs args)
+        {
+            RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
+
+        private void RemoveDetailViewModel(int id, string viewModelName)
+        {
+            var detailViewModel = DetailViewModels
+                .SingleOrDefault(vm => vm.Id == id
+                && vm.GetType().Name == viewModelName);
+
+            if (detailViewModel != null)
             {
                 DetailViewModels.Remove(detailViewModel);
             }

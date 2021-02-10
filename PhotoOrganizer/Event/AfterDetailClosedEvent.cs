@@ -2,11 +2,11 @@
 
 namespace PhotoOrganizer.UI.Event
 {
-    public class AfterDetailDeletedEvent : PubSubEvent<AfterDetailDeletedEventArgs>
+    public class AfterDetailClosedEvent : PubSubEvent<AfterDetailClosedEventArgs>
     {
     }
 
-    public class AfterDetailDeletedEventArgs
+    public class AfterDetailClosedEventArgs
     {
         public int Id { get; set; }
         public string ViewModelName { get; set; }

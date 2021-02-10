@@ -21,7 +21,6 @@ namespace PhotoOrganizer.UI.ViewModel
         private PhotoWrapper _photo;
         private IPhotoRepository _photoRepository;
         private PeopleWrapper _selectedPeople;
-        private IMessageDialogService _messageDialogService;
         private IYearLookupDataService _yearLookupDataService;
 
         public ICommand AddPeopleCommand { get; }
@@ -54,10 +53,9 @@ namespace PhotoOrganizer.UI.ViewModel
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             IYearLookupDataService yearLookupDataService
-            ) : base(eventAggregator)
+            ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
-            _messageDialogService = messageDialogService;
             _yearLookupDataService = yearLookupDataService;
 
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
@@ -205,11 +203,11 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if(await _photoRepository.HasAlbums(Photo.Id))
             {
-                _messageDialogService.ShowInfoDialog($"{Photo.Title} can't be deleted as it is part of at least one album.");
+                MessageDialogService.ShowInfoDialog($"{Photo.Title} can't be deleted as it is part of at least one album.");
                 return;
             }
 
-            var result = _messageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
+            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
             if(result == MessageDialogResult.Ok)
             {
                 _photoRepository.Remove(Photo.Model);
