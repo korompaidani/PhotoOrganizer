@@ -6,6 +6,6 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         bool HasChanges { get; }
         int Id { get; }
-        Task LoadAsync(int? id);
+        Task LoadAsync(int id);
     }
 }

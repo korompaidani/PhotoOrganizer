@@ -63,7 +63,7 @@ namespace PhotoOrganizer.UI.ViewModel
             CloseDetailViewCommand = new DelegateCommand(OnCloseDetailViewExecute);
         }        
 
-        public abstract Task LoadAsync(int? id);
+        public abstract Task LoadAsync(int id);
 
         protected abstract void OnDeleteExecute();
 

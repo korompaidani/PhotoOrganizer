@@ -89,13 +89,13 @@ namespace PhotoOrganizer.UI.ViewModel
             newPeople.FirstName = "";
         }
 
-        public override async Task LoadAsync(int? photoId)
+        public override async Task LoadAsync(int photoId)
         {
-            var photo = photoId.HasValue
-                ? await _photoRepository.GetByIdAsync(photoId.Value)
+            var photo = photoId > 0
+                ? await _photoRepository.GetByIdAsync(photoId)
                 : CreateNewPhoto();
 
-            Id = photo.Id;
+            Id = photoId;
 
             InitializePhoto(photo);
 

@@ -75,13 +75,13 @@ namespace PhotoOrganizer.UI.ViewModel
             RemovePhotoCommand = new DelegateCommand(OnRemovePhotoExecute, OnRemovePhotoCanExecute);
         }
 
-        public async override Task LoadAsync(int? id)
+        public async override Task LoadAsync(int albumId)
         {
-            var album = id.HasValue
-                ? await _albumRepository.GetByIdAsync(id.Value)
+            var album = albumId > 0
+                ? await _albumRepository.GetByIdAsync(albumId)
                 : CreateNewAlbum();
 
-            Id = album.Id;
+            Id = albumId;
 
             InitializeAlbum(album);
 

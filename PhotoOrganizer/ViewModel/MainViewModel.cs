@@ -15,7 +15,8 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IDetailViewModel _selectedDetailViewModel;
         private IMessageDialogService _messageDialogService;
-        private IEventAggregator _eventAggregator;        
+        private IEventAggregator _eventAggregator;
+        private int nextNewItemId = 0;
 
         public ICommand CreateNewDetailCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
@@ -78,10 +79,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
             SelectedDetailViewModel = detailViewModel;
         }
-
+        
         private void OnCreateNewDetailExecute(Type viewModelType)
         {
-            OnOpenDetailView(new OpenDetailViewEventArgs { ViewModelName = viewModelType.Name });
+            OnOpenDetailView(new OpenDetailViewEventArgs { Id = nextNewItemId--, ViewModelName = viewModelType.Name });
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
