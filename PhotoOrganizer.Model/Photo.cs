@@ -30,6 +30,9 @@ namespace PhotoOrganizer.Model
         public int Day { get; set; }
         public TimeSpan HHMMSS { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         public ICollection<People> Peoples { get; set; }
 
         public ICollection<Album> Albums { get; set; }

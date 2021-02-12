@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -196,10 +197,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
-            await _photoRepository.SaveAsync();
-            HasChanges = _photoRepository.HasChanges();
-            Id = Photo.Id;
-            RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");            
+            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
+                () => 
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");
+                });           
         }
 
         protected override bool OnSaveCanExecute()
