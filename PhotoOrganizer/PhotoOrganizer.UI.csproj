@@ -117,7 +117,10 @@
     <Compile Include="Data\Repositories\IPhotoRepository.cs" />
     <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
+    <Compile Include="Data\Repositories\IYearRepository.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
+    <Compile Include="Data\Repositories\YearRepository.cs" />
+    <Compile Include="Event\AfterCollectionSavedEvent.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
@@ -134,6 +137,7 @@
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\YearDetailViewModel.cs" />
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
     </Compile>
@@ -145,10 +149,14 @@
     </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
+    <Compile Include="View\YearDetailView.xaml.cs">
+      <DependentUpon>YearDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wrapper\AlbumWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrapper\PeopleWrapper.cs" />
     <Compile Include="Wrapper\PhotoWrapper.cs" />
+    <Compile Include="Wrapper\YearWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PhotoDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\YearDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

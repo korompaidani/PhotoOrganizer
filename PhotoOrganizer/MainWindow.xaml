@@ -16,6 +16,9 @@
         <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
             <view:AlbumDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:YearDetailViewModel}">
+            <view:YearDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -32,6 +35,10 @@
                           CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
                 <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Years" Command="{Binding OpenSingleDetailViewCommand}"
+                              CommandParameter="{x:Type viewModel:YearDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>

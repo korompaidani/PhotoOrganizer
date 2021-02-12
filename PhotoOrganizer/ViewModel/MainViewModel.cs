@@ -19,6 +19,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private int nextNewItemId = 0;
 
         public ICommand CreateNewDetailCommand { get; }
+        public ICommand OpenSingleDetailViewCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
 
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
@@ -57,6 +58,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
+            OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
         }
 
         public async Task LoadAsync()
@@ -83,6 +85,11 @@ namespace PhotoOrganizer.UI.ViewModel
         private void OnCreateNewDetailExecute(Type viewModelType)
         {
             OnOpenDetailView(new OpenDetailViewEventArgs { Id = nextNewItemId--, ViewModelName = viewModelType.Name });
+        }
+
+        private void OnOpenSingleDetailExecute(Type viewModelType)
+        {
+            OnOpenDetailView(new OpenDetailViewEventArgs { Id = -1, ViewModelName = viewModelType.Name });
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)

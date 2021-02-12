@@ -58,11 +58,22 @@ namespace PhotoOrganizer.UI.ViewModel
             _photoRepository = photoRepository;
             _yearLookupDataService = yearLookupDataService;
 
+            EventAggregator.GetEvent<AfterCollectionSavedEvent>()
+                .Subscribe(AfterCollectionSaved);
+
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
             Years = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();
+        }
+
+        private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
+        {
+            if(args.ViewModelName == nameof(YearDetailViewModel))
+            {
+                await LoadYearLookupAsync();
+            }
         }
 
         private bool OnRemovePeopleCanExecute()
