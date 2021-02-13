@@ -42,7 +42,7 @@ namespace PhotoOrganizer.UI.Services
                 }
                 else
                 {
-                    await _photoRepository.TruncatePhotoTable();
+                    await _photoRepository.RemoveAllPhotoFromTableAsync();
                 }
             }
 

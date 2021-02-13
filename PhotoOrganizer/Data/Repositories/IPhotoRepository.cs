@@ -10,7 +10,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
         Task<bool> HasAlbums(int photoId);
         void RemovePeople(People model);
         Task<bool> HasPhotosAsync();
-        Task TruncatePhotoTable();
+        Task RemoveAllPhotoFromTableAsync();
         Task<int?> GetMaxPhotoIdAsync();
         void AddRange(Photo[] photos);
         Task AddRangeAsync(Photo[] photos);
