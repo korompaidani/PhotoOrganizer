@@ -8,10 +8,12 @@ namespace PhotoOrganizer.FileHandler
 {
     public class BackupManager
     {
-        private IList<Dictionary<string, Tuple<Type, object>>> tableContent;
+        private Dictionary<Type, List<Dictionary<string, Tuple<Type, object>>>> tableContent;
 
         public void ReadAllTable<T>(T dbContext)
         {
+            tableContent = new Dictionary<Type, List<Dictionary<string, Tuple<Type, object>>>>();
+
             Type contextType = typeof(T);
             PropertyInfo[] properties = contextType.GetProperties();
 
@@ -41,19 +43,26 @@ namespace PhotoOrganizer.FileHandler
 
         private void ReadTableValues<T>(List<T> table)
         {
-            tableContent = new List<Dictionary<string, Tuple<Type, object>>>();
+            if (table == null || table.Count == 0)
+            {
+                return;
+            }
+
+            var listOfOneType = new List<Dictionary<string, Tuple<Type, object>>>();
+            Type itemType = null;
             foreach (var item in table)
             {
                 var entityContent = new Dictionary<string, Tuple<Type, object>>();
-                var props = typeof(T).GetProperties();
+                itemType = item.GetType();
+                var props = itemType.GetProperties();
                 //it doesn't know the type must be casted
                 foreach (var prop in props)
                 {
                     entityContent.Add(prop.Name, new Tuple<Type, object>(prop.PropertyType, item.GetType().GetProperty(prop.Name).GetValue(item)));
                 }
-                tableContent.Add(entityContent);
-                entityContent = null;
+                listOfOneType.Add(entityContent);
             }
+            tableContent.Add(itemType, listOfOneType);
         }
     }
 }
