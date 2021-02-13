@@ -27,7 +27,8 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<DirectoryReader>().AsSelf();
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
-
+            builder.RegisterType<BackupManager>().AsSelf();
+            builder.RegisterType<BackupService>().As<IBackupService>();
 
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
 

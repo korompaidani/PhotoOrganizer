@@ -12,15 +12,18 @@ namespace PhotoOrganizer.UI.Services
         private IPhotoRepository _photoRepository;
         private DirectoryReader _directoryReader;
         private IMessageDialogService _messageDialogService;
+        private IBackupService _backupService;
 
         public DirectoryReaderWrapperService(
             DirectoryReader directoryReader, 
             IPhotoRepository photoRepository,
-            IMessageDialogService messageDialogService)
+            IMessageDialogService messageDialogService,
+            IBackupService backupService)
         {
             _photoRepository = photoRepository;
             _directoryReader = directoryReader;
             _messageDialogService = messageDialogService;
+            _backupService = backupService;
         }
 
         public async Task LoadAllFromLibraryAsync()
@@ -32,7 +35,7 @@ namespace PhotoOrganizer.UI.Services
                 {
                     // save data here
                     var entities = await _photoRepository.GetAllAsync();
-                    XmlExporter.ReadTableValues(entities);
+                    _backupService.CreateBackup(null);
                 }
 
                 var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");

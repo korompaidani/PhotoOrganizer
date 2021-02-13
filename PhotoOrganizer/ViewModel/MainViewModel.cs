@@ -18,6 +18,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IMessageDialogService _messageDialogService;
         private IDirectoryReaderWrapperService _directoryReaderWrapperService;
         private IEventAggregator _eventAggregator;
+
         private int nextNewItemId = 0;
 
         public ICommand CreateNewDetailCommand { get; }

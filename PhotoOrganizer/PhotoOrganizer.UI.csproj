@@ -138,7 +138,9 @@
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\DirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IBackupService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
