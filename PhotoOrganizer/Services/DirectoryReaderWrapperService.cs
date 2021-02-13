@@ -37,6 +37,10 @@ namespace PhotoOrganizer.UI.Services
                     var entities = await _photoRepository.GetAllAsync();
                     _backupService.CreateBackup(null);
                 }
+                else
+                {
+                    return;
+                }
 
                 var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
                 if (result == MessageDialogResult.Cancel)
