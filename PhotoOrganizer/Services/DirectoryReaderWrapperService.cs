@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.View.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,15 +11,31 @@ namespace PhotoOrganizer.UI.Services
     {
         private IPhotoRepository _photoRepository;
         private DirectoryReader _directoryReader;
+        private IMessageDialogService _messageDialogService;
 
-        public DirectoryReaderWrapperService(DirectoryReader directoryReader, IPhotoRepository photoRepository)
+        public DirectoryReaderWrapperService(
+            DirectoryReader directoryReader, 
+            IPhotoRepository photoRepository,
+            IMessageDialogService messageDialogService)
         {
             _photoRepository = photoRepository;
             _directoryReader = directoryReader;
+            _messageDialogService = messageDialogService;
         }
 
         public async Task LoadAllFromLibraryAsync()
         {
+            var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+            if (result == MessageDialogResult.Cancel)
+            {
+                return;
+            }
+            else
+            {
+                await _photoRepository.TruncatePhotoTable();
+                await _photoRepository.SaveAsync();
+            }
+
             foreach (var photo in ConvertFileNamesToPhotos())
             {
                 CreateNewPhoto(photo);

@@ -74,14 +74,15 @@ namespace PhotoOrganizer.UI.ViewModel
         }
 
         private async void OnCreatePhotosFromLibraryExecute()
-        {            
-            // TODO:
-            // 1. show leave form question
-            // 2. Detect that database has entries
-            // 3. if yes: ask to save --> and if yes than save
-            // 4. Read data from library
-            // 5. show progressbar during load
-            await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
+        {
+            // TODO:            
+            // 1.       Detect that database has entries
+            // 2.       if yes: ask to save --> and if yes than save
+            // 3. DONE  Delete all data from photo
+            // 4. DONE  Read data from library
+            // 5.       show progressbar during load
+
+          await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
             await LoadAsync();
         }
 

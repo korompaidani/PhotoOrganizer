@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.Model;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +30,20 @@ namespace PhotoOrganizer.UI.Data.Repositories
         public void RemovePeople(People model)
         {
             Context.People.Remove(model);
+        }
+
+        // Don't forget truncate will drop indexing and tracking as well
+        public async Task TruncatePhotoTable()
+        {
+            try
+            {
+                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[PhotoAlbums]");
+                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Photos]");
+                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Albums]");
+            }
+            catch(Exception ex)
+            {
+            }
         }
     }
 }

@@ -8,5 +8,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
     {
         Task<bool> HasAlbums(int photoId);
         void RemovePeople(People model);
+        Task TruncatePhotoTable();
     }
 }
