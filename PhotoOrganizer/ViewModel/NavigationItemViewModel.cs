@@ -1,7 +1,6 @@
 ﻿using PhotoOrganizer.UI.Event;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel

@@ -6,11 +6,9 @@ using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,9 +18,9 @@ namespace PhotoOrganizer.UI.ViewModel
     public class PhotoDetailViewModel : DetailViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
-        private IPhotoRepository _photoRepository;
         private PeopleWrapper _selectedPeople;
         private IYearLookupDataService _yearLookupDataService;
+        private IPhotoRepository _photoRepository;
 
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
@@ -188,6 +186,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        // TODO: refactor if PhotoService layer has been created this should be moved there
         private Photo CreateNewPhoto()
         {
             var photo = new Photo();

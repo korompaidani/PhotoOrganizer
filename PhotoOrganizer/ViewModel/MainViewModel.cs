@@ -1,5 +1,6 @@
 ﻿using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -15,11 +16,13 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IDetailViewModel _selectedDetailViewModel;
         private IMessageDialogService _messageDialogService;
+        private IDirectoryReaderWrapperService _directoryReaderWrapperService;
         private IEventAggregator _eventAggregator;
         private int nextNewItemId = 0;
 
         public ICommand CreateNewDetailCommand { get; }
         public ICommand OpenSingleDetailViewCommand { get; }
+        public ICommand CreatePhotosFromLibraryCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
 
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
@@ -39,15 +42,18 @@ namespace PhotoOrganizer.UI.ViewModel
             } 
         }
 
-        public MainViewModel(INavigationViewModel navigationViewModel, 
+        public MainViewModel(
+            INavigationViewModel navigationViewModel, 
             IIndex<string, IDetailViewModel> detailViewModelCreator,
             IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService)
+            IMessageDialogService messageDialogService,
+            IDirectoryReaderWrapperService directoryReaderWrapperService)
         {
             NavigationViewModel = navigationViewModel;
 
             _detailViewModelCreator = detailViewModelCreator;
             _messageDialogService = messageDialogService;
+            _directoryReaderWrapperService = directoryReaderWrapperService;
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenDetailViewEvent>().Subscribe(OnOpenDetailView);
@@ -58,12 +64,25 @@ namespace PhotoOrganizer.UI.ViewModel
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
+            CreatePhotosFromLibraryCommand = new DelegateCommand(OnCreatePhotosFromLibraryExecute);
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
         }
 
         public async Task LoadAsync()
         {
             await NavigationViewModel.LoadAsync();
+        }
+
+        private async void OnCreatePhotosFromLibraryExecute()
+        {            
+            // TODO:
+            // 1. show leave form question
+            // 2. Detect that database has entries
+            // 3. if yes: ask to save --> and if yes than save
+            // 4. Read data from library
+            // 5. show progressbar during load
+            await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
+            await LoadAsync();
         }
 
         private async void OnOpenDetailView(OpenDetailViewEventArgs args)

@@ -5,6 +5,8 @@ using Prism.Events;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.View.Services;
+using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.FileHandler;
 
 namespace PhotoOrganizer.UI.Startup
 {
@@ -22,6 +24,10 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<MainViewModel>().AsSelf();
 
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
+
+            builder.RegisterType<DirectoryReader>().AsSelf();
+            builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
+
 
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
 

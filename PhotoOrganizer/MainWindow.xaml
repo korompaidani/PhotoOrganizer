@@ -31,7 +31,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="16">
-            <MenuItem Header="Create">
+            <MenuItem Header="File">
+                <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
                 <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
                 <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"

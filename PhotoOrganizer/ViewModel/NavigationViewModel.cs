@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using PhotoOrganizer.UI.Data.Lookups;
-using System;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -17,7 +16,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
         public ObservableCollection<NavigationItemViewModel> Albums { get; set; }
 
-        public NavigationViewModel(IPhotoLookupDataService photoLookupDataService, 
+        public NavigationViewModel(
+            IPhotoLookupDataService photoLookupDataService, 
             IAlbumLookupDataService albumLookupDataService,
             IEventAggregator eventAggregator)
         {
@@ -36,7 +36,11 @@ namespace PhotoOrganizer.UI.ViewModel
             Photos.Clear();
             foreach (var photo in photos)
             {
-                Photos.Add(new NavigationItemViewModel(photo.Id, photo.DisplayMemberItem, nameof(PhotoDetailViewModel), _eventAggregator));
+                Photos.Add(
+                    new NavigationItemViewModel(
+                        photo.Id, photo.DisplayMemberItem, 
+                        nameof(PhotoDetailViewModel), 
+                        _eventAggregator));
             }
 
             var albums = await _albumLookupDataService.GetAlbumLookupAsync();

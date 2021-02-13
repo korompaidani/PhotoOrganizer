@@ -71,6 +71,12 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
+
+        public PhotoWrapper(Photo model)
+        {
+            Model = model;
+        }
+
         private void ValidateProperty(string propertyName, object currentValue)
         {
             ClearErrors(propertyName);
@@ -99,11 +105,6 @@ namespace PhotoOrganizer.UI.Wrapper
                     break;
             }
 
-        }
-
-        public PhotoWrapper(Photo model)
-        {
-            Model = model;
         }
     }
 }
