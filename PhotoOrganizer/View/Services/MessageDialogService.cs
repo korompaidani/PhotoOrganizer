@@ -20,11 +20,21 @@ namespace PhotoOrganizer.UI.View.Services
         {
             await MetroWindow.ShowMessageAsync("Info", text);
         }
+
+        public async Task<MessageDialogResult> ShowYesOrNoDialogAsync(string text, string title)
+        {
+            var result = await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary);
+            return result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative
+                ? MessageDialogResult.Yes
+                : MessageDialogResult.No;
+        }
     }    
 
     public enum MessageDialogResult
     {
         Ok,
-        Cancel
+        Cancel,
+        Yes,
+        No
     }
 }

@@ -25,15 +25,25 @@ namespace PhotoOrganizer.UI.Services
 
         public async Task LoadAllFromLibraryAsync()
         {
-            var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
-            if (result == MessageDialogResult.Cancel)
+            if (await _photoRepository.HasPhotosAsync())
             {
-                return;
-            }
-            else
-            {
-                await _photoRepository.TruncatePhotoTable();
-                await _photoRepository.SaveAsync();
+                var answer = await _messageDialogService.ShowOkCancelDialogAsync("The database has entry(s). Would you like to save data first before erase all photo data?", "Question");
+                if (answer == MessageDialogResult.Ok)
+                {
+                    // save data here
+                    var entities = await _photoRepository.GetAllAsync();
+                    XmlExporter.ReadTableValues(entities);
+                }
+
+                var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+                if (result == MessageDialogResult.Cancel)
+                {
+                    return;
+                }
+                else
+                {
+                    await _photoRepository.TruncatePhotoTable();
+                }
             }
 
             foreach (var photo in ConvertFileNamesToPhotos())

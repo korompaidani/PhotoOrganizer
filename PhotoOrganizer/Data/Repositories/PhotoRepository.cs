@@ -32,18 +32,51 @@ namespace PhotoOrganizer.UI.Data.Repositories
             Context.People.Remove(model);
         }
 
+        public async Task<bool> HasPhotosAsync()
+        {
+            return await Context.Photos.CountAsync() != 0 ? true : false;
+        }
+
+        public void AddRange(Photo[] photos)
+        {
+            Context.Photos.AddRange(photos);
+        }
+
+        public async Task AddRangeAsync(Photo[] photos)
+        {
+            // Close context after 100
+            // context.Configuration.AutoDetectChangesEnabled = false;
+            const int bufferSize = 100;
+            int bufferCounter = 0;
+
+            foreach (var photo in photos)
+            {
+                if (bufferCounter++ == bufferSize)
+                {
+
+                }
+
+                Context.Photos.Add(photo);
+            }
+
+            await SaveAsync();
+        }
+
+        public async Task<int?> GetMaxPhotoIdAsync()
+        {
+            return await Context.Photos.MaxAsync(p => (int?)p.Id);
+        }
+
         // Don't forget truncate will drop indexing and tracking as well
         public async Task TruncatePhotoTable()
         {
-            try
+            var photos = await GetAllAsync();
+            foreach (var photo in photos)
             {
-                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[PhotoAlbums]");
-                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Photos]");
-                await Context.Database.ExecuteSqlCommandAsync("TRUNCATE TABLE[Albums]");
+                Context.Photos.Remove(photo);
             }
-            catch(Exception ex)
-            {
-            }
+
+            await SaveAsync();
         }
     }
 }
