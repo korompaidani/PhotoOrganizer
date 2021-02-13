@@ -92,7 +92,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnDeleteExecute()
         {
-            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete {Album.Title}?", "Question");
+            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to delete {Album.Title}?", "Question");
             if (result == MessageDialogResult.Ok)
             {
                 _albumRepository.Remove(Album.Model);

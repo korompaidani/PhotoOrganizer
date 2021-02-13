@@ -82,7 +82,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 catch (Exception)
                 {
 
-                    _messageDialogService.ShowInfoDialog("Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.");
+                    await _messageDialogService.ShowInfoDialogAsync("Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.");
                     await NavigationViewModel.LoadAsync();
                     return;
                 }

@@ -102,7 +102,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     ex = ex.InnerException;
                 }
-                MessageDialogService.ShowInfoDialog("Error while saving the entities, " +
+                await MessageDialogService.ShowInfoDialogAsync("Error while saving the entities, " +
                     "the data will be reloaded. Details: " + ex.Message);
                 await LoadAsync(Id);
             }
@@ -118,7 +118,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var isReferenced = await _yearRepository.IsReferencedByPhotoAsync(SelectedYear.Id);
             if (isReferenced)
             {
-                MessageDialogService.ShowInfoDialog($"The year {SelectedYear.Title} can't be removed, as it is referenced by at least one photo");
+                await MessageDialogService.ShowInfoDialogAsync($"The year {SelectedYear.Title} can't be removed, as it is referenced by at least one photo");
                 return;
             }
 

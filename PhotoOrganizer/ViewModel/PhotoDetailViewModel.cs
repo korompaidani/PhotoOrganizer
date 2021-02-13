@@ -218,11 +218,11 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if(await _photoRepository.HasAlbums(Photo.Id))
             {
-                MessageDialogService.ShowInfoDialog($"{Photo.Title} can't be deleted as it is part of at least one album.");
+                await MessageDialogService.ShowInfoDialogAsync($"{Photo.Title} can't be deleted as it is part of at least one album.");
                 return;
             }
 
-            var result = MessageDialogService.ShowOkCancelDialog($"Do you really want to delete {Photo.Title}?", "Question");
+            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to delete {Photo.Title}?", "Question");
             if(result == MessageDialogResult.Ok)
             {
                 _photoRepository.Remove(Photo.Model);

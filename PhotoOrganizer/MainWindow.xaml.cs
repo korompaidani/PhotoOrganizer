@@ -1,9 +1,10 @@
-﻿using PhotoOrganizer.UI.ViewModel;
+﻿using MahApps.Metro.Controls;
+using PhotoOrganizer.UI.ViewModel;
 using System.Windows;
 
 namespace PhotoOrganizer.UI
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         private MainViewModel _viewModel;
 
