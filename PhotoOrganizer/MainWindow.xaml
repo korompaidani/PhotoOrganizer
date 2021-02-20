@@ -27,7 +27,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="640"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="16">

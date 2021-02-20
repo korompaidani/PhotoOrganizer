@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Event;
+﻿using PhotoOrganizer.Image;
+using PhotoOrganizer.UI.Event;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ namespace PhotoOrganizer.UI.ViewModel
     public class NavigationItemViewModel : ViewModelBase
     {
         private string _displayMemberItem;
+        private Picture _picture;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
 
@@ -19,6 +21,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
+            _picture = null;
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
@@ -32,6 +35,16 @@ namespace PhotoOrganizer.UI.ViewModel
             set
             {
                 _displayMemberItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Picture Picture
+        {
+            get { return _picture; }
+            set
+            {
+                _picture = value;
                 OnPropertyChanged();
             }
         }

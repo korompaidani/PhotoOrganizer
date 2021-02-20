@@ -50,5 +50,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Year.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Image\PhotoOrganizer.Image.csproj">
+      <Project>{92044696-4560-425B-B96B-F1B360EEB437}</Project>
+      <Name>PhotoOrganizer.Image</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

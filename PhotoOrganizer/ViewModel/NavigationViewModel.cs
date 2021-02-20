@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using PhotoOrganizer.UI.Data.Lookups;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -12,7 +14,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private IPhotoLookupDataService _photoLookupDataService;
         private IAlbumLookupDataService _albumLookupDataService;
         private IEventAggregator _eventAggregator;
-
+        
+        public ICommand LoadNavigationCommand { get; }
         public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
         public ObservableCollection<NavigationItemViewModel> Albums { get; set; }
 
@@ -28,8 +31,11 @@ namespace PhotoOrganizer.UI.ViewModel
             Albums = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
+
+            LoadNavigationCommand = new DelegateCommand(OnLoadNavigationExecute);
         }
 
+        // TODO: Caching must be implemented here
         public async Task LoadAsync()
         {
             var photos = await _photoLookupDataService.GetPhotoLookupAsync();
@@ -38,7 +44,7 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 Photos.Add(
                     new NavigationItemViewModel(
-                        photo.Id, photo.DisplayMemberItem, 
+                        photo.Id, photo.DisplayMemberItem,
                         nameof(PhotoDetailViewModel), 
                         _eventAggregator));
             }
@@ -97,6 +103,11 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 items.Remove(item);
             }
+        }
+
+        private async void OnLoadNavigationExecute()
+        {
+            await LoadAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using PhotoOrganizer.UI.ViewModel;
+using System.Windows.Controls;
 
 namespace PhotoOrganizer.UI.View
 {
@@ -10,6 +11,16 @@ namespace PhotoOrganizer.UI.View
         public NavigationView()
         {
             InitializeComponent();
+        }
+
+        private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)e.OriginalSource;
+            if (scrollViewer.VerticalOffset != 0 && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            {
+                ((NavigationViewModel)DataContext).LoadNavigationCommand.Execute(null);
+                scrollViewer.ScrollToTop();
+            }
         }
     }
 }
