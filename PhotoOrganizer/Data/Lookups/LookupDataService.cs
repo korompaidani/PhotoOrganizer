@@ -31,6 +31,20 @@ namespace PhotoOrganizer.UI.Data.Lookups
             }
         }
 
+        public async Task<IEnumerable<LookupItem>> GetPhotoFromBasedOnPageSizeAsync(int from, int pageSize)
+        {
+            using (var context = _contextCreator())
+            {
+                return await context.Photos.AsNoTracking().OrderBy(o => o.Id).Skip(from).Take(pageSize)
+                    .Select(p =>
+                    new LookupItem
+                    {
+                        Id = p.Id,
+                        DisplayMemberItem = p.FullPath
+                    }).ToListAsync();
+            }
+        }
+
         public async Task<IEnumerable<LookupItem>> GetYearLookupAsync()
         {
             using (var context = _contextCreator())
