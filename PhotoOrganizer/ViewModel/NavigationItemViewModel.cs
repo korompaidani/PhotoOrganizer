@@ -21,7 +21,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
-            _picture = null;
+            _picture = new Picture(displayMemberItem);
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);

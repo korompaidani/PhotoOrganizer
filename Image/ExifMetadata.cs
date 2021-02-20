@@ -7,7 +7,7 @@ namespace PhotoOrganizer.Image
     {
         private readonly BitmapMetadata _metadata;
 
-        public ExifMetadata(Uri imageUri)
+        internal ExifMetadata(Uri imageUri)
         {
             var frame = BitmapFrame.Create(imageUri, BitmapCreateOptions.DelayCreation, BitmapCacheOption.None);
             _metadata = (BitmapMetadata)frame.Metadata;
