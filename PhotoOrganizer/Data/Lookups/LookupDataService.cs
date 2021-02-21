@@ -17,20 +17,6 @@ namespace PhotoOrganizer.UI.Data.Lookups
             _contextCreator = contextCreator;
         }
 
-        public async Task<IEnumerable<LookupItem>> GetPhotoLookupAsync()
-        {
-            using (var context = _contextCreator())
-            {
-                return await context.Photos.AsNoTracking()
-                    .Select(p =>
-                    new LookupItem
-                    {
-                        Id = p.Id,
-                        DisplayMemberItem = p.FullPath
-                    }).ToListAsync();
-            }
-        }
-
         public async Task<IEnumerable<LookupItem>> GetPhotoFromBasedOnPageSizeAsync(int from, int pageSize)
         {
             using (var context = _contextCreator())

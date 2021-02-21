@@ -12,15 +12,5 @@ namespace PhotoOrganizer.UI.View
         {
             InitializeComponent();
         }
-
-        private void OnScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            var scrollViewer = (ScrollViewer)e.OriginalSource;
-            if (scrollViewer.VerticalOffset != 0 && scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
-            {
-                ((NavigationViewModel)DataContext).LoadNavigationCommand.Execute(null);
-                scrollViewer.ScrollToTop();
-            }
-        }
     }
 }

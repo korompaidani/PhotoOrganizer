@@ -37,16 +37,19 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="460"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0" Header="Photos">
+        <Button Grid.Row="0" Content="Up" Command="{Binding LoadNavigationCommand}" CommandParameter="Up"/>
+
+        <GroupBox Grid.Row="1" Header="Photos">
 
                 <ListBox Grid.Row="0" x:Name="ImageListbox"
                      ItemsSource="{Binding Photos}"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     ScrollViewer.ScrollChanged="OnScrollChanged">
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -100,7 +103,9 @@
             
         </GroupBox>
 
-        <GroupBox Grid.Row="1" Header="Albums">
+        <Button Grid.Row="2" Content="Down" Command="{Binding LoadNavigationCommand}" CommandParameter="Down"/>
+        
+        <GroupBox Grid.Row="3" Header="Albums">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
