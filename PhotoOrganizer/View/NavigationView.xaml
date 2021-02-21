@@ -43,7 +43,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Content="Up" Command="{Binding LoadNavigationCommand}" CommandParameter="Up"/>
+        <Button Grid.Row="0" Content="Up" Command="{Binding LoadUpNavigationCommand}"/>
 
         <GroupBox Grid.Row="1" Header="Photos">
 
@@ -103,7 +103,7 @@
             
         </GroupBox>
 
-        <Button Grid.Row="2" Content="Down" Command="{Binding LoadNavigationCommand}" CommandParameter="Down"/>
+        <Button Grid.Row="2" Content="Down" Command="{Binding LoadDownNavigationCommand}"/>
         
         <GroupBox Grid.Row="3" Header="Albums">
             <ScrollViewer VerticalScrollBarVisibility="Auto"

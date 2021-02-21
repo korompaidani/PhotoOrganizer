@@ -6,6 +6,10 @@ namespace PhotoOrganizer.UI.Services
 {
     public interface ICacheService
     {
-        Task LoadItemsAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        Task LoadFirstAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        Task LoadUpAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        Task LoadDownAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        bool CanMoveUp();
+        bool CanMoveDown();
     }
 }

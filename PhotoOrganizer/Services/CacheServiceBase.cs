@@ -17,6 +17,10 @@ namespace PhotoOrganizer.UI.Services
             _eventAggregator = eventAggregator;
         }
 
-        public abstract Task LoadItemsAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        public abstract Task LoadFirstAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        public abstract Task LoadDownAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        public abstract Task LoadUpAsync(ObservableCollection<NavigationItemViewModel> itemViewModels);
+        public abstract bool CanMoveDown();
+        public abstract bool CanMoveUp();
     }
 }

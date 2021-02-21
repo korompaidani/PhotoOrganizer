@@ -59,5 +59,13 @@ namespace PhotoOrganizer.UI.Data.Lookups
                 return items;
             }
         }
+
+        public async Task<int> GetPhotoCountAsync()
+        {
+            using (var context = _contextCreator())
+            {
+                return await context.Photos.AsNoTracking().CountAsync();
+            }
+        }
     }
 }

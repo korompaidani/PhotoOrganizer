@@ -7,7 +7,6 @@ using PhotoOrganizer.UI.Data.Lookups;
 using System.Windows.Input;
 using Prism.Commands;
 using PhotoOrganizer.UI.Services;
-using PhotoOrganizer.UI.Helpers;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -18,7 +17,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private IEventAggregator _eventAggregator;
         private ICacheService _cacheService;
 
-        public ICommand LoadNavigationCommand { get; }
+        public ICommand LoadDownNavigationCommand { get; }
+        public ICommand LoadUpNavigationCommand { get; }
         public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
         public ObservableCollection<NavigationItemViewModel> Albums { get; set; }
 
@@ -37,13 +37,13 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
 
-            LoadNavigationCommand = new DelegateCommand<string>(OnLoadNavigationExecute);
-        }
+            LoadDownNavigationCommand = new DelegateCommand(OnLoadNavigationDownExecute, OnLoadNavigationDownCanExecute);
+            LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);
+        }        
 
-        // TODO: Caching/Paging must be implemented here
         public async Task LoadAsync()
         {
-            await _cacheService.LoadItemsAsync(Photos);
+            await _cacheService.LoadFirstAsync(Photos);
             
             var albums = await _albumLookupDataService.GetAlbumLookupAsync();
             Albums.Clear();
@@ -101,18 +101,24 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private async void OnLoadNavigationExecute(string direction)
+        private bool OnLoadNavigationUpCanExecute()
         {
-            if(direction == "Down")
-            {
-                DirectionArgs.direction = Direction.Down;
-            }
-            else
-            {
-                DirectionArgs.direction = Direction.Up;
-            }
-            
-            await LoadAsync();
+            return _cacheService.CanMoveUp();
+        }
+
+        private async void OnLoadNavigationUpExecute()
+        {
+            await _cacheService.LoadUpAsync(Photos);
+        }        
+
+        private bool OnLoadNavigationDownCanExecute()
+        {
+            return _cacheService.CanMoveDown();
+        }
+
+        private async void OnLoadNavigationDownExecute()
+        {
+            await _cacheService.LoadDownAsync(Photos);
         }
     }
 }
