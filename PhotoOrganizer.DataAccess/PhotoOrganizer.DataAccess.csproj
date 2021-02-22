@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202102130956436_InitialDatabase.designer.cs">
       <DependentUpon>202102130956436_InitialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102222033526_GpsInstadOfYear.cs" />
+    <Compile Include="Migrations\202102222033526_GpsInstadOfYear.designer.cs">
+      <DependentUpon>202102222033526_GpsInstadOfYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202102130956436_InitialDatabase.resx">
       <DependentUpon>202102130956436_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102222033526_GpsInstadOfYear.resx">
+      <DependentUpon>202102222033526_GpsInstadOfYear.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

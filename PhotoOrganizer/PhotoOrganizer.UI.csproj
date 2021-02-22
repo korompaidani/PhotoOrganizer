@@ -122,7 +122,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
-    <Compile Include="Data\Lookups\IYearLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IGpsLookupDataService.cs" />
     <Compile Include="Data\Repositories\AlbumRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAlbumRepository.cs" />
@@ -130,9 +130,9 @@
     <Compile Include="Data\Repositories\IPhotoRepository.cs" />
     <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
-    <Compile Include="Data\Repositories\IYearRepository.cs" />
+    <Compile Include="Data\Repositories\IGpsRepository.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
-    <Compile Include="Data\Repositories\YearRepository.cs" />
+    <Compile Include="Data\Repositories\GpsRepository.cs" />
     <Compile Include="Event\AfterCollectionSavedEvent.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
@@ -159,7 +159,7 @@
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Compile Include="ViewModel\YearDetailViewModel.cs" />
+    <Compile Include="ViewModel\GpsDetailViewModel.cs" />
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
     </Compile>
@@ -171,14 +171,14 @@
     </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
-    <Compile Include="View\YearDetailView.xaml.cs">
-      <DependentUpon>YearDetailView.xaml</DependentUpon>
+    <Compile Include="View\GpsDetailView.xaml.cs">
+      <DependentUpon>GpsDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrapper\AlbumWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrapper\PeopleWrapper.cs" />
     <Compile Include="Wrapper\PhotoWrapper.cs" />
-    <Compile Include="Wrapper\YearWrapper.cs" />
+    <Compile Include="Wrapper\GpsWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,7 +203,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\YearDetailView.xaml">
+    <Page Include="View\GpsDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

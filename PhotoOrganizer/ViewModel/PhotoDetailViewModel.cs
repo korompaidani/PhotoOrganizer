@@ -19,13 +19,13 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private PhotoWrapper _photo;
         private PeopleWrapper _selectedPeople;
-        private IYearLookupDataService _yearLookupDataService;
+        private IGpsLookupDataService _yearLookupDataService;
         private IPhotoRepository _photoRepository;
 
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
 
-        public ObservableCollection<LookupItem> Years { get; }
+        public ObservableCollection<LookupItem> GpsCollection { get; }
         public ObservableCollection<PeopleWrapper> Peoples { get; }
 
         public PhotoWrapper Photo
@@ -51,7 +51,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public PhotoDetailViewModel(IPhotoRepository photoRepository, 
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            IYearLookupDataService yearLookupDataService
+            IGpsLookupDataService yearLookupDataService
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
@@ -63,13 +63,13 @@ namespace PhotoOrganizer.UI.ViewModel
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
-            Years = new ObservableCollection<LookupItem>();
+            GpsCollection = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
         {
-            if(args.ViewModelName == nameof(YearDetailViewModel))
+            if(args.ViewModelName == nameof(GpsDetailViewModel))
             {
                 await LoadYearLookupAsync();
             }
@@ -177,12 +177,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async Task LoadYearLookupAsync()
         {
-            Years.Clear();
-            Years.Add(new NullLookupItem { DisplayMemberItem = "-" });
-            var lookup = await _yearLookupDataService.GetYearLookupAsync();
+            GpsCollection.Clear();
+            GpsCollection.Add(new NullLookupItem { DisplayMemberItem = "-" });
+            var lookup = await _yearLookupDataService.GetGpsLookupAsync();
             foreach (var lookupItem in lookup)
             {
-                Years.Add(lookupItem);
+                GpsCollection.Add(lookupItem);
             }
         }
 

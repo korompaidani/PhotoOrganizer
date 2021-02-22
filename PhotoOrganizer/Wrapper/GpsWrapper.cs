@@ -5,19 +5,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhotoOrganizer.UI.Wrapper
 {
-    public class YearWrapper : NotifyDataErrorInfoBase
+    public class GpsWrapper : NotifyDataErrorInfoBase
     {
-        public Year Model { get; }
+        public Gps Model { get; }
         public int Id { get { return Model.Id; } }
 
         public string Title
         {
-            get { return Model.PhotoTakenYear.ToString(); }
+            get { return Model.Coordinates.ToString(); }
             set
             {
-                Model.PhotoTakenYear = Int32.Parse(value);
+                Model.Coordinates = value;
                 OnPropertyChanged();
-                ValidateProperty("PhotoTakenYear", Model.PhotoTakenYear);
+                ValidateProperty("Coordinates", Model.Coordinates);
             }
         }       
 
@@ -38,7 +38,7 @@ namespace PhotoOrganizer.UI.Wrapper
             // 2. Validate User errors
         }
 
-        public YearWrapper(Year model)
+        public GpsWrapper(Gps model)
         {
             Model = model;
         }

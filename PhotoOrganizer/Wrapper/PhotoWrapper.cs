@@ -34,10 +34,10 @@ namespace PhotoOrganizer.UI.Wrapper
 
         public int? YearId
         {
-            get { return Model.YearId; }
+            get { return Model.LocationId; }
             set
             {
-                Model.YearId = value;
+                Model.LocationId = value;
                 OnPropertyChanged();
             }
         }

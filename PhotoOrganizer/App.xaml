@@ -14,23 +14,23 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <ResourceDictionary>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontSize" Value="10"/>
                         <Setter Property="Padding" Value="0"/>
                     </Style>
                     <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontSize" Value="10"/>
                     </Style>
                     <Style TargetType="toolkit:DateTimePicker">
-                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontSize" Value="10"/>
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="Height" Value="25"/>
                     </Style>
                     <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="10"/>
                         <Setter Property="Foreground" Value="#CCCCCC"/>
                     </Style>
                     <Style TargetType="ListView" BasedOn="{StaticResource {x:Type ListView}}">
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="10"/>
                         <Setter Property="BorderBrush" Value="#CCCCCC"/>
                         <Setter Property="BorderThickness" Value="1"/>
                     </Style>
@@ -51,7 +51,7 @@
                         </Setter>
 
                         <Setter Property="Height" Value="25"/>
-                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontSize" Value="10"/>
 
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError" Value="True">
@@ -63,6 +63,7 @@
                     </Style>
 
                     <Style x:Key="DataGridColumnStyle" TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="10"/>
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError" Value="True">
                                 <Setter Property="Background" Value="DarkRed"/>

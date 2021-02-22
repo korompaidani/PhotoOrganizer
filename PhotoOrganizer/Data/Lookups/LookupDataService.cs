@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Lookups
 {
-    public class LookupDataService : IPhotoLookupDataService, IYearLookupDataService, IAlbumLookupDataService
+    public class LookupDataService : IPhotoLookupDataService, IGpsLookupDataService, IAlbumLookupDataService
     {
         private Func<PhotoOrganizerDbContext> _contextCreator;
 
@@ -31,16 +31,16 @@ namespace PhotoOrganizer.UI.Data.Lookups
             }
         }
 
-        public async Task<IEnumerable<LookupItem>> GetYearLookupAsync()
+        public async Task<IEnumerable<LookupItem>> GetGpsLookupAsync()
         {
             using (var context = _contextCreator())
             {
-                return await context.Years.AsNoTracking()
+                return await context.Coordinates.AsNoTracking()
                     .Select(p =>
                     new LookupItem
                     {
                         Id = p.Id,
-                        DisplayMemberItem = p.PhotoTakenYear.ToString()
+                        DisplayMemberItem = p.Coordinates.ToString()
                     }).ToListAsync();
             }
         }

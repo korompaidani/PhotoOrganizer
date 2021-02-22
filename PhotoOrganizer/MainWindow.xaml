@@ -17,8 +17,8 @@
         <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
             <view:AlbumDetailView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:YearDetailViewModel}">
-            <view:YearDetailView/>
+        <DataTemplate DataType="{x:Type viewModel:GpsDetailViewModel}">
+            <view:GpsDetailView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -30,7 +30,7 @@
             <ColumnDefinition Width="510"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="2" FontSize="16">
+        <Menu Grid.ColumnSpan="2" FontSize="12">
             <MenuItem Header="File">
                 <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
                 <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
@@ -39,8 +39,8 @@
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Years" Command="{Binding OpenSingleDetailViewCommand}"
-                              CommandParameter="{x:Type viewModel:YearDetailViewModel}"/>
+                <MenuItem Header="Gps" Command="{Binding OpenSingleDetailViewCommand}"
+                              CommandParameter="{x:Type viewModel:GpsDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
@@ -59,15 +59,15 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Title}"
-                                   FontSize="14"
+                                   FontSize="10"
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="*" Visibility="{Binding HasChanges,
                             Converter={StaticResource booleanToVisibilityConverter}}"
-                            FontSize="14"/>
+                            FontSize="10"/>
                         <Button Command="{Binding CloseDetailViewCommand}"
                                 Style="{StaticResource MahApps.Styles.Button.Chromeless}"
                                 VerticalContentAlignment="Center" Margin="5 0 1 1"
-                                Content="X" FontSize="12"/>
+                                Content="X" FontSize="10"/>
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>

@@ -13,34 +13,34 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class YearDetailViewModel : DetailViewModelBase
+    public class GpsDetailViewModel : DetailViewModelBase
     {
-        private IYearRepository _yearRepository;
-        private YearWrapper _selectedYear;
+        private IGpsRepository _gpsRepository;
+        private GpsWrapper _selectedGps;
 
-        public ObservableCollection<YearWrapper> Years { get; }
+        public ObservableCollection<GpsWrapper> GpsCollection { get; }
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }
 
-        public YearWrapper SelectedYear
+        public GpsWrapper SelectedGps
         {
-            get { return _selectedYear; }
+            get { return _selectedGps; }
             set
             {
-                _selectedYear = value;
+                _selectedGps = value;
                 OnPropertyChanged();
                 ((DelegateCommand)RemoveCommand).RaiseCanExecuteChanged();
             }
         }
 
-        public YearDetailViewModel(IEventAggregator eventAggregator, 
+        public GpsDetailViewModel(IEventAggregator eventAggregator, 
             IMessageDialogService messageDialogService,
-            IYearRepository yearRepository) 
+            IGpsRepository yearRepository) 
             : base(eventAggregator, messageDialogService)
         {
-            _yearRepository = yearRepository;
-            Title = "Years";
-            Years = new ObservableCollection<YearWrapper>();
+            _gpsRepository = yearRepository;
+            Title = "Gps";
+            GpsCollection = new ObservableCollection<GpsWrapper>();
 
             AddCommand = new DelegateCommand(OnAddExecute);
             RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
@@ -49,20 +49,20 @@ namespace PhotoOrganizer.UI.ViewModel
         public async override Task LoadAsync(int id)
         {
             Id = id;
-            foreach(var wrapper in Years)
+            foreach(var wrapper in GpsCollection)
             {
                 wrapper.PropertyChanged -= Wrapper_PropertyChanged;
             }
 
-            Years.Clear();
+            GpsCollection.Clear();
 
-            var years = await _yearRepository.GetAllAsync();
+            var years = await _gpsRepository.GetAllAsync();
 
             foreach(var model in years)
             {
-                var wrapper = new YearWrapper(model);
+                var wrapper = new GpsWrapper(model);
                 wrapper.PropertyChanged += Wrapper_PropertyChanged;
-                Years.Add(wrapper);
+                GpsCollection.Add(wrapper);
             }
         }
 
@@ -70,9 +70,9 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if (!HasChanges)
             {
-                HasChanges = _yearRepository.HasChanges();
+                HasChanges = _gpsRepository.HasChanges();
             }
-            if(e.PropertyName == nameof(YearWrapper.HasErrors))
+            if(e.PropertyName == nameof(GpsWrapper.HasErrors))
             {
                 ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
@@ -85,15 +85,15 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override bool OnSaveCanExecute()
         {
-            return HasChanges && Years.All(y => !y.HasErrors);
+            return HasChanges && GpsCollection.All(y => !y.HasErrors);
         }
 
         protected async override void OnSaveExecute()
         {
             try
             {
-                await _yearRepository.SaveAsync();
-                HasChanges = _yearRepository.HasChanges();
+                await _gpsRepository.SaveAsync();
+                HasChanges = _gpsRepository.HasChanges();
                 RaiseCollectionSavedEvent();
             }
             catch(Exception ex)
@@ -110,32 +110,32 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnRemoveCanExecute()
         {
-            return SelectedYear != null;
+            return SelectedGps != null;
         }
 
         private async void OnRemoveExecute()
         {
-            var isReferenced = await _yearRepository.IsReferencedByPhotoAsync(SelectedYear.Id);
+            var isReferenced = await _gpsRepository.IsReferencedByPhotoAsync(SelectedGps.Id);
             if (isReferenced)
             {
-                await MessageDialogService.ShowInfoDialogAsync($"The year {SelectedYear.Title} can't be removed, as it is referenced by at least one photo");
+                await MessageDialogService.ShowInfoDialogAsync($"The GPS coordinate {SelectedGps.Title} can't be removed, as it is referenced by at least one photo");
                 return;
             }
 
-            SelectedYear.PropertyChanged -= Wrapper_PropertyChanged;
-            _yearRepository.Remove(SelectedYear.Model);
-            Years.Remove(SelectedYear);
-            SelectedYear = null;
-            HasChanges = _yearRepository.HasChanges();
+            SelectedGps.PropertyChanged -= Wrapper_PropertyChanged;
+            _gpsRepository.Remove(SelectedGps.Model);
+            GpsCollection.Remove(SelectedGps);
+            SelectedGps = null;
+            HasChanges = _gpsRepository.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         private void OnAddExecute()
         {
-            var wrapper = new YearWrapper(new Year());
+            var wrapper = new GpsWrapper(new Gps());
             wrapper.PropertyChanged += Wrapper_PropertyChanged;
-            _yearRepository.Add(wrapper.Model);
-            Years.Add(wrapper);
+            _gpsRepository.Add(wrapper.Model);
+            GpsCollection.Add(wrapper);
 
             // Trigger the validation
             wrapper.Title = "1900";

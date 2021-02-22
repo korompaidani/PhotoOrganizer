@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Lookups
 {
-    public interface IYearLookupDataService
+    public interface IGpsLookupDataService
     {
-        Task<IEnumerable<LookupItem>> GetYearLookupAsync();
+        Task<IEnumerable<LookupItem>> GetGpsLookupAsync();
     }
 }

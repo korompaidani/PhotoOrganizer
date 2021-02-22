@@ -36,11 +36,11 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<PhotoDetailViewModel>().Keyed<IDetailViewModel>(nameof(PhotoDetailViewModel));
             builder.RegisterType<AlbumDetailViewModel>().Keyed<IDetailViewModel>(nameof(AlbumDetailViewModel));
-            builder.RegisterType<YearDetailViewModel>().Keyed<IDetailViewModel>(nameof(YearDetailViewModel));
+            builder.RegisterType<GpsDetailViewModel>().Keyed<IDetailViewModel>(nameof(GpsDetailViewModel));
 
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
             builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
-            builder.RegisterType<YearRepository>().As<IYearRepository>();
+            builder.RegisterType<GpsRepository>().As<IGpsRepository>();
             return builder.Build();
         }
     }

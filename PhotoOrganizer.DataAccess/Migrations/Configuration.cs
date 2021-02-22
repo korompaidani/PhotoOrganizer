@@ -17,27 +17,27 @@
 
         protected override void Seed(PhotoOrganizer.DataAccess.PhotoOrganizerDbContext context)
         {            
-            context.Years.AddOrUpdate(y => y.PhotoTakenYear,
-                new Year { PhotoTakenYear = 2019},
-                new Year { PhotoTakenYear = 1988 });
+            //context.Coordinates.AddOrUpdate(y => y.Coordinates,
+            //    new Gps { Coordinates = "Vajda Lajos utca 22."},
+            //    new Gps { Coordinates = "Kenese Zrínyi út 5." });
 
-            context.SaveChanges();
+            //context.SaveChanges();
 
-            context.People.AddOrUpdate(p => p.FirstName,
-                new People { FirstName = "Daniel", PhotoId = context.Photos.First().Id });
+            //context.People.AddOrUpdate(p => p.FirstName,
+            //    new People { FirstName = "Daniel", PhotoId = context.Photos.First().Id });
 
-            context.Albums.AddOrUpdate(p => p.Title,
-                new Album
-                {
-                    Title = "Los Angeles",
-                    DateFrom = new DateTime(2019, 3, 14),
-                    DateTo = new DateTime(2019, 3, 15),
-                    Photos = new List<Photo>
-                    {
-                        context.Photos.Single(p => p.Title.Contains("20190315_121052")),
-                        context.Photos.Single(p => p.Title.Contains("20190314_080308"))
-                    }
-                });
+            //context.Albums.AddOrUpdate(p => p.Title,
+            //    new Album
+            //    {
+            //        Title = "Los Angeles",
+            //        DateFrom = new DateTime(2019, 3, 14),
+            //        DateTo = new DateTime(2019, 3, 15),
+            //        Photos = new List<Photo>
+            //        {
+            //            context.Photos.Single(p => p.Title.Contains("20190315_121052")),
+            //            context.Photos.Single(p => p.Title.Contains("20190314_080308"))
+            //        }
+            //    });
         }
     }
 }

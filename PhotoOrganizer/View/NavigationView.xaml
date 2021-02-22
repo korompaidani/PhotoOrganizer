@@ -14,7 +14,7 @@
         <DataTemplate x:Key="NaviItemTemplate">
             <Button Content ="{Binding DisplayMemberItem}"
                                 Command="{Binding OpenDetailViewCommand}"
-                                FontSize="11">
+                                FontSize="10">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Grid x:Name="grid">
@@ -71,7 +71,7 @@
 
                                 <Button Content="" 
                                     Command="{Binding OpenDetailViewCommand}"
-                                    FontSize="11">
+                                    FontSize="10">
                                     <Button.Template>
                                         <ControlTemplate TargetType="Button">
                                             <Grid x:Name="grid">

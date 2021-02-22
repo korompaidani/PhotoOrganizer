@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PhotoOrganizer.UI.View.YearDetailView"
+﻿<UserControl x:Class="PhotoOrganizer.UI.View.GpsDetailView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,11 +15,11 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding Years}"
-                  SelectedItem="{Binding SelectedYear, Mode=TwoWay}"
+        <DataGrid ItemsSource="{Binding GpsCollection}"
+                  SelectedItem="{Binding SelectedGps, Mode=TwoWay}"
                   AutoGenerateColumns="False" RowHeaderWidth="0" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Year" Width="*"
+                <DataGridTextColumn Header="Gps" Width="*"
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
                                     Binding="{Binding Title,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

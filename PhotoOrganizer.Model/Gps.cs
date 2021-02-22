@@ -2,12 +2,14 @@
 
 namespace PhotoOrganizer.Model
 {
-    public class Year
+    public class Gps
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public int PhotoTakenYear { get; set; }
+        public string Coordinates { get; set; }
+
+        public string LocationName { get; set; }
     }
 }
