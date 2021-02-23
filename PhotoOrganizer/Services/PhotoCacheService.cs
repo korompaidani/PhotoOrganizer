@@ -27,7 +27,7 @@ namespace PhotoOrganizer.UI.Services
             return !Page.IsFirstPage;
         }
 
-        public async override Task LoadDownAsync(ObservableCollection<NavigationItemViewModel> itemViewModels)
+        public async override Task LoadDownAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
             if (CanMoveDown())
             {
@@ -51,7 +51,7 @@ namespace PhotoOrganizer.UI.Services
             CleanUpCache(false);
         }
 
-        public async override Task LoadFirstAsync(ObservableCollection<NavigationItemViewModel> itemViewModels)
+        public async override Task LoadFirstAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
             if (!_pages.ContainsKey(0))
             {
@@ -68,7 +68,7 @@ namespace PhotoOrganizer.UI.Services
             }
         }
 
-        public async override Task LoadUpAsync(ObservableCollection<NavigationItemViewModel> itemViewModels)
+        public async override Task LoadUpAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
             if (CanMoveUp())
             {
@@ -92,7 +92,7 @@ namespace PhotoOrganizer.UI.Services
             CleanUpCache(false);
         }
 
-        private Page CreatePage(ObservableCollection<NavigationItemViewModel> itemViewModels)
+        private Page CreatePage(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
             return new Page(_lookupDataService, _eventAggregator, itemViewModels);
         }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PhotoOrganizer.Model
+﻿namespace PhotoOrganizer.Model
 {
     public class LookupItem
     {
         public int Id { get; set; }
         public string DisplayMemberItem { get; set; }
+        public string PhotoPath { get; set; }
     }
 
     public class NullLookupItem : LookupItem

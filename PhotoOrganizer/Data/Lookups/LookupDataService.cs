@@ -26,7 +26,8 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     new LookupItem
                     {
                         Id = p.Id,
-                        DisplayMemberItem = p.FullPath
+                        DisplayMemberItem = p.Title,
+                        PhotoPath = p.FullPath
                     }).ToListAsync();
             }
         }

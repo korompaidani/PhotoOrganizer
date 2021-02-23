@@ -6,22 +6,24 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class NavigationItemViewModel : ViewModelBase
+    public class PhotoNavigationItemViewModel : ViewModelBase
     {
         private string _displayMemberItem;
+        private string _path;
         private Picture _picture;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
 
         public ICommand OpenDetailViewCommand { get; }
 
-        public NavigationItemViewModel(int id, string displayMemberItem,
+        public PhotoNavigationItemViewModel(int id, string displayMemberItem, string path,
             string detailViewModelName,
             IEventAggregator eventAggregator)
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
-            _picture = new Picture(displayMemberItem);
+            _path = path;
+            _picture = new Picture(_path);
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
@@ -35,6 +37,16 @@ namespace PhotoOrganizer.UI.ViewModel
             set
             {
                 _displayMemberItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string PhotoPath
+        {
+            get { return _path; }
+            set
+            {
+                _path = value;
                 OnPropertyChanged();
             }
         }

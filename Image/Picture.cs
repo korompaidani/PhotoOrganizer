@@ -19,9 +19,9 @@ namespace PhotoOrganizer.Image
 
         public Picture(string path)
         {
-            path = Path.GetFullPath(path);
-            if (path == null || !File.Exists(path))
+            if (path == null || !File.Exists(Path.GetFullPath(path)))
             {
+                path = Path.GetFullPath(DefaultPicturePath);
                 Source = path;
                 Uri = new Uri(path);
                 Thumbnail = defaultPicture;
@@ -29,6 +29,7 @@ namespace PhotoOrganizer.Image
                 return;
             }
 
+            path = Path.GetFullPath(path);
             Source = path;
             Uri = new Uri(path);
             Thumbnail = BitmapFrame.Create(Uri).Thumbnail;

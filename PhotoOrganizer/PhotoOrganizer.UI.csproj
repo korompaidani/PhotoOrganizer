@@ -149,13 +149,14 @@
     <Compile Include="Services\PhotoCacheService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
+    <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\NavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

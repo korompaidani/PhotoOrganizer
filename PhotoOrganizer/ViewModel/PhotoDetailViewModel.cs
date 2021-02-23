@@ -201,7 +201,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     HasChanges = _photoRepository.HasChanges();
                     Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.FullPath}");
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");
                 });           
         }
 

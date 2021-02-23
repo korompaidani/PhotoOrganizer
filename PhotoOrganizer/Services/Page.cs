@@ -18,16 +18,16 @@ namespace PhotoOrganizer.UI.Services
 
         protected IPhotoLookupDataService _lookupDataService;
         protected IEventAggregator _eventAggregator;
-        public ObservableCollection<NavigationItemViewModel> _navigationItems;
-        public NavigationItemViewModel[] _cachedItems;
+        public ObservableCollection<PhotoNavigationItemViewModel> _navigationItems;
+        public PhotoNavigationItemViewModel[] _cachedItems;
 
-        public Page(IPhotoLookupDataService lookupDataService, IEventAggregator eventAggregator, ObservableCollection<NavigationItemViewModel> navigationItems)
+        public Page(IPhotoLookupDataService lookupDataService, IEventAggregator eventAggregator, ObservableCollection<PhotoNavigationItemViewModel> navigationItems)
         {
             _lookupDataService = lookupDataService;
             _eventAggregator = eventAggregator;
             _navigationItems = navigationItems;
 
-            _cachedItems = new NavigationItemViewModel[PageSize];
+            _cachedItems = new PhotoNavigationItemViewModel[PageSize];
             _navigationItems.CopyTo(_cachedItems, 0);
         }
 
@@ -89,8 +89,8 @@ namespace PhotoOrganizer.UI.Services
             foreach (var item in lookupItems)
             {
                 _navigationItems.Add(
-                    new NavigationItemViewModel(
-                        item.Id, item.DisplayMemberItem,
+                    new PhotoNavigationItemViewModel(
+                        item.Id, item.DisplayMemberItem, item.PhotoPath,
                         nameof(PhotoDetailViewModel),
                         _eventAggregator));
             }

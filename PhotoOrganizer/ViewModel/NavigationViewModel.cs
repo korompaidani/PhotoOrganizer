@@ -19,8 +19,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ICommand LoadDownNavigationCommand { get; }
         public ICommand LoadUpNavigationCommand { get; }
-        public ObservableCollection<NavigationItemViewModel> Photos { get; set; }
-        public ObservableCollection<NavigationItemViewModel> Albums { get; set; }
+        public ObservableCollection<PhotoNavigationItemViewModel> Photos { get; set; }
+        public ObservableCollection<AlbumNavigationItemViewModel> Albums { get; set; }
 
         public NavigationViewModel(
             IPhotoLookupDataService photoLookupDataService, 
@@ -32,8 +32,8 @@ namespace PhotoOrganizer.UI.ViewModel
             _albumLookupDataService = albumLookupDataService;
             _eventAggregator = eventAggregator;
             _cacheService = cacheService;
-            Photos = new ObservableCollection<NavigationItemViewModel>();
-            Albums = new ObservableCollection<NavigationItemViewModel>();
+            Photos = new ObservableCollection<PhotoNavigationItemViewModel>();
+            Albums = new ObservableCollection<AlbumNavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
 
@@ -49,7 +49,7 @@ namespace PhotoOrganizer.UI.ViewModel
             Albums.Clear();
             foreach (var album in albums)
             {
-                Albums.Add(new NavigationItemViewModel(album.Id, album.DisplayMemberItem, nameof(AlbumDetailViewModel), _eventAggregator));
+                Albums.Add(new AlbumNavigationItemViewModel(album.Id, album.DisplayMemberItem, nameof(AlbumDetailViewModel), _eventAggregator));
             }
         }
 
@@ -58,20 +58,34 @@ namespace PhotoOrganizer.UI.ViewModel
             switch (args.ViewModelName)
             {
                 case nameof(PhotoDetailViewModel):
-                    AfterDetailSaved(Photos, args);
+                    AfterDetailSavedForPhotos(Photos, args);
                     break;
                 case nameof(AlbumDetailViewModel):
-                    AfterDetailSaved(Albums, args);
+                    AfterDetailSavedForAlbums(Albums, args);
                     break;
             }
         }
 
-        private void AfterDetailSaved(ObservableCollection<NavigationItemViewModel> items, AfterDetailSavedEventArgs args)
+        private void AfterDetailSavedForPhotos(ObservableCollection<PhotoNavigationItemViewModel> items, AfterDetailSavedEventArgs args)
         {
             var lookupItem = items.SingleOrDefault(p => p.Id == args.Id);
             if (lookupItem == null)
             {
-                items.Add(new NavigationItemViewModel(args.Id, args.Title, args.ViewModelName, _eventAggregator));
+                items.Add(new PhotoNavigationItemViewModel(args.Id, args.Title, args.PhotoPath, args.ViewModelName, _eventAggregator));
+            }
+            else
+            {
+                lookupItem.DisplayMemberItem = args.Title;
+                lookupItem.PhotoPath = args.PhotoPath;
+            }
+        }
+
+        private void AfterDetailSavedForAlbums(ObservableCollection<AlbumNavigationItemViewModel> items, AfterDetailSavedEventArgs args)
+        {
+            var lookupItem = items.SingleOrDefault(p => p.Id == args.Id);
+            if (lookupItem == null)
+            {
+                items.Add(new AlbumNavigationItemViewModel(args.Id, args.Title, args.ViewModelName, _eventAggregator));
             }
             else
             {
@@ -84,15 +98,24 @@ namespace PhotoOrganizer.UI.ViewModel
             switch (args.ViewModelName)
             {
                 case nameof(PhotoDetailViewModel):
-                    AfterDetailDeleted(Photos, args);
+                    AfterDetailDeletedForPhotos(Photos, args);
                     break;
                 case nameof(AlbumDetailViewModel):
-                    AfterDetailDeleted(Albums, args);
+                    AfterDetailDeletedForAlbums(Albums, args);
                     break;
             }
         }
 
-        private void AfterDetailDeleted(ObservableCollection<NavigationItemViewModel> items, AfterDetailDeletedEventArgs args)
+        private void AfterDetailDeletedForPhotos(ObservableCollection<PhotoNavigationItemViewModel> items, AfterDetailDeletedEventArgs args)
+        {
+            var item = items.SingleOrDefault(p => p.Id == args.Id);
+            if (item != null)
+            {
+                items.Remove(item);
+            }
+        }
+
+        private void AfterDetailDeletedForAlbums(ObservableCollection<AlbumNavigationItemViewModel> items, AfterDetailDeletedEventArgs args)
         {
             var item = items.SingleOrDefault(p => p.Id == args.Id);
             if (item != null)
