@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
 {
-    // Caching logic can be implemented here. Now only one page is alive. First remove calls: CleanUpCache();
+    // Caching logic can be implemented here. Now only one page is alive. First remove calls: CleanUpCache(); eg. when load up or down, 
+    // based on a threashold the before x and after y items is stored also
     public class PhotoCacheService : CacheServiceBase
     {
         private IDictionary<int, Page> _pages;
@@ -53,6 +54,7 @@ namespace PhotoOrganizer.UI.Services
 
         public async override Task LoadFirstAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
+            CleanUpCache(false);
             if (!_pages.ContainsKey(0))
             {
                 var page = CreatePage(itemViewModels);
@@ -92,16 +94,11 @@ namespace PhotoOrganizer.UI.Services
             CleanUpCache(false);
         }
 
-        private Page CreatePage(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
-        {
-            return new Page(_lookupDataService, _eventAggregator, itemViewModels);
-        }
-
-        private void CleanUpCache(bool isExceptActual)
+        public void CleanUpCache(bool isSkipActual)
         {
             foreach (var page in _pages)
             {
-                if (isExceptActual && page.Key == Page.CurrentPageNumber)
+                if (isSkipActual && page.Key == Page.CurrentPageNumber)
                 {
                     continue;
                 }
@@ -110,5 +107,10 @@ namespace PhotoOrganizer.UI.Services
 
             _pages.Clear();
         }
+
+        private Page CreatePage(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
+        {
+            return new Page(_lookupDataService, _eventAggregator, itemViewModels);
+        }        
     }
 }
