@@ -27,7 +27,8 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     {
                         Id = p.Id,
                         DisplayMemberItem = p.Title,
-                        PhotoPath = p.FullPath
+                        PhotoPath = p.FullPath,
+                        ColorFlag = p.ColorFlag
                     }).ToListAsync();
             }
         }

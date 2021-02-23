@@ -62,10 +62,10 @@
                                         <BlurBitmapEffect Radius="8" />
                                     </Border.BitmapEffect>
                                 </Border>
-                                <Border Padding="4" Background="#CCCCCC" BorderBrush="#22000000" BorderThickness="1">
+                            <Border Padding="4" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1">
                                     <StackPanel Orientation="Vertical" Width="66" Height="80">
                                         <Image Margin="0" Height="64" Width="64" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
-                                        <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
+                                    <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
                                     </StackPanel>
                                 </Border>
 

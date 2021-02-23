@@ -11,6 +11,7 @@ namespace PhotoOrganizer.UI.Event
         public int Id { get; set; }
         public string Title { get; set; }
         public string PhotoPath { get; set; }
-        public string ViewModelName { get; set; }
+        public string ColorFlag { get; set; }
+        public string ViewModelName { get; set; }        
     }
 }

@@ -10,19 +10,21 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private string _displayMemberItem;
         private string _path;
+        private string _colorFlag;
         private Picture _picture;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
 
         public ICommand OpenDetailViewCommand { get; }
 
-        public PhotoNavigationItemViewModel(int id, string displayMemberItem, string path,
+        public PhotoNavigationItemViewModel(int id, string displayMemberItem, string path, string colorFlag,
             string detailViewModelName,
             IEventAggregator eventAggregator)
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
             _path = path;
+            _colorFlag = colorFlag;
             _picture = new Picture(_path);
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
@@ -47,6 +49,16 @@ namespace PhotoOrganizer.UI.ViewModel
             set
             {
                 _path = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ColorFlag
+        {
+            get { return _colorFlag; }
+            set
+            {
+                _colorFlag = value;
                 OnPropertyChanged();
             }
         }

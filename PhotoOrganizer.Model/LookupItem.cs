@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public string DisplayMemberItem { get; set; }
         public string PhotoPath { get; set; }
+        public string ColorFlag { get; set; }
     }
 
     public class NullLookupItem : LookupItem

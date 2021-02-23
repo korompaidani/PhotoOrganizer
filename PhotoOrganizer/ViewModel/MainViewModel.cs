@@ -83,7 +83,7 @@ namespace PhotoOrganizer.UI.ViewModel
             // 4. DONE  Read data from library
             // 5.       show progressbar during load
 
-          await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
+            await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
             await LoadAsync();
         }
 

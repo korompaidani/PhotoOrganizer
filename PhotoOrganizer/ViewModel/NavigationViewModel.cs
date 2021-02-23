@@ -71,7 +71,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var lookupItem = items.SingleOrDefault(p => p.Id == args.Id);
             if (lookupItem == null)
             {
-                items.Add(new PhotoNavigationItemViewModel(args.Id, args.Title, args.PhotoPath, args.ViewModelName, _eventAggregator));
+                items.Add(new PhotoNavigationItemViewModel(args.Id, args.Title, args.PhotoPath, args.ViewModelName, args.ColorFlag, _eventAggregator));
             }
             else
             {

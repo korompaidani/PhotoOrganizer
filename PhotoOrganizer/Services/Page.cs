@@ -90,7 +90,7 @@ namespace PhotoOrganizer.UI.Services
             {
                 _navigationItems.Add(
                     new PhotoNavigationItemViewModel(
-                        item.Id, item.DisplayMemberItem, item.PhotoPath,
+                        item.Id, item.DisplayMemberItem, item.PhotoPath, item.ColorFlag, 
                         nameof(PhotoDetailViewModel),
                         _eventAggregator));
             }
