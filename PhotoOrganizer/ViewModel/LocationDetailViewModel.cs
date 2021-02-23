@@ -139,7 +139,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             // Trigger the validation
             wrapper.LocationName = "new place";
-            wrapper.Coordinates = "0.0, 0.0";
+            wrapper.Coordinates = "46.84172812451524, 16.84248724161438";
         }
     }
 }
