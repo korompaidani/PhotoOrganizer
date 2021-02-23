@@ -22,7 +22,11 @@
                 <DataGridTextColumn Header="Location" Width="*"
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
-                                    Binding="{Binding Title,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    Binding="{Binding LocationName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Coordinates" Width="*"
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
+                                    Binding="{Binding Coordinates,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
 

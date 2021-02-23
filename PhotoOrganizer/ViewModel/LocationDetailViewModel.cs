@@ -118,7 +118,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var isReferenced = await _locationRepository.IsReferencedByPhotoAsync(SelectedLocation.Id);
             if (isReferenced)
             {
-                await MessageDialogService.ShowInfoDialogAsync($"The GPS coordinate {SelectedLocation.Title} can't be removed, as it is referenced by at least one photo");
+                await MessageDialogService.ShowInfoDialogAsync($"The location {SelectedLocation.LocationName} can't be removed, as it is referenced by at least one photo");
                 return;
             }
 
@@ -138,7 +138,8 @@ namespace PhotoOrganizer.UI.ViewModel
             Locations.Add(wrapper);
 
             // Trigger the validation
-            wrapper.Title = "46.82909744431809, 16.829289498353788";
+            wrapper.LocationName = "new place";
+            wrapper.Coordinates = "0.0, 0.0";
         }
     }
 }

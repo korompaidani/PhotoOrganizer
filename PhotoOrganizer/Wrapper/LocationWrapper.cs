@@ -9,7 +9,18 @@ namespace PhotoOrganizer.UI.Wrapper
         public Location Model { get; }
         public int Id { get { return Model.Id; } }
 
-        public string Title
+        public string LocationName
+        {
+            get { return Model.LocationName.ToString(); }
+            set
+            {
+                Model.LocationName = value;
+                OnPropertyChanged();
+                ValidateProperty("LocationName", Model.LocationName);
+            }
+        }
+
+        public string Coordinates
         {
             get { return Model.Coordinates.ToString(); }
             set
