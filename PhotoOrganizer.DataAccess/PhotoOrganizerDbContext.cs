@@ -10,7 +10,7 @@ namespace PhotoOrganizer.DataAccess
         }
 
         public DbSet<Photo> Photos { get; set; }
-        public DbSet<Gps> Coordinates { get; set; }
+        public DbSet<Location> Locations { get; set; }
         public DbSet<People> People { get; set; }
         public DbSet<Album> Albums { get; set; }
 

@@ -19,13 +19,13 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private PhotoWrapper _photo;
         private PeopleWrapper _selectedPeople;
-        private IGpsLookupDataService _yearLookupDataService;
+        private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
 
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
 
-        public ObservableCollection<LookupItem> GpsCollection { get; }
+        public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleWrapper> Peoples { get; }
 
         public PhotoWrapper Photo
@@ -51,11 +51,11 @@ namespace PhotoOrganizer.UI.ViewModel
         public PhotoDetailViewModel(IPhotoRepository photoRepository, 
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            IGpsLookupDataService yearLookupDataService
+            ILocationLookupDataService locationLookupDataService
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
-            _yearLookupDataService = yearLookupDataService;
+            _locationLookupDataService = locationLookupDataService;
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
@@ -63,15 +63,15 @@ namespace PhotoOrganizer.UI.ViewModel
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
-            GpsCollection = new ObservableCollection<LookupItem>();
+            Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
         {
-            if(args.ViewModelName == nameof(GpsDetailViewModel))
+            if(args.ViewModelName == nameof(LocationDetailViewModel))
             {
-                await LoadYearLookupAsync();
+                await LoadLocationLookupAsync();
             }
         }
 
@@ -111,7 +111,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             InitializePeople(photo.Peoples);
 
-            await LoadYearLookupAsync();
+            await LoadLocationLookupAsync();
         }
 
         private void InitializePeople(ICollection<People> peoples)
@@ -175,14 +175,14 @@ namespace PhotoOrganizer.UI.ViewModel
             Title = $"{Photo.Title}";
         }
 
-        private async Task LoadYearLookupAsync()
+        private async Task LoadLocationLookupAsync()
         {
-            GpsCollection.Clear();
-            GpsCollection.Add(new NullLookupItem { DisplayMemberItem = "-" });
-            var lookup = await _yearLookupDataService.GetGpsLookupAsync();
+            Locations.Clear();
+            Locations.Add(new NullLookupItem { DisplayMemberItem = "-" });
+            var lookup = await _locationLookupDataService.GetLocationLookupAsync();
             foreach (var lookupItem in lookup)
             {
-                GpsCollection.Add(lookupItem);
+                Locations.Add(lookupItem);
             }
         }
 

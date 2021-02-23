@@ -9,9 +9,7 @@ namespace PhotoOrganizer.Model
 
         [Required]
         public string Nick { get; set; }
-
         public int PeopleId { get; set; }
-
         public People People { get; set; }
     }
 }

@@ -13,16 +13,16 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class GpsDetailViewModel : DetailViewModelBase
+    public class LocationDetailViewModel : DetailViewModelBase
     {
-        private IGpsRepository _gpsRepository;
-        private GpsWrapper _selectedGps;
+        private ILocationRepository _gpsRepository;
+        private LocationWrapper _selectedGps;
 
-        public ObservableCollection<GpsWrapper> GpsCollection { get; }
+        public ObservableCollection<LocationWrapper> GpsCollection { get; }
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }
 
-        public GpsWrapper SelectedGps
+        public LocationWrapper SelectedGps
         {
             get { return _selectedGps; }
             set
@@ -33,14 +33,14 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public GpsDetailViewModel(IEventAggregator eventAggregator, 
+        public LocationDetailViewModel(IEventAggregator eventAggregator, 
             IMessageDialogService messageDialogService,
-            IGpsRepository yearRepository) 
+            ILocationRepository yearRepository) 
             : base(eventAggregator, messageDialogService)
         {
             _gpsRepository = yearRepository;
             Title = "Gps";
-            GpsCollection = new ObservableCollection<GpsWrapper>();
+            GpsCollection = new ObservableCollection<LocationWrapper>();
 
             AddCommand = new DelegateCommand(OnAddExecute);
             RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
@@ -60,7 +60,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             foreach(var model in years)
             {
-                var wrapper = new GpsWrapper(model);
+                var wrapper = new LocationWrapper(model);
                 wrapper.PropertyChanged += Wrapper_PropertyChanged;
                 GpsCollection.Add(wrapper);
             }
@@ -72,7 +72,7 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 HasChanges = _gpsRepository.HasChanges();
             }
-            if(e.PropertyName == nameof(GpsWrapper.HasErrors))
+            if(e.PropertyName == nameof(LocationWrapper.HasErrors))
             {
                 ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
@@ -132,7 +132,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnAddExecute()
         {
-            var wrapper = new GpsWrapper(new Gps());
+            var wrapper = new LocationWrapper(new Location());
             wrapper.PropertyChanged += Wrapper_PropertyChanged;
             _gpsRepository.Add(wrapper.Model);
             GpsCollection.Add(wrapper);

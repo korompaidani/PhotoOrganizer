@@ -1,13 +1,12 @@
 ﻿using PhotoOrganizer.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PhotoOrganizer.UI.Wrapper
 {
-    public class GpsWrapper : NotifyDataErrorInfoBase
+    public class LocationWrapper : NotifyDataErrorInfoBase
     {
-        public Gps Model { get; }
+        public Location Model { get; }
         public int Id { get { return Model.Id; } }
 
         public string Title
@@ -38,7 +37,7 @@ namespace PhotoOrganizer.UI.Wrapper
             // 2. Validate User errors
         }
 
-        public GpsWrapper(Gps model)
+        public LocationWrapper(Location model)
         {
             Model = model;
         }

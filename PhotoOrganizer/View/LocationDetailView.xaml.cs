@@ -3,11 +3,11 @@
 namespace PhotoOrganizer.UI.View
 {
     /// <summary>
-    /// Interaction logic for YearDetailView.xaml
+    /// Interaction logic for LocationDetailView.xaml
     /// </summary>
-    public partial class GpsDetailView : UserControl
+    public partial class LocationDetailView : UserControl
     {
-        public GpsDetailView()
+        public LocationDetailView()
         {
             InitializeComponent();
         }

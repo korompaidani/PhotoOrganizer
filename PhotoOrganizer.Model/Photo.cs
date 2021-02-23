@@ -15,26 +15,20 @@ namespace PhotoOrganizer.Model
 
         [Key]
         public int Id { get; set; }
-
         [Required]
         public string Title { get; set; }
-
         [Required]
         public string FullPath { get; set; }
-
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
         public int? LocationId { get; set; }
-        public Gps Location { get; set; }
-
+        public Location Location { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
-        public TimeSpan HHMMSS { get; set; }
-
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
-
+        public TimeSpan HHMMSS { get; set; }        
         public ICollection<People> Peoples { get; set; }
-
         public ICollection<Album> Albums { get; set; }
+        public string ColorFlag { get; set; }
     }
 }

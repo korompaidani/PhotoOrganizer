@@ -17,8 +17,8 @@
         <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
             <view:AlbumDetailView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:GpsDetailViewModel}">
-            <view:GpsDetailView/>
+        <DataTemplate DataType="{x:Type viewModel:LocationDetailViewModel}">
+            <view:LocationDetailView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -39,8 +39,8 @@
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Gps" Command="{Binding OpenSingleDetailViewCommand}"
-                              CommandParameter="{x:Type viewModel:GpsDetailViewModel}"/>
+                <MenuItem Header="Location" Command="{Binding OpenSingleDetailViewCommand}"
+                              CommandParameter="{x:Type viewModel:LocationDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
