@@ -33,7 +33,6 @@
                 <DataTemplate DataType="{x:Type model:Photo}">
                     <TextBlock>
                         <Run Text="{Binding Title}"/>
-                        <Run Text="{Binding Year}"/>
                     </TextBlock>
                 </DataTemplate>
             </Grid.Resources>

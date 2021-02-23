@@ -15,11 +15,11 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding GpsCollection}"
-                  SelectedItem="{Binding SelectedGps, Mode=TwoWay}"
+        <DataGrid ItemsSource="{Binding Locations}"
+                  SelectedItem="{Binding SelectedLocation, Mode=TwoWay}"
                   AutoGenerateColumns="False" RowHeaderWidth="0" Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Gps" Width="*"
+                <DataGridTextColumn Header="Location" Width="*"
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
                                     Binding="{Binding Title,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

@@ -32,7 +32,7 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
-        public int? YearId
+        public int? LocationId
         {
             get { return Model.LocationId; }
             set

@@ -15,19 +15,19 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class LocationDetailViewModel : DetailViewModelBase
     {
-        private ILocationRepository _gpsRepository;
-        private LocationWrapper _selectedGps;
+        private ILocationRepository _locationRepository;
+        private LocationWrapper _selectedLocation;
 
-        public ObservableCollection<LocationWrapper> GpsCollection { get; }
+        public ObservableCollection<LocationWrapper> Locations { get; }
         public ICommand AddCommand { get; }
         public ICommand RemoveCommand { get; }
 
-        public LocationWrapper SelectedGps
+        public LocationWrapper SelectedLocation
         {
-            get { return _selectedGps; }
+            get { return _selectedLocation; }
             set
             {
-                _selectedGps = value;
+                _selectedLocation = value;
                 OnPropertyChanged();
                 ((DelegateCommand)RemoveCommand).RaiseCanExecuteChanged();
             }
@@ -35,12 +35,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public LocationDetailViewModel(IEventAggregator eventAggregator, 
             IMessageDialogService messageDialogService,
-            ILocationRepository yearRepository) 
+            ILocationRepository locationRepository) 
             : base(eventAggregator, messageDialogService)
         {
-            _gpsRepository = yearRepository;
-            Title = "Gps";
-            GpsCollection = new ObservableCollection<LocationWrapper>();
+            _locationRepository = locationRepository;
+            Title = "Location";
+            Locations = new ObservableCollection<LocationWrapper>();
 
             AddCommand = new DelegateCommand(OnAddExecute);
             RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
@@ -49,20 +49,20 @@ namespace PhotoOrganizer.UI.ViewModel
         public async override Task LoadAsync(int id)
         {
             Id = id;
-            foreach(var wrapper in GpsCollection)
+            foreach(var wrapper in Locations)
             {
                 wrapper.PropertyChanged -= Wrapper_PropertyChanged;
             }
 
-            GpsCollection.Clear();
+            Locations.Clear();
 
-            var years = await _gpsRepository.GetAllAsync();
+            var locations = await _locationRepository.GetAllAsync();
 
-            foreach(var model in years)
+            foreach(var model in locations)
             {
                 var wrapper = new LocationWrapper(model);
                 wrapper.PropertyChanged += Wrapper_PropertyChanged;
-                GpsCollection.Add(wrapper);
+                Locations.Add(wrapper);
             }
         }
 
@@ -70,7 +70,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if (!HasChanges)
             {
-                HasChanges = _gpsRepository.HasChanges();
+                HasChanges = _locationRepository.HasChanges();
             }
             if(e.PropertyName == nameof(LocationWrapper.HasErrors))
             {
@@ -85,15 +85,15 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override bool OnSaveCanExecute()
         {
-            return HasChanges && GpsCollection.All(y => !y.HasErrors);
+            return HasChanges && Locations.All(y => !y.HasErrors);
         }
 
         protected async override void OnSaveExecute()
         {
             try
             {
-                await _gpsRepository.SaveAsync();
-                HasChanges = _gpsRepository.HasChanges();
+                await _locationRepository.SaveAsync();
+                HasChanges = _locationRepository.HasChanges();
                 RaiseCollectionSavedEvent();
             }
             catch(Exception ex)
@@ -110,23 +110,23 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnRemoveCanExecute()
         {
-            return SelectedGps != null;
+            return SelectedLocation != null;
         }
 
         private async void OnRemoveExecute()
         {
-            var isReferenced = await _gpsRepository.IsReferencedByPhotoAsync(SelectedGps.Id);
+            var isReferenced = await _locationRepository.IsReferencedByPhotoAsync(SelectedLocation.Id);
             if (isReferenced)
             {
-                await MessageDialogService.ShowInfoDialogAsync($"The GPS coordinate {SelectedGps.Title} can't be removed, as it is referenced by at least one photo");
+                await MessageDialogService.ShowInfoDialogAsync($"The GPS coordinate {SelectedLocation.Title} can't be removed, as it is referenced by at least one photo");
                 return;
             }
 
-            SelectedGps.PropertyChanged -= Wrapper_PropertyChanged;
-            _gpsRepository.Remove(SelectedGps.Model);
-            GpsCollection.Remove(SelectedGps);
-            SelectedGps = null;
-            HasChanges = _gpsRepository.HasChanges();
+            SelectedLocation.PropertyChanged -= Wrapper_PropertyChanged;
+            _locationRepository.Remove(SelectedLocation.Model);
+            Locations.Remove(SelectedLocation);
+            SelectedLocation = null;
+            HasChanges = _locationRepository.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
@@ -134,11 +134,11 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             var wrapper = new LocationWrapper(new Location());
             wrapper.PropertyChanged += Wrapper_PropertyChanged;
-            _gpsRepository.Add(wrapper.Model);
-            GpsCollection.Add(wrapper);
+            _locationRepository.Add(wrapper.Model);
+            Locations.Add(wrapper);
 
             // Trigger the validation
-            wrapper.Title = "1900";
+            wrapper.Title = "46.82909744431809, 16.829289498353788";
         }
     }
 }
