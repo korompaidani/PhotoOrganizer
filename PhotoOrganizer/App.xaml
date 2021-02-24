@@ -50,7 +50,8 @@
                             </Setter.Value>
                         </Setter>
 
-                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="FontSize" Value="10"/>
 
                         <Style.Triggers>
@@ -63,7 +64,7 @@
                     </Style>
 
                     <Style x:Key="DataGridColumnStyle" TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="10"/>
+                        
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError" Value="True">
                                 <Setter Property="Background" Value="DarkRed"/>
