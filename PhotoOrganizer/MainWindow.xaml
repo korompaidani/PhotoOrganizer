@@ -8,69 +8,28 @@
         xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
         xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
         mc:Ignorable="d"
-        Title="PhotoOrganizer" Height="720" Width="1280" FontSize="20"
+        Title="PhotoOrganizer" Height="760" Width="1280" FontSize="20"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
-            <view:PhotoDetailView/>
+        <DataTemplate DataType="{x:Type view:WorkbenchView}">
+            <view:WorkbenchView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
-            <view:AlbumDetailView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:LocationDetailViewModel}">
-            <view:LocationDetailView/>
+        <DataTemplate DataType="{x:Type view:PhotoView}">
+            <view:PhotoView/>
         </DataTemplate>
     </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="720"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="510"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Menu Grid.ColumnSpan="2" FontSize="12">
-            <MenuItem Header="File">
-                <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
-                <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
-                          CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
-                <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
-                          CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Location" Command="{Binding OpenSingleDetailViewCommand}"
-                              CommandParameter="{x:Type viewModel:LocationDetailViewModel}"/>
-            </MenuItem>
-        </Menu>
-        <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
-        <TabControl Grid.Row="1" Grid.Column="1" 
-                    ItemsSource="{Binding DetailViewModels}"
-                    SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem"
-                       BasedOn="{StaticResource {x:Type TabItem}}">
-                    <Setter Property="Background" Value="#333333"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="2"/>
-                </Style>
-            </TabControl.ItemContainerStyle>
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}"
-                                   FontSize="10"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="*" Visibility="{Binding HasChanges,
-                            Converter={StaticResource booleanToVisibilityConverter}}"
-                            FontSize="10"/>
-                        <Button Command="{Binding CloseDetailViewCommand}"
-                                Style="{StaticResource MahApps.Styles.Button.Chromeless}"
-                                VerticalContentAlignment="Center" Margin="5 0 1 1"
-                                Content="X" FontSize="10"/>
-                    </StackPanel>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>
+
+        <ContentControl x:Name="Pages" Grid.Row="0" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
+        <StackPanel x:Name="navigation" Grid.Row="1" DockPanel.Dock="Left">
+            <Button Content="Photo" Command="{Binding OpenPhoto}"/>
+            <Button Content="Workbench" Command="{Binding OpenWorkbench}"/>
+        </StackPanel>
+
     </Grid>
 </Controls:MetroWindow>

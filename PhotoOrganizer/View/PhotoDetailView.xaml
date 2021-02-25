@@ -43,10 +43,11 @@
         
 
         <DockPanel Grid.Row="3" Grid.Column="1">
+
+                <Button Content="Zoom" Command="{Binding OpenPhotoViewCommand}" />
+                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
             
-            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
-            
-            
+
         </DockPanel>
             <DockPanel Grid.Row="4" Grid.Column="1" Margin="5 0 5 5">
                 <StackPanel DockPanel.Dock="Right">

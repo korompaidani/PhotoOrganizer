@@ -159,8 +159,10 @@
     <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\PhotoViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
+    <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
     </Compile>
@@ -170,10 +172,16 @@
     <Compile Include="View\PhotoDetailView.xaml.cs">
       <DependentUpon>PhotoDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PhotoView.xaml.cs">
+      <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
     <Compile Include="View\LocationDetailView.xaml.cs">
       <DependentUpon>LocationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrapper\AlbumWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
@@ -205,6 +213,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LocationDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkbenchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
