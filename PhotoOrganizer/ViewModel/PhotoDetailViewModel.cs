@@ -6,6 +6,7 @@ using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -24,6 +25,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
+        public ICommand OpenPhotoCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleWrapper> Peoples { get; }
@@ -62,9 +64,25 @@ namespace PhotoOrganizer.UI.ViewModel
 
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
+            OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();
+        }
+
+        public override async Task LoadAsync(int photoId)
+        {
+            var photo = photoId > 0
+                ? await _photoRepository.GetByIdAsync(photoId)
+                : CreateNewPhoto();
+
+            Id = photoId;
+
+            InitializePhoto(photo);
+
+            InitializePeople(photo.Peoples);
+
+            await LoadLocationLookupAsync();
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
@@ -99,20 +117,18 @@ namespace PhotoOrganizer.UI.ViewModel
             newPeople.FirstName = "";
         }
 
-        public override async Task LoadAsync(int photoId)
+
+        private void OnOpenPhoto()
         {
-            var photo = photoId > 0
-                ? await _photoRepository.GetByIdAsync(photoId)
-                : CreateNewPhoto();
-
-            Id = photoId;
-
-            InitializePhoto(photo);
-
-            InitializePeople(photo.Peoples);
-
-            await LoadLocationLookupAsync();
-        }
+            EventAggregator.GetEvent<OpenPhotoViewEvent>().
+                Publish(
+                    new OpenPhotoViewEventArgs
+                    {
+                        Id = Id,
+                        FullPath = Photo.FullPath,
+                        ViewModelName = "PhotoViewModel"
+                    });
+        }       
 
         private void InitializePeople(ICollection<People> peoples)
         {

@@ -1,4 +1,5 @@
 ﻿using Autofac.Features.Indexed;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
@@ -16,8 +17,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
         private WorkbenchViewModel _workbenchViewModel;
 
-        public ICommand OpenPhoto { get; set; }
-        public ICommand OpenWorkbench { get; set; }
+        public ICommand OpenWorkbenchCommand { get; set; }
         
         private object _selectedViewModel;
 
@@ -41,17 +41,17 @@ namespace PhotoOrganizer.UI.ViewModel
             _messageDialogService = messageDialogService;
             _directoryReaderWrapperService = directoryReaderWrapperService;
             _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<OpenPhotoViewEvent>().Subscribe(OnOpenPhotoView);
 
-            OpenPhoto = new DelegateCommand(OnOpenPhoto);
-            OpenWorkbench = new DelegateCommand(OnOpenWorkbench);
+            OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
         }
 
-        private void OnOpenPhoto()
+        private void OnOpenPhotoView(OpenPhotoViewEventArgs args)
         {
-            SelectedViewModel = new PhotoViewModel();
+            SelectedViewModel = new PhotoViewModel(args.FullPath);
         }
 
-        private async void OnOpenWorkbench()
+        private void OnOpenWorkbench()
         {
             SelectedViewModel = _workbenchViewModel;
         }

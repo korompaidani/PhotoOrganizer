@@ -27,8 +27,7 @@
 
         <ContentControl x:Name="Pages" Grid.Row="0" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
         <StackPanel x:Name="navigation" Grid.Row="1" DockPanel.Dock="Left">
-            <Button Content="Photo" Command="{Binding OpenPhoto}"/>
-            <Button Content="Workbench" Command="{Binding OpenWorkbench}"/>
+            <Button Content="Workbench" Command="{Binding OpenWorkbenchCommand}"/>
         </StackPanel>
 
     </Grid>
