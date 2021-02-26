@@ -6,7 +6,6 @@ using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,6 +21,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private PeopleWrapper _selectedPeople;
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
+        private IPeopleRepository _peopleRepository;
 
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
@@ -31,18 +31,19 @@ namespace PhotoOrganizer.UI.ViewModel
         public ObservableCollection<PeopleWrapper> Peoples { get; }
 
         public PhotoWrapper Photo
-        { 
+        {
             get { return _photo; }
-            set 
+            set
             {
                 _photo = value;
-                OnPropertyChanged();                
+                OnPropertyChanged();
             }
         }
 
-        public PeopleWrapper SelectedPeople {
-            get { return _selectedPeople; } 
-            set 
+        public PeopleWrapper SelectedPeople
+        {
+            get { return _selectedPeople; }
+            set
             {
                 _selectedPeople = value;
                 OnPropertyChanged();
@@ -50,13 +51,16 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public PhotoDetailViewModel(IPhotoRepository photoRepository, 
+        public PhotoDetailViewModel(
+            IPhotoRepository photoRepository,
+            IPeopleRepository peopleRepository,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             ILocationLookupDataService locationLookupDataService
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
+            _peopleRepository = peopleRepository;
             _locationLookupDataService = locationLookupDataService;
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
@@ -114,7 +118,7 @@ namespace PhotoOrganizer.UI.ViewModel
             newPeople.PropertyChanged += PeopleWrapper_PropertyChanged;
             Peoples.Add(newPeople);
             Photo.Model.Peoples.Add(newPeople.Model);
-            newPeople.FirstName = "";
+            newPeople.DisplayName = "";
         }
 
 

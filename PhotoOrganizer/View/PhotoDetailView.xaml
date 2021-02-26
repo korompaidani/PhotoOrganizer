@@ -63,7 +63,7 @@
                         <DataGridTextColumn Width="*"                                            
                                             ElementStyle="{StaticResource DataGridColumnStyle}"
                                             EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
-                                            Binding="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            Binding="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <DataGridTextColumn.Header>
                                 <TextBlock FontSize="10" Text="People"/>
                             </DataGridTextColumn.Header>

@@ -1,10 +1,6 @@
 ﻿using PhotoOrganizer.Model;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Wrapper
 {
@@ -12,6 +8,17 @@ namespace PhotoOrganizer.UI.Wrapper
     {
         public People Model { get; }
         public int Id { get { return Model.Id; } }
+
+        public string DisplayName
+        {
+            get { return Model.DisplayName; }
+            set
+            {
+                Model.DisplayName = value;
+                OnPropertyChanged();
+                ValidateProperty(nameof(DisplayName), Model.DisplayName);
+            }
+        }
 
         public string FirstName
         {
