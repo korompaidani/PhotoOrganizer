@@ -48,9 +48,9 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
         }
 
-        private void OnOpenMapView(OpenMapViewEventArgs obj)
+        private void OnOpenMapView(OpenMapViewEventArgs args)
         {
-            SelectedViewModel = new MapViewModel(_eventAggregator, _messageDialogService);
+            SelectedViewModel = new MapViewModel(_eventAggregator, _messageDialogService, args.Coordinates);
         }
 
         private void OnOpenWorkbenchView(OpenWorkbenchViewEventArgs args)

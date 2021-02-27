@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using PhotoOrganizer.MapTools;
 using PhotoOrganizer.UI.Startup;
 using System.Windows;
 

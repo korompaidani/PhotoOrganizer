@@ -13,7 +13,8 @@ namespace PhotoOrganizer.UI.ViewModel
     public class MapViewModel : DetailViewModelBase, IMapViewModel
     {
         private LocationWrapper _location;
-        private string _webUrl = "https://www.google.com/maps";
+        private string _webUrl;
+        private string _coordinates;
         public ICommand OnWorkbenchCommand { get; }
         public ICommand OnSetPhotoOnlyCommand { get; }
         public ICommand OnSaveLocationCommand { get; }
@@ -31,6 +32,19 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        public string Coordinates
+        {
+            get
+            {
+                return _coordinates;
+            }
+            set
+            {
+                _coordinates = value;
+                OnPropertyChanged();
+            }
+        }
+
         public LocationWrapper Location
         {
             get { return _location; }
@@ -43,15 +57,25 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public MapViewModel(
              IEventAggregator eventAggregator,
-             IMessageDialogService messageDialogService)
+             IMessageDialogService messageDialogService,
+             string coordinates)
             : base(eventAggregator, messageDialogService)
         {
             OnWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
+            _coordinates = coordinates;
+        }
+
+        public void OnGetBrowserData(object sender, GetBrowserDataEventArgs args)
+        {
+            Coordinates = args.Url.TryConvertUrlToCoordinate();
         }
 
         private void OnOpenWorkbench()
         {
             // TODO: It must be removed to other commands
+            // 1. SaveMapEvent --> user save the coordinate as a new location
+            // 2. CloseMapEvent --> when the user just close the window (user must be asked about intention)
+            // 3. SetCoordinatesOnMapEvent --> when the user dont save the location just set on photo (photo.coordinates will be persist of course)
             //EventAggregator.GetEvent<CloseMapViewEvent>().
             //    Publish(new CloseMapViewEventArgs 
             //    {

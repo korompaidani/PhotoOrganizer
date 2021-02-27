@@ -5,7 +5,7 @@ namespace PhotoOrganizer.MapTools
 {
     public static class GoogleMapsStringExtension
     {
-        private const string GoogleMapsUrl = "https://www.google.hu/maps";
+        private const string GoogleMapsUrl = "https://www.google.com/maps";
 
         public static string TryConvertUrlToCoordinate(this string inputUrl)
         {
@@ -71,7 +71,7 @@ namespace PhotoOrganizer.MapTools
 
             foreach (var segment in segments)
             {
-                if (segment.StartsWith("@") && segment.EndsWith("z/"))
+                if (segment.StartsWith("@") && segment.EndsWith("z"))
                 {
                     coordinates = segment;
                 }

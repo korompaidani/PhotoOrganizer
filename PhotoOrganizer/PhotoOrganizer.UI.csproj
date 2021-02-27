@@ -141,6 +141,7 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterSaveCoordinatesEvent.cs" />
     <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\GetBrowserDataEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />

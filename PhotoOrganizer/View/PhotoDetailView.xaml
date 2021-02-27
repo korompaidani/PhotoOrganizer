@@ -40,6 +40,7 @@
                           Width="250"/>
                 <Button Content="Map" Margin="5 0 5 5"
                         Command="{Binding OpenMapCommand}"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </StackPanel>
 
             <DockPanel Grid.Row="3" Grid.Column="1">

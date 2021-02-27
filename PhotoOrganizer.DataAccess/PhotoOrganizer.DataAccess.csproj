@@ -71,6 +71,10 @@
     <Compile Include="Migrations\202102270803337_NtoNPeoplePhoto.designer.cs">
       <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.cs" />
+    <Compile Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.designer.cs">
+      <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -107,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102270803337_NtoNPeoplePhoto.resx">
       <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.resx">
+      <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

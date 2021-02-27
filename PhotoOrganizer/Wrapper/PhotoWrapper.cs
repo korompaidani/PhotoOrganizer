@@ -31,6 +31,15 @@ namespace PhotoOrganizer.UI.Wrapper
                 ValidateProperty(nameof(FullPath), Model.FullPath);
             }
         }
+        public string Coordinates
+        {
+            get { return Model.Coordinates; }
+            set
+            {
+                Model.Coordinates = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int? LocationId
         {

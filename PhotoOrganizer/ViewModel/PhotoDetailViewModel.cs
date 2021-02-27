@@ -98,7 +98,10 @@ namespace PhotoOrganizer.UI.ViewModel
             var location = new Location { LocationName = args.LocationName, Coordinates = args.Coordinates };
             _locationRepository.Add(location);
             await _locationRepository.SaveAsync();
+
             Photo.LocationId = location.Id;
+            Photo.Coordinates = location.Coordinates;
+
             Locations.Add(new LookupItem { Id = location.Id, DisplayMemberItem = location.LocationName });
         }
 
@@ -223,6 +226,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
+            // Query the location before save
+            // If user set the combo it will reset the coordinates(string)
+            // If the user set the map it will reset the combo to null
+
+            Photo.Coordinates = "88,05,19";
+
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
                 () => 
                 {

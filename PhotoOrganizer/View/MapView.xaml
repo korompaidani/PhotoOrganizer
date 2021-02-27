@@ -13,26 +13,32 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"
+        <StackPanel Grid.Row="0">
+            <Button Content="Set Coordinate" Click="OnSetCoordinateButtonClick"/>
+            <Button Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"
                 Command="{Binding OnWorkbenchCommand}">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid x:Name="grid">
-                        <ContentPresenter HorizontalAlignment="Right"
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="grid">
+                            <ContentPresenter HorizontalAlignment="Right"
                                           VerticalAlignment="Top"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Cursor" Value="Hand"/>
-                            <Setter Property="FontWeight" Value="Bold"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="FontWeight" Value="Normal"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <WebBrowser Grid.Row="1" x:Name="mapBrowser" Source="https://www.google.com/maps"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="FontWeight" Value="Normal"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+        
+        
+        <WebBrowser Grid.Row="1" x:Name="mapBrowser" Source="https://www.google.com/maps" LoadCompleted="OnLoadCompleted"/>
+        
     </Grid>
 </UserControl>
