@@ -2,16 +2,17 @@
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
@@ -19,13 +20,11 @@ namespace PhotoOrganizer.UI.ViewModel
     public class PhotoDetailViewModel : DetailViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
-        private PeopleWrapper _selectedPeople;
+        
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
         private IPeopleRepository _peopleRepository;
-
-        public ICommand AddPeopleCommand { get; }
-        public ICommand RemovePeopleCommand { get; }
+        
         public ICommand OpenPhotoCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
 
@@ -39,17 +38,6 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 _photo = value;
                 OnPropertyChanged();
-            }
-        }
-
-        public PeopleWrapper SelectedPeople
-        {
-            get { return _selectedPeople; }
-            set
-            {
-                _selectedPeople = value;
-                OnPropertyChanged();
-                ((DelegateCommand)RemovePeopleCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -68,8 +56,7 @@ namespace PhotoOrganizer.UI.ViewModel
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
 
-            AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
-            RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
+            
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
 
@@ -100,30 +87,6 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private bool OnRemovePeopleCanExecute()
-        {
-            return SelectedPeople != null;
-        }
-
-        private void OnRemovePeopleExecute()
-        {
-            SelectedPeople.PropertyChanged -= PeopleWrapper_PropertyChanged;
-            _photoRepository.RemovePeople(SelectedPeople.Model);
-            Peoples.Remove(SelectedPeople);
-            SelectedPeople = null;
-            HasChanges = _photoRepository.HasChanges();
-            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-        }
-
-        private void OnAddPeopleExecute()
-        {
-            var newPeople = new PeopleWrapper(new People());
-            newPeople.PropertyChanged += PeopleWrapper_PropertyChanged;
-            Peoples.Add(newPeople);
-            Photo.Model.Peoples.Add(newPeople.Model);
-            newPeople.DisplayName = "";
-        }
-
         private void OnOpenPhoto()
         {
             EventAggregator.GetEvent<OpenPhotoViewEvent>().
@@ -138,6 +101,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenPeopleAddView()
         {
+            var window = new PeopleSelectionCreationView();
+            window.DataContext = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this);
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
         }
 
         private void InitializePeople(ICollection<People> peoples)
@@ -155,7 +122,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void PeopleWrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        public void PeopleWrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (!HasChanges)
             {

@@ -55,10 +55,10 @@
                 <ListBox x:Name="PeoplesListBox"
                      ItemsSource="{Binding Peoples}"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                    
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                                <Button Content="{Binding DisplayName}"
+                            <Button Content="{Binding DisplayName}"
                                     Padding="3 0 3 0"
                                     FontSize="10"/>
                         </DataTemplate>
@@ -71,30 +71,6 @@
                     </ListBox.ItemsPanel>
                 </ListBox>
 
-            </DockPanel>
-
-            <DockPanel Grid.Row="6" Grid.Column="1" Margin="5 0 5 5">
-                <StackPanel DockPanel.Dock="Right">
-                    <Button Content="Add" Width="125" Margin="5 0 5 5"
-                            Command="{Binding AddPeopleCommand}"/>
-                    <Button Content="Remove" Width="125" Margin="5"
-                            Command="{Binding RemovePeopleCommand}"/>
-                </StackPanel>
-                <DataGrid ItemsSource="{Binding Peoples}"
-                          SelectedItem="{Binding SelectedPeople, Mode=TwoWay}"
-                          AutoGenerateColumns="False" RowHeaderWidth="0"
-                          FontSize="10">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="*"                                            
-                                            ElementStyle="{StaticResource DataGridColumnStyle}"
-                                            EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
-                                            Binding="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            <DataGridTextColumn.Header>
-                                <TextBlock FontSize="10" Text="People"/>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
             </DockPanel>
 
             <StackPanel Grid.Row="5"  Grid.Column="1" Orientation="Horizontal">
