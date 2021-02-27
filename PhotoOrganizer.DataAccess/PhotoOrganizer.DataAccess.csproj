@@ -67,6 +67,10 @@
     <Compile Include="Migrations\202102261235112_PeopleDisplayNameProperty.designer.cs">
       <DependentUpon>202102261235112_PeopleDisplayNameProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102270803337_NtoNPeoplePhoto.cs" />
+    <Compile Include="Migrations\202102270803337_NtoNPeoplePhoto.designer.cs">
+      <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102261235112_PeopleDisplayNameProperty.resx">
       <DependentUpon>202102261235112_PeopleDisplayNameProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102270803337_NtoNPeoplePhoto.resx">
+      <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

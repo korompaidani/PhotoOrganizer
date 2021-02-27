@@ -20,7 +20,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
                 .SingleAsync(a => a.Id == id);
         }
 
-        public async Task<List<Photo>> GetAllFriendAsync()
+        public async Task<List<Photo>> GetAllPhotoAsync()
         {
             return await Context.Set<Photo>()
                 .ToListAsync();

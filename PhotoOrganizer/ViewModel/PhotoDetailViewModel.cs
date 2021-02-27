@@ -6,6 +6,7 @@ using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -26,6 +27,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
         public ICommand OpenPhotoCommand { get; }
+        public ICommand OpenPeopleAddViewCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleWrapper> Peoples { get; }
@@ -69,9 +71,10 @@ namespace PhotoOrganizer.UI.ViewModel
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
+            OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
 
             Locations = new ObservableCollection<LookupItem>();
-            Peoples = new ObservableCollection<PeopleWrapper>();
+            Peoples = new ObservableCollection<PeopleWrapper>();            
         }
 
         public override async Task LoadAsync(int photoId)
@@ -121,7 +124,6 @@ namespace PhotoOrganizer.UI.ViewModel
             newPeople.DisplayName = "";
         }
 
-
         private void OnOpenPhoto()
         {
             EventAggregator.GetEvent<OpenPhotoViewEvent>().
@@ -132,7 +134,11 @@ namespace PhotoOrganizer.UI.ViewModel
                         FullPath = Photo.FullPath,
                         ViewModelName = "PhotoViewModel"
                     });
-        }       
+        }
+
+        private void OnOpenPeopleAddView()
+        {
+        }
 
         private void InitializePeople(ICollection<People> peoples)
         {

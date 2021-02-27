@@ -85,7 +85,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             InitializeAlbum(album);
 
-            _allPhotos = await _albumRepository.GetAllFriendAsync();
+            _allPhotos = await _albumRepository.GetAllPhotoAsync();
 
             SetupPicklist();
         }        
@@ -151,7 +151,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (args.ViewModelName == nameof(PhotoDetailViewModel))
             {
                 await _albumRepository.ReloadPhotoAsync(args.Id);
-                _allPhotos = await _albumRepository.GetAllFriendAsync();
+                _allPhotos = await _albumRepository.GetAllPhotoAsync();
                 SetupPicklist();
             }
         }
@@ -160,7 +160,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if (args.ViewModelName == nameof(PhotoDetailViewModel))
             {
-                _allPhotos = await _albumRepository.GetAllFriendAsync();
+                _allPhotos = await _albumRepository.GetAllPhotoAsync();
                 SetupPicklist();
             }
         }

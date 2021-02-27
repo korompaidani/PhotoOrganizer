@@ -40,7 +40,6 @@
                           Width="250"/>
                 <Button Content="Map" Margin="5 0 5 5"/>
             </StackPanel>
-        
 
         <DockPanel Grid.Row="3" Grid.Column="1">
 
@@ -48,7 +47,33 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
 
         </DockPanel>
-            <DockPanel Grid.Row="4" Grid.Column="1" Margin="5 0 5 5">
+
+            <DockPanel Grid.Row="4" Grid.Column="1">
+                <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" 
+                        Command="{Binding OpenPeopleAddViewCommand}"/>
+
+                <ListBox x:Name="PeoplesListBox"
+                     ItemsSource="{Binding Peoples}"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                                <Button Content="{Binding DisplayName}"
+                                    Padding="3 0 3 0"
+                                    FontSize="10"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+            </DockPanel>
+
+            <DockPanel Grid.Row="6" Grid.Column="1" Margin="5 0 5 5">
                 <StackPanel DockPanel.Dock="Right">
                     <Button Content="Add" Width="125" Margin="5 0 5 5"
                             Command="{Binding AddPeopleCommand}"/>
