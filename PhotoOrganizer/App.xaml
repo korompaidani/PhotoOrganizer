@@ -102,6 +102,9 @@
                         <DataTemplate DataType="{x:Type viewModel:WorkbenchViewModel}">
                             <view:WorkbenchView/>
                         </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                            <view:MapView/>
+                        </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -38,7 +38,8 @@
                           SelectedValue="{Binding Photo.LocationId, Mode=TwoWay}"
                           Margin="5 0 5 5"
                           Width="250"/>
-                <Button Content="Map" Margin="5 0 5 5"/>
+                <Button Content="Map" Margin="5 0 5 5"
+                        Command="{Binding OpenMapCommand}"/>
             </StackPanel>
 
             <DockPanel Grid.Row="3" Grid.Column="1">

@@ -23,9 +23,11 @@ namespace PhotoOrganizer.UI.ViewModel
         
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
+        private ILocationRepository _locationRepository;
         private IPeopleRepository _peopleRepository;
-        
+
         public ICommand OpenPhotoCommand { get; }
+        public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
@@ -43,6 +45,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public PhotoDetailViewModel(
             IPhotoRepository photoRepository,
+            ILocationRepository locationRepository,
             IPeopleRepository peopleRepository,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -50,14 +53,17 @@ namespace PhotoOrganizer.UI.ViewModel
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
+            _locationRepository = locationRepository;
             _peopleRepository = peopleRepository;
             _locationLookupDataService = locationLookupDataService;
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
+            EventAggregator.GetEvent<CloseMapViewEvent>()
+                .Subscribe(AfterMapViewClosed);
 
-            
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
+            OpenMapCommand = new DelegateCommand(OnOpenMap);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
 
             Locations = new ObservableCollection<LookupItem>();
@@ -87,6 +93,15 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        private async void AfterMapViewClosed(CloseMapViewEventArgs args)
+        {
+            var location = new Location { LocationName = args.LocationName, Coordinates = args.Coordinates };
+            _locationRepository.Add(location);
+            await _locationRepository.SaveAsync();
+            Photo.LocationId = location.Id;
+            Locations.Add(new LookupItem { Id = location.Id, DisplayMemberItem = location.LocationName });
+        }
+
         private void OnOpenPhoto()
         {
             EventAggregator.GetEvent<OpenPhotoViewEvent>().
@@ -96,6 +111,25 @@ namespace PhotoOrganizer.UI.ViewModel
                         Id = Id,
                         FullPath = Photo.FullPath,
                         ViewModelName = "PhotoViewModel"
+                    });
+        }
+
+        private async void OnOpenMap()
+        {
+            var locationId = Photo.LocationId;
+            string coordinate = null;
+            if (locationId != null)
+            {
+                coordinate = await _locationRepository.TryGetCoordinatesByIdAsync((int)locationId);                
+            }
+            
+            EventAggregator.GetEvent<OpenMapViewEvent>().
+                Publish(
+                    new OpenMapViewEventArgs
+                    {
+                        PhotoId = Id,
+                        Coordinates = coordinate, //nullcheck on the other side
+                        ViewModelName = "MapViewModel"
                     });
         }
 

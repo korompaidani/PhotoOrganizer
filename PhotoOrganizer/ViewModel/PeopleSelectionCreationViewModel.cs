@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class PeopleSelectionCreationViewModel : ViewModelBase
+    public class PeopleSelectionCreationViewModel : ViewModelBase, IPeopleSelectionCreationViewModel
     {
         private PhotoDetailViewModel _detailView;
         private PeopleWrapper _selectedPeople;

@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
-    public class PhotoViewModel : ViewModelBase
+    public class PhotoViewModel : ViewModelBase, IPhotoViewModel
     {
         private IEventAggregator _eventAggregator;
         public ICommand OnWorkbenchCommand { get; }

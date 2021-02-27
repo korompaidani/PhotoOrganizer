@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -44,6 +45,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
             AddCommand = new DelegateCommand(OnAddExecute);
             RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
+
+            EventAggregator.GetEvent<AfterSaveCoordinatesEvent>().Subscribe(AfterCoordinatesSaved);
         }
 
         public async override Task LoadAsync(int id)
@@ -140,6 +143,11 @@ namespace PhotoOrganizer.UI.ViewModel
             // Trigger the validation
             wrapper.LocationName = "new place";
             wrapper.Coordinates = "46.84172812451524, 16.84248724161438";
+        }
+
+        private async void AfterCoordinatesSaved(AfterSaveCoordinatesEventArgs args)
+        {
+            await LoadAsync(args.Id);
         }
     }
 }

@@ -139,7 +139,10 @@
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
+    <Compile Include="Event\AfterSaveCoordinatesEvent.cs" />
+    <Compile Include="Event\CloseMapViewEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
     <Compile Include="Event\OpenWorkbenchViewEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
@@ -158,9 +161,13 @@
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
+    <Compile Include="ViewModel\IMapViewModel.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
+    <Compile Include="ViewModel\IPeopleSelectionCreationViewModel.cs" />
     <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\IPhotoViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\PeopleSelectionCreationViewModel.cs" />
     <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
@@ -171,6 +178,9 @@
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
@@ -210,6 +220,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
