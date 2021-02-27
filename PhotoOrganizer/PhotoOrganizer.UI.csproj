@@ -285,6 +285,10 @@
       <Project>{92044696-4560-425B-B96B-F1B360EEB437}</Project>
       <Name>PhotoOrganizer.Image</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MapTools\PhotoOrganizer.MapTools.csproj">
+      <Project>{daff572e-755f-43ae-b401-a90e81389347}</Project>
+      <Name>PhotoOrganizer.MapTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoOrganizer.DataAccess\PhotoOrganizer.DataAccess.csproj">
       <Project>{15a32c07-e81e-4b3d-9157-f1f91168d967}</Project>
       <Name>PhotoOrganizer.DataAccess</Name>

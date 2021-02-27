@@ -1,4 +1,5 @@
 ﻿using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.MapTools;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;

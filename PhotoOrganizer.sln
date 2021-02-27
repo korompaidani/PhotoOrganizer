@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.FileHandler"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Image", "Image\PhotoOrganizer.Image.csproj", "{92044696-4560-425B-B96B-F1B360EEB437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.MapTools", "MapTools\PhotoOrganizer.MapTools.csproj", "{DAFF572E-755F-43AE-B401-A90E81389347}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{92044696-4560-425B-B96B-F1B360EEB437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92044696-4560-425B-B96B-F1B360EEB437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92044696-4560-425B-B96B-F1B360EEB437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFF572E-755F-43AE-B401-A90E81389347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFF572E-755F-43AE-B401-A90E81389347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFF572E-755F-43AE-B401-A90E81389347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFF572E-755F-43AE-B401-A90E81389347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
