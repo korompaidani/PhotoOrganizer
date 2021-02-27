@@ -141,6 +141,7 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
+    <Compile Include="Event\OpenWorkbenchViewEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />

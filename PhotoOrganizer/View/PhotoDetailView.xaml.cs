@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using PhotoOrganizer.UI.ViewModel;
+using System.Windows.Controls;
 
 namespace PhotoOrganizer.UI.View
 {
@@ -10,6 +11,11 @@ namespace PhotoOrganizer.UI.View
         public PhotoDetailView()
         {
             InitializeComponent();
+        }
+
+        private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ((PhotoDetailViewModel)DataContext).OpenPhotoCommand.Execute(null);
         }
     }
 }

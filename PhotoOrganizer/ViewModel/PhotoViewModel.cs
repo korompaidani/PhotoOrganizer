@@ -1,14 +1,30 @@
-﻿using System.IO;
+﻿using PhotoOrganizer.UI.Event;
+using Prism.Commands;
+using Prism.Events;
+using System.IO;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
     public class PhotoViewModel : ViewModelBase
     {
+        private IEventAggregator _eventAggregator;
+        public ICommand OnWorkbenchCommand { get; }
         public string FullPath { get; }
 
-        public PhotoViewModel(string fullPath)
+        public PhotoViewModel(
+             IEventAggregator eventAggregator,
+             string fullPath)
         {
+            _eventAggregator = eventAggregator;
             FullPath = Path.GetFullPath(fullPath);
+            OnWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
+        }
+
+        private void OnOpenWorkbench()
+        {
+            _eventAggregator.GetEvent<OpenWorkbenchViewEvent>().
+                Publish(new OpenWorkbenchViewEventArgs());
         }
     }
 }

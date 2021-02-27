@@ -42,13 +42,19 @@ namespace PhotoOrganizer.UI.ViewModel
             _directoryReaderWrapperService = directoryReaderWrapperService;
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenPhotoViewEvent>().Subscribe(OnOpenPhotoView);
+            _eventAggregator.GetEvent<OpenWorkbenchViewEvent>().Subscribe(OnOpenWorkbenchView);
 
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
         }
 
+        private void OnOpenWorkbenchView(OpenWorkbenchViewEventArgs args)
+        {
+            SelectedViewModel = _workbenchViewModel;
+        }
+
         private void OnOpenPhotoView(OpenPhotoViewEventArgs args)
         {
-            SelectedViewModel = new PhotoViewModel(args.FullPath);
+            SelectedViewModel = new PhotoViewModel(_eventAggregator, args.FullPath);
         }
 
         private void OnOpenWorkbench()

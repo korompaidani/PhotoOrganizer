@@ -41,13 +41,12 @@
                 <Button Content="Map" Margin="5 0 5 5"/>
             </StackPanel>
 
-        <DockPanel Grid.Row="3" Grid.Column="1">
+            <DockPanel Grid.Row="3" Grid.Column="1">
 
-                <Button Content="Zoom" Command="{Binding OpenPhotoCommand}" />
-                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5"/>
+                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
 
-        </DockPanel>
-
+            </DockPanel>
+            <Label Grid.Row="4" Grid.Column="0" Content="Peoples:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             <DockPanel Grid.Row="4" Grid.Column="1">
                 <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" 
                         Command="{Binding OpenPeopleAddViewCommand}"/>
