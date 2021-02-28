@@ -1,5 +1,4 @@
-﻿using PhotoOrganizer.UI.Event;
-using PhotoOrganizer.UI.ViewModel;
+﻿using PhotoOrganizer.UI.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,9 +9,6 @@ namespace PhotoOrganizer.UI.View
     /// </summary>
     public partial class MapView : UserControl
     {
-        public event GetCoordinateEventHandler CoordinateHasBeenSet;
-        public delegate void GetCoordinateEventHandler(object sender, GetBrowserDataEventArgs args);
-
         public MapView()
         {
             InitializeComponent();
@@ -34,19 +30,16 @@ namespace PhotoOrganizer.UI.View
             script.type = @"text/javascript";
             script.text = @"window.onerror = function(msg,url,line){return true;}";
             document.head.appendChild(script);
-
-            CoordinateHasBeenSet += ((MapViewModel)DataContext).OnGetBrowserData;
         }
 
         private void OnSetCoordinateButtonClick(object sender, RoutedEventArgs e)
         {
-            var browserDataArgs = new GetBrowserDataEventArgs
-            {
-                Url = mapBrowser.Source.ToString()
-            };
+            ((MapViewModel)DataContext).OnSetCoordinatesOnPhotoOnlyCommand.Execute(mapBrowser.Source.ToString());
+        }
 
-            GetCoordinateEventHandler handler = CoordinateHasBeenSet;
-            handler?.Invoke(this, browserDataArgs);
+        private void OnSaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            ((MapViewModel)DataContext).OnSaveLocationCommand.Execute(mapBrowser.Source.ToString());
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private ILocationRepository _locationRepository;
         private IPeopleRepository _peopleRepository;
 
-        public ICommand OpenPhotoCommand { get; }
+        public ICommand OpenPhotoCommand { get; }        
         public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
 
@@ -59,8 +59,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
-            EventAggregator.GetEvent<CloseMapViewEvent>()
-                .Subscribe(AfterMapViewClosed);
+            EventAggregator.GetEvent<SaveCoordinatesEvent>()
+                .Subscribe(AfterSaveCoordinatesOnMap);
+            EventAggregator.GetEvent<SetCoordinatesEvent>()
+                .Subscribe(AfterSetCoordinatesOnMap);
 
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
@@ -68,7 +70,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();            
-        }
+        }        
 
         public override async Task LoadAsync(int photoId)
         {
@@ -93,16 +95,21 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private async void AfterMapViewClosed(CloseMapViewEventArgs args)
+        private void AfterSetCoordinatesOnMap(SetCoordinatesEventArgs args)
         {
-            var location = new Location { LocationName = args.LocationName, Coordinates = args.Coordinates };
-            _locationRepository.Add(location);
-            await _locationRepository.SaveAsync();
+            Photo.Coordinates = args.Coordinates;
+            Photo.LocationId = null;
+        }
 
-            Photo.LocationId = location.Id;
-            Photo.Coordinates = location.Coordinates;
+        private void AfterSaveCoordinatesOnMap(SaveCoordinatesEventArgs args)
+        {
+            // Query the location before save
+            // If user set the combo it will reset the coordinates(string)
+            // If the user set the map it will reset the combo to null
 
-            Locations.Add(new LookupItem { Id = location.Id, DisplayMemberItem = location.LocationName });
+            Photo.LocationId = args.LocationId;
+            Photo.Coordinates = args.Coordinates;
+            Locations.Add(new LookupItem { Id = args.LocationId, DisplayMemberItem = args.LocationName });
         }
 
         private void OnOpenPhoto()
@@ -125,11 +132,16 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 coordinate = await _locationRepository.TryGetCoordinatesByIdAsync((int)locationId);                
             }
+            else
+            {
+                locationId = 0;
+            }
             
             EventAggregator.GetEvent<OpenMapViewEvent>().
                 Publish(
                     new OpenMapViewEventArgs
                     {
+                        Id = (int)locationId,
                         PhotoId = Id,
                         Coordinates = coordinate, //nullcheck on the other side
                         ViewModelName = "MapViewModel"
@@ -226,12 +238,6 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
-            // Query the location before save
-            // If user set the combo it will reset the coordinates(string)
-            // If the user set the map it will reset the combo to null
-
-            Photo.Coordinates = "88,05,19";
-
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
                 () => 
                 {

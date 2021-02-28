@@ -23,8 +23,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenWorkbench()
         {
-            _eventAggregator.GetEvent<OpenWorkbenchViewEvent>().
-                Publish(new OpenWorkbenchViewEventArgs());
+            _eventAggregator.GetEvent<CloseMapViewEvent>().
+                Publish(new CloseMapViewEventArgs());
         }
     }
 }

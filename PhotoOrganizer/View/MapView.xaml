@@ -9,32 +9,17 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
+            <Label Content="Location Name"/>
+            <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Set Coordinate" Click="OnSetCoordinateButtonClick"/>
-            <Button Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"
-                Command="{Binding OnWorkbenchCommand}">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid x:Name="grid">
-                            <ContentPresenter HorizontalAlignment="Right"
-                                          VerticalAlignment="Top"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="FontWeight" Value="Normal"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
+            <Button Content="Save Coordinate" Click="OnSaveButtonClick"/>
+            <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}"/>
+            <Button Content="Alter Save" Background="Transparent" Command="{Binding SaveCommand}"/>
         </StackPanel>
         
         

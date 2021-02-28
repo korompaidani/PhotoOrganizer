@@ -2,14 +2,13 @@
 
 namespace PhotoOrganizer.UI.Event
 {
-    public class OpenMapViewEvent : PubSubEvent<OpenMapViewEventArgs>
+    public class SaveCoordinatesEvent : PubSubEvent<SaveCoordinatesEventArgs>
     {
     }
 
-    public class OpenMapViewEventArgs
+    public class SaveCoordinatesEventArgs
     {
-        public int PhotoId { get; set; }
-        public int Id { get; set; }
+        public int LocationId { get; set; }
         public string LocationName { get; set; }
         public string Coordinates { get; set; }
         public string ViewModelName { get; set; }

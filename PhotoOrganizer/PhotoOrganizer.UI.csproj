@@ -139,13 +139,13 @@
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
-    <Compile Include="Event\AfterSaveCoordinatesEvent.cs" />
-    <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\SetCoordinatesEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesEvent.cs" />
     <Compile Include="Event\GetBrowserDataEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
-    <Compile Include="Event\OpenWorkbenchViewEvent.cs" />
+    <Compile Include="Event\CloseMapViewEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />

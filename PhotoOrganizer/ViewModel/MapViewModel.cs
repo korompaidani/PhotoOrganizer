@@ -7,41 +7,36 @@ using Prism.Events;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Data.Repositories;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
     public class MapViewModel : DetailViewModelBase, IMapViewModel
     {
         private LocationWrapper _location;
+        private ILocationRepository _locationRepository;
         private string _webUrl;
-        private string _coordinates;
-        public ICommand OnWorkbenchCommand { get; }
-        public ICommand OnSetPhotoOnlyCommand { get; }
+        private readonly object _lockObject = new object();
+        public ICommand CloseMapCommand { get; }
+        public ICommand OnSetCoordinatesOnPhotoOnlyCommand { get; }
         public ICommand OnSaveLocationCommand { get; }
 
         public string WebUrl
         {
             get
             {
-                return _webUrl;
+                lock (_lockObject)
+                {
+                    return _webUrl;
+                }
             }
             set
             {
-                _webUrl = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Coordinates
-        {
-            get
-            {
-                return _coordinates;
-            }
-            set
-            {
-                _coordinates = value;
-                OnPropertyChanged();
+                lock(_lockObject)
+                {
+                    _webUrl = value;
+                }
             }
         }
 
@@ -58,45 +53,93 @@ namespace PhotoOrganizer.UI.ViewModel
         public MapViewModel(
              IEventAggregator eventAggregator,
              IMessageDialogService messageDialogService,
+             ILocationRepository locationRepository,
              string coordinates)
             : base(eventAggregator, messageDialogService)
         {
-            OnWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
-            _coordinates = coordinates;
+            CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
+            OnSetCoordinatesOnPhotoOnlyCommand = new DelegateCommand<string>(OnSetCoordinateOnPhotoOnlyAndCloseCommand);
+            OnSaveLocationCommand = new DelegateCommand<string>(OnSaveCoordinateOnPhotoOnlyAndCloseCommand, OnSaveCanExecute);
+            _locationRepository = locationRepository;
         }
 
-        public void OnGetBrowserData(object sender, GetBrowserDataEventArgs args)
+        private bool OnSaveCanExecute(string coordinateFromUrl)
         {
-            Coordinates = args.Url.TryConvertUrlToCoordinate();
+            return true;
         }
 
-        private void OnOpenWorkbench()
+        private async void OnSaveCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
+        {
+            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+
+            await _locationRepository.SaveAsync();
+            HasChanges = _locationRepository.HasChanges();
+            RaiseDetailSavedEvent(Location.Id, Location.LocationName);
+
+            EventAggregator.GetEvent<SaveCoordinatesEvent>().
+                Publish(new SaveCoordinatesEventArgs
+                {
+                    LocationId = Location.Id,
+                    Coordinates = Location.Coordinates,
+                    LocationName = Location.LocationName
+                });
+
+            EventAggregator.GetEvent<CloseMapViewEvent>().
+                Publish(new CloseMapViewEventArgs());
+        }
+
+        private void OnSetCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
+        {
+            EventAggregator.GetEvent<SetCoordinatesEvent>().
+                Publish(new SetCoordinatesEventArgs
+                {
+                    Coordinates = mapUrl.TryConvertUrlToCoordinate()
+                });
+
+            EventAggregator.GetEvent<CloseMapViewEvent>().
+                Publish(new CloseMapViewEventArgs());
+        }
+
+        private void OnCloseMapAskCommand()
         {
             // TODO: It must be removed to other commands
             // 1. SaveMapEvent --> user save the coordinate as a new location
             // 2. CloseMapEvent --> when the user just close the window (user must be asked about intention)
             // 3. SetCoordinatesOnMapEvent --> when the user dont save the location just set on photo (photo.coordinates will be persist of course)
-            //EventAggregator.GetEvent<CloseMapViewEvent>().
-            //    Publish(new CloseMapViewEventArgs 
-            //    {
-            //        LocationName = "newLoc",//Location.LocationName,
-            //        Coordinates = "xy"//Location.Coordinates
-            //    });
 
-            //EventAggregator.GetEvent<AfterSaveCoordinatesEvent>().
-            //    Publish(new AfterSaveCoordinatesEventArgs
-            //    {
-            //        Id = -1
-            //    });
-
-            EventAggregator.GetEvent<OpenWorkbenchViewEvent>().
-                Publish(new OpenWorkbenchViewEventArgs());
+            EventAggregator.GetEvent<CloseMapViewEvent>().
+                Publish(new CloseMapViewEventArgs());
 
         }
 
-        public override Task LoadAsync(int id)
+        public async override Task LoadAsync(int locationId)
         {
-            throw new NotImplementedException();
+            // TODO if locationId exist than web url source must be changed to a real coordinate
+
+            var location = locationId > 0
+                ? await _locationRepository.GetByIdAsync(locationId)
+                : CreateNewLocation();
+
+            Location = new LocationWrapper(location);
+
+            Location.PropertyChanged += (s, e) =>
+            {
+                if (!HasChanges)
+                {
+                    HasChanges = _locationRepository.HasChanges();
+                }
+                if (e.PropertyName == nameof(Location.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            if (Location.Id == 0)
+            {
+                Location.LocationName = "";
+                Location.Coordinates = "";
+            }
         }
 
         protected override void OnDeleteExecute()
@@ -106,12 +149,21 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override bool OnSaveCanExecute()
         {
-            throw new NotImplementedException();
+            return Location != null && !Location.HasErrors && HasChanges;
         }
 
-        protected override void OnSaveExecute()
+        protected async override void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            await _locationRepository.SaveAsync();
+            HasChanges = _locationRepository.HasChanges();
+            RaiseDetailSavedEvent(Location.Id, Location.LocationName);            
+        }
+
+        private Location CreateNewLocation()
+        {
+            var location = new Location();
+            _locationRepository.Add(location);
+            return location;
         }
     }
 }

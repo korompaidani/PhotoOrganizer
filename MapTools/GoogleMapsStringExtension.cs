@@ -71,7 +71,7 @@ namespace PhotoOrganizer.MapTools
 
             foreach (var segment in segments)
             {
-                if (segment.StartsWith("@") && segment.EndsWith("z"))
+                if (segment.StartsWith("@") && (segment.EndsWith("z") || segment.EndsWith("z/")))
                 {
                     coordinates = segment;
                 }

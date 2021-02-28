@@ -2,10 +2,10 @@
 
 namespace PhotoOrganizer.UI.Event
 {
-    public class AfterSaveCoordinatesEvent : PubSubEvent<AfterSaveCoordinatesEventArgs>
+    public class SetCoordinatesEvent : PubSubEvent<SetCoordinatesEventArgs>
     {
     }
-    public class AfterSaveCoordinatesEventArgs
+    public class SetCoordinatesEventArgs
     {
         public int Id { get; set; }
         public string Coordinates { get; set; }
