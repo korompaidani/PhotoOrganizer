@@ -43,6 +43,8 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        public LookupItem SelectedLocation { get; set; }
+
         public PhotoDetailViewModel(
             IPhotoRepository photoRepository,
             ILocationRepository locationRepository,
@@ -184,8 +186,9 @@ namespace PhotoOrganizer.UI.ViewModel
         }
 
         private void InitializePhoto(Photo photo)
-        {
+        {       
             Photo = new PhotoWrapper(photo);
+            Photo.LocationChanged += InitilizationAfterLocationChanged;
             Photo.PropertyChanged += (s, e) =>
             {
                 if (!HasChanges)
@@ -234,6 +237,20 @@ namespace PhotoOrganizer.UI.ViewModel
             var photo = new Photo();
             _photoRepository.Add(photo);
             return photo;
+        }
+
+        private async void InitilizationAfterLocationChanged(object sender, LocationChangedEventArgs args)
+        {
+            // coord can be filled out here based on location data
+            var locationId = Photo?.LocationId;
+            if (locationId != null)
+            {
+                Photo.LocationChanged -= InitilizationAfterLocationChanged;
+                var location = await _locationRepository.GetByIdAsync((int)(locationId));
+                Photo.Coordinates = location.Coordinates;
+                SelectedLocation = Locations.FirstOrDefault(l => l.Id == locationId);
+                Photo.LocationChanged += InitilizationAfterLocationChanged;
+            }
         }
 
         protected override async void OnSaveExecute()

@@ -36,6 +36,7 @@
                           DisplayMemberPath="DisplayMemberItem"
                           SelectedValuePath="Id"
                           SelectedValue="{Binding Photo.LocationId, Mode=TwoWay}"
+                          SelectedItem="{Binding SelectedLocation, Mode=TwoWay}"
                           Margin="5 0 5 5"
                           Width="250"/>
                 <Button Content="Map" Margin="5 0 5 5"

@@ -9,7 +9,7 @@ namespace PhotoOrganizer.MapTools
 
         public static string TryConvertUrlToCoordinate(this string inputUrl)
         {
-            string result = null;
+            string result = "PARSE_ERROR";
 
             if (inputUrl == null)
             {

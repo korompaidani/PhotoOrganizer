@@ -139,6 +139,7 @@
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
+    <Compile Include="Event\LocationChangedEventArgs.cs" />
     <Compile Include="Event\SetCoordinatesEvent.cs" />
     <Compile Include="Event\SaveCoordinatesEvent.cs" />
     <Compile Include="Event\GetBrowserDataEvent.cs" />

@@ -1,12 +1,17 @@
 ﻿using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Event;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace PhotoOrganizer.UI.Wrapper
 {
     public class PhotoWrapper : NotifyDataErrorInfoBase
     {
+        public event LocationChangedEvent LocationChanged;
+        public delegate void LocationChangedEvent(object sender, LocationChangedEventArgs args);
+
         public Photo Model { get; }
         public int Id { get { return Model.Id; } }
 
@@ -36,8 +41,9 @@ namespace PhotoOrganizer.UI.Wrapper
             get { return Model.Coordinates; }
             set
             {
-                Model.Coordinates = value;
+                Model.Coordinates = value;                
                 OnPropertyChanged();
+                OnLocationChanged();
             }
         }
 
@@ -48,6 +54,7 @@ namespace PhotoOrganizer.UI.Wrapper
             {
                 Model.LocationId = value;
                 OnPropertyChanged();
+                OnLocationChanged();
             }
         }
 
@@ -114,6 +121,12 @@ namespace PhotoOrganizer.UI.Wrapper
                     break;
             }
 
+        }
+
+        private void OnLocationChanged([CallerMemberName] string propertyName = null)
+        {
+            LocationChangedEvent handler = LocationChanged;
+            handler?.Invoke(this, new LocationChangedEventArgs { PropertyName = propertyName });
         }
     }
 }
