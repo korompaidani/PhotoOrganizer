@@ -75,6 +75,14 @@
     <Compile Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.designer.cs">
       <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103012239303_1toNPhotoLocation.cs" />
+    <Compile Include="Migrations\202103012239303_1toNPhotoLocation.designer.cs">
+      <DependentUpon>202103012239303_1toNPhotoLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.cs" />
+    <Compile Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.designer.cs">
+      <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +122,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.resx">
       <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103012239303_1toNPhotoLocation.resx">
+      <DependentUpon>202103012239303_1toNPhotoLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.resx">
+      <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

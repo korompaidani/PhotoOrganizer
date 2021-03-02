@@ -26,6 +26,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private ILocationRepository _locationRepository;
         private IPeopleRepository _peopleRepository;
 
+        public ICommand TestCommand { get; }
         public ICommand OpenPhotoCommand { get; }        
         public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
@@ -42,8 +43,6 @@ namespace PhotoOrganizer.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-
-        public LookupItem SelectedLocation { get; set; }
 
         public PhotoDetailViewModel(
             IPhotoRepository photoRepository,
@@ -69,10 +68,11 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
+            TestCommand = new DelegateCommand(OnTest);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();            
-        }        
+        }
 
         public override async Task LoadAsync(int photoId)
         {
@@ -99,8 +99,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void AfterSetCoordinatesOnMap(SetCoordinatesEventArgs args)
         {
-            Photo.Coordinates = args.Coordinates;
             Photo.LocationId = null;
+            Photo.Coordinates = args.Coordinates;
         }
 
         private void AfterSaveCoordinatesOnMap(SaveCoordinatesEventArgs args)
@@ -108,10 +108,7 @@ namespace PhotoOrganizer.UI.ViewModel
             // Query the location before save
             // If user set the combo it will reset the coordinates(string)
             // If the user set the map it will reset the combo to null
-
-            Photo.LocationId = args.LocationId;
-            Photo.Coordinates = args.Coordinates;
-            Locations.Add(new LookupItem { Id = args.LocationId, DisplayMemberItem = args.LocationName });
+            //Locations.Add(new LookupItem { Id = args.LocationId, DisplayMemberItem = args.LocationName });
         }
 
         private void OnOpenPhoto()
@@ -128,24 +125,19 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnOpenMap()
         {
-            var locationId = Photo.LocationId;
-            string coordinate = null;
-            if (locationId != null)
+            int locationId = 0;
+            if(Photo.LocationId != null)
             {
-                coordinate = await _locationRepository.TryGetCoordinatesByIdAsync((int)locationId);                
+                locationId = (int)Photo.LocationId;
             }
-            else
-            {
-                locationId = 0;
-            }
-            
+
             EventAggregator.GetEvent<OpenMapViewEvent>().
                 Publish(
                     new OpenMapViewEventArgs
                     {
-                        Id = (int)locationId,
+                        Id = locationId,
                         PhotoId = Id,
-                        Coordinates = coordinate, //nullcheck on the other side
+                        Coordinates = Photo.Coordinates, //nullcheck on the other side
                         ViewModelName = "MapViewModel"
                     });
         }
@@ -239,17 +231,15 @@ namespace PhotoOrganizer.UI.ViewModel
             return photo;
         }
 
-        private async void InitilizationAfterLocationChanged(object sender, LocationChangedEventArgs args)
+        private void InitilizationAfterLocationChanged(object sender, LocationChangedEventArgs args)
         {
-            // coord can be filled out here based on location data
-            var locationId = Photo?.LocationId;
-            if (locationId != null)
+            if(Photo.LocationId != null)
             {
-                Photo.LocationChanged -= InitilizationAfterLocationChanged;
-                var location = await _locationRepository.GetByIdAsync((int)(locationId));
-                Photo.Coordinates = location.Coordinates;
-                SelectedLocation = Locations.FirstOrDefault(l => l.Id == locationId);
-                Photo.LocationChanged += InitilizationAfterLocationChanged;
+                Photo.Coordinates = Locations.FirstOrDefault(l => l.Id == Photo.LocationId).Coordinates;
+            }
+            else
+            {
+                Photo.Coordinates = null;
             }
         }
 
@@ -287,6 +277,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 await _photoRepository.SaveAsync();
                 RaiseDetailDeletedEvent(Photo.Id);                
             }
+        }
+
+        private void OnTest()
+        {
         }
     }
 }

@@ -42,7 +42,8 @@ namespace PhotoOrganizer.UI.Data.Lookups
                     new LookupItem
                     {
                         Id = p.Id,
-                        DisplayMemberItem = p.LocationName
+                        DisplayMemberItem = p.LocationName,
+                        Coordinates = p.Coordinates
                     }).ToListAsync();
             }
         }

@@ -7,11 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid>
-            <Canvas x:Name="canvas_Zoom" ClipToBounds="True" >
-                <Canvas x:Name="canvas_Draw" Background="{Binding FullPath}" MouseWheel="Canvas_MouseWheel"/>
-            </Canvas>
-        </Grid>
         <Image Source="{Binding FullPath}"/>
         <Button Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"
                 Command="{Binding OnWorkbenchCommand}">

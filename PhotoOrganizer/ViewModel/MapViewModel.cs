@@ -70,22 +70,26 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnSaveCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
         {
-            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            //Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
 
-            await _locationRepository.SaveAsync();
-            HasChanges = _locationRepository.HasChanges();
-            RaiseDetailSavedEvent(Location.Id, Location.LocationName);
+            //var location = new Location { Coordinates = Location.Coordinates, LocationName = Location.LocationName };
+            //_locationRepository.Add(location);
 
-            EventAggregator.GetEvent<SaveCoordinatesEvent>().
-                Publish(new SaveCoordinatesEventArgs
-                {
-                    LocationId = Location.Id,
-                    Coordinates = Location.Coordinates,
-                    LocationName = Location.LocationName
-                });
+            //await _locationRepository.SaveAsync();
+            
+            //HasChanges = _locationRepository.HasChanges();
+            //RaiseDetailSavedEvent(location.Id, location.LocationName);
 
-            EventAggregator.GetEvent<CloseMapViewEvent>().
-                Publish(new CloseMapViewEventArgs());
+            //EventAggregator.GetEvent<SaveCoordinatesEvent>().
+            //    Publish(new SaveCoordinatesEventArgs
+            //    {
+            //        LocationId = location.Id,
+            //        Coordinates = location.Coordinates,
+            //        LocationName = location.LocationName
+            //    });
+
+            //EventAggregator.GetEvent<CloseMapViewEvent>().
+            //    Publish(new CloseMapViewEventArgs());
         }
 
         private void OnSetCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
@@ -119,6 +123,8 @@ namespace PhotoOrganizer.UI.ViewModel
             var location = locationId > 0
                 ? await _locationRepository.GetByIdAsync(locationId)
                 : CreateNewLocation();
+
+            // TODO: consider that always new must be created here field does not display the name, but the map actual state reflects the incoming coordinate info if there is any
 
             Location = new LocationWrapper(location);
 

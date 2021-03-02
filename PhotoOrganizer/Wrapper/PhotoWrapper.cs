@@ -43,7 +43,6 @@ namespace PhotoOrganizer.UI.Wrapper
             {
                 Model.Coordinates = value;                
                 OnPropertyChanged();
-                OnLocationChanged();
             }
         }
 
@@ -125,8 +124,11 @@ namespace PhotoOrganizer.UI.Wrapper
 
         private void OnLocationChanged([CallerMemberName] string propertyName = null)
         {
-            LocationChangedEvent handler = LocationChanged;
-            handler?.Invoke(this, new LocationChangedEventArgs { PropertyName = propertyName });
+            if(propertyName == "LocationId")
+            {
+                LocationChangedEvent handler = LocationChanged;
+                handler?.Invoke(this, new LocationChangedEventArgs { PropertyName = propertyName });
+            }
         }
     }
 }
