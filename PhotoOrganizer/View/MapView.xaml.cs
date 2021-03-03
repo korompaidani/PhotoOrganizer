@@ -37,9 +37,14 @@ namespace PhotoOrganizer.UI.View
             ((MapViewModel)DataContext).OnSetCoordinatesOnPhotoOnlyCommand.Execute(mapBrowser.Source.ToString());
         }
 
-        private void OnSaveButtonClick(object sender, RoutedEventArgs e)
+        private void OnSaveOverrideButtonClick(object sender, RoutedEventArgs e)
         {
-            ((MapViewModel)DataContext).OnSaveLocationCommand.Execute(mapBrowser.Source.ToString());
+            ((MapViewModel)DataContext).OnSaveOverrideLocationCommand.Execute(mapBrowser.Source.ToString());
+        }
+
+        private void OnSaveAsNewButtonClick(object sender, RoutedEventArgs e)
+        {
+            ((MapViewModel)DataContext).OnSaveAsNewLocationCommand.Execute(mapBrowser.Source.ToString());
         }
     }
 }

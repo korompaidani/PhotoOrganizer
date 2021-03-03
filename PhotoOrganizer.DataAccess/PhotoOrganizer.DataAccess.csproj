@@ -83,6 +83,10 @@
     <Compile Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.designer.cs">
       <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.cs" />
+    <Compile Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.designer.cs">
+      <DependentUpon>202103031914508_CoordinatesIsNoMoreReq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.resx">
       <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.resx">
+      <DependentUpon>202103031914508_CoordinatesIsNoMoreReq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,5 +7,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
     {
         Task<bool> IsReferencedByPhotoAsync(int locationId);
         Task<string> TryGetCoordinatesByIdAsync(int locationId);
+        void Save();
     }
 }

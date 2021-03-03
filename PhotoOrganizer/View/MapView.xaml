@@ -17,7 +17,8 @@
             <Label Content="Location Name"/>
             <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Set Coordinate" Click="OnSetCoordinateButtonClick"/>
-            <Button Content="Save Coordinate" Click="OnSaveButtonClick"/>
+            <Button Content="Save Existing" Click="OnSaveOverrideButtonClick"/>
+            <Button Content="Save As New" Click="OnSaveAsNewButtonClick"/>
             <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}"/>
             <Button Content="Alter Save" Background="Transparent" Command="{Binding SaveCommand}"/>
         </StackPanel>

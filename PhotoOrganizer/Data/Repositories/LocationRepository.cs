@@ -27,5 +27,10 @@ namespace PhotoOrganizer.UI.Data.Repositories
             return await Context.Photos.AsNoTracking().
                 AnyAsync(p => p.LocationId == locationId);
         }
+
+        public void Save()
+        {
+            Context.SaveChanges();
+        }
     }
 }

@@ -17,10 +17,14 @@ namespace PhotoOrganizer.UI.ViewModel
         private LocationWrapper _location;
         private ILocationRepository _locationRepository;
         private string _webUrl;
+        private string _originalLocationName;
+        private string _originalCoordinates;
         private readonly object _lockObject = new object();
+        private bool isNewLocationObject = false;
         public ICommand CloseMapCommand { get; }
         public ICommand OnSetCoordinatesOnPhotoOnlyCommand { get; }
-        public ICommand OnSaveLocationCommand { get; }
+        public ICommand OnSaveOverrideLocationCommand { get; }
+        public ICommand OnSaveAsNewLocationCommand { get; }
 
         public string WebUrl
         {
@@ -59,16 +63,49 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
             OnSetCoordinatesOnPhotoOnlyCommand = new DelegateCommand<string>(OnSetCoordinateOnPhotoOnlyAndCloseCommand);
-            OnSaveLocationCommand = new DelegateCommand<string>(OnSaveCoordinateOnPhotoOnlyAndCloseCommand, OnSaveCanExecute);
+            OnSaveOverrideLocationCommand = new DelegateCommand<string>(OnSaveAsOverrideAndCloseCommand, OnSaveAsOverrideCanExecute);
+            OnSaveAsNewLocationCommand = new DelegateCommand<string>(OnSaveAsNewAndCloseCommand, OnSaveAsNewCanExecute);
             _locationRepository = locationRepository;
         }
 
-        private bool OnSaveCanExecute(string coordinateFromUrl)
+        private bool OnSaveAsNewCanExecute(string mapUrl)
         {
-            return true;
+            return true; // if changed LocationName
         }
 
-        private async void OnSaveCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
+        private void OnSaveAsNewAndCloseCommand(string mapUrl)
+        {
+            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            var location = Location.Model;
+            if (!Location.HasErrors)
+            {
+                if (!isNewLocationObject)
+                {
+                    var newLocation = CreateNewLocation();
+                    newLocation.Coordinates = Location.Coordinates;
+                    newLocation.LocationName = Location.LocationName;
+                    Location.LocationName = _originalLocationName;
+                    Location.Coordinates = _originalCoordinates;
+                    location = newLocation;
+                }
+                else
+                {
+                }
+
+                _locationRepository.Save();
+                RaiseDetailSavedEvent(location.Id, "");
+
+                EventAggregator.GetEvent<CloseMapViewEvent>().
+                    Publish(new CloseMapViewEventArgs());
+            }
+        }
+
+        private bool OnSaveAsOverrideCanExecute(string mapUrl)
+        {
+            return !isNewLocationObject; // and if changed LocationName
+        }
+
+        private async void OnSaveAsOverrideAndCloseCommand(string mapUrl)
         {
             //Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
 
@@ -113,7 +150,6 @@ namespace PhotoOrganizer.UI.ViewModel
 
             EventAggregator.GetEvent<CloseMapViewEvent>().
                 Publish(new CloseMapViewEventArgs());
-
         }
 
         public async override Task LoadAsync(int locationId)
@@ -124,6 +160,8 @@ namespace PhotoOrganizer.UI.ViewModel
                 ? await _locationRepository.GetByIdAsync(locationId)
                 : CreateNewLocation();
 
+            _originalLocationName = location.LocationName;
+            _originalCoordinates = location.Coordinates;
             // TODO: consider that always new must be created here field does not display the name, but the map actual state reflects the incoming coordinate info if there is any
 
             Location = new LocationWrapper(location);
@@ -161,12 +199,12 @@ namespace PhotoOrganizer.UI.ViewModel
         protected async override void OnSaveExecute()
         {
             await _locationRepository.SaveAsync();
-            HasChanges = _locationRepository.HasChanges();
-            RaiseDetailSavedEvent(Location.Id, Location.LocationName);            
+            HasChanges = _locationRepository.HasChanges();        
         }
 
         private Location CreateNewLocation()
         {
+            isNewLocationObject = true;
             var location = new Location();
             _locationRepository.Add(location);
             return location;
