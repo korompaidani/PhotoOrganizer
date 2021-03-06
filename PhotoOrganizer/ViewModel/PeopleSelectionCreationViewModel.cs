@@ -3,6 +3,8 @@ using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
@@ -15,8 +17,10 @@ namespace PhotoOrganizer.UI.ViewModel
         private IPeopleRepository _peopleRepository;
         public ICommand AddPeopleCommand { get; }
         public ICommand RemovePeopleCommand { get; }
-        
+        public ICommand AddSelectedPeopleToPhotoCommand { get; }
+
         public ObservableCollection<PeopleWrapper> Peoples { get; }
+        public ObservableCollection<PeopleWrapper> PeoplesOnPhoto { get; }
 
         public PeopleWrapper SelectedPeople
         {
@@ -33,16 +37,37 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public PeopleSelectionCreationViewModel(
             IPhotoRepository photoRepository, 
-            IPeopleRepository peopleRepository, 
+            IPeopleRepository peopleRepository,
             ObservableCollection<PeopleWrapper> peoples, 
             PhotoDetailViewModel detailView)
         {
             _photoRepository = photoRepository;
             _peopleRepository = peopleRepository;
-            Peoples = peoples;
+            PeoplesOnPhoto = peoples;
+            Peoples = new ObservableCollection<PeopleWrapper>();
             _detailView = detailView;
             AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
+
+            AddSelectedPeopleToPhotoCommand = new DelegateCommand(OnAddSelectedPeopleToPhotoExecute, OnAddSelectedPeopleToPhotoCanExecute);
+        }
+
+        private bool OnAddSelectedPeopleToPhotoCanExecute()
+        {
+            return true;
+            //return SelectedPeople != null;
+        }
+
+        private void OnAddSelectedPeopleToPhotoExecute()
+        {
+            if (!PeoplesOnPhoto.Any(p => p.Id == SelectedPeople.Model.Id))
+            {
+                PeoplesOnPhoto.Add(SelectedPeople);
+                _detailView.Photo.Model.Peoples.Add(SelectedPeople.Model);
+                _detailView.HasChanges = _photoRepository.HasChanges();
+                ((DelegateCommand)_detailView.SaveCommand).RaiseCanExecuteChanged();
+                SelectedPeople = null;
+            }
         }
 
         private bool OnRemovePeopleCanExecute()
@@ -53,11 +78,17 @@ namespace PhotoOrganizer.UI.ViewModel
         private void OnRemovePeopleExecute()
         {
             SelectedPeople.PropertyChanged -= _detailView.PeopleWrapper_PropertyChanged;
-            _photoRepository.RemovePeople(SelectedPeople.Model);
+            _peopleRepository.Remove(SelectedPeople.Model);
+
+            if(PeoplesOnPhoto.Any(p => p.Id == SelectedPeople.Model.Id))
+            {
+                _photoRepository.RemovePeople(SelectedPeople.Model);
+                _detailView.HasChanges = _photoRepository.HasChanges();
+                ((DelegateCommand)_detailView.SaveCommand).RaiseCanExecuteChanged();
+            }
+
             Peoples.Remove(SelectedPeople);
             SelectedPeople = null;
-            _detailView.HasChanges = _photoRepository.HasChanges();
-            ((DelegateCommand)_detailView.SaveCommand).RaiseCanExecuteChanged();
         }
 
         private void OnAddPeopleExecute()
@@ -65,8 +96,21 @@ namespace PhotoOrganizer.UI.ViewModel
             var newPeople = new PeopleWrapper(new People());
             newPeople.PropertyChanged += _detailView.PeopleWrapper_PropertyChanged;
             Peoples.Add(newPeople);
+            PeoplesOnPhoto.Add(newPeople);
             _detailView.Photo.Model.Peoples.Add(newPeople.Model);
             newPeople.DisplayName = "";
+        }
+
+        public async Task LoadAsync()
+        {
+            var allPeople = await _peopleRepository.GetAllAsync();
+            foreach(var people in allPeople)
+            {
+                if(!PeoplesOnPhoto.Any(p => p.Id == people.Id))
+                {
+                    Peoples.Add(new PeopleWrapper(people));
+                }
+            }
         }
     }
 }

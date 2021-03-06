@@ -20,7 +20,7 @@ namespace PhotoOrganizer.UI.ViewModel
     public class PhotoDetailViewModel : DetailViewModelBase, IPhotoDetailViewModel
     {
         private PhotoWrapper _photo;
-        
+
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
         private ILocationRepository _locationRepository;
@@ -68,7 +68,6 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
-            TestCommand = new DelegateCommand(OnTest);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleWrapper>();            
@@ -143,11 +142,15 @@ namespace PhotoOrganizer.UI.ViewModel
                     });
         }
 
-        private void OnOpenPeopleAddView()
+        private async void OnOpenPeopleAddView()
         {
             var window = new PeopleSelectionCreationView();
-            window.DataContext = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this);
+            var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this);
+            await peopleSelectionViewModel.LoadAsync();
+
+            window.DataContext = peopleSelectionViewModel;
             window.Owner = Application.Current.MainWindow;
+
             window.ShowDialog();
         }
 

@@ -14,6 +14,9 @@
                             Command="{Binding AddPeopleCommand}"/>
                 <Button Content="Remove" Width="125" Margin="5"
                             Command="{Binding RemovePeopleCommand}"/>
+
+                <Button Content="Add to photo" Width="125" Margin="5"
+                            Command="{Binding AddSelectedPeopleToPhotoCommand}"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding Peoples}"
                           SelectedItem="{Binding SelectedPeople, Mode=TwoWay}"
