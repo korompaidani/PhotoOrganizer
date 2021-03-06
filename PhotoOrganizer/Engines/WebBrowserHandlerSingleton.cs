@@ -96,7 +96,7 @@ namespace PhotoOrganizer.UI.Engine
             _initializeFrame.Continue = false;
             _initializeWindow.Close();
 
-            DisableJavaScriptErrors
+            DisableJavaScriptErrors();
         }
 
         private void DisableJavaScriptErrors()

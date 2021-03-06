@@ -124,7 +124,7 @@ namespace PhotoOrganizer.UI.ViewModel
                     });
         }
 
-        private async void OnOpenMap()
+        private void OnOpenMap()
         {
             int locationId = 0;
             if(Photo.LocationId != null)

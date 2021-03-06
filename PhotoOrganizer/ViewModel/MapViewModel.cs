@@ -105,28 +105,18 @@ namespace PhotoOrganizer.UI.ViewModel
             return !isNewLocationObject; // and if changed LocationName
         }
 
-        private async void OnSaveAsOverrideAndCloseCommand(string mapUrl)
+        private void OnSaveAsOverrideAndCloseCommand(string mapUrl)
         {
-            //Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            var location = Location.Model;
+            if (!Location.HasErrors)
+            {
+                _locationRepository.Save();
+                RaiseDetailSavedEvent(location.Id, "");
 
-            //var location = new Location { Coordinates = Location.Coordinates, LocationName = Location.LocationName };
-            //_locationRepository.Add(location);
-
-            //await _locationRepository.SaveAsync();
-            
-            //HasChanges = _locationRepository.HasChanges();
-            //RaiseDetailSavedEvent(location.Id, location.LocationName);
-
-            //EventAggregator.GetEvent<SaveCoordinatesEvent>().
-            //    Publish(new SaveCoordinatesEventArgs
-            //    {
-            //        LocationId = location.Id,
-            //        Coordinates = location.Coordinates,
-            //        LocationName = location.LocationName
-            //    });
-
-            //EventAggregator.GetEvent<CloseMapViewEvent>().
-            //    Publish(new CloseMapViewEventArgs());
+                EventAggregator.GetEvent<CloseMapViewEvent>().
+                    Publish(new CloseMapViewEventArgs());
+            }
         }
 
         private void OnSetCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
