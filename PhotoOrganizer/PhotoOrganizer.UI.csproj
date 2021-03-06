@@ -136,6 +136,7 @@
     <Compile Include="Data\Repositories\PeopleRepository.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
     <Compile Include="Data\Repositories\LocationRepository.cs" />
+    <Compile Include="Engines\WebBrowserHandlerSingleton.cs" />
     <Compile Include="Event\AfterCollectionSavedEvent.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
