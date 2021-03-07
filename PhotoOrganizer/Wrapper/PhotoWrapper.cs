@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Event;
 using System;
 using System.Collections.Generic;
@@ -83,6 +84,15 @@ namespace PhotoOrganizer.UI.Wrapper
             set
             {
                 Model.HHMMSS = value;
+            }
+        }
+
+        public ColorSign ColorFlag
+        {
+            get { return Model.ColorFlag; }
+            set
+            {
+                Model.ColorFlag = value;
             }
         }
 

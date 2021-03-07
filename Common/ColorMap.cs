@@ -17,7 +17,7 @@ namespace PhotoOrganizer.Common
         private static Dictionary<ColorSign, string> _map = new Dictionary<ColorSign, string>
         {
             { ColorSign.Unmodified, "#CCCCCC" },
-            { ColorSign.Modified, "#EEEEEE" },
+            { ColorSign.Modified, "#6dbd83" },
             { ColorSign.Saved, "#EEEEEE" },
             { ColorSign.Opened, "#EEEEEE" }
         };

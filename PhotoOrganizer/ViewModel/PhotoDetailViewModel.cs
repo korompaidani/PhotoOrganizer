@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
@@ -30,7 +31,6 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenPeopleAddViewCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
-        //public ObservableCollection<PeopleWrapper> Peoples { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
 
         public PhotoWrapper Photo
@@ -260,14 +260,28 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        private void RaiseDetailSavedEvent(int modelId, string title, ColorSign colorFlag)
+        {
+            EventAggregator.GetEvent<AfterDetailSavedEvent>().Publish(
+                new AfterDetailSavedEventArgs
+                {
+                    Id = modelId,
+                    Title = title,
+                    ColorFlag = ColorMap.Map[colorFlag],
+                    ViewModelName = this.GetType().Name
+                });
+        }
+
         protected override async void OnSaveExecute()
         {
+            Photo.ColorFlag = ColorSign.Modified;
+
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
                 () => 
                 {
                     HasChanges = _photoRepository.HasChanges();
                     Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}");
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", ColorSign.Modified);
                 });           
         }
 

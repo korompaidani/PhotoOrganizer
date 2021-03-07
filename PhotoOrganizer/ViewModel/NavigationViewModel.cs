@@ -77,6 +77,7 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 lookupItem.DisplayMemberItem = args.Title;
                 lookupItem.PhotoPath = args.PhotoPath;
+                lookupItem.ColorFlag = args.ColorFlag;
             }
         }
 
