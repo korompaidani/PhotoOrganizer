@@ -172,6 +172,7 @@
     <Compile Include="ViewModel\IPhotoViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
+    <Compile Include="ViewModel\PeopleItemViewModel.cs" />
     <Compile Include="ViewModel\PeopleSelectionCreationViewModel.cs" />
     <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />

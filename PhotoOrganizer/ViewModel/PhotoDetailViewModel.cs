@@ -32,7 +32,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenPeopleAddViewCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
-        public ObservableCollection<PeopleWrapper> Peoples { get; }
+        //public ObservableCollection<PeopleWrapper> Peoples { get; }
+        public ObservableCollection<PeopleItemViewModel> Peoples { get; }
 
         public PhotoWrapper Photo
         {
@@ -70,7 +71,7 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
 
             Locations = new ObservableCollection<LookupItem>();
-            Peoples = new ObservableCollection<PeopleWrapper>();            
+            Peoples = new ObservableCollection<PeopleItemViewModel>();            
         }
 
         private async void AfterDetailSaved(AfterDetailSavedEventArgs args)
@@ -102,6 +103,10 @@ namespace PhotoOrganizer.UI.ViewModel
             if(args.ViewModelName == nameof(LocationDetailViewModel))
             {
                 await LoadLocationLookupAsync();
+            }
+            if(args.ViewModelName == nameof(PeopleItemViewModel))
+            {
+
             }
         }
 
@@ -145,7 +150,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnOpenPeopleAddView()
         {
             var window = new PeopleSelectionCreationView();
-            var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this);
+            var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this, EventAggregator);
             await peopleSelectionViewModel.LoadAsync();
 
             window.DataContext = peopleSelectionViewModel;
@@ -164,7 +169,8 @@ namespace PhotoOrganizer.UI.ViewModel
             foreach(var people in peoples)
             {
                 var wrapper = new PeopleWrapper(people);
-                Peoples.Add(wrapper);
+                var peopleItem = new PeopleItemViewModel(wrapper, EventAggregator);
+                Peoples.Add(peopleItem);
                 wrapper.PropertyChanged += PeopleWrapper_PropertyChanged;
             }
         }
@@ -262,7 +268,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             return Photo != null 
                 && !Photo.HasErrors 
-                && Peoples.All(p => !p.HasErrors)
+                && Peoples.All(p => !p.People.HasErrors)
                 && HasChanges;
         }
 
