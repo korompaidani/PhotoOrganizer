@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
@@ -64,7 +65,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnAddSelectedPeopleToPhotoExecute()
         {
-            if (!PeoplesOnPhoto.Any(p => p.People.Id == SelectedPeople.Model.Id))
+            if (!PeoplesOnPhoto.Any(p => p.People.DisplayName == SelectedPeople.Model.DisplayName))
             {
                 var peopleItem = new PeopleItemViewModel(SelectedPeople, _eventAggregator);
                 PeoplesOnPhoto.Add(peopleItem);
@@ -112,7 +113,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var allPeople = await _peopleRepository.GetAllAsync();
             foreach(var people in allPeople)
             {
-                if(!PeoplesOnPhoto.Any(p => p.People.Id == people.Id))
+                if(!PeoplesOnPhoto.Any(p => p.People.DisplayName == people.DisplayName))
                 {
                     Peoples.Add(new PeopleWrapper(people));
                 }
