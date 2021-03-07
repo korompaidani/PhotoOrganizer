@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <ScrollViewer>
+             mc:Ignorable="d" >
+    
+<ScrollViewer>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -19,18 +21,29 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="65"/>
+            <ColumnDefinition Width="500"/>
+             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+            <StackPanel Grid.Row="3"  Grid.Column="3" Grid.ZIndex="0" Orientation="Vertical">
+                <Button Content="Save" Width="125" Margin="5"
+                    Command="{Binding SaveCommand}"/>
+                <Button Content="Delete" Width="125" Margin="5"
+                    Command="{Binding DeleteCommand}"/>
+                <Button Content="Finalize" Width="125" Margin="5"
+                    Command="{Binding FinalizeCommand}"/>
+            </StackPanel>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath,
-                UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
+                UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5" IsReadOnly="True"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding Locations}" 
                           DisplayMemberPath="DisplayMemberItem"
@@ -48,9 +61,9 @@
                 <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
 
             </DockPanel>
-            <Label Grid.Row="4" Grid.Column="0" Content="Peoples:" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="Peoples:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <DockPanel Grid.Row="4" Grid.Column="1">
-                <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" 
+                <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" Margin="5 0 0 5" 
                         Command="{Binding OpenPeopleAddViewCommand}"/>
 
                 <ListBox x:Name="PeoplesListBox"
@@ -75,15 +88,16 @@
 
             </DockPanel>
 
-            <StackPanel Grid.Row="5"  Grid.Column="1" Orientation="Horizontal">
-                <Button Content="Save" Width="125" Margin="5"
-                    Command="{Binding SaveCommand}"/>
-                <Button Content="Delete" Width="125" Margin="5"
-                    Command="{Binding DeleteCommand}"/>
-                <Button Content="Test" Width="125" Margin="5"
-                    Command="{Binding TestCommand}"/>
+            <Label Grid.Row="5" Grid.Column="0" Content="Description:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled"/>
+            <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
+                <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
             </StackPanel>
-
         </Grid>
     </ScrollViewer>
 </UserControl>

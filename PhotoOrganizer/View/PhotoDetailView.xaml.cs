@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.UI.ViewModel;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.View
 {
@@ -16,6 +17,11 @@ namespace PhotoOrganizer.UI.View
         private void OnMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ((PhotoDetailViewModel)DataContext).OpenPhotoCommand.Execute(null);
+        }
+
+        private void OnSelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Mouse.Capture(null);
         }
     }
 }

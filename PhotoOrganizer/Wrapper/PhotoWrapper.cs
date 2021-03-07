@@ -58,6 +58,16 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
+        public int Year
+        {
+            get { return Model.Year; }
+            set
+            {
+                Model.Year = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int Month
         {
             get { return Model.Month; }

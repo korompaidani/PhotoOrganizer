@@ -22,6 +22,8 @@ namespace PhotoOrganizer.Model
         public string FullPath { get; set; }
         [Timestamp]
         public byte[] RowVersion { get; set; }
+        public string Description { get; set; }
+        public string Creator { get; set; }
         public string Coordinates { get; set; }
         public int? LocationId { get; set; }
         public Location Location { get; set; }

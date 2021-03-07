@@ -8,9 +8,11 @@ using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,8 +26,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
+        private DateTime _dateTime;
+        private bool _isFinalized = false;
 
-        public ICommand TestCommand { get; }
+        public ICommand FinalizeCommand { get; }
         public ICommand OpenPhotoCommand { get; }        
         public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
@@ -43,6 +47,19 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        public DateTime TakenDate
+        {
+            get { return _dateTime; }
+            set
+            {
+                Photo.Year = value.Year;
+                Photo.Month = value.Month;
+                Photo.Day = value.Day;
+                _dateTime = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+                //OnPropertyChanged();
+            }
+        }
+
         public PhotoDetailViewModel(
             IPhotoRepository photoRepository,
             IEventAggregator eventAggregator,
@@ -52,6 +69,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             _photoRepository = photoRepository;
             _locationLookupDataService = locationLookupDataService;
+            _dateTime = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
 
             EventAggregator.GetEvent<AfterDetailSavedEvent>()
                 .Subscribe(AfterDetailSaved);
@@ -66,6 +84,7 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
+            FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
@@ -99,10 +118,17 @@ namespace PhotoOrganizer.UI.ViewModel
             Id = photoId;
 
             InitializePhoto(photo);
-
             InitializePeople(photo.Peoples);
-
+            InitializeDate(photo);
             await LoadLocationLookupAsync();
+        }
+
+        private void InitializeDate(Photo photo)
+        {
+            if (photo.Month != 0 && photo.Day != 0)
+            {
+                TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+            }
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)
@@ -274,14 +300,17 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
-            Photo.ColorFlag = ColorSign.Modified;
+            if (!_isFinalized)
+            {
+                Photo.ColorFlag = ColorSign.Modified;
+            }            
 
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
                 () => 
                 {
                     HasChanges = _photoRepository.HasChanges();
                     Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", ColorSign.Modified);
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
                 });           
         }
 
@@ -310,8 +339,18 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void OnTest()
+        private async void OnFinalizeExecute()
         {
+            Photo.ColorFlag = ColorSign.Finalized;
+            _isFinalized = true;
+
+            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
+                () =>
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                });
         }
     }
 }

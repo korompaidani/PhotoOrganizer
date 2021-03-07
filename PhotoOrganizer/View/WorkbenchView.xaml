@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
              xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
-             mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280">
+             mc:Ignorable="d" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

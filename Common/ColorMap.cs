@@ -8,7 +8,7 @@ namespace PhotoOrganizer.Common
     {
         Unmodified,
         Modified,
-        Saved,
+        Finalized,
         Opened
     }
 
@@ -17,9 +17,9 @@ namespace PhotoOrganizer.Common
         private static Dictionary<ColorSign, string> _map = new Dictionary<ColorSign, string>
         {
             { ColorSign.Unmodified, "#CCCCCC" },
-            { ColorSign.Modified, "#6dbd83" },
-            { ColorSign.Saved, "#EEEEEE" },
-            { ColorSign.Opened, "#EEEEEE" }
+            { ColorSign.Modified, "#f6f7a6" },
+            { ColorSign.Finalized, "#6dbd83" },
+            { ColorSign.Opened, "#FFFFFF" }
         };
 
         public static Dictionary<ColorSign, string> Map { get { return _map; } }

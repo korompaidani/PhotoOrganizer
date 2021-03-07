@@ -95,6 +95,10 @@
     <Compile Include="Migrations\202103071615530_ColorFlagToEnum.designer.cs">
       <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103071753029_AddDescriptionAndCreator.cs" />
+    <Compile Include="Migrations\202103071753029_AddDescriptionAndCreator.designer.cs">
+      <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103071615530_ColorFlagToEnum.resx">
       <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071753029_AddDescriptionAndCreator.resx">
+      <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
