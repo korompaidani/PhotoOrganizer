@@ -23,8 +23,6 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
-        private ILocationRepository _locationRepository;
-        private IPeopleRepository _peopleRepository;
 
         public ICommand TestCommand { get; }
         public ICommand OpenPhotoCommand { get; }        
@@ -47,16 +45,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public PhotoDetailViewModel(
             IPhotoRepository photoRepository,
-            ILocationRepository locationRepository,
-            IPeopleRepository peopleRepository,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             ILocationLookupDataService locationLookupDataService
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
-            _locationRepository = locationRepository;
-            _peopleRepository = peopleRepository;
             _locationLookupDataService = locationLookupDataService;
 
             EventAggregator.GetEvent<AfterDetailSavedEvent>()
@@ -65,6 +59,9 @@ namespace PhotoOrganizer.UI.ViewModel
                 .Subscribe(AfterCollectionSaved);
             EventAggregator.GetEvent<SetCoordinatesEvent>()
                 .Subscribe(AfterSetCoordinatesOnMap);
+            EventAggregator.GetEvent<AfterPeopleDeletedEvent>()
+                .Subscribe(AfterPeopleDeleted);
+            
 
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
@@ -72,6 +69,16 @@ namespace PhotoOrganizer.UI.ViewModel
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private void AfterPeopleDeleted(AfterPeopleDeletedEventArgs args)
+        {
+            var peopleItem = Peoples.FirstOrDefault(p => p.Id == args.Id);
+            if(peopleItem != null)
+            {
+                Peoples.Remove(peopleItem);
+                Photo.RemovePeople(peopleItem.People.Model);
+            }
         }
 
         private async void AfterDetailSaved(AfterDetailSavedEventArgs args)
@@ -150,7 +157,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnOpenPeopleAddView()
         {
             var window = new PeopleSelectionCreationView();
-            var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, _peopleRepository, Peoples, this, EventAggregator);
+            var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, Peoples, this, EventAggregator);
             await peopleSelectionViewModel.LoadAsync();
 
             window.DataContext = peopleSelectionViewModel;

@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.Model;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -104,6 +105,43 @@ namespace PhotoOrganizer.UI.Data.Repositories
             }
 
             return context;
+        }
+
+        public async Task<People> AddGetPeopleByUniqueDisplayNameAsync(string displayName)
+        {
+            var people = await TryGetAnyPeopleByDisplayName(displayName);
+            if (people == null)
+            {
+                people = new People { DisplayName = displayName };
+                Context.People.Add(people);
+            }
+
+            return people;
+        }
+
+        public async Task<bool> HasPeopleDisplayName(string displayName)
+        {
+            return await Context.People.AnyAsync(p => p.DisplayName == displayName);
+        }
+
+        public async Task<People> TryGetAnyPeopleByDisplayName(string displayName)
+        {
+            return await Context.People.SingleOrDefaultAsync(p => p.DisplayName == displayName);
+        }
+
+        public void AddPeople(People model)
+        {
+            Context.People.Add(model);
+        }
+
+        public async Task<List<People>> GetAllPeopleAsync()
+        {
+            return await Context.People.ToListAsync();
+        }
+
+        public virtual async Task<People> GetPeopleByIdAsync(int id)
+        {
+            return await Context.People.FindAsync(id);
         }
     }
 }

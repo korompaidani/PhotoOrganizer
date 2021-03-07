@@ -28,7 +28,7 @@ namespace PhotoOrganizer.Model
         public int Month { get; set; }
         public int Day { get; set; }
         public TimeSpan HHMMSS { get; set; }        
-        public ICollection<People> Peoples { get; set; }
+        public virtual ICollection<People> Peoples { get; set; }
         public ICollection<Album> Albums { get; set; }
         public string ColorFlag { get; set; }
     }

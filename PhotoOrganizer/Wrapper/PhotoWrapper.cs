@@ -86,10 +86,21 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
-
         public PhotoWrapper(Photo model)
         {
             Model = model;
+        }
+
+        public void AddPeople(People people)
+        {
+            Model.Peoples.Add(people);
+            OnPropertyChanged();
+        }
+
+        public void RemovePeople(People people)
+        {
+            Model.Peoples.Remove(people);
+            OnPropertyChanged();
         }
 
         private void ValidateProperty(string propertyName, object currentValue)

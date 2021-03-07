@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Wrapper;
+﻿using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;
@@ -18,6 +19,14 @@ namespace PhotoOrganizer.UI.ViewModel
             People = people;
             _eventAggregator = eventAggregator;
             RemovePeopleFromPhotoCommand = new DelegateCommand(OnRemovePeopleFromPhoto);
+        }
+
+        public int Id 
+        { 
+            get
+            {
+                return People.Id;
+            }
         }
 
         public PeopleWrapper People
@@ -42,11 +51,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnRemovePeopleFromPhoto()
         {
-
-            //AfterCollectionSavedEventArgs
-
-            //_detailView.HasChanges = _photoRepository.HasChanges();
-            //((DelegateCommand)_detailView.SaveCommand).RaiseCanExecuteChanged();            
+            _eventAggregator.GetEvent<AfterPeopleDeletedEvent>().
+                Publish(new AfterPeopleDeletedEventArgs { Id = this.Id });    
         }
     }
 }
