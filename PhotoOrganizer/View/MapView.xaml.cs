@@ -39,12 +39,12 @@ namespace PhotoOrganizer.UI.View
 
         private void OnSaveOverrideButtonClick(object sender, RoutedEventArgs e)
         {
-            ((MapViewModel)DataContext).OnSaveOverrideLocationCommand.Execute(mapBrowser.Source.ToString());
+            ((MapViewModel)DataContext).SaveOverrideLocationCommand.Execute(mapBrowser.Source.ToString());
         }
 
         private void OnSaveAsNewButtonClick(object sender, RoutedEventArgs e)
         {
-            ((MapViewModel)DataContext).OnSaveAsNewLocationCommand.Execute(mapBrowser.Source.ToString());
+            ((MapViewModel)DataContext).SaveAsNewLocationCommand.Execute(mapBrowser.Source.ToString());
         }
     }
 }

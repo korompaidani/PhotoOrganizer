@@ -23,8 +23,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool isNewLocationObject = false;
         public ICommand CloseMapCommand { get; }
         public ICommand OnSetCoordinatesOnPhotoOnlyCommand { get; }
-        public ICommand OnSaveOverrideLocationCommand { get; }
-        public ICommand OnSaveAsNewLocationCommand { get; }
+        public ICommand SaveOverrideLocationCommand { get; }
+        public ICommand SaveAsNewLocationCommand { get; }
 
         public string WebUrl
         {
@@ -63,17 +63,21 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
             OnSetCoordinatesOnPhotoOnlyCommand = new DelegateCommand<string>(OnSetCoordinateOnPhotoOnlyAndCloseCommand);
-            OnSaveOverrideLocationCommand = new DelegateCommand<string>(OnSaveAsOverrideAndCloseCommand, OnSaveAsOverrideCanExecute);
-            OnSaveAsNewLocationCommand = new DelegateCommand<string>(OnSaveAsNewAndCloseCommand, OnSaveAsNewCanExecute);
+            SaveOverrideLocationCommand = new DelegateCommand<string>(OnSaveOverrideLocationExecute, OnSaveOverrideLocationCanExecute);
+            SaveAsNewLocationCommand = new DelegateCommand<string>(OnSaveAsNewLocationCommandExecute, OnSaveAsNewLocationCommandCanExecute);
             _locationRepository = locationRepository;
         }
 
-        private bool OnSaveAsNewCanExecute(string mapUrl)
+        private bool OnSaveAsNewLocationCommandCanExecute(string mapUrl)
         {
-            return true; // if changed LocationName
+            if (!Location.HasErrors)
+            {
+                return true;
+            }
+            return false;
         }
 
-        private void OnSaveAsNewAndCloseCommand(string mapUrl)
+        private void OnSaveAsNewLocationCommandExecute(string mapUrl)
         {
             Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
             var location = Location.Model;
@@ -100,12 +104,16 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private bool OnSaveAsOverrideCanExecute(string mapUrl)
+        private bool OnSaveOverrideLocationCanExecute(string mapUrl)
         {
-            return !isNewLocationObject; // and if changed LocationName
+            if (!isNewLocationObject && !Location.HasErrors)
+            {
+                return true;
+            }
+            return false;
         }
 
-        private void OnSaveAsOverrideAndCloseCommand(string mapUrl)
+        private void OnSaveOverrideLocationExecute(string mapUrl)
         {
             Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
             var location = Location.Model;
@@ -174,6 +182,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 Location.LocationName = "";
                 Location.Coordinates = "";
             }
+
+            Location.PropertyChanged += Location_PropertyChanged;
+        }
+
+        private void Location_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ((DelegateCommand<string>)SaveOverrideLocationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand<string>)SaveAsNewLocationCommand).RaiseCanExecuteChanged();
         }
 
         protected override void OnDeleteExecute()
