@@ -26,7 +26,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
-        private DateTime _dateTime;
+        private DateTime _date;        
         private bool _isFinalized = false;
 
         public ICommand FinalizeCommand { get; }
@@ -49,14 +49,24 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public DateTime TakenDate
         {
-            get { return _dateTime; }
+            get { return _date; }
             set
             {
                 Photo.Year = value.Year;
                 Photo.Month = value.Month;
                 Photo.Day = value.Day;
-                _dateTime = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
-                //OnPropertyChanged();
+                _date = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime TakenTime
+        {
+            get { return new DateTime(Photo.HHMMSS.Ticks); }
+            set
+            {
+                Photo.HHMMSS = new TimeSpan(value.Hour, value.Minute, value.Second);
+                OnPropertyChanged();
             }
         }
 
@@ -69,7 +79,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             _photoRepository = photoRepository;
             _locationLookupDataService = locationLookupDataService;
-            _dateTime = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+            _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
 
             EventAggregator.GetEvent<AfterDetailSavedEvent>()
                 .Subscribe(AfterDetailSaved);
@@ -119,16 +129,17 @@ namespace PhotoOrganizer.UI.ViewModel
 
             InitializePhoto(photo);
             InitializePeople(photo.Peoples);
-            InitializeDate(photo);
+            InitializeDateAndTime(photo);
             await LoadLocationLookupAsync();
         }
 
-        private void InitializeDate(Photo photo)
+        private void InitializeDateAndTime(Photo photo)
         {
             if (photo.Month != 0 && photo.Day != 0)
             {
                 TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
             }
+            TakenTime = new DateTime(photo.HHMMSS.Ticks);
         }
 
         private async void AfterCollectionSaved(AfterCollectionSavedEventArgs args)

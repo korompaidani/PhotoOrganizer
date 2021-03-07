@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
              mc:Ignorable="d" >
     
@@ -96,7 +97,12 @@
             <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                 <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
-                <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
+                    <toolkit:TimePicker Value="{Binding TakenTime, Mode=TwoWay}" Foreground="White"
+                        Format="Custom" 
+                        FormatString="HH:mm"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </ScrollViewer>

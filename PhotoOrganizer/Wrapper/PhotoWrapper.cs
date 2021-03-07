@@ -94,6 +94,7 @@ namespace PhotoOrganizer.UI.Wrapper
             set
             {
                 Model.HHMMSS = value;
+                OnPropertyChanged();
             }
         }
 
