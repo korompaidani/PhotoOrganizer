@@ -91,6 +91,10 @@
     <Compile Include="Migrations\202103071116147_virtualPeoples.designer.cs">
       <DependentUpon>202103071116147_virtualPeoples.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103071615530_ColorFlagToEnum.cs" />
+    <Compile Include="Migrations\202103071615530_ColorFlagToEnum.designer.cs">
+      <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103071116147_virtualPeoples.resx">
       <DependentUpon>202103071116147_virtualPeoples.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103071615530_ColorFlagToEnum.resx">
+      <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Data.Lookups;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System.Collections.ObjectModel;
@@ -36,8 +37,10 @@ namespace PhotoOrganizer.UI.Services
             CurrentPageNumber = 0;
             IsFirstPage = true;
             ItemNumber = await _lookupDataService.GetPhotoCountAsync();
-
-            await CreateNavigationViewModels();
+            if(ItemNumber != 0)
+            {
+                await CreateNavigationViewModels();
+            }
         }
 
         public async Task LoadUpPage()
@@ -90,7 +93,7 @@ namespace PhotoOrganizer.UI.Services
             {
                 _navigationItems.Add(
                     new PhotoNavigationItemViewModel(
-                        item.Id, item.DisplayMemberItem, item.PhotoPath, item.ColorFlag, 
+                        item.Id, item.DisplayMemberItem, item.PhotoPath, ColorMap.Map[item.ColorFlag],
                         nameof(PhotoDetailViewModel),
                         _eventAggregator));
             }

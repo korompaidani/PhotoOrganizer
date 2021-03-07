@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.FileHandler"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Image", "Image\PhotoOrganizer.Image.csproj", "{92044696-4560-425B-B96B-F1B360EEB437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.MapTools", "MapTools\PhotoOrganizer.MapTools.csproj", "{DAFF572E-755F-43AE-B401-A90E81389347}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoOrganizer.MapTools", "MapTools\PhotoOrganizer.MapTools.csproj", "{DAFF572E-755F-43AE-B401-A90E81389347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Common", "Common\PhotoOrganizer.Common.csproj", "{47E30D1E-7D24-49BE-A3BD-D3639736212D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DAFF572E-755F-43AE-B401-A90E81389347}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFF572E-755F-43AE-B401-A90E81389347}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFF572E-755F-43AE-B401-A90E81389347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

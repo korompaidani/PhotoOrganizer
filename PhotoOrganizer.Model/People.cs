@@ -19,7 +19,7 @@ namespace PhotoOrganizer.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int PhotoId { get; set; }
-        public ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
         public ICollection<Alias> Aliases { get; set; }
     }
 }

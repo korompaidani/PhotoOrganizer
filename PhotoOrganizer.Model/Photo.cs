@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoOrganizer.Common;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -30,6 +31,6 @@ namespace PhotoOrganizer.Model
         public TimeSpan HHMMSS { get; set; }        
         public virtual ICollection<People> Peoples { get; set; }
         public ICollection<Album> Albums { get; set; }
-        public string ColorFlag { get; set; }
+        public ColorSign ColorFlag { get; set; }
     }
 }

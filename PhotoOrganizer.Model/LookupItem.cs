@@ -1,4 +1,6 @@
-﻿namespace PhotoOrganizer.Model
+﻿using PhotoOrganizer.Common;
+
+namespace PhotoOrganizer.Model
 {
     public class LookupItem
     {
@@ -6,7 +8,7 @@
         public string DisplayMemberItem { get; set; }
         public string PhotoPath { get; set; }
         public string Coordinates { get; set; }
-        public string ColorFlag { get; set; }
+        public ColorSign ColorFlag { get; set; }
     }
 
     public class NullLookupItem : LookupItem
