@@ -33,6 +33,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenPhotoCommand { get; }        
         public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
+        public ICommand MarkAsUnchanged { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -95,6 +96,7 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenMapCommand = new DelegateCommand(OnOpenMap);
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
             FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
+            MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchanged);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
@@ -363,5 +365,20 @@ namespace PhotoOrganizer.UI.ViewModel
                     RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
                 });
         }
+
+        private async void OnMarkAsUnchanged()
+        {
+            Photo.ColorFlag = ColorSign.Unmodified;
+            _isFinalized = true;
+
+            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
+                () =>
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                });
+        }
+
     }
 }

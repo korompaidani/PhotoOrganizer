@@ -34,6 +34,8 @@
                     Command="{Binding DeleteCommand}"/>
                 <Button Content="Finalize" Width="125" Margin="5"
                     Command="{Binding FinalizeCommand}"/>
+                <Button Content="Mark as unchanged" Width="125" Margin="5"
+                    Command="{Binding MarkAsUnchanged}"/>
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
