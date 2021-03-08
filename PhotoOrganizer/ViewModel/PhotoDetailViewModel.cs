@@ -114,10 +114,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void AfterDetailSaved(AfterDetailSavedEventArgs args)
         {
-            if(args.ViewModelName == nameof(MapViewModel))
+            if(args.ViewModelName == nameof(MapViewModel) && args.Id == Photo.Id)
             {
                 await LoadLocationLookupAsync();
-                Photo.LocationId = args.Id;
+                Photo.LocationId = args.LocationId;
             }
         }
 
@@ -158,8 +158,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void AfterSetCoordinatesOnMap(SetCoordinatesEventArgs args)
         {
-            Photo.LocationId = null;
-            Photo.Coordinates = args.Coordinates;
+            if(args.PhotoId == Photo.Id)
+            {
+                Photo.LocationId = null;
+                Photo.Coordinates = args.Coordinates;
+            }
         }
 
         private void OnOpenPhoto()
@@ -369,7 +372,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnMarkAsUnchanged()
         {
             Photo.ColorFlag = ColorSign.Unmodified;
-            _isFinalized = true;
+            _isFinalized = false;
 
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
                 () =>

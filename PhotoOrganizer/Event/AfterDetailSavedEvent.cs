@@ -9,6 +9,7 @@ namespace PhotoOrganizer.UI.Event
     public class AfterDetailSavedEventArgs
     {
         public int Id { get; set; }
+        public int LocationId { get; set; }
         public string Title { get; set; }
         public string PhotoPath { get; set; }
         public string ColorFlag { get; set; }

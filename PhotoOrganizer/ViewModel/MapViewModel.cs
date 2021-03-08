@@ -16,6 +16,7 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private LocationWrapper _location;
         private ILocationRepository _locationRepository;
+        private int _photoId;
         private string _webUrl;
         private string _originalLocationName;
         private string _originalCoordinates;
@@ -58,7 +59,7 @@ namespace PhotoOrganizer.UI.ViewModel
              IEventAggregator eventAggregator,
              IMessageDialogService messageDialogService,
              ILocationRepository locationRepository,
-             string coordinates)
+             int photoId)
             : base(eventAggregator, messageDialogService)
         {
             CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
@@ -66,6 +67,7 @@ namespace PhotoOrganizer.UI.ViewModel
             SaveOverrideLocationCommand = new DelegateCommand<string>(OnSaveOverrideLocationExecute, OnSaveOverrideLocationCanExecute);
             SaveAsNewLocationCommand = new DelegateCommand<string>(OnSaveAsNewLocationCommandExecute, OnSaveAsNewLocationCommandCanExecute);
             _locationRepository = locationRepository;
+            _photoId = photoId;
         }
 
         private bool OnSaveAsNewLocationCommandCanExecute(string mapUrl)
@@ -97,11 +99,22 @@ namespace PhotoOrganizer.UI.ViewModel
                 }
 
                 _locationRepository.Save();
-                RaiseDetailSavedEvent(location.Id, "");
+                RaiseDetailSavedEvent(_photoId, location.Id);
 
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());
             }
+        }
+
+        private void RaiseDetailSavedEvent(int photoId, int locationId)
+        {
+            EventAggregator.GetEvent<AfterDetailSavedEvent>().Publish(
+                new AfterDetailSavedEventArgs
+                {
+                    Id = photoId,
+                    LocationId = locationId,
+                    ViewModelName = this.GetType().Name
+                });
         }
 
         private bool OnSaveOverrideLocationCanExecute(string mapUrl)
@@ -120,7 +133,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (!Location.HasErrors)
             {
                 _locationRepository.Save();
-                RaiseDetailSavedEvent(location.Id, "");
+                RaiseDetailSavedEvent(_photoId, location.Id);
 
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());
@@ -132,7 +145,8 @@ namespace PhotoOrganizer.UI.ViewModel
             EventAggregator.GetEvent<SetCoordinatesEvent>().
                 Publish(new SetCoordinatesEventArgs
                 {
-                    Coordinates = mapUrl.TryConvertUrlToCoordinate()
+                    Coordinates = mapUrl.TryConvertUrlToCoordinate(),
+                    PhotoId = _photoId
                 });
 
             EventAggregator.GetEvent<CloseMapViewEvent>().
