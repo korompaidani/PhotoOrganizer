@@ -9,17 +9,17 @@ using System.Windows.Threading;
 
 namespace PhotoOrganizer.UI.Engine
 {
-    public class WebBrowserHandlerSingleton
+    public class WebBrowserEngineSingleton
     {
-        private static WebBrowserHandlerSingleton _instance = null;
+        private static WebBrowserEngineSingleton _instance = null;
 
-        public static WebBrowserHandlerSingleton Instance
+        public static WebBrowserEngineSingleton Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new WebBrowserHandlerSingleton();
+                    _instance = new WebBrowserEngineSingleton();
                 }
                 return _instance;
             }
@@ -38,7 +38,7 @@ namespace PhotoOrganizer.UI.Engine
 
         private Window _initializeWindow;
 
-        private WebBrowserHandlerSingleton()
+        private WebBrowserEngineSingleton()
         {
         }
 
