@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,17 +10,17 @@ using System.Windows.Threading;
 
 namespace PhotoOrganizer.UI.Engine
 {
-    public class WebBrowserEngineSingleton
+    public class IExplorerBrowserEngine
     {
-        private static WebBrowserEngineSingleton _instance = null;
+        private static IExplorerBrowserEngine _instance = null;
 
-        public static WebBrowserEngineSingleton Instance
+        public static IExplorerBrowserEngine Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new WebBrowserEngineSingleton();
+                    _instance = new IExplorerBrowserEngine();
                 }
                 return _instance;
             }
@@ -38,7 +39,7 @@ namespace PhotoOrganizer.UI.Engine
 
         private Window _initializeWindow;
 
-        private WebBrowserEngineSingleton()
+        private IExplorerBrowserEngine()
         {
         }
 
@@ -52,7 +53,11 @@ namespace PhotoOrganizer.UI.Engine
             Control.Navigated += ControlOnInitialNavigated;
             Control.LoadCompleted += ControlOnInitialLoadCompleted;
             Control.MouseWheel += ControlOnMouseWheel;
-            Control.Navigate(new Uri("https://www.google.com/maps"));
+
+            using (StreamReader reader = new StreamReader(@".\..\..\Resources\Web\OpenLayersMap.html"))
+            {
+                Control.NavigateToString(reader.ReadToEnd());
+            }
 
             _initializeWindow = new Window
             {

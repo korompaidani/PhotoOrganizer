@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .map {
+            width: 100%;
+            height: 400px;
+        }
+
+        .map:-webkit-full-screen {
+            height: 100%;
+            margin: 0;
+        }
+
+        .map:-ms-fullscreen {
+            height: 100%;
+        }
+
+        .map:fullscreen {
+            height: 100%;
+        }
+
+        .map .ol-rotate {
+            top: 3em;
+        }
+    </style>
+	<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <title>OpenLayersMap</title>
+  </head>
+  <body>
+    <div id="map" class="map">
+      <div id="popup"></div>
+    </div>
+    <script>
+
+        ol.proj.useGeographic();
+
+        var coordinatesResult;
+        var map;
+
+        createMapOnCoordinates(88, 05);
+
+        function createMapOnCoordinates(lon, lan) {
+
+            var place = [lon, lan];
+            var point = new ol.geom.Point(place);
+
+            map = new ol.Map({
+                controls: ol.control.defaults().extend([new ol.control.FullScreen()]),
+                target: 'map',
+                view: new ol.View({
+                    center: place,
+                    zoom: 4
+                }),
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                    }),
+                    new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                            features: [new ol.Feature(point)],
+                        }),
+                        style: new ol.style.Style({
+                            image: new ol.style.Circle({
+                                radius: 9,
+                                fill: new ol.style.Fill({ color: 'red' }),
+                            }),
+                        }),
+                    })
+                ],
+            });
+        }
+
+        var element = document.getElementById('popup');
+
+        var popup = new ol.Overlay({
+            element: element,
+            positioning: 'bottom-center',
+            stopEvent: false,
+            offset: [0, -10],
+        });
+        map.addOverlay(popup);
+
+        function formatCoordinateForPopup(coordinate) {
+            return ("\n    <table>\n      <tbody>\n        <tr><th>lon</th><td>" + (coordinate[0].toFixed(2)) + "</td></tr>\n        <tr><th>lat</th><td>" + (coordinate[1].toFixed(2)) + "</td></tr>\n      </tbody>\n    </table>");
+        }
+
+        function formatCoordinateForResult(coordinate) {
+            return ((coordinate[0].toFixed(2)) + ";" + (coordinate[1].toFixed(2)));
+        }
+
+        map.on('moveend', function () {
+            var view = map.getView();
+            var center = view.getCenter();
+            coordinatesResult = formatCoordinateForResult(center);
+        });
+
+        map.on('click', function (event) {
+            var feature = map.getFeaturesAtPixel(event.pixel)[0];
+            if (feature) {
+                var coordinate = feature.getGeometry().getCoordinates();
+                popup.setPosition(coordinate);
+                $(element).popover({
+                    container: element.parentElement,
+                    html: true,
+                    sanitize: false,
+                    content: formatCoordinateForPopup(coordinate),
+                    placement: 'top',
+                });
+                $(element).popover('show');
+            } else {
+                $(element).popover('dispose');
+            }
+        });
+
+        map.on('pointermove', function (event) {
+            if (map.hasFeatureAtPixel(event.pixel)) {
+                map.getViewport().style.cursor = 'pointer';
+            } else {
+                map.getViewport().style.cursor = 'inherit';
+            }
+        });
+
+    </script>
+    <script>
+
+        function getPosition() {
+            return coordinatesResult;
+        }
+
+    </script>
+  </body>
+</html>

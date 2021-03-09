@@ -1,7 +1,7 @@
 ﻿using MahApps.Metro.Controls;
+using PhotoOrganizer.UI.Engine;
 using PhotoOrganizer.UI.ViewModel;
 using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Media.Animation;
 
@@ -22,6 +22,9 @@ namespace PhotoOrganizer.UI
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             FadeOutSplashScreen();
+
+            ChromiumBrowserEngine.Instance.Initialize();
+
             await _viewModel.LoadWorkbenchAsync();
             _viewModel.OpenWorkbenchCommand.Execute(null);
             splashScreen.Visibility = Visibility.Hidden;

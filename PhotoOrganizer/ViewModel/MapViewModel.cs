@@ -1,5 +1,4 @@
 ﻿using PhotoOrganizer.UI.Event;
-using PhotoOrganizer.MapTools;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -9,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Engine;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -63,15 +63,27 @@ namespace PhotoOrganizer.UI.ViewModel
             : base(eventAggregator, messageDialogService)
         {
             CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
-            OnSetCoordinatesOnPhotoOnlyCommand = new DelegateCommand<string>(OnSetCoordinateOnPhotoOnlyAndCloseCommand);
-            SaveOverrideLocationCommand = new DelegateCommand<string>(OnSaveOverrideLocationExecute, OnSaveOverrideLocationCanExecute);
-            SaveAsNewLocationCommand = new DelegateCommand<string>(OnSaveAsNewLocationCommandExecute, OnSaveAsNewLocationCommandCanExecute);
+            OnSetCoordinatesOnPhotoOnlyCommand = new DelegateCommand(OnSetCoordinateOnPhotoOnlyAndCloseCommand);
+            SaveOverrideLocationCommand = new DelegateCommand(OnSaveOverrideLocationExecute, OnSaveOverrideLocationCanExecute);
+            SaveAsNewLocationCommand = new DelegateCommand(OnSaveAsNewLocationCommandExecute, OnSaveAsNewLocationCommandCanExecute);
             _locationRepository = locationRepository;
             _photoId = photoId;
         }
 
-        private bool OnSaveAsNewLocationCommandCanExecute(string mapUrl)
+        private async Task<string> RequestCoordinates()
         {
+            var coordinates = await ChromiumBrowserEngine.Instance.RequestCoordinates();
+            if (coordinates == null)
+            {
+                return String.Empty;
+            }
+
+            return coordinates;
+        }
+
+        private bool OnSaveAsNewLocationCommandCanExecute()
+        {
+            
             if (!Location.HasErrors)
             {
                 return true;
@@ -79,9 +91,9 @@ namespace PhotoOrganizer.UI.ViewModel
             return false;
         }
 
-        private void OnSaveAsNewLocationCommandExecute(string mapUrl)
+        private async void OnSaveAsNewLocationCommandExecute()
         {
-            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            Location.Coordinates = await RequestCoordinates();
             var location = Location.Model;
             if (!Location.HasErrors)
             {
@@ -117,7 +129,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        private bool OnSaveOverrideLocationCanExecute(string mapUrl)
+        private bool OnSaveOverrideLocationCanExecute()
         {
             if (!isNewLocationObject && !Location.HasErrors)
             {
@@ -126,9 +138,9 @@ namespace PhotoOrganizer.UI.ViewModel
             return false;
         }
 
-        private void OnSaveOverrideLocationExecute(string mapUrl)
+        private async void OnSaveOverrideLocationExecute()
         {
-            Location.Coordinates = mapUrl.TryConvertUrlToCoordinate();
+            Location.Coordinates = await RequestCoordinates();
             var location = Location.Model;
             if (!Location.HasErrors)
             {
@@ -140,12 +152,12 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void OnSetCoordinateOnPhotoOnlyAndCloseCommand(string mapUrl)
+        private async void OnSetCoordinateOnPhotoOnlyAndCloseCommand()
         {
             EventAggregator.GetEvent<SetCoordinatesEvent>().
                 Publish(new SetCoordinatesEventArgs
                 {
-                    Coordinates = mapUrl.TryConvertUrlToCoordinate(),
+                    Coordinates = await RequestCoordinates(),
                     PhotoId = _photoId
                 });
 
@@ -202,8 +214,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void Location_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            ((DelegateCommand<string>)SaveOverrideLocationCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand<string>)SaveAsNewLocationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)SaveOverrideLocationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)SaveAsNewLocationCommand).RaiseCanExecuteChanged();
         }
 
         protected override void OnDeleteExecute()

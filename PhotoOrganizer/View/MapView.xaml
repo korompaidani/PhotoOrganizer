@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:WebEngine="clr-namespace:PhotoOrganizer.UI.Engine"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             >
     <Grid>
 
         <Grid.RowDefinitions>
@@ -16,15 +17,14 @@
         <StackPanel Grid.Row="0">
             <Label Content="Location Name"/>
             <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Content="Set Coordinate" Click="OnSetCoordinateButtonClick"/>
-            <Button Content="Save Existing" Click="OnSaveOverrideButtonClick"/>
-            <Button Content="Save As New" Click="OnSaveAsNewButtonClick"/>
+            <Button Content="Set Coordinate" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}"/>
+            <Button Content="Save Existing" Command="{Binding SaveOverrideLocationCommand}"/>
+            <Button Content="Save As New" Command="{Binding SaveAsNewLocationCommand}"/>
             <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}"/>
             <Button Content="Alter Save" Background="Transparent" Command="{Binding SaveCommand}"/>
         </StackPanel>
-        
-        
-        <WebBrowser Grid.Row="1" x:Name="mapBrowser" Source="https://www.google.com/maps" LoadCompleted="OnLoadCompleted"/>
+
+        <ContentPresenter Grid.Row="1" Content="{x:Static WebEngine:ChromiumBrowserEngine.ControlInstance}"/>
         
     </Grid>
 </UserControl>
