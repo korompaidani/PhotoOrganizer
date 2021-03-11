@@ -113,6 +113,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 else
                 {
                 }
+                _locationRepository.Add(location);
 
                 _locationRepository.Save();
                 RaiseDetailSavedEvent(_photoId, location.Id);
@@ -254,8 +255,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private Location CreateNewLocation()
         {
             isNewLocationObject = true;
-            var location = new Location();
-            _locationRepository.Add(location);
+            var location = new Location();            
             return location;
         }
     }
