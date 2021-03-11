@@ -83,7 +83,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnSaveAsNewLocationCommandCanExecute()
         {
-            
+            if (Location == null)
+            {
+                return false;
+            }
+
             if (!Location.HasErrors)
             {
                 return true;
@@ -112,9 +116,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
                 _locationRepository.Save();
                 RaiseDetailSavedEvent(_photoId, location.Id);
-
+                                
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());
+
+                await ChromiumBrowserEngine.Instance.RestoreMapDefaults();
             }
         }
 
@@ -131,6 +137,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnSaveOverrideLocationCanExecute()
         {
+            if(Location == null)
+            {
+                return false;
+            }
+
             if (!isNewLocationObject && !Location.HasErrors)
             {
                 return true;
@@ -146,9 +157,11 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 _locationRepository.Save();
                 RaiseDetailSavedEvent(_photoId, location.Id);
-
+                             
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());
+
+                await ChromiumBrowserEngine.Instance.RestoreMapDefaults();
             }
         }
 
@@ -159,25 +172,29 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     Coordinates = await RequestCoordinates(),
                     PhotoId = _photoId
-                });
+                });            
 
             EventAggregator.GetEvent<CloseMapViewEvent>().
                 Publish(new CloseMapViewEventArgs());
+
+            await ChromiumBrowserEngine.Instance.RestoreMapDefaults();
         }
 
-        private void OnCloseMapAskCommand()
+        private async void OnCloseMapAskCommand()
         {
             // TODO: It must be removed to other commands
             // 1. SaveMapEvent --> user save the coordinate as a new location
             // 2. CloseMapEvent --> when the user just close the window (user must be asked about intention)
-            // 3. SetCoordinatesOnMapEvent --> when the user dont save the location just set on photo (photo.coordinates will be persist of course)
+            // 3. SetCoordinatesOnMapEvent --> when the user dont save the location just set on photo (photo.coordinates will be persist of course)            
 
             EventAggregator.GetEvent<CloseMapViewEvent>().
                 Publish(new CloseMapViewEventArgs());
+
+            await ChromiumBrowserEngine.Instance.RestoreMapDefaults();
         }
 
         public async override Task LoadAsync(int locationId)
-        {
+        {            
             // TODO if locationId exist than web url source must be changed to a real coordinate
 
             var location = locationId > 0

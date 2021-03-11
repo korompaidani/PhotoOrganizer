@@ -30,6 +30,15 @@ namespace PhotoOrganizer.UI.Engine
 
         public bool IsReady { get; private set; }
 
+        public async Task RestoreMapDefaults()
+        {
+            if (IsReady)
+            {
+                var script = @"disposeMap()";
+                await Control.ExecuteScriptAsync(script);
+            }
+        }
+
         public async Task<string> RequestCoordinates()
         {
             var script = @"getPosition()";
@@ -56,6 +65,7 @@ namespace PhotoOrganizer.UI.Engine
                 Control.NavigateToString(reader.ReadToEnd());
             }
 
+            IsReady = true;
         }
     }
 }
