@@ -33,7 +33,8 @@ namespace PhotoOrganizer.UI.Engine
         public async Task<string> RequestCoordinates()
         {
             var script = @"getPosition()";
-            return await Control.ExecuteScriptAsync(script);
+            var scriptResult = await Control.ExecuteScriptAsync(script);
+            return scriptResult.Replace("\"", string.Empty).Trim();
         }
 
         private ChromiumBrowserEngine()

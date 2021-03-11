@@ -8,7 +8,7 @@
     <style>
         .map {
             width: 100%;
-            height: 400px;
+            height: 600px;
         }
 
         .map:-webkit-full-screen {
@@ -40,7 +40,6 @@
     </div>
     <div id="mouse-position"></div>
     <script>
-
         ol.proj.useGeographic();
         var mousePositionControl = new ol.control.MousePosition({
         coordinateFormat: ol.coordinate.createStringXY(4),
@@ -53,12 +52,11 @@
         var coordinatesResult;
         var map;
 
-        createMapOnCoordinates(88, 05);
+        createMapOnCoordinates(16.83, 46.83);
 
         function createMapOnCoordinates(lon, lan) {
 
-            var place = [lon, lan];
-            var point = new ol.geom.Point(place);            
+            var place = [lon, lan];        
 
             map = new ol.Map({
                 controls: ol.control.defaults({
@@ -69,7 +67,7 @@
                 view: new ol.View({
                     projection: 'EPSG:3857',
                     center: place,
-                    zoom: 4
+                    zoom: 1
                 }),
                 layers: [
                     new ol.layer.Tile({
@@ -89,23 +87,45 @@
         });
         map.addOverlay(popup);
 
+        map.on('click', function (event) {
+            cleanFormerPointAndPopup();
+            var mypoint = map.getCoordinateFromPixel(event.pixel);
+            coordinatesResult = mypoint[1] + "," + mypoint[0];
+            
+            var point = new ol.geom.Point(mypoint);
+            placePointOnCoordinate(point);
+            showPopupOnCoordinate(mypoint);
+        });
+
+        map.on('pointermove', function (event) {
+            if (map.hasFeatureAtPixel(event.pixel)) {
+                map.getViewport().style.cursor = 'pointer';
+            } else {
+                map.getViewport().style.cursor = 'inherit';
+            }
+        });
+    </script>
+    <script>
+
+        function getPosition() {
+            return coordinatesResult;
+        }
+
+        function disposeMap() {
+        map.getLayers().forEach(function(layer) { if (layer.get('name')=='point') map.removeLayer(layer); });
+        $(element).popover('dispose');
+        map.getView().setCenter([16.83, 46.83]);
+        map.getView().setZoom(1);
+    }
+
+    </script>
+
+    <script>
         function formatCoordinateForPopup(coordinate) {
             return ("\n    <table>\n      <tbody>\n        <tr><th>lon</th><td>" + (coordinate[0].toFixed(2)) + "</td></tr>\n        <tr><th>lat</th><td>" + (coordinate[1].toFixed(2)) + "</td></tr>\n      </tbody>\n    </table>");
         }
-        
-        function formatCoordinateForResult(coordinate) {
-            return ((coordinate[0].toFixed(2)) + ";" + (coordinate[1].toFixed(2)));
-        }
-        map.on('click', function (event) {
-            
 
-            var mypoint = map.getCoordinateFromPixel(event.pixel);
-            coordinatesResult = mypoint;
-            var point = new ol.geom.Point(mypoint);
-
-            map.getLayers().forEach(function(layer) { if (layer.get('name')=='point') map.removeLayer(layer); });
-            $(element).popover('dispose');
-
+        function placePointOnCoordinate(point){
             var layer = new ol.layer.Vector({
                 name: 'point',
                         source: new ol.source.Vector({
@@ -120,10 +140,10 @@
                         }),
                     })
                     map.addLayer(layer);
+        }
 
-                
-                var coordinate = mypoint;
-                popup.setPosition(coordinate);
+        function showPopupOnCoordinate(coordinate){
+            popup.setPosition(coordinate);
                 $(element).popover({
                     container: element.parentElement,
                     html: true,
@@ -131,25 +151,14 @@
                     content: formatCoordinateForPopup(coordinate),
                     placement: 'top',
                 });
-                $(element).popover('show');
-
-        });
-
-        map.on('pointermove', function (event) {
-            if (map.hasFeatureAtPixel(event.pixel)) {
-                map.getViewport().style.cursor = 'pointer';
-            } else {
-                map.getViewport().style.cursor = 'inherit';
-            }
-        });
-
-    </script>
-    <script>
-
-        function getPosition() {
-            return coordinatesResult;
+                $(element).popover('show');   
         }
 
-    </script>
+        function cleanFormerPointAndPopup(){
+            map.getLayers().forEach(function(layer) { 
+                if (layer.get('name')=='point') map.removeLayer(layer); });
+            $(element).popover('dispose');
+        }
+</script>
   </body>
 </html>
