@@ -27,6 +27,9 @@
         .map .ol-rotate {
             top: 3em;
         }
+        body {
+            background-color: #aad3df;
+        }
     </style>
 	<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
     <title>OpenLayersMap</title>
@@ -35,9 +38,17 @@
     <div id="map" class="map">
       <div id="popup"></div>
     </div>
+    <div id="mouse-position"></div>
     <script>
 
         ol.proj.useGeographic();
+        var mousePositionControl = new ol.control.MousePosition({
+        coordinateFormat: ol.coordinate.createStringXY(4),
+        projection: 'EPSG:3857',
+        className: 'custom-mouse-position',
+        target: document.getElementById('mouse-position'),
+        undefinedHTML: '&nbsp;',
+        });
 
         var coordinatesResult;
         var map;
@@ -47,12 +58,16 @@
         function createMapOnCoordinates(lon, lan) {
 
             var place = [lon, lan];
-            var point = new ol.geom.Point(place);
+            var point = new ol.geom.Point(place);            
 
             map = new ol.Map({
-                controls: ol.control.defaults().extend([new ol.control.FullScreen()]),
+                controls: ol.control.defaults({
+                    attribution: false,
+                    zoom: false,
+                }).extend([mousePositionControl]),
                 target: 'map',
                 view: new ol.View({
+                    projection: 'EPSG:3857',
                     center: place,
                     zoom: 4
                 }),
@@ -60,20 +75,9 @@
                     new ol.layer.Tile({
                         source: new ol.source.OSM()
                     }),
-                    new ol.layer.Vector({
-                        source: new ol.source.Vector({
-                            features: [new ol.Feature(point)],
-                        }),
-                        style: new ol.style.Style({
-                            image: new ol.style.Circle({
-                                radius: 9,
-                                fill: new ol.style.Fill({ color: 'red' }),
-                            }),
-                        }),
-                    })
                 ],
             });
-        }
+        }        
 
         var element = document.getElementById('popup');
 
@@ -88,21 +92,37 @@
         function formatCoordinateForPopup(coordinate) {
             return ("\n    <table>\n      <tbody>\n        <tr><th>lon</th><td>" + (coordinate[0].toFixed(2)) + "</td></tr>\n        <tr><th>lat</th><td>" + (coordinate[1].toFixed(2)) + "</td></tr>\n      </tbody>\n    </table>");
         }
-
+        
         function formatCoordinateForResult(coordinate) {
             return ((coordinate[0].toFixed(2)) + ";" + (coordinate[1].toFixed(2)));
         }
-
-        map.on('moveend', function () {
-            var view = map.getView();
-            var center = view.getCenter();
-            coordinatesResult = formatCoordinateForResult(center);
-        });
-
         map.on('click', function (event) {
-            var feature = map.getFeaturesAtPixel(event.pixel)[0];
-            if (feature) {
-                var coordinate = feature.getGeometry().getCoordinates();
+            
+
+            var mypoint = map.getCoordinateFromPixel(event.pixel);
+            coordinatesResult = mypoint;
+            var point = new ol.geom.Point(mypoint);
+
+            map.getLayers().forEach(function(layer) { if (layer.get('name')=='point') map.removeLayer(layer); });
+            $(element).popover('dispose');
+
+            var layer = new ol.layer.Vector({
+                name: 'point',
+                        source: new ol.source.Vector({
+                            
+                            features: [new ol.Feature(point)],
+                        }),
+                        style: new ol.style.Style({
+                            image: new ol.style.Circle({
+                                radius: 9,
+                                fill: new ol.style.Fill({ color: 'red' }),
+                            }),
+                        }),
+                    })
+                    map.addLayer(layer);
+
+                
+                var coordinate = mypoint;
                 popup.setPosition(coordinate);
                 $(element).popover({
                     container: element.parentElement,
@@ -112,9 +132,7 @@
                     placement: 'top',
                 });
                 $(element).popover('show');
-            } else {
-                $(element).popover('dispose');
-            }
+
         });
 
         map.on('pointermove', function (event) {
