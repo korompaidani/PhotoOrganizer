@@ -9,7 +9,8 @@ namespace PhotoOrganizer.Common
         Unmodified,
         Modified,
         Finalized,
-        Opened
+        Opened,
+        Checked
     }
 
     public static class ColorMap
@@ -19,7 +20,8 @@ namespace PhotoOrganizer.Common
             { ColorSign.Unmodified, "#CCCCCC" },
             { ColorSign.Modified, "#f6f7a6" },
             { ColorSign.Finalized, "#6dbd83" },
-            { ColorSign.Opened, "#FFFFFF" }
+            { ColorSign.Opened, "#FFFFFF" },
+            { ColorSign.Checked, "#eb4034" },
         };
 
         public static Dictionary<ColorSign, string> Map { get { return _map; } }

@@ -3,11 +3,11 @@ using Prism.Events;
 
 namespace PhotoOrganizer.UI.Event
 {
-    public class OpenDetailViewEvent : PubSubEvent<OpenDetailViewEventArgs>
+    public class OpenPhotoDetailViewEvent : PubSubEvent<OpenPhotoDetailViewEventArgs>
     {
     }
 
-    public class OpenDetailViewEventArgs
+    public class OpenPhotoDetailViewEventArgs
     {
         public int Id { get; set; }
         public string ViewModelName { get; set; }

@@ -7,6 +7,7 @@ using PhotoOrganizer.UI.Data.Lookups;
 using System.Windows.Input;
 using Prism.Commands;
 using PhotoOrganizer.UI.Services;
+using System;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -41,8 +42,8 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
 
             LoadDownNavigationCommand = new DelegateCommand(OnLoadNavigationDownExecute, OnLoadNavigationDownCanExecute);
-            LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);
-        }        
+            LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);            
+        }
 
         public async Task LoadAsync()
         {
@@ -136,6 +137,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnLoadNavigationUpExecute()
         {
             await _cacheService.LoadUpAsync(Photos);
+            ((DelegateCommand)LoadUpNavigationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)LoadDownNavigationCommand).RaiseCanExecuteChanged();
         }        
 
         private bool OnLoadNavigationDownCanExecute()
@@ -146,6 +149,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnLoadNavigationDownExecute()
         {
             await _cacheService.LoadDownAsync(Photos);
+            ((DelegateCommand)LoadUpNavigationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)LoadDownNavigationCommand).RaiseCanExecuteChanged();
         }
     }
 }

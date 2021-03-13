@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.Image;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.Image;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using Prism.Commands;
@@ -12,8 +13,10 @@ namespace PhotoOrganizer.UI.ViewModel
         private string _displayMemberItem;
         private string _path;
         private string _colorFlag;
+        private string _originalColorFlag;
         private Picture _picture;
         private bool _isChecked;
+        private bool _isSaved = true;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
         private IBulkAttributeSetterService _bulkAttributeSetter;
@@ -29,10 +32,15 @@ namespace PhotoOrganizer.UI.ViewModel
             _displayMemberItem = displayMemberItem;
             _path = path;
             _colorFlag = colorFlag;
+            _originalColorFlag = _colorFlag;
             _picture = new Picture(_path);
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
             _bulkAttributeSetter = bulkAttributeSetter;
+
+            _eventAggregator.GetEvent<UncheckPhotoNavigationItemsEvent>().Subscribe(AfterBulkSet);
+
+            IsChecked = _bulkAttributeSetter.IsCheckedById(Id);
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
         }               
 
@@ -84,6 +92,26 @@ namespace PhotoOrganizer.UI.ViewModel
             set
             {
                 _isChecked = value;
+                _bulkAttributeSetter.SetCheckedStateForId(Id, _isChecked);
+                SetColorFlag();
+            }
+        }
+
+        private void SetColorFlag()
+        {
+            if (_isSaved)
+            {
+                ColorFlag = ColorMap.Map[ColorSign.Modified];
+                _isSaved = false;
+                return;
+            }
+            if (_isChecked)
+            {
+                ColorFlag = ColorMap.Map[ColorSign.Checked];
+            }
+            else
+            {
+                ColorFlag = _originalColorFlag;
             }
         }
 
@@ -96,6 +124,14 @@ namespace PhotoOrganizer.UI.ViewModel
                         Id = Id,
                         ViewModelName = _detailViewModelName
                     });
+        }
+
+        private void AfterBulkSet(UncheckPhotoNavigationItemsEventArgs args)
+        {
+            if (args.Ids.Contains(Id))
+            {
+                IsChecked = false;
+            }            
         }
     }
 }

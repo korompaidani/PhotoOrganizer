@@ -152,7 +152,9 @@
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
+    <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
     <Compile Include="Event\LocationChangedEventArgs.cs" />
+    <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
     <Compile Include="Event\SetCoordinatesEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
     <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\UncheckPhotoNavigationItemsEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\BulkAttributeSetterService.cs" />

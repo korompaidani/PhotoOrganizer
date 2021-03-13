@@ -43,7 +43,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();
 
-            builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>();
+            builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
             return builder.Build();
         }
     }

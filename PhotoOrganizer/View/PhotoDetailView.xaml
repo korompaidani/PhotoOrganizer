@@ -24,7 +24,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="65"/>
             <ColumnDefinition Width="500"/>
-             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="3"  Grid.Column="3" Grid.ZIndex="0" Orientation="Vertical">
@@ -41,12 +42,15 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    Command="{Binding BulkSetAttribute}"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath,
                 UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5" IsReadOnly="True"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding Locations}" 
                           DisplayMemberPath="DisplayMemberItem"
@@ -58,12 +62,15 @@
                         Command="{Binding OpenMapCommand}"/>
                 <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </StackPanel>
+            <Button Grid.Row="2" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    Command="{Binding BulkSetAttribute}"/>
 
             <DockPanel Grid.Row="3" Grid.Column="1">
 
                 <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
 
             </DockPanel>
+
             <Label Grid.Row="4" Grid.Column="0" Content="Peoples:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <DockPanel Grid.Row="4" Grid.Column="1">
                 <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" Margin="5 0 0 5" 
@@ -90,12 +97,17 @@
                 </ListBox>
 
             </DockPanel>
+            <Button Grid.Row="4" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    Command="{Binding BulkSetAttribute}"/>
 
             <Label Grid.Row="5" Grid.Column="0" Content="Description:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Disabled"/>
+            <Button Grid.Row="5" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    Command="{Binding BulkSetAttribute}"/>
+
             <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
                 <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
@@ -106,6 +118,9 @@
                         FormatString="HH:mm"/>
                 </StackPanel>
             </StackPanel>
+            <Button Grid.Row="6" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    Command="{Binding BulkSetAttribute}"/>
+
         </Grid>
     </ScrollViewer>
 </UserControl>

@@ -29,6 +29,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IPhotoRepository _photoRepository;
         private DateTime _date;
         private IBulkAttributeSetterService _bulkAttributeSetter;
+        private bool _isDetailViewInitialized = false;
         private bool _isFinalized = false;
 
         public ICommand FinalizeCommand { get; }
@@ -36,6 +37,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenMapCommand { get; }
         public ICommand OpenPeopleAddViewCommand { get; }
         public ICommand MarkAsUnchanged { get; }
+        public ICommand BulkSetAttribute { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -102,6 +104,7 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
             FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
             MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchanged);
+            BulkSetAttribute = new DelegateCommand(OnBulkSetPhotoDetailAttributes);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
@@ -148,7 +151,25 @@ namespace PhotoOrganizer.UI.ViewModel
             InitializePhoto(photo);
             InitializePeople(photo.Peoples);
             InitializeDateAndTime(photo);
+            RaiseOpenPhotoDetailView();
             await LoadLocationLookupAsync();
+        }
+
+        private void RaiseOpenPhotoDetailView()
+        {
+            if (!_isDetailViewInitialized)
+            {
+                EventAggregator.GetEvent<OpenPhotoDetailViewEvent>().
+                Publish(
+                    new OpenPhotoDetailViewEventArgs
+                    {
+                        Id = Id,
+                        ViewModelName = this.GetType().Name,
+                        DetailView = this
+                    });
+
+                _isDetailViewInitialized = true;
+            }
         }
 
         private void InitializeDateAndTime(Photo photo)
@@ -413,5 +434,16 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
+        private void OnBulkSetPhotoDetailAttributes()
+        {
+            var propertyNamesAndValues = new Dictionary<string, object>();
+            propertyNamesAndValues.Add(nameof(Photo.Model.Title), Photo.Model.Title);
+
+            EventAggregator.GetEvent<BulkSetPhotoDetailAttributesEvent>().Publish(
+                new BulkSetPhotoDetailAttributesEventArgs
+                {
+                    PropertyNamesAndValues = propertyNamesAndValues
+                });
+        }
     }
 }

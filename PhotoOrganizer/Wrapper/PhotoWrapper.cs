@@ -47,6 +47,16 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
+        public string Description
+        {
+            get { return Model.Description; }
+            set
+            {
+                Model.Description = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int? LocationId
         {
             get { return Model.LocationId; }
