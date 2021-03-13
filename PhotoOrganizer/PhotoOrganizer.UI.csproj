@@ -153,8 +153,9 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\LocationChangedEventArgs.cs" />
+    <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
     <Compile Include="Event\SetCoordinatesEvent.cs" />
-    <Compile Include="Event\SaveCoordinatesEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
     <Compile Include="Event\GetBrowserDataEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Event\OpenMapViewEvent.cs" />

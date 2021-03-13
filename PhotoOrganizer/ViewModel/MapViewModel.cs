@@ -115,8 +115,8 @@ namespace PhotoOrganizer.UI.ViewModel
                 }
                 _locationRepository.Add(location);
 
-                _locationRepository.Save();
-                RaiseDetailSavedEvent(_photoId, location.Id);
+                await _locationRepository.SaveAsync();
+                RaiseLocationChangedEvent(true, _photoId, location.Id, location.Coordinates);
                                 
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());
@@ -125,15 +125,30 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void RaiseDetailSavedEvent(int photoId, int locationId)
+        private void RaiseLocationChangedEvent(bool isNew, int photoId, int locationId, string coordinates)
         {
-            EventAggregator.GetEvent<AfterDetailSavedEvent>().Publish(
-                new AfterDetailSavedEventArgs
+            if (isNew)
+            {
+                EventAggregator.GetEvent<SaveCoordinatesAsNewEvent>().Publish(
+                new SaveCoordinatesAsNewEventArgs
                 {
-                    Id = photoId,
+                    PhotoId = photoId,
                     LocationId = locationId,
+                    Coordinates = coordinates,
                     ViewModelName = this.GetType().Name
                 });
+            }
+            else
+            {
+                EventAggregator.GetEvent<SaveCoordinatesAsOverrideEvent>().Publish(
+                new SaveCoordinatesAsOverrideEventArgs
+                {
+                    PhotoId = photoId,
+                    LocationId = locationId,
+                    Coordinates = coordinates,
+                    ViewModelName = this.GetType().Name
+                });
+            }
         }
 
         private bool OnSaveOverrideLocationCanExecute()
@@ -156,8 +171,9 @@ namespace PhotoOrganizer.UI.ViewModel
             var location = Location.Model;
             if (!Location.HasErrors)
             {
-                _locationRepository.Save();
-                RaiseDetailSavedEvent(_photoId, location.Id);
+                await _locationRepository.SaveAsync();
+
+                RaiseLocationChangedEvent(false, _photoId, location.Id, location.Coordinates);
                              
                 EventAggregator.GetEvent<CloseMapViewEvent>().
                     Publish(new CloseMapViewEventArgs());

@@ -82,15 +82,16 @@ namespace PhotoOrganizer.UI.ViewModel
             _locationLookupDataService = locationLookupDataService;
             _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
 
-            EventAggregator.GetEvent<AfterDetailSavedEvent>()
-                .Subscribe(AfterDetailSaved);
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
-            EventAggregator.GetEvent<SetCoordinatesEvent>()
-                .Subscribe(AfterSetCoordinatesOnMap);
             EventAggregator.GetEvent<AfterPeopleDeletedEvent>()
                 .Subscribe(AfterPeopleDeleted);
-            
+            EventAggregator.GetEvent<SetCoordinatesEvent>()
+                .Subscribe(AfterSetCoordinatesOnMap);
+            EventAggregator.GetEvent<SaveCoordinatesAsNewEvent>()
+                .Subscribe(AfterSaveCoordinatesAsNew);
+            EventAggregator.GetEvent<SaveCoordinatesAsOverrideEvent>()
+                .Subscribe(AfterSaveCoordinatesAsOverride);
 
             OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
             OpenMapCommand = new DelegateCommand(OnOpenMap);
@@ -102,6 +103,26 @@ namespace PhotoOrganizer.UI.ViewModel
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
         }
 
+        private async void AfterSaveCoordinatesAsOverride(SaveCoordinatesAsOverrideEventArgs args)
+        {
+            await LoadLocationLookupAsync();
+            if (args.PhotoId == Photo.Id)
+            {
+                Photo.Coordinates = args.Coordinates;
+                Photo.LocationId = args.LocationId;
+            }
+        }
+
+        private async void AfterSaveCoordinatesAsNew(SaveCoordinatesAsNewEventArgs args)
+        {
+            await LoadLocationLookupAsync();
+            if (args.PhotoId == Photo.Id)
+            {
+                Photo.Coordinates = args.Coordinates;
+                Photo.LocationId = args.LocationId;
+            }
+        }
+
         private void AfterPeopleDeleted(AfterPeopleDeletedEventArgs args)
         {
             var peopleItem = Peoples.FirstOrDefault(p => p.Id == args.Id);
@@ -109,15 +130,6 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 Peoples.Remove(peopleItem);
                 Photo.RemovePeople(peopleItem.People.Model);
-            }
-        }
-
-        private async void AfterDetailSaved(AfterDetailSavedEventArgs args)
-        {
-            if(args.ViewModelName == nameof(MapViewModel) && args.Id == Photo.Id)
-            {
-                await LoadLocationLookupAsync();
-                Photo.LocationId = args.LocationId;
             }
         }
 
@@ -173,7 +185,7 @@ namespace PhotoOrganizer.UI.ViewModel
                     {
                         Id = Id,
                         FullPath = Photo.FullPath,
-                        ViewModelName = "PhotoViewModel"
+                        ViewModelName = nameof(PhotoViewModel)
                     });
         }
 
@@ -192,7 +204,7 @@ namespace PhotoOrganizer.UI.ViewModel
                         Id = locationId,
                         PhotoId = Id,
                         Coordinates = Photo.Coordinates, //nullcheck on the other side
-                        ViewModelName = "MapViewModel"
+                        ViewModelName = nameof(MapViewModel)
                     });
         }
 
@@ -239,7 +251,6 @@ namespace PhotoOrganizer.UI.ViewModel
         private void InitializePhoto(Photo photo)
         {       
             Photo = new PhotoWrapper(photo);
-            Photo.LocationChanged += InitilizationAfterLocationChanged;
             Photo.PropertyChanged += (s, e) =>
             {
                 if (!HasChanges)
@@ -254,6 +265,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     SetTitle();
                 }
+                if (e.PropertyName == nameof(Photo.LocationId))
+                {
+                    SetCoordinateBasedOnLookupChange();
+                }
             };
 
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
@@ -264,6 +279,29 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             SetTitle();
+        }
+
+        private void SetCoordinateBasedOnLookupChange()
+        {
+            if (Locations != null)
+            {
+                if (Photo.LocationId == null)
+                {
+                    if(Photo.Coordinates != null)
+                    {
+                        Photo.Coordinates = null;
+                    }
+                    return;
+                }
+                var coordinates = Locations.FirstOrDefault(l => l.Id == Photo.LocationId);
+                if (coordinates != null)
+                {
+                    if(Photo.Coordinates != coordinates.Coordinates)
+                    {
+                        Photo.Coordinates = coordinates.Coordinates;
+                    }
+                }
+            }
         }
 
         private void SetTitle()
@@ -288,18 +326,6 @@ namespace PhotoOrganizer.UI.ViewModel
             var photo = new Photo();
             _photoRepository.Add(photo);
             return photo;
-        }
-
-        private void InitilizationAfterLocationChanged(object sender, LocationChangedEventArgs args)
-        {
-            if(Photo.LocationId != null)
-            {
-                Photo.Coordinates = Locations.FirstOrDefault(l => l.Id == Photo.LocationId).Coordinates;
-            }
-            else
-            {
-                Photo.Coordinates = null;
-            }
         }
 
         private void RaiseDetailSavedEvent(int modelId, string title, ColorSign colorFlag)

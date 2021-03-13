@@ -54,7 +54,6 @@ namespace PhotoOrganizer.UI.Wrapper
             {
                 Model.LocationId = value;
                 OnPropertyChanged();
-                OnLocationChanged();
             }
         }
 

@@ -46,8 +46,9 @@ namespace PhotoOrganizer.UI.ViewModel
             AddCommand = new DelegateCommand(OnAddExecute);
             RemoveCommand = new DelegateCommand(OnRemoveExecute, OnRemoveCanExecute);
 
-            EventAggregator.GetEvent<SaveCoordinatesEvent>().Subscribe(AfterCoordinatesSaved);
-        }
+            EventAggregator.GetEvent<SaveCoordinatesAsNewEvent>().Subscribe(AfterCoordinatesSavedAsNew);
+            EventAggregator.GetEvent<SaveCoordinatesAsOverrideEvent>().Subscribe(AfterCoordinatesSavedAsOverride);
+        }        
 
         public async override Task LoadAsync(int id)
         {
@@ -145,7 +146,12 @@ namespace PhotoOrganizer.UI.ViewModel
             wrapper.Coordinates = "46.84172812451524, 16.84248724161438";
         }
 
-        private async void AfterCoordinatesSaved(SaveCoordinatesEventArgs args)
+        private async void AfterCoordinatesSavedAsNew(SaveCoordinatesAsNewEventArgs args)
+        {
+            await LoadAsync(args.LocationId);
+        }
+
+        private async void AfterCoordinatesSavedAsOverride(SaveCoordinatesAsOverrideEventArgs args)
         {
             await LoadAsync(args.LocationId);
         }
