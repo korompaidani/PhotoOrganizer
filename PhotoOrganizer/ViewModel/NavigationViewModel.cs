@@ -16,6 +16,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IAlbumLookupDataService _albumLookupDataService;
         private IEventAggregator _eventAggregator;
         private ICacheService _cacheService;
+        private IBulkAttributeSetterService _bulkAttributeSetter;
 
         public ICommand LoadDownNavigationCommand { get; }
         public ICommand LoadUpNavigationCommand { get; }
@@ -26,12 +27,14 @@ namespace PhotoOrganizer.UI.ViewModel
             IPhotoLookupDataService photoLookupDataService, 
             IAlbumLookupDataService albumLookupDataService,
             IEventAggregator eventAggregator,
-            ICacheService cacheService)
+            ICacheService cacheService,
+            IBulkAttributeSetterService bulkAttributeSetter)
         {
             _photoLookupDataService = photoLookupDataService;
             _albumLookupDataService = albumLookupDataService;
             _eventAggregator = eventAggregator;
             _cacheService = cacheService;
+            _bulkAttributeSetter = bulkAttributeSetter;
             Photos = new ObservableCollection<PhotoNavigationItemViewModel>();
             Albums = new ObservableCollection<AlbumNavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
@@ -71,7 +74,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var lookupItem = items.SingleOrDefault(p => p.Id == args.Id);
             if (lookupItem == null)
             {
-                items.Add(new PhotoNavigationItemViewModel(args.Id, args.Title, args.PhotoPath, args.ViewModelName, args.ColorFlag, _eventAggregator));
+                items.Add(new PhotoNavigationItemViewModel(args.Id, args.Title, args.PhotoPath, args.ViewModelName, args.ColorFlag, _eventAggregator, _bulkAttributeSetter));
             }
             else
             {

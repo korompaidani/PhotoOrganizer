@@ -3,6 +3,7 @@ using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
@@ -26,7 +27,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private ILocationLookupDataService _locationLookupDataService;
         private IPhotoRepository _photoRepository;
-        private DateTime _date;        
+        private DateTime _date;
+        private IBulkAttributeSetterService _bulkAttributeSetter;
         private bool _isFinalized = false;
 
         public ICommand FinalizeCommand { get; }
@@ -75,12 +77,14 @@ namespace PhotoOrganizer.UI.ViewModel
             IPhotoRepository photoRepository,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            ILocationLookupDataService locationLookupDataService
+            ILocationLookupDataService locationLookupDataService,
+            IBulkAttributeSetterService bulkAttributeSetter
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
             _locationLookupDataService = locationLookupDataService;
             _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+            _bulkAttributeSetter = bulkAttributeSetter;
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);

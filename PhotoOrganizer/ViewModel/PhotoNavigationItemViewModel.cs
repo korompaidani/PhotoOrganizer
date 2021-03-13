@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Image;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Services;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;
@@ -12,14 +13,17 @@ namespace PhotoOrganizer.UI.ViewModel
         private string _path;
         private string _colorFlag;
         private Picture _picture;
+        private bool _isChecked;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
+        private IBulkAttributeSetterService _bulkAttributeSetter;
 
         public ICommand OpenDetailViewCommand { get; }
 
         public PhotoNavigationItemViewModel(int id, string displayMemberItem, string path, string colorFlag,
             string detailViewModelName,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            IBulkAttributeSetterService bulkAttributeSetter)
         {
             Id = id;
             _displayMemberItem = displayMemberItem;
@@ -28,6 +32,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _picture = new Picture(_path);
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
+            _bulkAttributeSetter = bulkAttributeSetter;
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
         }               
 
@@ -70,6 +75,15 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 _picture = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public bool IsChecked
+        {
+            get { return _isChecked; }
+            set
+            {
+                _isChecked = value;
             }
         }
 

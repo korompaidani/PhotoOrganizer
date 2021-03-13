@@ -163,9 +163,11 @@
     <Compile Include="Event\CloseMapViewEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Services\BackupService.cs" />
+    <Compile Include="Services\BulkAttributeSetterService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />
     <Compile Include="Services\DirectoryReaderWrapperService.cs" />
     <Compile Include="Services\IBackupService.cs" />
+    <Compile Include="Services\IBulkAttributeSetterService.cs" />
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Services\Page.cs" />

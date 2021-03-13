@@ -9,6 +9,7 @@ namespace PhotoOrganizer.UI.Services
 {
     public class Page
     {
+        IBulkAttributeSetterService _bulkAttributeSetter;
         public static int AllPageNumber;
         public static int CurrentPageNumber;
         public static bool IsFirstPage = false;
@@ -22,11 +23,16 @@ namespace PhotoOrganizer.UI.Services
         public ObservableCollection<PhotoNavigationItemViewModel> _navigationItems;
         public PhotoNavigationItemViewModel[] _cachedItems;
 
-        public Page(IPhotoLookupDataService lookupDataService, IEventAggregator eventAggregator, ObservableCollection<PhotoNavigationItemViewModel> navigationItems)
+        public Page(
+            IPhotoLookupDataService lookupDataService, 
+            IEventAggregator eventAggregator,
+            IBulkAttributeSetterService bulkAttributeSetter,
+            ObservableCollection<PhotoNavigationItemViewModel> navigationItems)
         {
             _lookupDataService = lookupDataService;
             _eventAggregator = eventAggregator;
             _navigationItems = navigationItems;
+            _bulkAttributeSetter = bulkAttributeSetter;
 
             _cachedItems = new PhotoNavigationItemViewModel[PageSize];
             _navigationItems.CopyTo(_cachedItems, 0);
@@ -95,7 +101,7 @@ namespace PhotoOrganizer.UI.Services
                     new PhotoNavigationItemViewModel(
                         item.Id, item.DisplayMemberItem, item.PhotoPath, ColorMap.Map[item.ColorFlag],
                         nameof(PhotoDetailViewModel),
-                        _eventAggregator));
+                        _eventAggregator, _bulkAttributeSetter));
             }
         }
 

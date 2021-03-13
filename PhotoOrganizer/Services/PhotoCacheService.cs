@@ -11,11 +11,16 @@ namespace PhotoOrganizer.UI.Services
     // based on a threashold the before x and after y items is stored also
     public class PhotoCacheService : CacheServiceBase
     {
+        IBulkAttributeSetterService _bulkAttributeSetter;
         private IDictionary<int, Page> _pages;
 
-        public PhotoCacheService(IPhotoLookupDataService lookupDataService, IEventAggregator eventAggregator) : base(lookupDataService, eventAggregator)
+        public PhotoCacheService(
+            IPhotoLookupDataService lookupDataService, 
+            IEventAggregator eventAggregator, 
+            IBulkAttributeSetterService bulkAttributeSetter) : base(lookupDataService, eventAggregator)
         {
             _pages = new Dictionary<int, Page>();
+            _bulkAttributeSetter = bulkAttributeSetter;
         }
 
         public override bool CanMoveDown()
@@ -110,7 +115,7 @@ namespace PhotoOrganizer.UI.Services
 
         private Page CreatePage(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
-            return new Page(_lookupDataService, _eventAggregator, itemViewModels);
+            return new Page(_lookupDataService, _eventAggregator, _bulkAttributeSetter, itemViewModels);
         }        
     }
 }
