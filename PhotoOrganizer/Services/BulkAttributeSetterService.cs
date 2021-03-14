@@ -16,8 +16,8 @@ namespace PhotoOrganizer.UI.Services
         private IEventAggregator _eventAggregator;
         private IPhotoRepository _photoRepository;
 
-        IDictionary<int, bool> _navigationItemCheckStatusCollection = new Dictionary<int, bool>();
-        IDictionary<int, IDetailViewModel> _openedPhotoDetailViews = new Dictionary<int, IDetailViewModel>();
+        private IDictionary<int, bool> _navigationItemCheckStatusCollection = new Dictionary<int, bool>();
+        private IDictionary<int, IDetailViewModel> _openedPhotoDetailViews = new Dictionary<int, IDetailViewModel>();
 
         public BulkAttributeSetterService(
             IEventAggregator eventAggregator,
@@ -42,14 +42,31 @@ namespace PhotoOrganizer.UI.Services
         }
 
         public void SetCheckedStateForId(int photoNavigationLookupId, bool checkStatus)
-        {
-            if(checkStatus == true)
+        {            
+            int beforeCount = _navigationItemCheckStatusCollection.Count;
+            if (checkStatus == true)
             {
                 _navigationItemCheckStatusCollection[photoNavigationLookupId] = checkStatus;
             }
             else
             {
                 _navigationItemCheckStatusCollection.Remove(photoNavigationLookupId);
+            }
+            int afterCount = _navigationItemCheckStatusCollection.Count;
+            EvaluateCheckCounts(beforeCount, afterCount);
+        }
+
+        private void EvaluateCheckCounts(int beforeCount, int afterCount)
+        {
+            if(beforeCount == 0 && afterCount > 0)
+            {
+                RaiseSelectionChangedEvent(isAnySelected : true);
+                return;
+            }
+            if (afterCount == 0 && beforeCount > 0)
+            {
+                RaiseSelectionChangedEvent(isAnySelected: false);
+                return;
             }
         }
 
@@ -129,6 +146,16 @@ namespace PhotoOrganizer.UI.Services
                 new AfterBulkSetPhotoDetailAttributesEventArgs
                 {
                     NavigationAttributes = forNavigationItems
+                });
+        }
+
+        private void RaiseSelectionChangedEvent(bool isAnySelected)
+        {
+            _eventAggregator.GetEvent<SelectionChangedEvent>().
+            Publish(
+                new SelectionChangedEventArgs
+                {
+                    IsAnySelectedItem = isAnySelected
                 });
         }
     }

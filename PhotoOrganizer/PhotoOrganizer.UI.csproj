@@ -160,6 +160,7 @@
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
     <Compile Include="Event\OpenSettingsEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
+    <Compile Include="Event\SelectionChangedEvent.cs" />
     <Compile Include="Event\SetCoordinatesEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
     <Compile Include="Event\GetBrowserDataEvent.cs" />

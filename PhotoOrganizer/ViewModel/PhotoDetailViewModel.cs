@@ -32,6 +32,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IBulkAttributeSetterService _bulkAttributeSetter;
         private bool _isDetailViewInitialized = false;
         private bool _isFinalized = false;
+        private bool _isAnySelectedNavigationItem = false;
 
         public ICommand FinalizeCommand { get; }
         public ICommand OpenPhotoCommand { get; }        
@@ -99,13 +100,15 @@ namespace PhotoOrganizer.UI.ViewModel
                 .Subscribe(AfterSaveCoordinatesAsNew);
             EventAggregator.GetEvent<SaveCoordinatesAsOverrideEvent>()
                 .Subscribe(AfterSaveCoordinatesAsOverride);
+            EventAggregator.GetEvent<SelectionChangedEvent>()
+                .Subscribe(AfterSelectionChanged);
 
-            OpenPhotoCommand = new DelegateCommand(OnOpenPhoto);
-            OpenMapCommand = new DelegateCommand(OnOpenMap);
-            OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
+            OpenPhotoCommand = new DelegateCommand(OnOpenPhotoExecute);
+            OpenMapCommand = new DelegateCommand(OnOpenMapExecute);
+            OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddViewExecute);
             FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
-            MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchanged);
-            BulkSetAttribute = new DelegateCommand<string>(OnBulkSetPhotoDetailAttributes);
+            MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchangedExecute);
+            BulkSetAttribute = new DelegateCommand<string>(OnBulkSetAttributeExecute, OnBulkSetAttributeCanExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
@@ -203,7 +206,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private void OnOpenPhoto()
+        private void OnOpenPhotoExecute()
         {
             EventAggregator.GetEvent<OpenPhotoViewEvent>().
                 Publish(
@@ -215,7 +218,7 @@ namespace PhotoOrganizer.UI.ViewModel
                     });
         }
 
-        private void OnOpenMap()
+        private void OnOpenMapExecute()
         {
             int locationId = 0;
             if(Photo.LocationId != null)
@@ -234,7 +237,7 @@ namespace PhotoOrganizer.UI.ViewModel
                     });
         }
 
-        private async void OnOpenPeopleAddView()
+        private async void OnOpenPeopleAddViewExecute()
         {
             var window = new PeopleSelectionCreationView();
             var peopleSelectionViewModel = new PeopleSelectionCreationViewModel(_photoRepository, Peoples, this, EventAggregator);
@@ -421,7 +424,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        private async void OnMarkAsUnchanged()
+        private async void OnMarkAsUnchangedExecute()
         {
             Photo.ColorFlag = ColorSign.Unmodified;
             _isFinalized = false;
@@ -435,7 +438,25 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        private void OnBulkSetPhotoDetailAttributes(string propertyName)
+        private void AfterSelectionChanged(SelectionChangedEventArgs args)
+        {
+            _isAnySelectedNavigationItem = args.IsAnySelectedItem;
+            ((DelegateCommand<string>)BulkSetAttribute).RaiseCanExecuteChanged();
+        }
+
+        private bool OnBulkSetAttributeCanExecute(string propertyName)
+        {
+            if (_isAnySelectedNavigationItem)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }      
+
+        private void OnBulkSetAttributeExecute(string propertyName)
         {
             var propertyNamesAndValues = new Dictionary<string, object>();
             
