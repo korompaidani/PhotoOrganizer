@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Album.cs" />
     <Compile Include="Alias.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="LookupItem.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Photo.cs" />

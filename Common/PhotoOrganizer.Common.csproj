@@ -42,8 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorMap.cs" />
+    <Compile Include="FilePaths.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeEnums.cs" />
+    <Compile Include="CommonConstants.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

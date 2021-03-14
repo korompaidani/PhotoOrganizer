@@ -9,7 +9,7 @@ namespace PhotoOrganizer.UI.ViewModel
     public class PhotoViewModel : ViewModelBase, IPhotoViewModel
     {
         private IEventAggregator _eventAggregator;
-        public ICommand OnWorkbenchCommand { get; }
+        public ICommand OpenWorkbenchCommand { get; }
         public string FullPath { get; }
 
         public PhotoViewModel(
@@ -18,7 +18,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             _eventAggregator = eventAggregator;
             FullPath = Path.GetFullPath(fullPath);
-            OnWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
+            OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
         }
 
         private void OnOpenWorkbench()

@@ -27,6 +27,10 @@
                 <MenuItem Header="Location" Command="{Binding OpenSingleDetailViewCommand}"
                               CommandParameter="{x:Type viewModel:LocationDetailViewModel}"/>
             </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Settings" Command="{Binding OpenSettingsViewCommand}"
+                              CommandParameter="{x:Type viewModel:SettingsViewModel}"/>
+            </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
         <TabControl Grid.Row="1" Grid.Column="1" 

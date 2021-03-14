@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoOrganizer.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -11,7 +12,7 @@ namespace PhotoOrganizer.FileHandler
 
         public IDictionary<string, string> FileList => _fileList;
 
-        public DirectoryReader(string directoryPath = @".\..\..\Resources\TestResources")
+        public DirectoryReader(string directoryPath = FilePaths.TestResources)
         {
             _rootDirectoryPath = directoryPath;
             _fileList = new Dictionary<string, string>();

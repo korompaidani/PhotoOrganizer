@@ -1,4 +1,6 @@
-﻿namespace PhotoOrganizer.Common
+﻿using System.Collections.Generic;
+
+namespace PhotoOrganizer.Common
 {
     public enum Months
     {
@@ -19,4 +21,10 @@
     public enum Days
     {        
     }
+
+    public static class CommonContants
+    {
+        public static List<int> PageSizes = new List<int> { 50, 100, 500, 1000 };
+    }
+
 }

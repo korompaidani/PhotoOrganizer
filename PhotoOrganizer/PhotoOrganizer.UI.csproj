@@ -154,8 +154,10 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\CloseSettingsEvent.cs" />
     <Compile Include="Event\LocationChangedEventArgs.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
+    <Compile Include="Event\OpenSettingsEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
     <Compile Include="Event\SetCoordinatesEvent.cs" />
     <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
@@ -174,9 +176,11 @@
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Services\IPageSizeService.cs" />
+    <Compile Include="Services\ISettingsHandler.cs" />
     <Compile Include="Services\Page.cs" />
     <Compile Include="Services\PageSizeService.cs" />
     <Compile Include="Services\PhotoCacheService.cs" />
+    <Compile Include="Services\SettingsHandler.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="ViewModel\IPeopleSelectionCreationViewModel.cs" />
     <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\IPhotoViewModel.cs" />
+    <Compile Include="ViewModel\ISettingsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\PeopleItemViewModel.cs" />
@@ -197,6 +202,7 @@
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\PhotoViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
@@ -223,6 +229,9 @@
     <Compile Include="View\LocationDetailView.xaml.cs">
       <DependentUpon>LocationDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
@@ -231,6 +240,7 @@
     <Compile Include="Wrapper\PeopleWrapper.cs" />
     <Compile Include="Wrapper\PhotoWrapper.cs" />
     <Compile Include="Wrapper\LocationWrapper.cs" />
+    <Compile Include="Wrapper\SettingsWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -268,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

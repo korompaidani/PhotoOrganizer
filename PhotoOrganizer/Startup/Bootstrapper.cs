@@ -26,6 +26,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
             builder.RegisterType<DirectoryReader>().AsSelf();
+
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();
             builder.RegisterType<BackupService>().As<IBackupService>();
@@ -45,6 +46,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();
 
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
+            builder.RegisterType<SettingsHandler>().As<ISettingsHandler>().SingleInstance();
             return builder.Build();
         }
     }

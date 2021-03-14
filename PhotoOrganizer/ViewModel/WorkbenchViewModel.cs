@@ -23,6 +23,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ICommand CreateNewDetailCommand { get; }
         public ICommand OpenSingleDetailViewCommand { get; }
+        public ICommand OpenSettingsViewCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
 
@@ -57,7 +58,8 @@ namespace PhotoOrganizer.UI.ViewModel
             _directoryReaderWrapperService = directoryReaderWrapperService;
 
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenDetailViewEvent>().Subscribe(OnOpenDetailView);
+            _eventAggregator.GetEvent<OpenDetailViewEvent>().
+                Subscribe(OnOpenDetailView);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().
                 Subscribe(AfterDetailDeleted);
             _eventAggregator.GetEvent<AfterDetailClosedEvent>().
@@ -67,6 +69,16 @@ namespace PhotoOrganizer.UI.ViewModel
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
             CreatePhotosFromLibraryCommand = new DelegateCommand(OnCreatePhotosFromLibraryExecute);
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
+            OpenSettingsViewCommand = new DelegateCommand(OnOpenSettingsViewExecute);
+        }
+
+        private void OnOpenSettingsViewExecute()
+        {
+            _eventAggregator.GetEvent<OpenSettingsEvent>().
+                Publish(
+                    new OpenSettingsEventArgs
+                    {
+                    });
         }
 
         public async Task LoadAsync()

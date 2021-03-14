@@ -15,6 +15,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IMessageDialogService _messageDialogService;
         private IDirectoryReaderWrapperService _directoryReaderWrapperService;
         private IEventAggregator _eventAggregator;
+        private ISettingsHandler _settingsHandler;
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
         private ILocationRepository _locationRepository;
         private WorkbenchViewModel _workbenchViewModel;
@@ -36,7 +37,8 @@ namespace PhotoOrganizer.UI.ViewModel
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             IDirectoryReaderWrapperService directoryReaderWrapperService,
-            ILocationRepository locationRepository)
+            ILocationRepository locationRepository,
+            ISettingsHandler settingsHandler)
 
         {
             NavigationViewModel = navigationViewModel;
@@ -45,11 +47,25 @@ namespace PhotoOrganizer.UI.ViewModel
             _directoryReaderWrapperService = directoryReaderWrapperService;
             _locationRepository = locationRepository;
             _eventAggregator = eventAggregator;
+            _settingsHandler = settingsHandler;
             _eventAggregator.GetEvent<OpenPhotoViewEvent>().Subscribe(OnOpenPhotoView);
             _eventAggregator.GetEvent<OpenMapViewEvent>().Subscribe(OnOpenMapViewAsync);
             _eventAggregator.GetEvent<CloseMapViewEvent>().Subscribe(OnOpenWorkbenchView);
+            _eventAggregator.GetEvent<OpenSettingsEvent>().Subscribe(OnOpenSettingsView);
+            _eventAggregator.GetEvent<CloseSettingsEvent>().Subscribe(OnCloseSettingsView);
 
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
+        }
+
+        private void OnCloseSettingsView(CloseSettingsEventArgs args)
+        {
+            SelectedViewModel = _workbenchViewModel;
+        }
+
+        private async void OnOpenSettingsView(OpenSettingsEventArgs args)
+        {
+            SelectedViewModel = new SettingsViewModel(_eventAggregator, _settingsHandler);
+            await ((SettingsViewModel)SelectedViewModel).LoadAsync();
         }
 
         private async void OnOpenMapViewAsync(OpenMapViewEventArgs args)

@@ -23,7 +23,7 @@ namespace PhotoOrganizer.UI.Services
 
         public async Task SetPageSize(int size)
         {
-            _pageSize = 42;
+            _pageSize = size;
             if(_navigationViewModel != null)
             {
                 await _navigationViewModel.LoadAsync();

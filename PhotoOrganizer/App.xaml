@@ -66,7 +66,7 @@
                     </Style>
 
                     <Style x:Key="DataGridColumnStyle" TargetType="TextBlock">
-                        
+
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError" Value="True">
                                 <Setter Property="Background" Value="DarkRed"/>
@@ -87,24 +87,27 @@
                     </Style>
                 </ResourceDictionary>
                 <ResourceDictionary>
-                        <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
-                            <view:PhotoDetailView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
-                            <view:AlbumDetailView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type viewModel:LocationDetailViewModel}">
-                            <view:LocationDetailView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type viewModel:PhotoViewModel}">
-                            <view:PhotoView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type viewModel:WorkbenchViewModel}">
-                            <view:WorkbenchView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
-                            <view:MapView/>
-                        </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:PhotoDetailViewModel}">
+                        <view:PhotoDetailView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:AlbumDetailViewModel}">
+                        <view:AlbumDetailView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:LocationDetailViewModel}">
+                        <view:LocationDetailView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:PhotoViewModel}">
+                        <view:PhotoView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:WorkbenchViewModel}">
+                        <view:WorkbenchView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:MapViewModel}">
+                        <view:MapView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                        <view:SettingsView/>
+                    </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
