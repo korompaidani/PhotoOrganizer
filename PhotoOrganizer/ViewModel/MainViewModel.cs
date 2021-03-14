@@ -94,5 +94,10 @@ namespace PhotoOrganizer.UI.ViewModel
             _workbenchViewModel = new WorkbenchViewModel(NavigationViewModel, _detailViewModelCreator, _eventAggregator, _messageDialogService, _directoryReaderWrapperService);
             await _workbenchViewModel.LoadAsync();
         }
+
+        public async Task LoadInitialSettings()
+        {
+            await _settingsHandler.LoadInitialSettingsAsync();
+        }
     }
 }

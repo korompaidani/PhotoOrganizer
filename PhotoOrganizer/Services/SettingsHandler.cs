@@ -8,6 +8,7 @@ namespace PhotoOrganizer.UI.Services
     {
         private IPageSizeService _pageSizeService;
         private JsonFileHandler<Settings> _jsonFileHandler;
+        private Settings _initialSettings;
 
         public SettingsHandler(IPageSizeService pageSizeService)
         {
@@ -20,6 +21,18 @@ namespace PhotoOrganizer.UI.Services
             if(settings != null)
             {
                 await _pageSizeService.SetPageSize(settings.PageSize);
+            }
+        }
+
+        public async Task LoadInitialSettingsAsync()
+        {
+            try
+            {
+                _initialSettings = await _jsonFileHandler.ReadModelFromFileAsync();
+                await ApplySettingsAsync(_initialSettings);
+            }
+            catch
+            {
             }
         }
 

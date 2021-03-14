@@ -3,19 +3,21 @@ using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
 {
     public class Page
     {
+        private readonly object _lock = new object();
         IBulkAttributeSetterService _bulkAttributeSetter;
         private IPageSizeService _pageSizeService;
 
         protected IPhotoLookupDataService _lookupDataService;
         protected IEventAggregator _eventAggregator;
         public ObservableCollection<PhotoNavigationItemViewModel> _navigationItems;
-        public PhotoNavigationItemViewModel[] _cachedItems;
+        public PhotoNavigationItemViewModel[] _cachedItems;           
 
         public Page(
             IPhotoLookupDataService lookupDataService, 
@@ -31,7 +33,8 @@ namespace PhotoOrganizer.UI.Services
             _pageSizeService = pageSizeService;
 
             _cachedItems = new PhotoNavigationItemViewModel[_pageSizeService.PageSize];
-            _navigationItems.CopyTo(_cachedItems, 0);
+
+            LoadNavigationItemsIntoCache();
         }
 
         public async Task LoadFirstPage()
@@ -130,6 +133,21 @@ namespace PhotoOrganizer.UI.Services
                 _pageSizeService.SetIsLastPage(true);
             }
             else { _pageSizeService.SetIsLastPage(false); }
+        }
+
+        private void LoadNavigationItemsIntoCache()
+        {
+            int lastIndex;
+            if (_pageSizeService.PageSize > _navigationItems.Count)
+            {
+                lastIndex = _navigationItems.Count;
+            }
+            else
+            {
+                lastIndex = _pageSizeService.PageSize;
+            }
+
+            _navigationItems.ToList().GetRange(0, lastIndex).CopyTo(_cachedItems, 0);
         }
     }
 }
