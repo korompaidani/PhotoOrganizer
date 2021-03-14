@@ -29,6 +29,7 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();
+            builder.RegisterType<ExifToFileWriter>().AsSelf();
             builder.RegisterType<BackupService>().As<IBackupService>();
             builder.RegisterType<PhotoCacheService>().As<ICacheService>();
             builder.RegisterType<PageSizeService>().As<IPageSizeService>().SingleInstance();
@@ -46,6 +47,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();
 
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
+            builder.RegisterType<PhotoMetaWrapperService>().As<IPhotoMetaWrapperService>().SingleInstance();
             builder.RegisterType<SettingsHandler>().As<ISettingsHandler>().SingleInstance();
             return builder.Build();
         }

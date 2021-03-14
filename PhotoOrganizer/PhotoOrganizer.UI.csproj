@@ -154,6 +154,7 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\CloseProgressWindowEvent.cs" />
     <Compile Include="Event\CloseSettingsEvent.cs" />
     <Compile Include="Event\LocationChangedEventArgs.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
@@ -176,10 +177,12 @@
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
     <Compile Include="Services\IPageSizeService.cs" />
+    <Compile Include="Services\IPhotoMetaWrapperService.cs" />
     <Compile Include="Services\ISettingsHandler.cs" />
     <Compile Include="Services\Page.cs" />
     <Compile Include="Services\PageSizeService.cs" />
     <Compile Include="Services\PhotoCacheService.cs" />
+    <Compile Include="Services\PhotoMetaWrapperService.cs" />
     <Compile Include="Services\SettingsHandler.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="ViewModel\WritingToFileViewModel.cs" />
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
     </Compile>
@@ -234,6 +238,9 @@
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WritingToFileView.xaml.cs">
+      <DependentUpon>WritingToFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrapper\AlbumWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
@@ -286,6 +293,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WorkbenchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WritingToFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

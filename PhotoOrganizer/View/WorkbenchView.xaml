@@ -17,6 +17,7 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="12">
             <MenuItem Header="File">
+                <MenuItem Header="Write saved items metadata" Command="{Binding WriteAllSavedMetadataCommand}"/>
                 <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
                 <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>

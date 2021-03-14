@@ -1,6 +1,7 @@
 ﻿using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel
@@ -25,9 +27,11 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenSingleDetailViewCommand { get; }
         public ICommand OpenSettingsViewCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
+        public ICommand WriteAllSavedMetadataCommand { get; }
         public INavigationViewModel NavigationViewModel { get; }
 
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
+        private IPhotoMetaWrapperService _photoMetaWrapperService;
 
         public ObservableCollection<IDetailViewModel> DetailViewModels { get; }
 
@@ -49,13 +53,15 @@ namespace PhotoOrganizer.UI.ViewModel
             IIndex<string, IDetailViewModel> detailViewModelCreator,
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            IDirectoryReaderWrapperService directoryReaderWrapperService)
+            IDirectoryReaderWrapperService directoryReaderWrapperService,
+            IPhotoMetaWrapperService photoMetaWrapperService)
         {
             NavigationViewModel = navigationViewModel;
 
             _detailViewModelCreator = detailViewModelCreator;
             _messageDialogService = messageDialogService;
             _directoryReaderWrapperService = directoryReaderWrapperService;
+            _photoMetaWrapperService = photoMetaWrapperService;
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenDetailViewEvent>().
@@ -64,12 +70,31 @@ namespace PhotoOrganizer.UI.ViewModel
                 Subscribe(AfterDetailDeleted);
             _eventAggregator.GetEvent<AfterDetailClosedEvent>().
                 Subscribe(AfterDetailClosed);
+            _eventAggregator.GetEvent<CloseProgressWindowEvent>().
+                Subscribe(AfterProgressWindowClosed);
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
             CreatePhotosFromLibraryCommand = new DelegateCommand(OnCreatePhotosFromLibraryExecute);
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
             OpenSettingsViewCommand = new DelegateCommand(OnOpenSettingsViewExecute);
+            WriteAllSavedMetadataCommand = new DelegateCommand(OnWriteAllSavedMetadataCommand);
+        }
+
+        private async void AfterProgressWindowClosed(CloseProgressWindowEventArgs args)
+        {
+            await NavigationViewModel.LoadAsync();
+        }
+
+        private void OnWriteAllSavedMetadataCommand()
+        {
+            var window = new WritingToFileView();
+            var peopleSelectionViewModel = new WritingToFileViewModel(_eventAggregator, _photoMetaWrapperService);
+
+            window.DataContext = peopleSelectionViewModel;
+            window.Owner = Application.Current.MainWindow;
+
+            window.ShowDialog();
         }
 
         private void OnOpenSettingsViewExecute()

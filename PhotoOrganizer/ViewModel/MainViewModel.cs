@@ -16,6 +16,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IDirectoryReaderWrapperService _directoryReaderWrapperService;
         private IEventAggregator _eventAggregator;
         private ISettingsHandler _settingsHandler;
+        private IPhotoMetaWrapperService _photoMetaWrapperService;
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
         private ILocationRepository _locationRepository;
         private WorkbenchViewModel _workbenchViewModel;
@@ -38,7 +39,8 @@ namespace PhotoOrganizer.UI.ViewModel
             IMessageDialogService messageDialogService,
             IDirectoryReaderWrapperService directoryReaderWrapperService,
             ILocationRepository locationRepository,
-            ISettingsHandler settingsHandler)
+            ISettingsHandler settingsHandler,
+            IPhotoMetaWrapperService photoMetaWrapperService)
 
         {
             NavigationViewModel = navigationViewModel;
@@ -48,6 +50,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _locationRepository = locationRepository;
             _eventAggregator = eventAggregator;
             _settingsHandler = settingsHandler;
+            _photoMetaWrapperService = photoMetaWrapperService;
             _eventAggregator.GetEvent<OpenPhotoViewEvent>().Subscribe(OnOpenPhotoView);
             _eventAggregator.GetEvent<OpenMapViewEvent>().Subscribe(OnOpenMapViewAsync);
             _eventAggregator.GetEvent<CloseMapViewEvent>().Subscribe(OnOpenWorkbenchView);
@@ -91,7 +94,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public async Task LoadWorkbenchAsync()
         {
-            _workbenchViewModel = new WorkbenchViewModel(NavigationViewModel, _detailViewModelCreator, _eventAggregator, _messageDialogService, _directoryReaderWrapperService);
+            _workbenchViewModel = new WorkbenchViewModel(
+                NavigationViewModel, 
+                _detailViewModelCreator, 
+                _eventAggregator, 
+                _messageDialogService, 
+                _directoryReaderWrapperService, 
+                _photoMetaWrapperService);
             await _workbenchViewModel.LoadAsync();
         }
 
