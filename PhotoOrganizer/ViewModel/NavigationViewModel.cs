@@ -40,9 +40,24 @@ namespace PhotoOrganizer.UI.ViewModel
             Albums = new ObservableCollection<AlbumNavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
+            _eventAggregator.GetEvent<AfterBulkSetPhotoDetailAttributesEvent>().Subscribe(AfterBulkSetPhotoDetailAttributes);
 
             LoadDownNavigationCommand = new DelegateCommand(OnLoadNavigationDownExecute, OnLoadNavigationDownCanExecute);
             LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);            
+        }
+
+        private void AfterBulkSetPhotoDetailAttributes(AfterBulkSetPhotoDetailAttributesEventArgs args)
+        {
+            foreach(var navigationAttribute in args.NavigationAttributes)
+            {
+                var lookupItem = Photos.SingleOrDefault(p => p.Id == navigationAttribute.Item1);
+                lookupItem.DisplayMemberItem = navigationAttribute.Item2;
+                lookupItem.ColorFlag = navigationAttribute.Item3;
+                lookupItem.PhotoPath = navigationAttribute.Item4;
+                
+                lookupItem.SetOriginalColorFlag(navigationAttribute.Item3);
+                lookupItem.IsChecked = false;
+            }
         }
 
         public async Task LoadAsync()

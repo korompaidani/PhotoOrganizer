@@ -147,6 +147,7 @@
     <Compile Include="Data\Repositories\LocationRepository.cs" />
     <Compile Include="Engines\ChromiumBrowserEngine.cs" />
     <Compile Include="Engines\IExplorerBrowserEngine.cs" />
+    <Compile Include="Event\AfterBulkSetPhotoDetailAttributesEvent.cs" />
     <Compile Include="Event\AfterCollectionSavedEvent.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
@@ -163,7 +164,6 @@
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
     <Compile Include="Event\CloseMapViewEvent.cs" />
-    <Compile Include="Event\UncheckPhotoNavigationItemsEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\BulkAttributeSetterService.cs" />

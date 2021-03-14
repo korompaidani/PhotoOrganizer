@@ -442,7 +442,8 @@ namespace PhotoOrganizer.UI.ViewModel
             EventAggregator.GetEvent<BulkSetPhotoDetailAttributesEvent>().Publish(
                 new BulkSetPhotoDetailAttributesEventArgs
                 {
-                    PropertyNamesAndValues = propertyNamesAndValues
+                    PropertyNamesAndValues = propertyNamesAndValues,
+                    CallerId = Id
                 });
         }
     }

@@ -16,7 +16,6 @@ namespace PhotoOrganizer.UI.ViewModel
         private string _originalColorFlag;
         private Picture _picture;
         private bool _isChecked;
-        private bool _isSaved = true;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
         private IBulkAttributeSetterService _bulkAttributeSetter;
@@ -38,11 +37,9 @@ namespace PhotoOrganizer.UI.ViewModel
             _detailViewModelName = detailViewModelName;
             _bulkAttributeSetter = bulkAttributeSetter;
 
-            _eventAggregator.GetEvent<UncheckPhotoNavigationItemsEvent>().Subscribe(AfterBulkSet);
-
             IsChecked = _bulkAttributeSetter.IsCheckedById(Id);
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
-        }               
+        }                       
 
         public int Id { get; }
 
@@ -94,17 +91,17 @@ namespace PhotoOrganizer.UI.ViewModel
                 _isChecked = value;
                 _bulkAttributeSetter.SetCheckedStateForId(Id, _isChecked);
                 SetColorFlag();
+                OnPropertyChanged();
             }
+        }
+
+        public void SetOriginalColorFlag(string color)
+        {
+            _originalColorFlag = color;
         }
 
         private void SetColorFlag()
         {
-            if (_isSaved)
-            {
-                ColorFlag = ColorMap.Map[ColorSign.Modified];
-                _isSaved = false;
-                return;
-            }
             if (_isChecked)
             {
                 ColorFlag = ColorMap.Map[ColorSign.Checked];
@@ -124,14 +121,6 @@ namespace PhotoOrganizer.UI.ViewModel
                         Id = Id,
                         ViewModelName = _detailViewModelName
                     });
-        }
-
-        private void AfterBulkSet(UncheckPhotoNavigationItemsEventArgs args)
-        {
-            if (args.Ids.Contains(Id))
-            {
-                IsChecked = false;
-            }            
         }
     }
 }

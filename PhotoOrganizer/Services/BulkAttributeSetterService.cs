@@ -1,8 +1,10 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -55,8 +57,7 @@ namespace PhotoOrganizer.UI.Services
         {
             await SetPropertiesOfCheckedItems(args.PropertyNamesAndValues, args.CallerId);
             await ReloadOpenedPhotoDetailViews();
-            //Reload Navigation
-            RaiseUncheckPhotoNavigationItemsEvent(); 
+            await ReloadNavigation();
         }
 
         private void OnOpenPhotoDetailViewEvent(OpenPhotoDetailViewEventArgs args)
@@ -89,7 +90,7 @@ namespace PhotoOrganizer.UI.Services
                 {
                     var photo = await _photoRepository.GetByIdAsync(item.Key);
                     photos.Add(photo);
-
+                    photo.ColorFlag = ColorSign.Modified;
                     foreach (var property in properyNamesAndValues)
                     {
                         PropertyInfo prop = photo.GetType().GetProperty(property.Key, BindingFlags.Public | BindingFlags.Instance);
@@ -107,26 +108,27 @@ namespace PhotoOrganizer.UI.Services
         {
             foreach (var item in _openedPhotoDetailViews)
             {
-                if (item.Value != null)
+                if (item.Value != null && _navigationItemCheckStatusCollection.ContainsKey(item.Key))
                 {
                     await item.Value.LoadAsync(item.Key);
                 }
             }
         }
 
-        private void RaiseUncheckPhotoNavigationItemsEvent()
+        private async Task ReloadNavigation()
         {
-            var checkedItems = new HashSet<int>();
+            var forNavigationItems = new List<Tuple<int, string, string, string>>();
             foreach (var item in _navigationItemCheckStatusCollection)
             {
-                checkedItems.Add(item.Key);
+                var photo = await _photoRepository.GetByIdAsync(item.Key);
+                forNavigationItems.Add(new Tuple<int, string, string, string>(photo.Id, photo.Title, ColorMap.Map[photo.ColorFlag], photo.FullPath));
             }
 
-            _eventAggregator.GetEvent<UncheckPhotoNavigationItemsEvent>().
+            _eventAggregator.GetEvent<AfterBulkSetPhotoDetailAttributesEvent>().
             Publish(
-                new UncheckPhotoNavigationItemsEventArgs
+                new AfterBulkSetPhotoDetailAttributesEventArgs
                 {
-                    Ids = checkedItems
+                    NavigationAttributes = forNavigationItems
                 });
         }
     }

@@ -68,7 +68,7 @@
                                     <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
                                 </StackPanel>
                                 </Border>
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Button Content="" 
                                     Command="{Binding OpenDetailViewCommand}"
                                     FontSize="10">
