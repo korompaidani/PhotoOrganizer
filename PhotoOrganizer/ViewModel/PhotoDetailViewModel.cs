@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -104,7 +105,7 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenPeopleAddViewCommand = new DelegateCommand(OnOpenPeopleAddView);
             FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
             MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchanged);
-            BulkSetAttribute = new DelegateCommand(OnBulkSetPhotoDetailAttributes);
+            BulkSetAttribute = new DelegateCommand<string>(OnBulkSetPhotoDetailAttributes);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
@@ -434,10 +435,21 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        private void OnBulkSetPhotoDetailAttributes()
+        private void OnBulkSetPhotoDetailAttributes(string propertyName)
         {
             var propertyNamesAndValues = new Dictionary<string, object>();
-            propertyNamesAndValues.Add(nameof(Photo.Model.Title), Photo.Model.Title);
+            
+            {
+                List<string> propertyNames = FilterIfMoreProperties(propertyName);
+                foreach (var propName in propertyNames)
+                {
+                    PropertyInfo prop = Photo.Model.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
+                    if (prop != null)
+                    {
+                        propertyNamesAndValues.Add(prop.Name, prop.GetValue(Photo.Model));
+                    }
+                }
+            }
 
             EventAggregator.GetEvent<BulkSetPhotoDetailAttributesEvent>().Publish(
                 new BulkSetPhotoDetailAttributesEventArgs
@@ -445,6 +457,21 @@ namespace PhotoOrganizer.UI.ViewModel
                     PropertyNamesAndValues = propertyNamesAndValues,
                     CallerId = Id
                 });
+        }
+
+        private List<string> FilterIfMoreProperties(string propertyName)
+        {
+            var resultList = new List<string>();
+            if (propertyName.Contains(";"))
+            {
+                resultList.AddRange(propertyName.Split(';'));
+            }
+            else
+            {
+                resultList.Add(propertyName);
+            }
+
+            return resultList;
         }
     }
 }

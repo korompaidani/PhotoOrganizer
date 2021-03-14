@@ -1,11 +1,11 @@
-﻿using PhotoOrganizer.DataAccess;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.FileHandler;
 
 namespace PhotoOrganizer.UI.Services
 {
     public class BackupService : IBackupService
     {
-        private const string defaultBackupFolder = @".\..\..\Resources\Backup";
         private string backupFolder;
 
         private BackupManager _backupManager;
@@ -20,7 +20,7 @@ namespace PhotoOrganizer.UI.Services
         public void CreateBackup(string path)
         {
             // TODO: save to config: use event
-            if (path == null) { path = defaultBackupFolder; }
+            if (path == null) { path = FilePaths.DefaultBackupFolder; }
             else { backupFolder = path; }
 
             // Use backupManager here
@@ -31,7 +31,7 @@ namespace PhotoOrganizer.UI.Services
         public void RestoreFromBackup(string path)
         {
             // TODO: load from config: use event
-            if (path == null) { path = defaultBackupFolder; }
+            if (path == null) { path = FilePaths.DefaultBackupFolder; }
             else { backupFolder = path; }
         }
     }

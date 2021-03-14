@@ -16,7 +16,7 @@
 
         <StackPanel Grid.Row="0">
             <Label Content="Location Name"/>
-            <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
             <Button Content="Set Coordinate" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}"/>
             <Button Content="Save Existing" Command="{Binding SaveOverrideLocationCommand}"/>
             <Button Content="Save As New" Command="{Binding SaveAsNewLocationCommand}"/>

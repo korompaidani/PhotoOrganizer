@@ -6,33 +6,35 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
              mc:Ignorable="d" >
-    
-<ScrollViewer>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65"/>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="3"  Grid.Column="3" Grid.ZIndex="0" Orientation="Vertical">
                 <Button Content="Save" Width="125" Margin="5"
                     Command="{Binding SaveCommand}"/>
-                <Button Content="Delete" Width="125" Margin="5"
-                    Command="{Binding DeleteCommand}"/>
+                <Button Content="Set All" Width="125" Margin="5"
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Title;LocationId;Coordinates;Peoples;Description;Year;Month;Day;HHMMSS"
+                        />
                 <Button Content="Finalize" Width="125" Margin="5"
                     Command="{Binding FinalizeCommand}"/>
                 <Button Content="Mark as unchanged" Width="125" Margin="5"
@@ -40,13 +42,15 @@
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
             <Button Grid.Row="0" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
-                    Command="{Binding BulkSetAttribute}"/>
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Title"
+                    />
 
             <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath,
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath,
                 UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5" IsReadOnly="True"/>
 
 
@@ -63,7 +67,9 @@
                 <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
             </StackPanel>
             <Button Grid.Row="2" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
-                    Command="{Binding BulkSetAttribute}"/>
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="LocationId;Coordinates"
+                    />
 
             <DockPanel Grid.Row="3" Grid.Column="1">
 
@@ -98,15 +104,20 @@
 
             </DockPanel>
             <Button Grid.Row="4" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
-                    Command="{Binding BulkSetAttribute}"/>
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Peoples"
+                    />
 
-            <Label Grid.Row="5" Grid.Column="0" Content="Description:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap"
+            <Label Grid.Row="5" Grid.Column="0" Content="Description" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap" Height="70" VerticalContentAlignment="Top"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Disabled"/>
+                HorizontalScrollBarVisibility="Disabled"
+                Text="{Binding Photo.Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
             <Button Grid.Row="5" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
-                    Command="{Binding BulkSetAttribute}"/>
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Description"
+                    />
 
             <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
@@ -119,7 +130,9 @@
                 </StackPanel>
             </StackPanel>
             <Button Grid.Row="6" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
-                    Command="{Binding BulkSetAttribute}"/>
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Year;Month;Day;HHMMSS"
+                    />
 
         </Grid>
     </ScrollViewer>
