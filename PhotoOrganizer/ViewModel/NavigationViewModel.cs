@@ -36,6 +36,9 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator = eventAggregator;
             _cacheService = cacheService;
             _bulkAttributeSetter = bulkAttributeSetter;
+
+            _cacheService.SetViewModelForReload(this);
+
             Photos = new ObservableCollection<PhotoNavigationItemViewModel>();
             Albums = new ObservableCollection<AlbumNavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
@@ -70,6 +73,9 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 Albums.Add(new AlbumNavigationItemViewModel(album.Id, album.DisplayMemberItem, nameof(AlbumDetailViewModel), _eventAggregator));
             }
+            
+            ((DelegateCommand)LoadUpNavigationCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)LoadDownNavigationCommand).RaiseCanExecuteChanged();
         }
 
         private void AfterDetailSaved(AfterDetailSavedEventArgs args)

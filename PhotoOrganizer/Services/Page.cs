@@ -10,13 +10,7 @@ namespace PhotoOrganizer.UI.Services
     public class Page
     {
         IBulkAttributeSetterService _bulkAttributeSetter;
-        public static int AllPageNumber;
-        public static int CurrentPageNumber;
-        public static bool IsFirstPage = false;
-        public static bool IsLastPage = false;
-
-        private static int PageSize = 42;
-        private static int ItemNumber;
+        private IPageSizeService _pageSizeService;
 
         protected IPhotoLookupDataService _lookupDataService;
         protected IEventAggregator _eventAggregator;
@@ -27,26 +21,32 @@ namespace PhotoOrganizer.UI.Services
             IPhotoLookupDataService lookupDataService, 
             IEventAggregator eventAggregator,
             IBulkAttributeSetterService bulkAttributeSetter,
+            IPageSizeService pageSizeService,
             ObservableCollection<PhotoNavigationItemViewModel> navigationItems)
         {
             _lookupDataService = lookupDataService;
             _eventAggregator = eventAggregator;
             _navigationItems = navigationItems;
             _bulkAttributeSetter = bulkAttributeSetter;
+            _pageSizeService = pageSizeService;
 
-            _cachedItems = new PhotoNavigationItemViewModel[PageSize];
+            _cachedItems = new PhotoNavigationItemViewModel[_pageSizeService.PageSize];
             _navigationItems.CopyTo(_cachedItems, 0);
         }
 
         public async Task LoadFirstPage()
         {
-            CurrentPageNumber = 0;
-            IsFirstPage = true;
-            ItemNumber = await _lookupDataService.GetPhotoCountAsync();
-            if(ItemNumber != 0)
+            _pageSizeService.SetCurrentPageNumber(0);
+            _pageSizeService.SetIsFirstPage(true);
+            var itemNumber = await _lookupDataService.GetPhotoCountAsync();
+            _pageSizeService.SetItemNumber(itemNumber);
+            if (_pageSizeService.ItemNumber != 0)
             {
                 await CreateNavigationViewModels();
             }
+
+            _pageSizeService.SetAllPageNumber(_pageSizeService.ItemNumber / _pageSizeService.PageSize);
+            _pageSizeService.SetIsLastPage(_pageSizeService.AllPageNumber == 0);
         }
 
         public async Task LoadUpPage()
@@ -91,7 +91,7 @@ namespace PhotoOrganizer.UI.Services
 
         private async Task CreateNavigationViewModels()
         {
-            var lookupItems = await _lookupDataService.GetPhotoFromBasedOnPageSizeAsync(CurrentPageNumber * PageSize, PageSize);
+            var lookupItems = await _lookupDataService.GetPhotoFromBasedOnPageSizeAsync(_pageSizeService.CurrentPageNumber * _pageSizeService.PageSize, _pageSizeService.PageSize);
 
             _navigationItems.Clear();
 
@@ -109,27 +109,27 @@ namespace PhotoOrganizer.UI.Services
         {
             if (isDown)
             {
-                CurrentPageNumber++;
+                _pageSizeService.IncreaseCurrentPageNumber();
             }
             else
             {
-                CurrentPageNumber--;
+                _pageSizeService.DecreaseCurrentPageNumber();
             }
 
-            ItemNumber = await _lookupDataService.GetPhotoCountAsync();
-            AllPageNumber = ItemNumber / PageSize;
+            _pageSizeService.SetItemNumber(await _lookupDataService.GetPhotoCountAsync());
+            _pageSizeService.SetAllPageNumber(_pageSizeService.ItemNumber / _pageSizeService.PageSize);
 
-            if (CurrentPageNumber == 0)
+            if (_pageSizeService.CurrentPageNumber == 0)
             {
-                IsFirstPage = true;
+                _pageSizeService.SetIsFirstPage(true);
             }
-            else { IsFirstPage = false; }
+            else { _pageSizeService.SetIsFirstPage(false); }
 
-            if (CurrentPageNumber == AllPageNumber)
+            if (_pageSizeService.CurrentPageNumber == _pageSizeService.AllPageNumber)
             {
-                IsLastPage = true;
+                _pageSizeService.SetIsLastPage(true);
             }
-            else { IsLastPage = false; }
+            else { _pageSizeService.SetIsLastPage(false); }
         }
     }
 }

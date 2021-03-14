@@ -173,7 +173,9 @@
     <Compile Include="Services\IBulkAttributeSetterService.cs" />
     <Compile Include="Services\ICacheService.cs" />
     <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IPageSizeService.cs" />
     <Compile Include="Services\Page.cs" />
+    <Compile Include="Services\PageSizeService.cs" />
     <Compile Include="Services\PhotoCacheService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />

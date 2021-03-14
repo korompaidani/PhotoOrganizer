@@ -12,32 +12,36 @@ namespace PhotoOrganizer.UI.Services
     public class PhotoCacheService : CacheServiceBase
     {
         IBulkAttributeSetterService _bulkAttributeSetter;
+        private IPageSizeService _pageSizeService;
         private IDictionary<int, Page> _pages;
 
         public PhotoCacheService(
             IPhotoLookupDataService lookupDataService, 
             IEventAggregator eventAggregator, 
-            IBulkAttributeSetterService bulkAttributeSetter) : base(lookupDataService, eventAggregator)
+            IBulkAttributeSetterService bulkAttributeSetter,
+            IPageSizeService pageSizeService
+            ) : base(lookupDataService, eventAggregator)
         {
             _pages = new Dictionary<int, Page>();
             _bulkAttributeSetter = bulkAttributeSetter;
+            _pageSizeService = pageSizeService;
         }
 
         public override bool CanMoveDown()
         {
-            return !Page.IsLastPage;
+            return !_pageSizeService.IsLastPage;
         }
 
         public override bool CanMoveUp()
         {
-            return !Page.IsFirstPage;
+            return !_pageSizeService.IsFirstPage;
         }
 
         public async override Task LoadDownAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
             if (CanMoveDown())
             {
-                var nextPageIndex = Page.CurrentPageNumber + 1;
+                var nextPageIndex = _pageSizeService.CurrentPageNumber + 1;
                 if (!_pages.ContainsKey(nextPageIndex))
                 {
                     // create new
@@ -79,7 +83,7 @@ namespace PhotoOrganizer.UI.Services
         {
             if (CanMoveUp())
             {
-                var nextPageIndex = Page.CurrentPageNumber - 1;
+                var nextPageIndex = _pageSizeService.CurrentPageNumber - 1;
                 if (!_pages.ContainsKey(nextPageIndex))
                 {
                     // create new
@@ -103,7 +107,7 @@ namespace PhotoOrganizer.UI.Services
         {
             foreach (var page in _pages)
             {
-                if (isSkipActual && page.Key == Page.CurrentPageNumber)
+                if (isSkipActual && page.Key == _pageSizeService.CurrentPageNumber)
                 {
                     continue;
                 }
@@ -115,7 +119,12 @@ namespace PhotoOrganizer.UI.Services
 
         private Page CreatePage(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels)
         {
-            return new Page(_lookupDataService, _eventAggregator, _bulkAttributeSetter, itemViewModels);
-        }        
+            return new Page(_lookupDataService, _eventAggregator, _bulkAttributeSetter, _pageSizeService ,itemViewModels);
+        }
+
+        public override void SetViewModelForReload(INavigationViewModel navigation)
+        {
+            _pageSizeService.SetNavigationViewModel(navigation);
+        }
     }
 }

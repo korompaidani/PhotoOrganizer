@@ -30,10 +30,11 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<BackupManager>().AsSelf();
             builder.RegisterType<BackupService>().As<IBackupService>();
             builder.RegisterType<PhotoCacheService>().As<ICacheService>();
+            builder.RegisterType<PageSizeService>().As<IPageSizeService>().SingleInstance();
 
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
 
-            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>().SingleInstance();
             builder.RegisterType<PhotoDetailViewModel>().Keyed<IDetailViewModel>(nameof(PhotoDetailViewModel));
             builder.RegisterType<AlbumDetailViewModel>().Keyed<IDetailViewModel>(nameof(AlbumDetailViewModel));
             builder.RegisterType<LocationDetailViewModel>().Keyed<IDetailViewModel>(nameof(LocationDetailViewModel));
