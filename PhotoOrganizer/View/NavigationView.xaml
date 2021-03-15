@@ -36,77 +36,13 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="460"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="45"/>
+        </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Content="Up" Command="{Binding LoadUpNavigationCommand}"/>
-
-        <GroupBox Grid.Row="1" Header="Photos">
-
-                <ListBox Grid.Row="0" x:Name="ImageListbox"
-                     ItemsSource="{Binding Photos}"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
-                                    Background="#44000000" >
-                                    <Border.RenderTransform>
-                                        <TranslateTransform X="5" Y="5" />
-                                    </Border.RenderTransform>
-                                    <Border.BitmapEffect>
-                                        <BlurBitmapEffect Radius="8" />
-                                    </Border.BitmapEffect>
-                                </Border>
-                            <Border Padding="4" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1">
-                                <StackPanel Orientation="Vertical" Width="66" Height="80">
-                                    <Image Margin="0" Height="64" Width="64" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
-                                    <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
-                                </StackPanel>
-                                </Border>
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <Button Content="" 
-                                    Command="{Binding OpenDetailViewCommand}"
-                                    FontSize="10">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Grid x:Name="grid">
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                                      VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Cursor" Value="Hand"/>
-                                                    <Setter Property="FontWeight" Value="Bold"/>
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter Property="FontWeight" Value="Normal"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
-                        </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
-            
-        </GroupBox>
-
-        <Button Grid.Row="2" Content="Down" Command="{Binding LoadDownNavigationCommand}"/>
-        
-        <GroupBox Grid.Row="3" Header="Albums">
+        <GroupBox Grid.Column="0" Header="Albums">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
@@ -116,6 +52,70 @@
                           Margin="5"/>
             </ScrollViewer>
         </GroupBox>
+
+        <GroupBox Grid.Column="1" Header="Photos">
+
+            <ListBox Grid.Row="0" x:Name="ImageListbox"
+                     ItemsSource="{Binding Photos}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
+                                    Background="#44000000" >
+                                <Border.RenderTransform>
+                                    <TranslateTransform X="5" Y="5" />
+                                </Border.RenderTransform>
+                                <Border.BitmapEffect>
+                                    <BlurBitmapEffect Radius="8" />
+                                </Border.BitmapEffect>
+                            </Border>
+                            <Border Padding="4" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1">
+                                <StackPanel Orientation="Vertical" Width="66" Height="80">
+                                    <Image Margin="0" Height="64" Width="64" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
+                                    <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
+                                </StackPanel>
+                            </Border>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <Button Content="" 
+                                    Command="{Binding OpenDetailViewCommand}"
+                                    FontSize="10">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid x:Name="grid">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="FontWeight" Value="Normal"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+        </GroupBox>
+
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <Button Content="Up" Command="{Binding LoadUpNavigationCommand}"/>
+            <Button Content="Down" Command="{Binding LoadDownNavigationCommand}"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>
