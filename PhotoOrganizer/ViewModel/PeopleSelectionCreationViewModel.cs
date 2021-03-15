@@ -65,6 +65,12 @@ namespace PhotoOrganizer.UI.ViewModel
                 var peopleItem = new PeopleItemViewModel(new PeopleWrapper(SelectedPeople.Model), _eventAggregator);
                 PeoplesOnPhoto.Add(peopleItem);
                 _detailView.Photo.AddPeople(SelectedPeople.Model);
+                Peoples.Remove(SelectedPeople);
+                SelectedPeople = null;
+            }
+            else
+            {
+                Peoples.Remove(SelectedPeople);
             }
         }
 
