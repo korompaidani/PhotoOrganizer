@@ -40,6 +40,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenPeopleAddViewCommand { get; }
         public ICommand MarkAsUnchanged { get; }
         public ICommand BulkSetAttribute { get; }
+        public ICommand AddToShelveCommand { get; }
+        public ICommand RemoveFromShelveCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -109,9 +111,39 @@ namespace PhotoOrganizer.UI.ViewModel
             FinalizeCommand = new DelegateCommand(OnFinalizeExecute);
             MarkAsUnchanged = new DelegateCommand(OnMarkAsUnchangedExecute);
             BulkSetAttribute = new DelegateCommand<string>(OnBulkSetAttributeExecute, OnBulkSetAttributeCanExecute);
+            AddToShelveCommand = new DelegateCommand(OnAddToShelveExecute, OnAddToShelveCanExecute);
+            RemoveFromShelveCommand = new DelegateCommand(OnRemoveFromShelveExecute, OnRemoveFromShelveCanExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private bool OnRemoveFromShelveCanExecute()
+        {
+            return !HasChanges && _photoRepository.IsPhotoExistOnShelve(Photo.Id);
+        }
+
+        private async void OnRemoveFromShelveExecute()
+        {
+            await _photoRepository.RemovePhotoToShelveAsync(Photo.Model);
+            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+
+            RaiseDetailSavedEvent(Photo.Id, Photo.Title, Photo.ColorFlag, true, true);
+        }
+
+        private bool OnAddToShelveCanExecute()
+        {
+            return !HasChanges && !_photoRepository.IsPhotoExistOnShelve(Photo.Id);
+        }
+
+        private async void OnAddToShelveExecute()
+        {
+            await _photoRepository.AddPhotoToShelveAsync(Photo.Model);
+            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+
+            RaiseDetailSavedEvent(Photo.Id, Photo.Title, Photo.ColorFlag, true, false);
         }
 
         private async void AfterSaveCoordinatesAsOverride(SaveCoordinatesAsOverrideEventArgs args)
@@ -282,6 +314,8 @@ namespace PhotoOrganizer.UI.ViewModel
             Photo = new PhotoWrapper(photo);
             Photo.PropertyChanged += (s, e) =>
             {
+                ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
                 if (!HasChanges)
                 {
                     HasChanges = _photoRepository.HasChanges();
@@ -357,7 +391,7 @@ namespace PhotoOrganizer.UI.ViewModel
             return photo;
         }
 
-        private void RaiseDetailSavedEvent(int modelId, string title, ColorSign colorFlag)
+        private void RaiseDetailSavedEvent(int modelId, string title, ColorSign colorFlag, bool isShelveChange = false, bool isRemovingFromShelve = false)
         {
             EventAggregator.GetEvent<AfterDetailSavedEvent>().Publish(
                 new AfterDetailSavedEventArgs
@@ -365,7 +399,9 @@ namespace PhotoOrganizer.UI.ViewModel
                     Id = modelId,
                     Title = title,
                     ColorFlag = ColorMap.Map[colorFlag],
-                    ViewModelName = this.GetType().Name
+                    ViewModelName = this.GetType().Name,
+                    IsShelveChanges = isShelveChange,
+                    IsRemovingFromShelve = isRemovingFromShelve
                 });
         }
 
@@ -382,7 +418,10 @@ namespace PhotoOrganizer.UI.ViewModel
                     HasChanges = _photoRepository.HasChanges();
                     Id = Photo.Id;
                     RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
-                });           
+                });
+
+            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
         }
 
         protected override bool OnSaveCanExecute()

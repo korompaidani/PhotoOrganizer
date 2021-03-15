@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Data.Lookups
 {
-    public class LookupDataService : IPhotoLookupDataService, ILocationLookupDataService, IAlbumLookupDataService
+    public class LookupDataService : IPhotoLookupDataService, ILocationLookupDataService, IAlbumLookupDataService, IShelveLookupDataService
     {
         private Func<PhotoOrganizerDbContext> _contextCreator;
 
@@ -69,6 +69,37 @@ namespace PhotoOrganizer.UI.Data.Lookups
             {
                 return await context.Photos.AsNoTracking().CountAsync();
             }
+        }
+
+        public List<LookupItem> GetShelveLookup()
+        {
+            using (var context = _contextCreator())
+            {
+                var shelve = GetOrCreateShelve(context);
+                return shelve.Photos.OrderBy(p => p.Id)
+                    .Select(p =>
+                    new LookupItem
+                    {
+                        Id = p.Id,
+                        DisplayMemberItem = p.Title,
+                        PhotoPath = p.FullPath,
+                        ColorFlag = p.ColorFlag
+                    }).ToList();
+            }
+        }
+
+        private Shelve GetOrCreateShelve(PhotoOrganizerDbContext context)
+        {
+            var all = context.Shelves.ToList();
+
+            var shelve = context.Shelves.FirstOrDefault(s => s.Id > -1);
+            if (shelve == null)
+            {
+                shelve = new Shelve { Id = 0 };
+                context.Shelves.Add(shelve);
+            }
+
+            return shelve;
         }
     }
 }

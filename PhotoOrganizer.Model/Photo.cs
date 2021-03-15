@@ -12,11 +12,11 @@ namespace PhotoOrganizer.Model
         {
             Peoples = new Collection<People>();
             Albums = new Collection<Album>();
+            Shelves = new Collection<Shelve>();
         }
 
         [Key]
         public int Id { get; set; }
-        [Required]
         public string Title { get; set; }
         [Required]
         public string FullPath { get; set; }
@@ -33,6 +33,7 @@ namespace PhotoOrganizer.Model
         public TimeSpan HHMMSS { get; set; }        
         public virtual ICollection<People> Peoples { get; set; }
         public ICollection<Album> Albums { get; set; }
+        public ICollection<Shelve> Shelves { get; set; }
         public ColorSign ColorFlag { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using PhotoOrganizer.UI.Data.Lookups;
 using System.Windows.Input;
 using Prism.Commands;
 using PhotoOrganizer.UI.Services;
-using System;
+using PhotoOrganizer.Common;
 
 namespace PhotoOrganizer.UI.ViewModel
 {
@@ -15,6 +15,7 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private IPhotoLookupDataService _photoLookupDataService;
         private IAlbumLookupDataService _albumLookupDataService;
+        private IShelveLookupDataService _shelveLookupDataService;
         private IEventAggregator _eventAggregator;
         private ICacheService _cacheService;
         private IBulkAttributeSetterService _bulkAttributeSetter;
@@ -23,16 +24,19 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand LoadUpNavigationCommand { get; }
         public ObservableCollection<PhotoNavigationItemViewModel> Photos { get; set; }
         public ObservableCollection<AlbumNavigationItemViewModel> Albums { get; set; }
+        public ObservableCollection<PhotoNavigationItemViewModel> ShelvePhotos { get; set; }
 
         public NavigationViewModel(
             IPhotoLookupDataService photoLookupDataService, 
             IAlbumLookupDataService albumLookupDataService,
+            IShelveLookupDataService shelveLookupDataService,
             IEventAggregator eventAggregator,
             ICacheService cacheService,
             IBulkAttributeSetterService bulkAttributeSetter)
         {
             _photoLookupDataService = photoLookupDataService;
             _albumLookupDataService = albumLookupDataService;
+            _shelveLookupDataService = shelveLookupDataService;
             _eventAggregator = eventAggregator;
             _cacheService = cacheService;
             _bulkAttributeSetter = bulkAttributeSetter;
@@ -41,6 +45,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             Photos = new ObservableCollection<PhotoNavigationItemViewModel>();
             Albums = new ObservableCollection<AlbumNavigationItemViewModel>();
+            ShelvePhotos = new ObservableCollection<PhotoNavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
             _eventAggregator.GetEvent<AfterBulkSetPhotoDetailAttributesEvent>().Subscribe(AfterBulkSetPhotoDetailAttributes);
@@ -66,7 +71,22 @@ namespace PhotoOrganizer.UI.ViewModel
         public async Task LoadAsync()
         {
             await _cacheService.LoadFirstAsync(Photos);
-            
+
+            var shelveItems = _shelveLookupDataService.GetShelveLookup();
+            ShelvePhotos.Clear();
+            foreach (var item in shelveItems)
+            {
+                ShelvePhotos.Add(
+                    new PhotoNavigationItemViewModel(
+                        item.Id, 
+                        item.DisplayMemberItem, 
+                        item.PhotoPath, 
+                        ColorMap.Map[item.ColorFlag], 
+                        nameof(PhotoDetailViewModel), 
+                        _eventAggregator, 
+                        _bulkAttributeSetter));
+            }
+
             var albums = await _albumLookupDataService.GetAlbumLookupAsync();
             Albums.Clear();
             foreach (var album in albums)
@@ -84,6 +104,7 @@ namespace PhotoOrganizer.UI.ViewModel
             {
                 case nameof(PhotoDetailViewModel):
                     AfterDetailSavedForPhotos(Photos, args);
+                    ReloadShelve(args);
                     break;
                 case nameof(AlbumDetailViewModel):
                     AfterDetailSavedForAlbums(Albums, args);
@@ -103,6 +124,31 @@ namespace PhotoOrganizer.UI.ViewModel
                 lookupItem.DisplayMemberItem = args.Title;
                 lookupItem.PhotoPath = args.PhotoPath;
                 lookupItem.ColorFlag = args.ColorFlag;
+            }
+        }
+
+        private void ReloadShelve(AfterDetailSavedEventArgs args)
+        {
+            var shelveLookupItem = ShelvePhotos.SingleOrDefault(p => p.Id == args.Id);
+            if (args.IsRemovingFromShelve && shelveLookupItem != null)
+            {
+                ShelvePhotos.Remove(shelveLookupItem);
+                return;
+            }                        
+
+            if (shelveLookupItem == null)
+            {
+                if (args.IsShelveChanges)
+                {
+                    var photo = Photos.SingleOrDefault(p => p.Id == args.Id);
+                    ShelvePhotos.Add(photo);
+                }                
+            }
+            else
+            {
+                shelveLookupItem.DisplayMemberItem = args.Title;
+                shelveLookupItem.PhotoPath = args.PhotoPath;
+                shelveLookupItem.ColorFlag = args.ColorFlag;
             }
         }
 

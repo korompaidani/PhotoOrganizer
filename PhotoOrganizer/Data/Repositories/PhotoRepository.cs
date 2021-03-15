@@ -143,5 +143,53 @@ namespace PhotoOrganizer.UI.Data.Repositories
         {
             return await Context.People.FindAsync(id);
         }
+
+        public async Task AddPhotoToShelveAsync(Photo photo)
+        {
+            var shelve = GetOrCreateShelve();
+            shelve.Photos.Add(photo);
+            await Context.SaveChangesAsync();
+        }
+
+        public List<Photo> GetAllPhotoOfShelve()
+        {
+            var shelve = GetOrCreateShelve();
+            return shelve.Photos.ToList();
+        }
+
+        public bool IsPhotoExistOnShelve(int photoId)
+        {
+            var shelve = GetOrCreateShelve();
+            return shelve.Photos.Any(p => p.Id == photoId);
+        }
+
+        public async Task ReloadPhotoAsync(int photoId)
+        {
+            var dbEntitiyEntry = Context.ChangeTracker.Entries<Photo>()
+                .SingleOrDefault(db => db.Entity.Id == photoId);
+            if (dbEntitiyEntry != null)
+            {
+                await dbEntitiyEntry.ReloadAsync();
+            }
+        }
+
+        public async Task RemovePhotoToShelveAsync(Photo photo)
+        {
+            var shelve = GetOrCreateShelve();
+            shelve.Photos.Remove(photo);
+            await Context.SaveChangesAsync();
+        }
+
+        private Shelve GetOrCreateShelve()
+        {
+            var shelve = Context.Shelves.FirstOrDefault(s => s.Id > -1);
+            if (shelve == null)
+            {
+                shelve = new Shelve { Id = 0 };
+                Context.Shelves.Add(shelve);
+            }
+
+            return shelve;
+        }
     }
 }

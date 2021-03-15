@@ -37,12 +37,72 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="45"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Header="Albums">
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Header="Shelve">
+
+                <ListBox Grid.Row="0" x:Name="ShelveImageListbox"
+                     ItemsSource="{Binding ShelvePhotos}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
+                                    Background="#44000000" >
+                                    <Border.RenderTransform>
+                                        <TranslateTransform X="5" Y="5" />
+                                    </Border.RenderTransform>
+                                    <Border.BitmapEffect>
+                                        <BlurBitmapEffect Radius="8" />
+                                    </Border.BitmapEffect>
+                                </Border>
+                                
+                                <Border Padding="0" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1" Width="120">
+                                    <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
+                                </Border>
+                                <Label Content="{Binding DisplayMemberItem}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Margin="0" Padding="2"/>
+                                <Button Content="" 
+                                    Command="{Binding OpenDetailViewCommand}"
+                                    FontSize="10">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid x:Name="grid">
+                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Cursor" Value="Hand"/>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="FontWeight" Value="Normal"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <local:CascadingPanel ItemOffset="50"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+
+            </GroupBox>
+            <GroupBox Grid.Row="1" Header="Albums">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
@@ -52,6 +112,7 @@
                           Margin="5"/>
             </ScrollViewer>
         </GroupBox>
+        </Grid>
 
         <GroupBox Grid.Column="1" Header="Photos">
 
@@ -76,7 +137,6 @@
                                     <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
                                 </StackPanel>
                             </Border>
-                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <Button Content="" 
                                     Command="{Binding OpenDetailViewCommand}"
                                     FontSize="10">

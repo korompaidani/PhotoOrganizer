@@ -99,6 +99,34 @@
     <Compile Include="Migrations\202103071753029_AddDescriptionAndCreator.designer.cs">
       <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103151116312_ShelveHasBeenCreated.cs" />
+    <Compile Include="Migrations\202103151116312_ShelveHasBeenCreated.designer.cs">
+      <DependentUpon>202103151116312_ShelveHasBeenCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151123469_ShelveNameRequired.cs" />
+    <Compile Include="Migrations\202103151123469_ShelveNameRequired.designer.cs">
+      <DependentUpon>202103151123469_ShelveNameRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151126401_ShelveCreated.cs" />
+    <Compile Include="Migrations\202103151126401_ShelveCreated.designer.cs">
+      <DependentUpon>202103151126401_ShelveCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151127302_ShelveCreatedAgain.cs" />
+    <Compile Include="Migrations\202103151127302_ShelveCreatedAgain.designer.cs">
+      <DependentUpon>202103151127302_ShelveCreatedAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151142396_ShelvePhotoN2N.cs" />
+    <Compile Include="Migrations\202103151142396_ShelvePhotoN2N.designer.cs">
+      <DependentUpon>202103151142396_ShelvePhotoN2N.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.cs" />
+    <Compile Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.designer.cs">
+      <DependentUpon>202103151622446_ShelvePhotoN2NPhotoId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs" />
+    <Compile Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.designer.cs">
+      <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +184,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103071753029_AddDescriptionAndCreator.resx">
       <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151116312_ShelveHasBeenCreated.resx">
+      <DependentUpon>202103151116312_ShelveHasBeenCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151123469_ShelveNameRequired.resx">
+      <DependentUpon>202103151123469_ShelveNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151126401_ShelveCreated.resx">
+      <DependentUpon>202103151126401_ShelveCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151127302_ShelveCreatedAgain.resx">
+      <DependentUpon>202103151127302_ShelveCreatedAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151142396_ShelvePhotoN2N.resx">
+      <DependentUpon>202103151142396_ShelvePhotoN2N.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.resx">
+      <DependentUpon>202103151622446_ShelvePhotoN2NPhotoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.resx">
+      <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

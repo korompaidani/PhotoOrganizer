@@ -13,6 +13,8 @@ namespace PhotoOrganizer.UI.Event
         public string Title { get; set; }
         public string PhotoPath { get; set; }
         public string ColorFlag { get; set; }
-        public string ViewModelName { get; set; }        
+        public string ViewModelName { get; set; }
+        public bool IsShelveChanges { get; set; }
+        public bool IsRemovingFromShelve { get; set; }
     }
 }

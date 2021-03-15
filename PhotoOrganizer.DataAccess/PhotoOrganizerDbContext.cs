@@ -13,6 +13,7 @@ namespace PhotoOrganizer.DataAccess
         public DbSet<Location> Locations { get; set; }
         public DbSet<People> People { get; set; }
         public DbSet<Album> Albums { get; set; }
+        public DbSet<Shelve> Shelves { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

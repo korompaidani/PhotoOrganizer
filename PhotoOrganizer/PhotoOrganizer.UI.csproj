@@ -133,6 +133,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
     <Compile Include="Data\Lookups\ILocationLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IShelveLookupDataService.cs" />
     <Compile Include="Data\Repositories\AlbumRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAlbumRepository.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\IPhotoViewModel.cs" />
     <Compile Include="ViewModel\ISettingsViewModel.cs" />
+    <Compile Include="ViewModel\IShelveViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\PeopleItemViewModel.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\PhotoViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ShelveViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
@@ -237,6 +240,9 @@
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ShelveView.xaml.cs">
+      <DependentUpon>ShelveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
     </Compile>
@@ -249,6 +255,7 @@
     <Compile Include="Wrapper\PhotoWrapper.cs" />
     <Compile Include="Wrapper\LocationWrapper.cs" />
     <Compile Include="Wrapper\SettingsWrapper.cs" />
+    <Compile Include="Wrapper\ShelveWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -290,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShelveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

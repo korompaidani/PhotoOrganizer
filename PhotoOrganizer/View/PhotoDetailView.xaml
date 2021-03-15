@@ -39,6 +39,10 @@
                     Command="{Binding FinalizeCommand}"/>
                 <Button Content="Mark as unchanged" Width="125" Margin="5"
                     Command="{Binding MarkAsUnchanged}"/>
+                <Button Content="Add to Shelve" Width="125" Margin="5"
+                    Command="{Binding AddToShelveCommand}"/>
+                <Button Content="Remove from shelve" Width="125" Margin="5"
+                    Command="{Binding RemoveFromShelveCommand}"/>
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
