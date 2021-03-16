@@ -23,6 +23,7 @@ namespace PhotoOrganizer.Model
         [Timestamp]
         public byte[] RowVersion { get; set; }
         public string Description { get; set; }
+        public string Comment { get; set; }
         public string Creator { get; set; }
         public string Coordinates { get; set; }
         public int? LocationId { get; set; }

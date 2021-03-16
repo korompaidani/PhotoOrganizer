@@ -34,9 +34,111 @@ namespace PhotoOrganizer.UI.Services
             throw new System.NotImplementedException();
         }
 
-        public Photo CreatePhotoFromMeta(string filePath)
+        public Photo CreatePhotoModelFromFile(string filePath)
         {
-            throw new NotImplementedException();
+            var fullPath = Path.GetFullPath(filePath);
+            var result = _exifToFileWriter.ReadMeta(fullPath);
+
+            var date = CreatePhotoComformTakenDate(result);
+            var time = new TimeSpan(date.Hour, date.Minute, date.Second);
+            var title = CreatePhotoComformTitle(result);
+            if (String.IsNullOrEmpty(title))
+            {
+                title = Path.GetFileNameWithoutExtension(filePath);
+            }
+
+            return new Photo
+            {
+                FullPath = fullPath,
+                Title = title,
+                Coordinates = CreatePhotoComformCoordinates(result),
+                Year = date.Year,
+                Month = date.Month,
+                Day = date.Day,
+                HHMMSS = time,
+                Description = CreatePhotoComformDescription(result),
+                Creator = CreatePhotoComformCreator(result),
+                Comment = CreatePhotoComformPeoples(result)
+            };
+        }
+
+        string CreatePhotoComformCoordinates(Dictionary<MetaProperty, string> rawData)
+        {
+            string latitude;
+            string longitude;
+
+            rawData.TryGetValue(MetaProperty.Latitude, out latitude);
+            rawData.TryGetValue(MetaProperty.Longitude, out longitude);
+
+            if (latitude == null || longitude == null)
+            {
+                return null;
+            }
+
+            var sb = new StringBuilder(latitude);
+            sb.Append(",");
+            sb.Append(longitude);
+            return sb.ToString();
+        }
+
+        string CreatePhotoComformTitle(Dictionary<MetaProperty, string> rawData)
+        {
+            string title = null;
+
+            rawData.TryGetValue(MetaProperty.Title, out title);
+
+            return title;
+        }
+
+        string CreatePhotoComformDescription(Dictionary<MetaProperty, string> rawData)
+        {
+            string description = null;
+
+            rawData.TryGetValue(MetaProperty.Desciprion, out description);
+
+            return description;
+        }
+
+        string CreatePhotoComformCreator(Dictionary<MetaProperty, string> rawData)
+        {
+            string creator = null;
+
+            rawData.TryGetValue(MetaProperty.Author, out creator);
+
+            return creator;
+        }
+
+        string CreatePhotoComformPeoples(Dictionary<MetaProperty, string> rawData)
+        {
+            string peoples = null;
+
+            rawData.TryGetValue(MetaProperty.Keywords, out peoples);
+
+            return peoples;
+        }
+
+        DateTime CreatePhotoComformTakenDate(Dictionary<MetaProperty, string> rawData)
+        {
+            string dateString = null;
+            string cleanedDateString = null;
+
+            rawData.TryGetValue(MetaProperty.DateTime, out dateString);
+            
+            if(dateString != null)
+            {
+                cleanedDateString = dateString.Remove(dateString.Length - 1, 1);
+            }
+
+            DateTime date;
+
+            DateTime.TryParse(cleanedDateString, out date);
+
+            if(date.Year == 1)
+            {
+                date = new DateTime(1986, 05, 02);
+            }
+
+            return date;
         }
 
         private Dictionary<MetaProperty, string> MapModelToMetaProperty(Photo photoModel)
@@ -77,7 +179,7 @@ namespace PhotoOrganizer.UI.Services
                         sb.Append(",");
                     }
                 }
-                properties.Add(MetaProperty.Comments, sb.ToString());
+                properties.Add(MetaProperty.Keywords, sb.ToString());
             }
 
             if (photoModel.Description != null)
@@ -100,7 +202,7 @@ namespace PhotoOrganizer.UI.Services
                     minute: photoModel.HHMMSS.Minutes,
                     second: photoModel.HHMMSS.Seconds);
 
-                var takenDate = date.ToString("yyyy:MM:dd HH:mm:ss") + '\0';
+                var takenDate = date.ToString("yyyy.MM.dd HH:mm:ss") + '\0';
                 properties.Add(MetaProperty.DateTime, takenDate);
             }
 

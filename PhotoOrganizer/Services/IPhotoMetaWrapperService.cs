@@ -7,6 +7,6 @@ namespace PhotoOrganizer.UI.Services
     {
         bool WriteMetaInfoToSingleFile(Photo photoModel);
         Task WriteMetaInfoToAllFileAsync();
-        Photo CreatePhotoFromMeta(string filePath);
+        Photo CreatePhotoModelFromFile(string filePath);
     }
 }

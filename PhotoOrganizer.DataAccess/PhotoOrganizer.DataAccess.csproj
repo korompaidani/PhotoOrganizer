@@ -127,6 +127,10 @@
     <Compile Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.designer.cs">
       <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.cs" />
+    <Compile Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.designer.cs">
+      <DependentUpon>202103162241012_CommentHasBeenAddedToPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.resx">
       <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.resx">
+      <DependentUpon>202103162241012_CommentHasBeenAddedToPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

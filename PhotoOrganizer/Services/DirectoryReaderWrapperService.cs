@@ -13,17 +13,20 @@ namespace PhotoOrganizer.UI.Services
         private DirectoryReader _directoryReader;
         private IMessageDialogService _messageDialogService;
         private IBackupService _backupService;
+        private IPhotoMetaWrapperService _photoMetaWrapperService;
 
         public DirectoryReaderWrapperService(
             DirectoryReader directoryReader, 
             IPhotoRepository photoRepository,
             IMessageDialogService messageDialogService,
-            IBackupService backupService)
+            IBackupService backupService,
+            IPhotoMetaWrapperService photoMetaWrapperService)
         {
             _photoRepository = photoRepository;
             _directoryReader = directoryReader;
             _messageDialogService = messageDialogService;
             _backupService = backupService;
+            _photoMetaWrapperService = photoMetaWrapperService;
         }
 
         public async Task LoadAllFromLibraryAsync()
@@ -65,8 +68,8 @@ namespace PhotoOrganizer.UI.Services
             var list = new List<Photo>();
             foreach (var file in _directoryReader.FileList)
             {
-                // TODO: new Bitmap based on extension and drop it
-                list.Add(new Photo { FullPath = file.Key, Title = file.Value });
+                var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
+                list.Add(photo);
             }
 
             return list.ToArray();

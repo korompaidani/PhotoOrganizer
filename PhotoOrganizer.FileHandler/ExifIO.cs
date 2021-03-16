@@ -28,7 +28,7 @@ namespace PhotoOrganizer.FileHandler
                 {
                     if (Enum.IsDefined(typeof(MetaProperty), propertyItem.Id))
                     {
-                        result.Add((MetaProperty)propertyItem.Id, Encoding.Unicode.GetString(propertyItem.Value));
+                        result.Add((MetaProperty)propertyItem.Id, Encoding.UTF8.GetString(propertyItem.Value));
                     }
                 }
             }
