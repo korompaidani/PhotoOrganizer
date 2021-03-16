@@ -30,6 +30,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IPhotoRepository _photoRepository;
         private DateTime _date;
         private IBulkAttributeSetterService _bulkAttributeSetter;
+        private IPhotoMetaWrapperService _photoMetaWrapperService;
         private bool _isDetailViewInitialized = false;
         private bool _isFinalized = false;
         private bool _isAnySelectedNavigationItem = false;
@@ -42,6 +43,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand BulkSetAttribute { get; }
         public ICommand AddToShelveCommand { get; }
         public ICommand RemoveFromShelveCommand { get; }
+        public ICommand WriteMetadataCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -84,13 +86,15 @@ namespace PhotoOrganizer.UI.ViewModel
             IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             ILocationLookupDataService locationLookupDataService,
-            IBulkAttributeSetterService bulkAttributeSetter
+            IBulkAttributeSetterService bulkAttributeSetter,
+            IPhotoMetaWrapperService photoMetaWrapperService
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
             _locationLookupDataService = locationLookupDataService;
             _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
             _bulkAttributeSetter = bulkAttributeSetter;
+            _photoMetaWrapperService = photoMetaWrapperService;
 
             EventAggregator.GetEvent<AfterCollectionSavedEvent>()
                 .Subscribe(AfterCollectionSaved);
@@ -113,9 +117,17 @@ namespace PhotoOrganizer.UI.ViewModel
             BulkSetAttribute = new DelegateCommand<string>(OnBulkSetAttributeExecute, OnBulkSetAttributeCanExecute);
             AddToShelveCommand = new DelegateCommand(OnAddToShelveExecute, OnAddToShelveCanExecute);
             RemoveFromShelveCommand = new DelegateCommand(OnRemoveFromShelveExecute, OnRemoveFromShelveCanExecute);
+            WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private async void OnWriteMetadataExecute()
+        {
+            var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model);
+            var message = result ? "File has been succesfully modified" : "File cannot be modified";
+            await MessageDialogService.ShowInfoDialogAsync(message);
         }
 
         private bool OnRemoveFromShelveCanExecute()

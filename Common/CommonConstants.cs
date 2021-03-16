@@ -2,6 +2,21 @@
 
 namespace PhotoOrganizer.Common
 {
+    public enum MetaProperty
+    {
+        Title = 40091,
+        Comments = 40092,        
+        Author = 40093,
+        Keywords = 40094,
+        Subject = 40095,
+        Copyright = 33432,
+        Software = 11,
+        DateTime = 36867,
+        Latitude = 2,
+        Longitude = 22,
+        Desciprion = 270,
+    }
+
     public enum Months
     {
         January,

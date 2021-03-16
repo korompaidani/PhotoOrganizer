@@ -65,6 +65,7 @@ namespace PhotoOrganizer.UI.Services
             var list = new List<Photo>();
             foreach (var file in _directoryReader.FileList)
             {
+                // TODO: new Bitmap based on extension and drop it
                 list.Add(new Photo { FullPath = file.Key, Title = file.Value });
             }
 

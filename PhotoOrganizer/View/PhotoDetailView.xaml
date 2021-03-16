@@ -43,6 +43,8 @@
                     Command="{Binding AddToShelveCommand}"/>
                 <Button Content="Remove from shelve" Width="125" Margin="5"
                     Command="{Binding RemoveFromShelveCommand}"/>
+                <Button Content="Write Metadata" Width="125" Margin="5"
+                    Command="{Binding WriteMetadataCommand}"/>
             </StackPanel>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>

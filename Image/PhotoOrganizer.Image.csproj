@@ -52,5 +52,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\PhotoOrganizer.Common.csproj">
+      <Project>{47E30D1E-7D24-49BE-A3BD-D3639736212D}</Project>
+      <Name>PhotoOrganizer.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,6 +16,7 @@ namespace PhotoOrganizer.UI.Services
             _pageSizeService = pageSizeService;
         }
 
+        // TODO: each part should be register for an event provided by this handler
         public async Task ApplySettingsAsync(Settings settings)
         {
             if(settings != null)

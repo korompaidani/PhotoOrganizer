@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoOrganizer.Common;
+using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -6,13 +7,12 @@ namespace PhotoOrganizer.Image
 {
     public class Picture
     {
-        private const string DefaultPicturePath = @".\..\..\Resources\Pictures\DefaultPicture.jpg";
         private static BitmapSource defaultPicture;
         private static ExifMetadata defaultExifMetadata;
 
         static Picture()
         {
-            var defaultUri = new Uri(Path.GetFullPath(DefaultPicturePath));
+            var defaultUri = new Uri(Path.GetFullPath(FilePaths.DefaultPicturePath));
             defaultPicture = BitmapFrame.Create(defaultUri).Thumbnail;
             defaultExifMetadata = new ExifMetadata(defaultUri);
         }
@@ -21,7 +21,7 @@ namespace PhotoOrganizer.Image
         {
             if (path == null || !File.Exists(Path.GetFullPath(path)))
             {
-                path = Path.GetFullPath(DefaultPicturePath);
+                path = Path.GetFullPath(FilePaths.DefaultPicturePath);
                 Source = path;
                 Uri = new Uri(path);
                 Thumbnail = defaultPicture;

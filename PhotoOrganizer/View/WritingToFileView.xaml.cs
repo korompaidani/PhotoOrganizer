@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.ViewModel;
+﻿using MahApps.Metro.Controls;
+using PhotoOrganizer.UI.ViewModel;
 using System;
 using System.Windows;
 
@@ -7,7 +8,7 @@ namespace PhotoOrganizer.UI.View
     /// <summary>
     /// Interaction logic for WritingToFileView.xaml
     /// </summary>
-    public partial class WritingToFileView : Window
+    public partial class WritingToFileView : MetroWindow
     {
         WritingToFileViewModel _viewModel;
 
