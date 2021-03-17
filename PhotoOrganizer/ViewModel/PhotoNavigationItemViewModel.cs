@@ -1,7 +1,11 @@
-﻿using PhotoOrganizer.Common;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.Image;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
+using PhotoOrganizer.UI.StateMachine.MetaSerializationStates;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;
@@ -18,7 +22,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool _isChecked;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
-        private IBulkAttributeSetterService _bulkAttributeSetter;
+        private IBulkAttributeSetterService _bulkAttributeSetter;        
 
         public ICommand OpenDetailViewCommand { get; }
 
@@ -114,6 +118,9 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenDetailViewExecute()
         {
+            var photoDetailContext = Bootstrapper.Container.Resolve<IPhotoDetailContext>();
+            photoDetailContext.RunWorkflow(Bootstrapper.Container.Resolve<OpeningPhotoDetailState>());
+
             _eventAggregator.GetEvent<OpenDetailViewEvent>().
                 Publish(
                     new OpenDetailViewEventArgs 

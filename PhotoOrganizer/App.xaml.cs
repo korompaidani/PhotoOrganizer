@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using PhotoOrganizer.MapTools;
 using PhotoOrganizer.UI.Startup;
 using System.Windows;
 
@@ -13,8 +12,8 @@ namespace PhotoOrganizer.UI
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             var bootstrapper = new Bootstrapper();
-            var container = bootstrapper.Bootstrap();
-            var mainWindow = container.Resolve<MainWindow>();
+            bootstrapper.Bootstrap();
+            var mainWindow = Bootstrapper.Container.Resolve<MainWindow>();
             mainWindow.Show();
         }
     }

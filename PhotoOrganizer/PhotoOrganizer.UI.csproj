@@ -187,6 +187,14 @@
     <Compile Include="Services\PhotoMetaWrapperService.cs" />
     <Compile Include="Services\SettingsHandler.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="StateMachine\IPhotoDetailContext.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosedPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosingPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\IPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\PhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpeningPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpenPhotoDetailState.cs" />
+    <Compile Include="StateMachine\PhotoDetailContext.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\Command.cs" />

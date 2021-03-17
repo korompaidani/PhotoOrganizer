@@ -7,12 +7,16 @@ using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.FileHandler;
+using PhotoOrganizer.UI.StateMachine;
+using PhotoOrganizer.UI.StateMachine.MetaSerializationStates;
 
 namespace PhotoOrganizer.UI.Startup
 {
     public class Bootstrapper
     {
-        public IContainer Bootstrap()
+        public static IContainer Container { get; private set; }
+
+        public void Bootstrap()
         {
             var builder = new ContainerBuilder();
 
@@ -49,7 +53,14 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
             builder.RegisterType<PhotoMetaWrapperService>().As<IPhotoMetaWrapperService>().SingleInstance();
             builder.RegisterType<SettingsHandler>().As<ISettingsHandler>().SingleInstance();
-            return builder.Build();
+
+            builder.RegisterType<PhotoDetailContext>().As<IPhotoDetailContext>();
+            builder.RegisterType<OpeningPhotoDetailState>().AsSelf();
+            builder.RegisterType<OpenPhotoDetailState>().AsSelf();
+            builder.RegisterType<ClosingPhotoDetailState>().AsSelf();
+            builder.RegisterType<ClosedPhotoDetailState>().AsSelf();
+
+            Container = builder.Build();
         }
     }
 }
