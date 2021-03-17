@@ -57,6 +57,8 @@ namespace PhotoOrganizer.UI.Wrapper
             }
         }
 
+        public string Comment { get { return Model.Comment; }}
+
         public int? LocationId
         {
             get { return Model.LocationId; }

@@ -117,16 +117,26 @@ namespace PhotoOrganizer.UI.ViewModel
             BulkSetAttribute = new DelegateCommand<string>(OnBulkSetAttributeExecute, OnBulkSetAttributeCanExecute);
             AddToShelveCommand = new DelegateCommand(OnAddToShelveExecute, OnAddToShelveCanExecute);
             RemoveFromShelveCommand = new DelegateCommand(OnRemoveFromShelveExecute, OnRemoveFromShelveCanExecute);
-            WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute);
+            WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute, OnWriteMetadataCanExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private bool OnWriteMetadataCanExecute()
+        {
+            return true; // TODO: Check if not finalized
         }
 
         private async void OnWriteMetadataExecute()
         {
             var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model);
             var message = result ? "File has been succesfully modified" : "File cannot be modified";
+            if (result)
+            {
+                Photo.ColorFlag = ColorSign.Finalized;
+                OnSaveExecute();
+            }
             await MessageDialogService.ShowInfoDialogAsync(message);
         }
 

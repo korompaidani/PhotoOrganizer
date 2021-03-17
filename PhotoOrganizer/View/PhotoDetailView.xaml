@@ -19,6 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -56,8 +57,7 @@
                     />
 
             <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath,
-                UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5" IsReadOnly="True"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath}" Margin="5 0 5 5" IsReadOnly="True"/>
 
 
             <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
@@ -109,10 +109,15 @@
                 </ListBox>
 
             </DockPanel>
+            
+            
+            
             <Button Grid.Row="4" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="Peoples"
                     />
+
+            
 
             <Label Grid.Row="5" Grid.Column="0" Content="Description" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap" Height="70" VerticalContentAlignment="Top"
@@ -125,8 +130,10 @@
                     CommandParameter="Description"
                     />
 
-            <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding Photo.Comment}" Margin="5 0 5 0"/>
+            
+            <Label Grid.Row="7" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
                 <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
                 <StackPanel Orientation="Vertical">
                     <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
@@ -135,7 +142,7 @@
                         FormatString="HH:mm"/>
                 </StackPanel>
             </StackPanel>
-            <Button Grid.Row="6" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+            <Button Grid.Row="7" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="Year;Month;Day;HHMMSS"
                     />
