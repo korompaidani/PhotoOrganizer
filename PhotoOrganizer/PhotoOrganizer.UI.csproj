@@ -138,11 +138,13 @@
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAlbumRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IMaintenanceRepository.cs" />
     <Compile Include="Data\Repositories\IPeopleRepository.cs" />
     <Compile Include="Data\Repositories\IPhotoRepository.cs" />
     <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupDataService.cs" />
     <Compile Include="Data\Repositories\ILocationRepository.cs" />
+    <Compile Include="Data\Repositories\MaintenanceRepository.cs" />
     <Compile Include="Data\Repositories\PeopleRepository.cs" />
     <Compile Include="Data\Repositories\PhotoRepository.cs" />
     <Compile Include="Data\Repositories\LocationRepository.cs" />
