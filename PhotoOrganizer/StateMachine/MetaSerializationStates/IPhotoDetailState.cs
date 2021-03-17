@@ -5,7 +5,7 @@ namespace PhotoOrganizer.UI.StateMachine.MetaSerializationStates
 {
     public interface IPhotoDetailState
     {
-        void SetContextAndServices(IPhotoDetailContext context, IBulkAttributeSetterService bulkAttributeSetter, IPhotoMetaWrapperService photoMetaWrapperService, IEventAggregator eventAggregator);
+        void SetContextAndServices(IPhotoDetailContext context, IBulkAttributeSetterService bulkAttributeSetter, IPhotoMetaWrapperService photoMetaWrapperService, IEventAggregator eventAggregator, string photoOriginalPath);
         void Handle();
     }
 }

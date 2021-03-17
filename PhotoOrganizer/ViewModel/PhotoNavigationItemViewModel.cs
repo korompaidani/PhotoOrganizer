@@ -119,7 +119,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private void OnOpenDetailViewExecute()
         {
             var photoDetailContext = Bootstrapper.Container.Resolve<IPhotoDetailContext>();
-            photoDetailContext.RunWorkflow(Bootstrapper.Container.Resolve<OpeningPhotoDetailState>());
+            photoDetailContext.RunWorkflow(Bootstrapper.Container.Resolve<OpeningPhotoDetailState>(), _path);
 
             _eventAggregator.GetEvent<OpenDetailViewEvent>().
                 Publish(

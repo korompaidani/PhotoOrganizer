@@ -16,7 +16,8 @@ namespace PhotoOrganizer.UI.StateMachine.MetaSerializationStates
             IPhotoDetailContext context,
             IBulkAttributeSetterService bulkAttributeSetter,
             IPhotoMetaWrapperService photoMetaWrapperService,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,
+            string photoOriginalPath)
         {
             _context = context;
             _bulkAttributeSetter = bulkAttributeSetter;

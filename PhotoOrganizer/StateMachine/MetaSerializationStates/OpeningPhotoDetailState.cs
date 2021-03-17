@@ -8,6 +8,8 @@ namespace PhotoOrganizer.UI.StateMachine.MetaSerializationStates
         public override void Handle()
         {
             // File operations
+
+
             var newState = Bootstrapper.Container.Resolve<OpenPhotoDetailState>();
             _context.TransitionTo(newState);
             newState.Handle();

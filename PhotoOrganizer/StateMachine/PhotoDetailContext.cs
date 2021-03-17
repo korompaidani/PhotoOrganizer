@@ -2,6 +2,7 @@
 using PhotoOrganizer.UI.StateMachine.MetaSerializationStates;
 using Prism.Events;
 using System;
+using System.IO;
 
 namespace PhotoOrganizer.UI.StateMachine
 {
@@ -11,6 +12,7 @@ namespace PhotoOrganizer.UI.StateMachine
         private IBulkAttributeSetterService _bulkAttributeSetter;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
         private IEventAggregator _eventAggregator;
+        private string _photoOriginalPath;
 
         public PhotoDetailContext(
             IBulkAttributeSetterService bulkAttributeSetter,
@@ -25,11 +27,13 @@ namespace PhotoOrganizer.UI.StateMachine
         public void TransitionTo(IPhotoDetailState state)
         {
             _state = state;
-            _state.SetContextAndServices(this, _bulkAttributeSetter, _photoMetaWrapperService, _eventAggregator);
+            _state.SetContextAndServices(this, _bulkAttributeSetter, _photoMetaWrapperService, _eventAggregator, _photoOriginalPath);
         }
 
-        public void RunWorkflow(IPhotoDetailState initialState)
+        public void RunWorkflow(IPhotoDetailState initialState, string photoOriginalPath)
         {
+            _photoOriginalPath = Path.GetFullPath(photoOriginalPath);
+
             if (initialState == null)
             {
                 throw new ArgumentNullException(nameof(initialState));
