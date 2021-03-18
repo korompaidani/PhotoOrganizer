@@ -131,6 +131,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
     <Compile Include="Data\Lookups\ILocationLookupDataService.cs" />
     <Compile Include="Data\Lookups\IShelveLookupDataService.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Event\AfterCollectionSavedEvent.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
+    <Compile Include="Event\AfterDetailRemovedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
@@ -171,7 +173,10 @@
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
     <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\WriteMetadataEvent.cs" />
+    <Compile Include="Event\WriteMetadataFinishedEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
+    <Compile Include="Helpers\PhotoDetailInfo.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\BulkAttributeSetterService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />

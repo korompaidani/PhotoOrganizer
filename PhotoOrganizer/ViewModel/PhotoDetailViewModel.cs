@@ -108,6 +108,8 @@ namespace PhotoOrganizer.UI.ViewModel
                 .Subscribe(AfterSaveCoordinatesAsOverride);
             EventAggregator.GetEvent<SelectionChangedEvent>()
                 .Subscribe(AfterSelectionChanged);
+            EventAggregator.GetEvent<WriteMetadataFinishedEvent>()
+                .Subscribe(AfterWriteMetadataFinished);
 
             OpenPhotoCommand = new DelegateCommand(OnOpenPhotoExecute);
             OpenMapCommand = new DelegateCommand(OnOpenMapExecute);
@@ -128,16 +130,29 @@ namespace PhotoOrganizer.UI.ViewModel
             return true; // TODO: Check if not finalized
         }
 
-        private async void OnWriteMetadataExecute()
+        private void OnWriteMetadataExecute()
+        {            
+            EventAggregator.GetEvent<WriteMetadataEvent>().Publish(
+                    new WriteMetadataEventArgs
+                    {
+                        PhotoId = Photo.Id,
+                        Photo = Photo.Model
+                    });            
+        }
+
+        private async void AfterWriteMetadataFinished(WriteMetadataFinishedEventArgs args)
         {
-            var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model);
-            var message = result ? "File has been succesfully modified" : "File cannot be modified";
-            if (result)
+            if(args.PhotoId == Photo.Id)
             {
-                Photo.ColorFlag = ColorSign.Finalized;
-                OnSaveExecute();
+                // message service as singleton must be implemented, which has messdialog service reference also
+                var message = args.IsSuccesfullyDone ? "File has been succesfully modified" : "File cannot be modified";
+                if (args.IsSuccesfullyDone)
+                {
+                    SetFinalizedStateFlag();
+                    await OnInternalSaveExecute();
+                }
+                await MessageDialogService.ShowInfoDialogAsync(message);
             }
-            await MessageDialogService.ShowInfoDialogAsync(message);
         }
 
         private bool OnRemoveFromShelveCanExecute()
@@ -423,8 +438,28 @@ namespace PhotoOrganizer.UI.ViewModel
                     ColorFlag = ColorMap.Map[colorFlag],
                     ViewModelName = this.GetType().Name,
                     IsShelveChanges = isShelveChange,
-                    IsRemovingFromShelve = isRemovingFromShelve
+                    IsRemovingFromShelve = isRemovingFromShelve,
+                    PhotoPath = Photo.FullPath
                 });
+        }
+
+        protected async Task OnInternalSaveExecute()
+        {
+            if (!_isFinalized)
+            {
+                Photo.ColorFlag = ColorSign.Modified;
+            }
+
+            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
+                () =>
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                });
+
+            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
         }
 
         protected override async void OnSaveExecute()
@@ -471,10 +506,21 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private async void OnFinalizeExecute()
+        private void SetFinalizedStateFlag()
         {
             Photo.ColorFlag = ColorSign.Finalized;
             _isFinalized = true;
+        }
+
+        private void SetUnmodifiedStateFlag()
+        {
+            Photo.ColorFlag = ColorSign.Unmodified;
+            _isFinalized = false;
+        }
+
+        private async void OnFinalizeExecute()
+        {
+            SetFinalizedStateFlag();
 
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
                 () =>
@@ -487,8 +533,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnMarkAsUnchangedExecute()
         {
-            Photo.ColorFlag = ColorSign.Unmodified;
-            _isFinalized = false;
+            SetUnmodifiedStateFlag();
 
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
                 () =>

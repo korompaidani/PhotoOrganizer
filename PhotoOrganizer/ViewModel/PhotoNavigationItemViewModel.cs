@@ -2,6 +2,7 @@
 using PhotoOrganizer.Common;
 using PhotoOrganizer.Image;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Helpers;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
@@ -14,6 +15,7 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class PhotoNavigationItemViewModel : ViewModelBase
     {
+        private bool _isAlreadyOpened = false;
         private string _displayMemberItem;
         private string _path;
         private string _colorFlag;
@@ -22,7 +24,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool _isChecked;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
-        private IBulkAttributeSetterService _bulkAttributeSetter;        
+        private IBulkAttributeSetterService _bulkAttributeSetter;
+        private IPhotoDetailContext _photoDetailContext;
 
         public ICommand OpenDetailViewCommand { get; }
 
@@ -41,9 +44,12 @@ namespace PhotoOrganizer.UI.ViewModel
             _detailViewModelName = detailViewModelName;
             _bulkAttributeSetter = bulkAttributeSetter;
 
+            _eventAggregator.GetEvent<AfterDetailClosedEvent>()
+                .Subscribe(AfterDetailClosed);
+
             IsChecked = _bulkAttributeSetter.IsCheckedById(Id);
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
-        }                       
+        }
 
         public int Id { get; }
 
@@ -118,16 +124,26 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenDetailViewExecute()
         {
-            var photoDetailContext = Bootstrapper.Container.Resolve<IPhotoDetailContext>();
-            photoDetailContext.RunWorkflow(Bootstrapper.Container.Resolve<OpeningPhotoDetailState>(), _path);
+            if (!_isAlreadyOpened)
+            {
+                _photoDetailContext = Bootstrapper.Container.Resolve<IPhotoDetailContext>();
+                _photoDetailContext.RunWorkflow(Bootstrapper.Container.Resolve<OpeningPhotoDetailState>(), new PhotoDetailInfo { Id = this.Id, FullFilePath = _path });
+            }
 
-            _eventAggregator.GetEvent<OpenDetailViewEvent>().
-                Publish(
-                    new OpenDetailViewEventArgs 
-                    {
-                        Id = Id,
-                        ViewModelName = _detailViewModelName
-                    });
+                _eventAggregator.GetEvent<OpenDetailViewEvent>().
+                    Publish(
+                        new OpenDetailViewEventArgs
+                        {
+                            Id = Id,
+                            ViewModelName = _detailViewModelName
+                        });
+
+                _isAlreadyOpened = true;
+        }
+
+        private void AfterDetailClosed(AfterDetailClosedEventArgs args)
+        {
+            _isAlreadyOpened = false;
         }
     }
 }

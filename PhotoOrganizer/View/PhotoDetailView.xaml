@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:converters="clr-namespace:PhotoOrganizer.UI.Converters"
              mc:Ignorable="d" >
-
+    <UserControl.Resources>
+        <converters:ImageConverter x:Key="imageConverter"></converters:ImageConverter>
+    </UserControl.Resources>
     <ScrollViewer>
         <Grid>
             <Grid.RowDefinitions>
@@ -79,7 +82,7 @@
 
             <DockPanel Grid.Row="3" Grid.Column="1">
 
-                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
+                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
 
             </DockPanel>
 

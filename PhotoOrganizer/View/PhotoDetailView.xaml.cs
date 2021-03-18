@@ -11,6 +11,7 @@ namespace PhotoOrganizer.UI.View
     {
         public PhotoDetailView()
         {
+
             InitializeComponent();
         }
 

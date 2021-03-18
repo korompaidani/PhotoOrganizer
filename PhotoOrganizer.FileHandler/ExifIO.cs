@@ -36,7 +36,7 @@ namespace PhotoOrganizer.FileHandler
             return result;
         }
 
-        public bool WriteMetaToOriginalImageFile(string fullPath, Dictionary<MetaProperty, string> properties)
+        public bool WriteMetaToImageFile(string fullPath, Dictionary<MetaProperty, string> properties)
         {
             try
             {

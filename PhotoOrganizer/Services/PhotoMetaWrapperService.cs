@@ -21,11 +21,11 @@ namespace PhotoOrganizer.UI.Services
             _exifToFileWriter = exifToFileWriter;
         }
 
-        public bool WriteMetaInfoToSingleFile(Photo photoModel)
+        public bool WriteMetaInfoToSingleFile(Photo photoModel, string targetFile)
         {
-            var fullPath = Path.GetFullPath(photoModel.FullPath);
+            var fullPath = Path.GetFullPath(targetFile);
             var properties = MapModelToMetaProperty(photoModel);
-            return _exifToFileWriter.WriteMetaToOriginalImageFile(fullPath, properties);
+            return _exifToFileWriter.WriteMetaToImageFile(fullPath, properties);
         }
 
         public async Task WriteMetaInfoToAllFileAsync()

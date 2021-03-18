@@ -49,7 +49,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>().SingleInstance();
             builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             builder.RegisterType<LocationRepository>().As<ILocationRepository>();
-            builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>();
+            builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>().SingleInstance(); ;
 
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
             builder.RegisterType<PhotoMetaWrapperService>().As<IPhotoMetaWrapperService>().SingleInstance();
@@ -60,6 +60,8 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<OpenPhotoDetailState>().AsSelf();
             builder.RegisterType<ClosingPhotoDetailState>().AsSelf();
             builder.RegisterType<ClosedPhotoDetailState>().AsSelf();
+
+            builder.RegisterType<FileSystem>().AsSelf();
 
             Container = builder.Build();
         }

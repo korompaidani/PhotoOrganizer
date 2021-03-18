@@ -59,6 +59,7 @@
     <Compile Include="BitmapExtension.cs" />
     <Compile Include="DirectoryReader.cs" />
     <Compile Include="ExifIO.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="JsonFileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
