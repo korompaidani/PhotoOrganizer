@@ -108,8 +108,6 @@ namespace PhotoOrganizer.UI.ViewModel
                 .Subscribe(AfterSaveCoordinatesAsOverride);
             EventAggregator.GetEvent<SelectionChangedEvent>()
                 .Subscribe(AfterSelectionChanged);
-            EventAggregator.GetEvent<WriteMetadataFinishedEvent>()
-                .Subscribe(AfterWriteMetadataFinished);
 
             OpenPhotoCommand = new DelegateCommand(OnOpenPhotoExecute);
             OpenMapCommand = new DelegateCommand(OnOpenMapExecute);
@@ -127,32 +125,25 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnWriteMetadataCanExecute()
         {
-            return true; // TODO: Check if not finalized
-        }
-
-        private void OnWriteMetadataExecute()
-        {            
-            EventAggregator.GetEvent<WriteMetadataEvent>().Publish(
-                    new WriteMetadataEventArgs
-                    {
-                        PhotoId = Photo.Id,
-                        Photo = Photo.Model
-                    });            
-        }
-
-        private async void AfterWriteMetadataFinished(WriteMetadataFinishedEventArgs args)
-        {
-            if(args.PhotoId == Photo.Id)
+            if(Photo.ColorFlag == ColorSign.Finalized)
             {
-                // message service as singleton must be implemented, which has messdialog service reference also
-                var message = args.IsSuccesfullyDone ? "File has been succesfully modified" : "File cannot be modified";
-                if (args.IsSuccesfullyDone)
-                {
-                    SetFinalizedStateFlag();
-                    await OnInternalSaveExecute();
-                }
-                await MessageDialogService.ShowInfoDialogAsync(message);
+                return false;
             }
+            return true;            
+        }
+
+        private async void OnWriteMetadataExecute()
+        {
+            var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model, Photo.FullPath);
+            // message service as singleton must be implemented, which has messdialog service reference also
+            var message = result ? "File has been succesfully modified" : "File cannot be modified";
+            if (result)
+            {
+                SetFinalizedStateFlag();
+                await OnInternalSaveExecute();
+            }
+
+            await MessageDialogService.ShowInfoDialogAsync(message);
         }
 
         private bool OnRemoveFromShelveCanExecute()
@@ -460,6 +451,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
             ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
         }
 
         protected override async void OnSaveExecute()
@@ -479,6 +471,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
             ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
         }
 
         protected override bool OnSaveCanExecute()
@@ -542,6 +535,8 @@ namespace PhotoOrganizer.UI.ViewModel
                     Id = Photo.Id;
                     RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
                 });
+
+            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
         }
 
         private void AfterSelectionChanged(SelectionChangedEventArgs args)

@@ -21,7 +21,7 @@ namespace PhotoOrganizer.Common
             { ColorSign.Modified, "#f6f7a6" },
             { ColorSign.Finalized, "#6dbd83" },
             { ColorSign.Opened, "#FFFFFF" },
-            { ColorSign.Checked, "#eb4034" },
+            { ColorSign.Checked, "#0767b3" },
         };
 
         public static Dictionary<ColorSign, string> Map { get { return _map; } }
