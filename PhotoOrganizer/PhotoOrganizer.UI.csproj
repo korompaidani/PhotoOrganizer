@@ -159,8 +159,11 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\SaveAllDetailViewEvent.cs" />
     <Compile Include="Event\CloseProgressWindowEvent.cs" />
     <Compile Include="Event\CloseSettingsEvent.cs" />
+    <Compile Include="Event\DisplayMessageEvent.cs" />
+    <Compile Include="Event\ErrorEvent.cs" />
     <Compile Include="Event\LocationChangedEventArgs.cs" />
     <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
     <Compile Include="Event\OpenSettingsEvent.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Event\OpenMapViewEvent.cs" />
     <Compile Include="Event\OpenPhotoViewEvent.cs" />
     <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\WriteAllMetadataEvent.cs" />
     <Compile Include="Event\WriteMetadataEvent.cs" />
     <Compile Include="Event\WriteMetadataFinishedEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
@@ -194,6 +198,7 @@
     <Compile Include="Services\PhotoMetaWrapperService.cs" />
     <Compile Include="Services\SettingsHandler.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="StateMachine\ApplicationContext.cs" />
     <Compile Include="StateMachine\IPhotoDetailContext.cs" />
     <Compile Include="StateMachine\MetaSerializationStates\ClosedPhotoDetailState.cs" />
     <Compile Include="StateMachine\MetaSerializationStates\ClosingPhotoDetailState.cs" />

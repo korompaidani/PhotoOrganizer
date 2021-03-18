@@ -19,7 +19,8 @@ namespace PhotoOrganizer.UI.Startup
         public void Bootstrap()
         {
             var builder = new ContainerBuilder();
-
+            
+            builder.RegisterType<ApplicationContext>().AsSelf().SingleInstance();
             builder.RegisterType<PhotoOrganizerDbContext>().AsSelf();
 
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
@@ -47,9 +48,9 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<PeopleRepository>().As<IPeopleRepository>();
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>().SingleInstance();
-            builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
-            builder.RegisterType<LocationRepository>().As<ILocationRepository>();
-            builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>().SingleInstance(); ;
+            builder.RegisterType<AlbumRepository>().As<IAlbumRepository>().SingleInstance();
+            builder.RegisterType<LocationRepository>().As<ILocationRepository>().SingleInstance();
+            builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>().SingleInstance();
 
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
             builder.RegisterType<PhotoMetaWrapperService>().As<IPhotoMetaWrapperService>().SingleInstance();

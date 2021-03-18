@@ -217,6 +217,7 @@ namespace PhotoOrganizer.UI.ViewModel
             InitializeDateAndTime(photo);
             RaiseOpenPhotoDetailView();
             await LoadLocationLookupAsync();
+            ((DelegateCommand<string>)BulkSetAttribute).RaiseCanExecuteChanged();
         }
 
         private void RaiseOpenPhotoDetailView()
@@ -547,7 +548,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnBulkSetAttributeCanExecute(string propertyName)
         {
-            if (_isAnySelectedNavigationItem)
+            if (_bulkAttributeSetter.IsAnySelectedItem(Photo.Id))
             {
                 return true;
             }

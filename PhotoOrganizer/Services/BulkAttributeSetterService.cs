@@ -58,12 +58,12 @@ namespace PhotoOrganizer.UI.Services
 
         private void EvaluateCheckCounts(int beforeCount, int afterCount)
         {
-            if(beforeCount == 0 && afterCount > 0)
+            if(afterCount > 0 && afterCount != beforeCount)
             {
                 RaiseSelectionChangedEvent(isAnySelected : true);
                 return;
             }
-            if (afterCount == 0 && beforeCount > 0)
+            if (afterCount == 0)
             {
                 RaiseSelectionChangedEvent(isAnySelected: false);
                 return;
@@ -157,6 +157,21 @@ namespace PhotoOrganizer.UI.Services
                 {
                     IsAnySelectedItem = isAnySelected
                 });
+        }
+
+        public bool IsAnySelectedItem(int? exceptId = null)
+        {
+            if(_navigationItemCheckStatusCollection.Count > 0)
+            {
+                if (exceptId != null)
+                {
+                    return !_navigationItemCheckStatusCollection.ContainsKey((int)exceptId);
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
