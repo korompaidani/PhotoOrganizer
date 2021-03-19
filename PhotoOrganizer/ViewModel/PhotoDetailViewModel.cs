@@ -140,7 +140,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (result)
             {
                 SetFinalizedStateFlag();
-                await SaveChanges();
+                await SaveChanges(false);
             }
 
             await MessageDialogService.ShowInfoDialogAsync(message);
@@ -435,14 +435,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        public override async Task SaveChanges()
+        public override async Task SaveChanges(bool isClosing)
         {
-            await Save();
+            await Save(isClosing);
         }
 
         protected override async void OnSaveExecute()
         {
-            await Save();
+            await Save(false);
         }
 
         protected override bool OnSaveCanExecute()
@@ -470,11 +470,16 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private async Task Save()
+        public void SetModifiedFlag()
+        {
+            Photo.ColorFlag = ColorSign.Modified;
+        }
+
+        private async Task Save(bool isClosing)
         {
             if (!_isFinalized)
             {
-                Photo.ColorFlag = ColorSign.Modified;
+                SetModifiedFlag();
             }
 
             await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
@@ -482,12 +487,18 @@ namespace PhotoOrganizer.UI.ViewModel
                 {
                     HasChanges = _photoRepository.HasChanges();
                     Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                    if (!isClosing)
+                    {
+                        RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                    }
                 });
 
-            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
+            if (!isClosing)
+            {
+                ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
+            }
         }
 
         private void SetFinalizedStateFlag()

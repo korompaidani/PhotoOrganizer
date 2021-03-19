@@ -9,7 +9,7 @@
         xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
         mc:Ignorable="d"
         Title="PhotoOrganizer" MinHeight="760" MinWidth="1280" FontSize="20"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Closing="WindowClosing">
     <Window.Resources>
         <DataTemplate DataType="{x:Type view:WorkbenchView}">
             <view:WorkbenchView/>

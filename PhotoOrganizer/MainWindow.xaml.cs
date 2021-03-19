@@ -42,5 +42,10 @@ namespace PhotoOrganizer.UI
             };
             splashScreen.BeginAnimation(OpacityProperty, animation);
         }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _viewModel.OpenClosingAppCommand.Execute(null);
+        }
     }
 }

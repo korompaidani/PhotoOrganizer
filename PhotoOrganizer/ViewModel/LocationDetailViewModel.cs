@@ -94,26 +94,36 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnSaveExecute()
         {
-            await Save();
+            await Save(false);
         }
 
-        private async Task Save()
+        private async Task Save(bool isClosing)
         {
             try
             {
                 await _locationRepository.SaveAsync();
-                HasChanges = _locationRepository.HasChanges();
-                RaiseCollectionSavedEvent();
+
+                if (!isClosing)
+                {
+                    HasChanges = _locationRepository.HasChanges();
+                    RaiseCollectionSavedEvent();
+                }                
             }
             catch (Exception ex)
             {
-                while (ex.InnerException != null)
+                if (!isClosing)
                 {
-                    ex = ex.InnerException;
+                    while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    await MessageDialogService.ShowInfoDialogAsync("Error while saving the entities, " +
+                        "the data will be reloaded. Details: " + ex.Message);
+
+                    await LoadAsync(Id);
                 }
-                await MessageDialogService.ShowInfoDialogAsync("Error while saving the entities, " +
-                    "the data will be reloaded. Details: " + ex.Message);
-                await LoadAsync(Id);
+
+                throw ex;
             }
         }
 
@@ -161,9 +171,9 @@ namespace PhotoOrganizer.UI.ViewModel
             await LoadAsync(args.LocationId);
         }
 
-        public override async Task SaveChanges()
+        public override async Task SaveChanges(bool isClosing)
         {
-            await Save();
+            await Save(isClosing);
         }
     }
 }

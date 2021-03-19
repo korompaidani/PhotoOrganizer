@@ -2,6 +2,11 @@
 
 namespace PhotoOrganizer.Common
 {
+    public enum ErrorTypes
+    {
+        DetailViewClosingError
+    }
+
     public enum MetaProperty
     {
         Title = 40091,

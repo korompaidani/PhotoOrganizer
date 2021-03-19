@@ -108,7 +108,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnSaveExecute()
         {
-            await Save();
+            await Save(false);
         }
 
         private bool OnRemovePhotoCanExecute()
@@ -227,17 +227,20 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public async override Task SaveChanges()
+        public async override Task SaveChanges(bool isClosing)
         {
-            await Save();
+            await Save(isClosing);
         }
 
-        private async Task Save()
+        private async Task Save(bool isClosing)
         {
             await _albumRepository.SaveAsync();
-            HasChanges = _albumRepository.HasChanges();
-            Id = Album.Id;
-            RaiseDetailSavedEvent(Album.Id, Album.Title);
+            if (!isClosing)
+            {
+                HasChanges = _albumRepository.HasChanges();
+                Id = Album.Id;
+                RaiseDetailSavedEvent(Album.Id, Album.Title);
+            }            
         }
     }
 }

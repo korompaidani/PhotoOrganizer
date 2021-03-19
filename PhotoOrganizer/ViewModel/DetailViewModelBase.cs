@@ -67,7 +67,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public abstract Task LoadAsync(int id);
 
-        public abstract Task SaveChanges();
+        public abstract Task SaveChanges(bool isClosing);
 
         protected abstract void OnDeleteExecute();
 

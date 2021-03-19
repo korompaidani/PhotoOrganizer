@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Data.Repositories;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
@@ -6,6 +7,7 @@ using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.StateMachine
 {
@@ -18,9 +20,12 @@ namespace PhotoOrganizer.UI.StateMachine
         private IPhotoRepository _photorepository;
         private ILocationRepository _locationRepository;
         private IAlbumRepository _albumRepository;
+        private bool _isCumulativeAffirmativeDecision = false;
+
         private List<IDetailViewModel> _openedPhotoDetailViewModels;
         private List<IDetailViewModel> _openedAlbumDetailViewModels;
         private List<IDetailViewModel> _openedLocationDetailViewModels;
+        private Dictionary<ErrorTypes, string> _errorMessages;
 
         public ApplicationContext(
             IMessageDialogService messageDialogService,
@@ -42,6 +47,7 @@ namespace PhotoOrganizer.UI.StateMachine
             _openedPhotoDetailViewModels = new List<IDetailViewModel>();
             _openedAlbumDetailViewModels = new List<IDetailViewModel>();
             _openedLocationDetailViewModels = new List<IDetailViewModel>();
+            _errorMessages = new Dictionary<ErrorTypes, string>();
 
             _eventAggregator.GetEvent<WriteAllMetadataEvent>()
                 .Subscribe(WriteAllMetadata);
@@ -83,6 +89,69 @@ namespace PhotoOrganizer.UI.StateMachine
             {
                 _openedLocationDetailViewModels.Remove(detailViewModel);
             }
+        }
+
+        public async Task SaveAllOpenedDetailView()
+        {
+            // Show dialog and ask cumulative save, discard and single
+            _isCumulativeAffirmativeDecision = false;
+
+            await SaveOpenedDetailViews(_openedPhotoDetailViewModels);
+            await SaveOpenedDetailViews(_openedAlbumDetailViewModels);
+            await SaveOpenedDetailViews(_openedLocationDetailViewModels);
+
+            if (_isCumulativeAffirmativeDecision)
+            {
+                try
+                {
+                    await _photorepository.SaveAsync();
+                    await _locationRepository.SaveAsync();
+                    await _albumRepository.SaveAsync();
+                }
+                catch (Exception ex)
+                {
+                    _errorMessages.Add(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
+                }
+            }
+        }
+
+        private async Task SaveOpenedDetailViews(List<IDetailViewModel> openedDetailView, bool isSave = true)
+        {
+            if (isSave)
+            {
+                bool isAffirmativeSaveResult = false;
+                foreach (var detailView in openedDetailView)
+                {
+                    try
+                    {
+                        if (!_isCumulativeAffirmativeDecision)
+                        {
+                            // Show dialog
+                            isAffirmativeSaveResult = true;
+
+                            if (isAffirmativeSaveResult)
+                            {
+                                if (detailView.HasChanges)
+                                {
+                                    await detailView.SaveChanges(true);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var photoDetail = detailView as PhotoDetailViewModel;
+                            if (photoDetail != null)
+                            {
+                                photoDetail.SetModifiedFlag();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _errorMessages.Add(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
+                    }
+                }
+            }            
         }
 
         private void WriteAllMetadata(WriteAllMetadataEventArgs args)

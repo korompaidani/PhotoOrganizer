@@ -1,10 +1,14 @@
-﻿using Autofac.Features.Indexed;
+﻿using Autofac;
+using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -12,6 +16,7 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private ApplicationContext _context;
         private IMessageDialogService _messageDialogService;
         private IDirectoryReaderWrapperService _directoryReaderWrapperService;
         private IEventAggregator _eventAggregator;
@@ -22,7 +27,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private WorkbenchViewModel _workbenchViewModel;
 
         public ICommand OpenWorkbenchCommand { get; set; }
-        
+        public ICommand OpenClosingAppCommand { get; set; }
+
         private object _selectedViewModel;
 
         public object SelectedViewModel
@@ -51,6 +57,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator = eventAggregator;
             _settingsHandler = settingsHandler;
             _photoMetaWrapperService = photoMetaWrapperService;
+            _context = Bootstrapper.Container.Resolve<ApplicationContext>();
             _eventAggregator.GetEvent<OpenPhotoViewEvent>().Subscribe(OnOpenPhotoView);
             _eventAggregator.GetEvent<OpenMapViewEvent>().Subscribe(OnOpenMapViewAsync);
             _eventAggregator.GetEvent<CloseMapViewEvent>().Subscribe(OnOpenWorkbenchView);
@@ -58,6 +65,12 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<CloseSettingsEvent>().Subscribe(OnCloseSettingsView);
 
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
+            OpenClosingAppCommand = new DelegateCommand(OnClosingApp);
+        }
+
+        private async void OnClosingApp()
+        {
+            await _context.SaveAllOpenedDetailView();
         }
 
         private void OnCloseSettingsView(CloseSettingsEventArgs args)

@@ -264,7 +264,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnSaveExecute()
         {
-            await Save();
+            await Save(false);
         }
 
         private Location CreateNewLocation()
@@ -274,18 +274,21 @@ namespace PhotoOrganizer.UI.ViewModel
             return location;
         }
 
-        public async override Task SaveChanges()
+        public async override Task SaveChanges(bool isClosing)
         {
             if(Location != null && !Location.HasErrors && HasChanges)
             {
-                await Save();
+                await Save(isClosing);
             }
         }
 
-        private async Task Save()
+        private async Task Save(bool isClosing)
         {
             await _locationRepository.SaveAsync();
-            HasChanges = _locationRepository.HasChanges();
+            if (!isClosing)
+            {
+                HasChanges = _locationRepository.HasChanges();
+            }
         }
     }
 }
