@@ -11,7 +11,6 @@ namespace PhotoOrganizer.UI.StateMachine
 {
     public class ApplicationContext
     {
-        public int ID;
         private IMessageDialogService _messageDialogService;
         private IBulkAttributeSetterService _bulkAttributeSetter;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
@@ -19,7 +18,9 @@ namespace PhotoOrganizer.UI.StateMachine
         private IPhotoRepository _photorepository;
         private ILocationRepository _locationRepository;
         private IAlbumRepository _albumRepository;
-        private List<DetailViewModelBase> _openedDetailViewModels;
+        private List<IDetailViewModel> _openedPhotoDetailViewModels;
+        private List<IDetailViewModel> _openedAlbumDetailViewModels;
+        private List<IDetailViewModel> _openedLocationDetailViewModels;
 
         public ApplicationContext(
             IMessageDialogService messageDialogService,
@@ -38,7 +39,9 @@ namespace PhotoOrganizer.UI.StateMachine
             _locationRepository = locationRepository;
             _albumRepository = albumRepository;
 
-            _openedDetailViewModels = new List<DetailViewModelBase>();
+            _openedPhotoDetailViewModels = new List<IDetailViewModel>();
+            _openedAlbumDetailViewModels = new List<IDetailViewModel>();
+            _openedLocationDetailViewModels = new List<IDetailViewModel>();
 
             _eventAggregator.GetEvent<WriteAllMetadataEvent>()
                 .Subscribe(WriteAllMetadata);
@@ -50,9 +53,36 @@ namespace PhotoOrganizer.UI.StateMachine
                 .Subscribe(GetAnError);
         }
 
-        public void RegisterOpenedDetailViews(DetailViewModelBase detailViewModel)
+        public void RegisterOpenedDetailView(IDetailViewModel detailViewModel, string modelViewType)
         {
-            _openedDetailViewModels.Add(detailViewModel);            
+            if(modelViewType == nameof(PhotoDetailViewModel))
+            {
+                _openedPhotoDetailViewModels.Add(detailViewModel);
+            }
+            if (modelViewType == nameof(AlbumDetailViewModel))
+            {
+                _openedAlbumDetailViewModels.Add(detailViewModel);
+            }
+            if (modelViewType == nameof(LocationDetailViewModel))
+            {
+                _openedLocationDetailViewModels.Add(detailViewModel);
+            }
+        }
+
+        public void UnRegisterOpenedDetailView(IDetailViewModel detailViewModel, string modelViewType)
+        {
+            if (modelViewType == nameof(PhotoDetailViewModel))
+            {
+                _openedPhotoDetailViewModels.Remove(detailViewModel);
+            }
+            if (modelViewType == nameof(AlbumDetailViewModel))
+            {
+                _openedAlbumDetailViewModels.Remove(detailViewModel);
+            }
+            if (modelViewType == nameof(LocationDetailViewModel))
+            {
+                _openedLocationDetailViewModels.Remove(detailViewModel);
+            }
         }
 
         private void WriteAllMetadata(WriteAllMetadataEventArgs args)

@@ -264,8 +264,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnSaveExecute()
         {
-            await _locationRepository.SaveAsync();
-            HasChanges = _locationRepository.HasChanges();        
+            await Save();
         }
 
         private Location CreateNewLocation()
@@ -273,6 +272,20 @@ namespace PhotoOrganizer.UI.ViewModel
             isNewLocationObject = true;
             var location = new Location();            
             return location;
+        }
+
+        public async override Task SaveChanges()
+        {
+            if(Location != null && !Location.HasErrors && HasChanges)
+            {
+                await Save();
+            }
+        }
+
+        private async Task Save()
+        {
+            await _locationRepository.SaveAsync();
+            HasChanges = _locationRepository.HasChanges();
         }
     }
 }

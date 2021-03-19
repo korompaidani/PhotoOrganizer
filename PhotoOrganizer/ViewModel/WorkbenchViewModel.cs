@@ -1,6 +1,9 @@
-﻿using Autofac.Features.Indexed;
+﻿using Autofac;
+using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
@@ -16,6 +19,7 @@ namespace PhotoOrganizer.UI.ViewModel
 {
     public class WorkbenchViewModel : ViewModelBase
     {
+        private ApplicationContext _context;
         private IDetailViewModel _selectedDetailViewModel;
         private IMessageDialogService _messageDialogService;
         private IDirectoryReaderWrapperService _directoryReaderWrapperService;
@@ -62,6 +66,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _messageDialogService = messageDialogService;
             _directoryReaderWrapperService = directoryReaderWrapperService;
             _photoMetaWrapperService = photoMetaWrapperService;
+            _context = Bootstrapper.Container.Resolve<ApplicationContext>();
 
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenDetailViewEvent>().
@@ -136,6 +141,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 try
                 {
                     await detailViewModel.LoadAsync(args.Id);
+                    _context.RegisterOpenedDetailView(detailViewModel, args.ViewModelName);
                 }
                 catch (Exception)
                 {
@@ -180,6 +186,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (detailViewModel != null)
             {
                 DetailViewModels.Remove(detailViewModel);
+                _context.UnRegisterOpenedDetailView(detailViewModel, viewModelName);
             }
         }
     }

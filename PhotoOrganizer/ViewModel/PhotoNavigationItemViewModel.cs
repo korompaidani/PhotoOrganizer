@@ -2,7 +2,6 @@
 using PhotoOrganizer.Image;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
-using PhotoOrganizer.UI.StateMachine;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;

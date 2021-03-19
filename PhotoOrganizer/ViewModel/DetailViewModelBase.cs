@@ -67,6 +67,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public abstract Task LoadAsync(int id);
 
+        public abstract Task SaveChanges();
+
         protected abstract void OnDeleteExecute();
 
         protected abstract bool OnSaveCanExecute();
@@ -158,6 +160,6 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             afterSaveAction();
-        }
+        }        
     }
 }

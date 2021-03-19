@@ -94,15 +94,20 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnSaveExecute()
         {
+            await Save();
+        }
+
+        private async Task Save()
+        {
             try
             {
                 await _locationRepository.SaveAsync();
                 HasChanges = _locationRepository.HasChanges();
                 RaiseCollectionSavedEvent();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                while(ex.InnerException != null)
+                while (ex.InnerException != null)
                 {
                     ex = ex.InnerException;
                 }
@@ -154,6 +159,11 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void AfterCoordinatesSavedAsOverride(SaveCoordinatesAsOverrideEventArgs args)
         {
             await LoadAsync(args.LocationId);
+        }
+
+        public override async Task SaveChanges()
+        {
+            await Save();
         }
     }
 }

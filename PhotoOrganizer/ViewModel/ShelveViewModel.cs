@@ -17,6 +17,11 @@ namespace PhotoOrganizer.UI.ViewModel
             throw new NotImplementedException();
         }
 
+        public override Task SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void OnDeleteExecute()
         {
             throw new NotImplementedException();

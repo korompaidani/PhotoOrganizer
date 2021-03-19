@@ -140,7 +140,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (result)
             {
                 SetFinalizedStateFlag();
-                await OnInternalSaveExecute();
+                await SaveChanges();
             }
 
             await MessageDialogService.ShowInfoDialogAsync(message);
@@ -435,44 +435,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        protected async Task OnInternalSaveExecute()
+        public override async Task SaveChanges()
         {
-            if (!_isFinalized)
-            {
-                Photo.ColorFlag = ColorSign.Modified;
-            }
-
-            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
-                () =>
-                {
-                    HasChanges = _photoRepository.HasChanges();
-                    Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
-                });
-
-            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
+            await Save();
         }
 
         protected override async void OnSaveExecute()
         {
-            if (!_isFinalized)
-            {
-                Photo.ColorFlag = ColorSign.Modified;
-            }            
-
-            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync, 
-                () => 
-                {
-                    HasChanges = _photoRepository.HasChanges();
-                    Id = Photo.Id;
-                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
-                });
-
-            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
-            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
+            await Save();
         }
 
         protected override bool OnSaveCanExecute()
@@ -498,6 +468,26 @@ namespace PhotoOrganizer.UI.ViewModel
                 await _photoRepository.SaveAsync();
                 RaiseDetailDeletedEvent(Photo.Id);                
             }
+        }
+
+        private async Task Save()
+        {
+            if (!_isFinalized)
+            {
+                Photo.ColorFlag = ColorSign.Modified;
+            }
+
+            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
+                () =>
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                });
+
+            ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
         }
 
         private void SetFinalizedStateFlag()
