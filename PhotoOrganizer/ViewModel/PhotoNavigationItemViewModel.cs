@@ -1,5 +1,5 @@
 ﻿using PhotoOrganizer.Common;
-using PhotoOrganizer.Image;
+using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
 using Prism.Commands;

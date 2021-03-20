@@ -377,10 +377,6 @@
       <Project>{47e30d1e-7d24-49be-a3bd-d3639736212d}</Project>
       <Name>PhotoOrganizer.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Image\PhotoOrganizer.Image.csproj">
-      <Project>{92044696-4560-425B-B96B-F1B360EEB437}</Project>
-      <Name>PhotoOrganizer.Image</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MapTools\PhotoOrganizer.MapTools.csproj">
       <Project>{daff572e-755f-43ae-b401-a90e81389347}</Project>
       <Name>PhotoOrganizer.MapTools</Name>

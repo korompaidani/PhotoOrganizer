@@ -3,18 +3,16 @@ using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace PhotoOrganizer.Image
+namespace PhotoOrganizer.FileHandler
 {
     public class Picture
     {
         private static BitmapSource defaultPicture;
-        private static ExifMetadata defaultExifMetadata;
 
         static Picture()
         {
             var defaultUri = new Uri(Path.GetFullPath(FilePaths.DefaultPicturePath));
             defaultPicture = BitmapFrame.Create(defaultUri).Thumbnail;
-            defaultExifMetadata = new ExifMetadata(defaultUri);
         }
 
         public Picture(string path)
@@ -25,7 +23,6 @@ namespace PhotoOrganizer.Image
                 Source = path;
                 Uri = new Uri(path);
                 Thumbnail = defaultPicture;
-                Metadata = defaultExifMetadata;
                 return;
             }
 
@@ -33,12 +30,10 @@ namespace PhotoOrganizer.Image
             Source = path;
             Uri = new Uri(path);
             Thumbnail = BitmapFrame.Create(Uri).Thumbnail;
-            Metadata = new ExifMetadata(Uri);
         }
 
         public string Source { get; }
         public Uri Uri { get; set; }
         public BitmapSource Thumbnail { get; set; }
-        public ExifMetadata Metadata { get; }
     }
 }
