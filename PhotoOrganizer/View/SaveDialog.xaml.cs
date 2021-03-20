@@ -43,5 +43,12 @@ namespace PhotoOrganizer.UI.View
             ((SaveModel)DataContext).CancelCommand.Execute(null);
             this.Close();
         }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ShowCloseButton = false;
+            ShowMinButton = false;
+            ShowMaxRestoreButton = false;
+        }
     }
 }

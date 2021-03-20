@@ -6,7 +6,8 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        mc:Ignorable="d"
                        WindowStartupLocation="CenterScreen"
-                       Title="SaveDialog" Height="150" Width="450">
+                       Title="SaveDialog" Height="150" Width="450"
+                       Loaded="OnLoaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
