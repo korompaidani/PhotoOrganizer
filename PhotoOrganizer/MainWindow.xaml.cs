@@ -10,6 +10,7 @@ namespace PhotoOrganizer.UI
     public partial class MainWindow : MetroWindow
     {
         private MainViewModel _viewModel;
+        private bool canClose = false;
 
         public MainWindow(MainViewModel viewModel)
         {            
@@ -45,7 +46,14 @@ namespace PhotoOrganizer.UI
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            _viewModel.OpenClosingAppCommand.Execute(null);
+            e.Cancel = true;
+
+            if (!canClose)
+            {                
+                _viewModel.OpenClosingAppCommand.Execute(null);
+
+                canClose = _viewModel.CanClose;
+            }           
         }
     }
 }

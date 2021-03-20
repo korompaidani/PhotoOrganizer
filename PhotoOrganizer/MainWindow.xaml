@@ -7,6 +7,8 @@
         xmlns:local="clr-namespace:PhotoOrganizer.UI"
         xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
         xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
+        xmlns:mwc="clr-namespace:PhotoOrganizer.UI"
+        mwc:MainWindowClose.CancelClosing="{Binding OpenCancelClosingAppCommand}"
         mc:Ignorable="d"
         Title="PhotoOrganizer" MinHeight="760" MinWidth="1280" FontSize="20"
         WindowStartupLocation="CenterScreen" Closing="WindowClosing">

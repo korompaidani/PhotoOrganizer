@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.FileHandler;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.View.Services;

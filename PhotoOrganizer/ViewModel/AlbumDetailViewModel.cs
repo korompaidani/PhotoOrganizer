@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.Model;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;

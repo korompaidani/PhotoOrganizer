@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.UI.Event;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;

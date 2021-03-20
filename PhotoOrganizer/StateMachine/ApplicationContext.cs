@@ -21,6 +21,7 @@ namespace PhotoOrganizer.UI.StateMachine
         private ILocationRepository _locationRepository;
         private IAlbumRepository _albumRepository;
         private bool _isCumulativeAffirmativeDecision = false;
+        private MessageDialogResult _internalAnswer;
 
         private List<IDetailViewModel> _openedPhotoDetailViewModels;
         private List<IDetailViewModel> _openedAlbumDetailViewModels;
@@ -91,67 +92,68 @@ namespace PhotoOrganizer.UI.StateMachine
             }
         }
 
-        public async Task SaveAllOpenedDetailView()
+
+        public async Task<bool> SaveAllOpenedDetailView()
         {
-            // Show dialog and ask cumulative save, discard and single
-            _isCumulativeAffirmativeDecision = false;
+            bool canClose = false;
+            MessageDialogResult result = MessageDialogResult.Ok;
 
-            await SaveOpenedDetailViews(_openedPhotoDetailViewModels);
-            await SaveOpenedDetailViews(_openedAlbumDetailViewModels);
-            await SaveOpenedDetailViews(_openedLocationDetailViewModels);
+            if (_openedPhotoDetailViewModels.Count > 0 ||
+                _openedAlbumDetailViewModels.Count > 0 ||
+                _openedLocationDetailViewModels.Count > 0)
+            {
 
-            if (_isCumulativeAffirmativeDecision)
+                result = await _messageDialogService.ShowSaveDialog();
+
+                _isCumulativeAffirmativeDecision = result == MessageDialogResult.SaveAll;
+
+                if (result != MessageDialogResult.DiscardAll && result != MessageDialogResult.Cancel)
+                {
+                    await SaveOpenedDetailViews(_openedPhotoDetailViewModels, result);
+                    await SaveOpenedDetailViews(_openedAlbumDetailViewModels, result);
+                    await SaveOpenedDetailViews(_openedLocationDetailViewModels, result);
+                    canClose = true;
+                    result = _internalAnswer;
+                }
+            }
+            
+            if (result != MessageDialogResult.Cancel)
+            {
+                System.Windows.Application.Current.Shutdown();
+            }
+
+            return canClose;
+        }
+
+        private async Task SaveOpenedDetailViews(List<IDetailViewModel> openedDetailView, MessageDialogResult answer)
+        {
+            foreach (var detailView in openedDetailView)
             {
                 try
-                {
-                    await _photorepository.SaveAsync();
-                    await _locationRepository.SaveAsync();
-                    await _albumRepository.SaveAsync();
+                {                    
+                    if (answer == MessageDialogResult.Save || answer == MessageDialogResult.SaveAll)
+                    {
+
+                        if (detailView.HasChanges)
+                        {
+                            await detailView.SaveChanges(true);
+                        }
+                    }
+                    if (answer != MessageDialogResult.DiscardAll && answer != MessageDialogResult.SaveAll)
+                    {
+                        _internalAnswer = await _messageDialogService.ShowSaveDialog();
+                        answer = _internalAnswer;
+                    }
+                    if(answer == MessageDialogResult.Cancel)
+                    {
+                        return;
+                    }
                 }
                 catch (Exception ex)
                 {
                     _errorMessages.Add(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
                 }
             }
-        }
-
-        private async Task SaveOpenedDetailViews(List<IDetailViewModel> openedDetailView, bool isSave = true)
-        {
-            if (isSave)
-            {
-                bool isAffirmativeSaveResult = false;
-                foreach (var detailView in openedDetailView)
-                {
-                    try
-                    {
-                        if (!_isCumulativeAffirmativeDecision)
-                        {
-                            // Show dialog
-                            isAffirmativeSaveResult = true;
-
-                            if (isAffirmativeSaveResult)
-                            {
-                                if (detailView.HasChanges)
-                                {
-                                    await detailView.SaveChanges(true);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var photoDetail = detailView as PhotoDetailViewModel;
-                            if (photoDetail != null)
-                            {
-                                photoDetail.SetModifiedFlag();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        _errorMessages.Add(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
-                    }
-                }
-            }            
         }
 
         private void WriteAllMetadata(WriteAllMetadataEventArgs args)

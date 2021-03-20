@@ -28,8 +28,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ICommand OpenWorkbenchCommand { get; set; }
         public ICommand OpenClosingAppCommand { get; set; }
+        public ICommand OpenCancelClosingAppCommand { get; set; }
 
         private object _selectedViewModel;
+        
+        public bool CanClose { get; private set; }
 
         public object SelectedViewModel
         {
@@ -63,13 +66,19 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<CloseMapViewEvent>().Subscribe(OnOpenWorkbenchView);
             _eventAggregator.GetEvent<OpenSettingsEvent>().Subscribe(OnOpenSettingsView);
             _eventAggregator.GetEvent<CloseSettingsEvent>().Subscribe(OnCloseSettingsView);
-
+            
+            CanClose = false;
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
             OpenClosingAppCommand = new DelegateCommand(OnClosingApp);
+            OpenCancelClosingAppCommand = new DelegateCommand(OnCancelClosingApp);
+        }
+
+        private void OnCancelClosingApp()
+        {
         }
 
         private async void OnClosingApp()
-        {
+        {           
             await _context.SaveAllOpenedDetailView();
         }
 

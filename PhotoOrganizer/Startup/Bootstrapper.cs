@@ -47,8 +47,8 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<LocationDetailViewModel>().Keyed<IDetailViewModel>(nameof(LocationDetailViewModel));
 
             builder.RegisterType<PeopleRepository>().As<IPeopleRepository>();
-            builder.RegisterType<PhotoRepository>().As<IPhotoRepository>().SingleInstance();
-            builder.RegisterType<AlbumRepository>().As<IAlbumRepository>().SingleInstance();
+            builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
+            builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             builder.RegisterType<LocationRepository>().As<ILocationRepository>().SingleInstance();
             builder.RegisterType<MaintenanceRepository>().As<IMaintenanceRepository>().SingleInstance();
 

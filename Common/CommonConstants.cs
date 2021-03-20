@@ -2,6 +2,18 @@
 
 namespace PhotoOrganizer.Common
 {
+    public enum MessageDialogResult
+    {
+        Ok,
+        Cancel,
+        Yes,
+        No,
+        Save,
+        SaveAll,
+        Discard,
+        DiscardAll
+    }
+
     public enum ErrorTypes
     {
         DetailViewClosingError

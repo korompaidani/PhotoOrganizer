@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using PhotoOrganizer.Common;
+using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.View.Services
 {
@@ -7,5 +8,6 @@ namespace PhotoOrganizer.UI.View.Services
         Task<MessageDialogResult> ShowOkCancelDialogAsync(string text, string title);
         Task<MessageDialogResult> ShowYesOrNoDialogAsync(string text, string title);
         Task ShowInfoDialogAsync(string text);
+        Task<MessageDialogResult> ShowSaveDialog();
     }
 }

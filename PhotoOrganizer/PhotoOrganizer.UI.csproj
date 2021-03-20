@@ -181,6 +181,7 @@
     <Compile Include="Event\WriteMetadataFinishedEvent.cs" />
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Helpers\PhotoDetailInfo.cs" />
+    <Compile Include="MainWindowClose.cs" />
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\BulkAttributeSetterService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
     <Compile Include="ViewModel\PhotoViewModel.cs" />
+    <Compile Include="ViewModel\SaveModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ShelveViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -251,6 +253,9 @@
     </Compile>
     <Compile Include="View\PhotoView.xaml.cs">
       <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaveDialog.xaml.cs">
+      <DependentUpon>SaveDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
@@ -313,6 +318,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SaveDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,26 @@
+﻿<Controls:MetroWindow  xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                       x:Class="PhotoOrganizer.UI.View.SaveDialog"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       mc:Ignorable="d"
+                       WindowStartupLocation="CenterScreen"
+                       Title="SaveDialog" Height="150" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="0 25 0 5"  Text="Do you want to save opened tabs before close?" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
+            <Button Content="Save" Margin="5" Width="80" Click="SaveClick"/>
+            <Button Content="Save All" Margin="5" Width="80" Click="SaveAllClick"/>
+            <Button Content="Discard" Margin="5" Width="80" Click="DiscardClick"/>
+            <Button Content="Discard All" Margin="5" Width="80" Click="DiscardAllClick"/>
+            <Button Content="Cancel" Margin="5" Width="80" Click="CancelClick"/>
+        </StackPanel>
+    </Grid>
+    
+    
+</Controls:MetroWindow>

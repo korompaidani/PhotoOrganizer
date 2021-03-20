@@ -1,6 +1,10 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using PhotoOrganizer.UI.ViewModel;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
+using MessageDialogResult = PhotoOrganizer.Common.MessageDialogResult;
 
 namespace PhotoOrganizer.UI.View.Services
 {
@@ -28,13 +32,30 @@ namespace PhotoOrganizer.UI.View.Services
                 ? MessageDialogResult.Yes
                 : MessageDialogResult.No;
         }
-    }    
 
-    public enum MessageDialogResult
-    {
-        Ok,
-        Cancel,
-        Yes,
-        No
-    }
+        public async Task<MessageDialogResult> ShowSaveDialog()
+        {
+            var window = new SaveDialog();
+            var model = new SaveModel();
+
+            window.DataContext = model;
+            window.Owner = Application.Current.MainWindow;
+
+            var dialogResult = await ShowDialogAsync(window);
+            window.Close();
+            window = null;
+
+            return model.Answer;
+        }
+
+        private Task<bool?> ShowDialogAsync(Window self)
+        {
+            if (self == null) throw new ArgumentNullException("self");
+
+            TaskCompletionSource<bool?> completion = new TaskCompletionSource<bool?>();
+            self.Dispatcher.BeginInvoke(new Action(() => completion.SetResult(self.ShowDialog())));
+
+            return completion.Task;
+        }
+    }    
 }
