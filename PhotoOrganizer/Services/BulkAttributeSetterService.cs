@@ -42,7 +42,7 @@ namespace PhotoOrganizer.UI.Services
         }
 
         public void SetCheckedStateForId(int photoNavigationLookupId, bool checkStatus)
-        {            
+        {
             int beforeCount = _navigationItemCheckStatusCollection.Count;
             if (checkStatus == true)
             {
@@ -58,9 +58,9 @@ namespace PhotoOrganizer.UI.Services
 
         private void EvaluateCheckCounts(int beforeCount, int afterCount)
         {
-            if(afterCount > 0 && afterCount != beforeCount)
+            if (afterCount > 0 && afterCount != beforeCount)
             {
-                RaiseSelectionChangedEvent(isAnySelected : true);
+                RaiseSelectionChangedEvent(isAnySelected: true);
                 return;
             }
             if (afterCount == 0)
@@ -72,14 +72,47 @@ namespace PhotoOrganizer.UI.Services
 
         private async void OnBulkSetPhotoDetailAttributes(BulkSetPhotoDetailAttributesEventArgs args)
         {
+            _photoRepository = args.PhotoRepository;
+            CloseAllOpenDetailViews(args.CallerId);
+
             await SetPropertiesOfCheckedItems(args.PropertyNamesAndValues, args.CallerId);
-            await ReloadOpenedPhotoDetailViews();
             await ReloadNavigation();
+        }
+
+        private void CloseAllOpenDetailViews(int callerId)
+        {
+
+            foreach (var item in _navigationItemCheckStatusCollection)
+            {
+                if (item.Key == callerId)
+                {
+                    continue;
+                }
+
+                if (item.Value)
+                {
+                    if (_openedPhotoDetailViews.ContainsKey(item.Key))
+                    {
+                        IDetailViewModel detailView;
+                        _openedPhotoDetailViews.TryGetValue(item.Key, out detailView);
+                        var photoDetailView = detailView as PhotoDetailViewModel;
+                        if (photoDetailView != null)
+                        {
+                            _eventAggregator.GetEvent<AfterDetailClosedEvent>()
+                                .Publish(new AfterDetailClosedEventArgs
+                                {
+                                    Id = photoDetailView.Id,
+                                    ViewModelName = photoDetailView.GetType().Name
+                                });
+                        }
+                    }
+                }
+            }
         }
 
         private void OnOpenPhotoDetailViewEvent(OpenPhotoDetailViewEventArgs args)
         {
-            if(args.ViewModelName == nameof(PhotoDetailViewModel))
+            if (args.ViewModelName == nameof(PhotoDetailViewModel))
             {
                 _openedPhotoDetailViews[args.Id] = args.DetailView;
             }
@@ -98,7 +131,7 @@ namespace PhotoOrganizer.UI.Services
             List<Photo> photos = new List<Photo>();
             foreach (var item in _navigationItemCheckStatusCollection)
             {
-                if(item.Key == callerId)
+                if (item.Key == callerId)
                 {
                     continue;
                 }
@@ -119,17 +152,6 @@ namespace PhotoOrganizer.UI.Services
                 }
             }
             await _photoRepository.SaveAsync();
-        }
-
-        private async Task ReloadOpenedPhotoDetailViews()
-        {
-            foreach (var item in _openedPhotoDetailViews)
-            {
-                if (item.Value != null && _navigationItemCheckStatusCollection.ContainsKey(item.Key))
-                {
-                    await item.Value.LoadAsync(item.Key);
-                }
-            }
         }
 
         private async Task ReloadNavigation()
@@ -161,7 +183,7 @@ namespace PhotoOrganizer.UI.Services
 
         public bool IsAnySelectedItem(int? exceptId = null)
         {
-            if(_navigationItemCheckStatusCollection.Count > 0)
+            if (_navigationItemCheckStatusCollection.Count > 0)
             {
                 if (exceptId != null)
                 {

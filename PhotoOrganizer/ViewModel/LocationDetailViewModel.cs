@@ -97,7 +97,7 @@ namespace PhotoOrganizer.UI.ViewModel
             await Save(false);
         }
 
-        private async Task Save(bool isClosing)
+        private async Task Save(bool isClosing, bool isOptimistic = true)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace PhotoOrganizer.UI.ViewModel
             await LoadAsync(args.LocationId);
         }
 
-        public override async Task SaveChanges(bool isClosing)
+        public override async Task SaveChanges(bool isClosing, bool isOptimistic = true)
         {
             await Save(isClosing);
         }

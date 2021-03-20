@@ -140,7 +140,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (result)
             {
                 SetFinalizedStateFlag();
-                await SaveChanges(false);
+                await SaveChanges(false, true);
             }
 
             await MessageDialogService.ShowInfoDialogAsync(message);
@@ -435,14 +435,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        public override async Task SaveChanges(bool isClosing)
+        public override async Task SaveChanges(bool isClosing, bool isOptimistic)
         {
-            await Save(isClosing);
+            await Save(isClosing, isOptimistic);
         }
 
         protected override async void OnSaveExecute()
         {
-            await Save(false);
+            await Save(false, true);
         }
 
         protected override bool OnSaveCanExecute()
@@ -475,14 +475,16 @@ namespace PhotoOrganizer.UI.ViewModel
             Photo.ColorFlag = ColorSign.Modified;
         }
 
-        private async Task Save(bool isClosing)
+        private async Task Save(bool isClosing, bool isOptimistic)
         {
             if (!_isFinalized)
             {
                 SetModifiedFlag();
             }
 
-            await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
+            if (isOptimistic)
+            {
+                await SaveWithOptimisticConcurrencyAsync(_photoRepository.SaveAsync,
                 () =>
                 {
                     HasChanges = _photoRepository.HasChanges();
@@ -492,6 +494,21 @@ namespace PhotoOrganizer.UI.ViewModel
                         RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
                     }
                 });
+            }
+            else
+            {
+                await SaveWithPessimisticConcurrencyAsync(_photoRepository.SaveAsync,
+                () =>
+                {
+                    HasChanges = _photoRepository.HasChanges();
+                    Id = Photo.Id;
+                    if (!isClosing)
+                    {
+                        RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
+                    }
+                });
+            }
+            
 
             if (!isClosing)
             {
@@ -559,7 +576,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }      
 
-        private void OnBulkSetAttributeExecute(string propertyName)
+        private async void OnBulkSetAttributeExecute(string propertyName)
         {
             var propertyNamesAndValues = new Dictionary<string, object>();
             
@@ -575,11 +592,14 @@ namespace PhotoOrganizer.UI.ViewModel
                 }
             }
 
+            await SaveChanges(false, true);
+
             EventAggregator.GetEvent<BulkSetPhotoDetailAttributesEvent>().Publish(
                 new BulkSetPhotoDetailAttributesEventArgs
                 {
                     PropertyNamesAndValues = propertyNamesAndValues,
-                    CallerId = Id
+                    CallerId = Id,
+                    PhotoRepository = _photoRepository
                 });
         }
 

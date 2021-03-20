@@ -17,7 +17,7 @@ namespace PhotoOrganizer.UI.ViewModel
             throw new NotImplementedException();
         }
 
-        public override Task SaveChanges(bool isClosing)
+        public override Task SaveChanges(bool isClosing, bool isOptimistic = true)
         {
             throw new NotImplementedException();
         }

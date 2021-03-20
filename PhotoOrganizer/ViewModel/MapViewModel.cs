@@ -274,7 +274,7 @@ namespace PhotoOrganizer.UI.ViewModel
             return location;
         }
 
-        public async override Task SaveChanges(bool isClosing)
+        public async override Task SaveChanges(bool isClosing, bool isOptimistic = true)
         {
             if(Location != null && !Location.HasErrors && HasChanges)
             {
@@ -282,7 +282,7 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        private async Task Save(bool isClosing)
+        private async Task Save(bool isClosing, bool isOptimistic = true)
         {
             await _locationRepository.SaveAsync();
             if (!isClosing)

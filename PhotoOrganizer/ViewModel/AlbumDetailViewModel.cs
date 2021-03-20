@@ -228,12 +228,12 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public async override Task SaveChanges(bool isClosing)
+        public async override Task SaveChanges(bool isClosing, bool isOptimistic = true)
         {
             await Save(isClosing);
         }
 
-        private async Task Save(bool isClosing)
+        private async Task Save(bool isClosing, bool isOptimistic = true)
         {
             await _albumRepository.SaveAsync();
             if (!isClosing)

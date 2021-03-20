@@ -68,7 +68,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public abstract Task LoadAsync(int id);
 
-        public abstract Task SaveChanges(bool isClosing);
+        public abstract Task SaveChanges(bool isClosing, bool isOptimistic = true);
 
         protected abstract void OnDeleteExecute();
 
@@ -161,6 +161,29 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             afterSaveAction();
-        }        
+        }
+
+        protected async Task SaveWithPessimisticConcurrencyAsync(Func<Task> saveFunc,
+            Action afterSaveAction)
+        {
+            try
+            {
+                await saveFunc();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var databaseValues = ex.Entries.Single().GetDatabaseValues();
+                if (databaseValues == null)
+                {
+                    RaiseDetailDeletedEvent(Id);
+                    return;
+                }
+
+                await ex.Entries.Single().ReloadAsync();
+                await LoadAsync(Id);
+            }
+
+            afterSaveAction();
+        }
     }
 }

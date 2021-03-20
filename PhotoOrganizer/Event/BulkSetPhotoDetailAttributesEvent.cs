@@ -1,4 +1,5 @@
-﻿using Prism.Events;
+﻿using PhotoOrganizer.UI.Data.Repositories;
+using Prism.Events;
 using System.Collections.Generic;
 
 namespace PhotoOrganizer.UI.Event
@@ -16,5 +17,6 @@ namespace PhotoOrganizer.UI.Event
 
         public int CallerId { get; set; }
         public IDictionary<string, object> PropertyNamesAndValues { get; set; }
+        public IPhotoRepository PhotoRepository { get; set; }
     }
 }
