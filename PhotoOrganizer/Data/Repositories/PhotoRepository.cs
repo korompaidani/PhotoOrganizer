@@ -146,20 +146,20 @@ namespace PhotoOrganizer.UI.Data.Repositories
 
         public async Task AddPhotoToShelveAsync(Photo photo)
         {
-            var shelve = GetOrCreateShelve();
+            var shelve = GetShelve();
             shelve.Photos.Add(photo);
             await Context.SaveChangesAsync();
         }
 
         public List<Photo> GetAllPhotoOfShelve()
         {
-            var shelve = GetOrCreateShelve();
+            var shelve = GetShelve();
             return shelve.Photos.ToList();
         }
 
         public bool IsPhotoExistOnShelve(int photoId)
         {
-            var shelve = GetOrCreateShelve();
+            var shelve = GetShelve();
             return shelve.Photos.Any(p => p.Id == photoId);
         }
 
@@ -175,21 +175,14 @@ namespace PhotoOrganizer.UI.Data.Repositories
 
         public async Task RemovePhotoToShelveAsync(Photo photo)
         {
-            var shelve = GetOrCreateShelve();
+            var shelve = GetShelve();
             shelve.Photos.Remove(photo);
             await Context.SaveChangesAsync();
         }
 
-        private Shelve GetOrCreateShelve()
+        private Shelve GetShelve()
         {
-            var shelve = Context.Shelves.FirstOrDefault(s => s.Id > -1);
-            if (shelve == null)
-            {
-                shelve = new Shelve { Id = 0 };
-                Context.Shelves.Add(shelve);
-            }
-
-            return shelve;
+            return Context.Shelves.FirstOrDefault(s => s.Id > -1);            
         }
     }
 }

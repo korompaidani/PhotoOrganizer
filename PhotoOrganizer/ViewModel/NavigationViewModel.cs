@@ -71,21 +71,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public async Task LoadAsync()
         {
             await _cacheService.LoadFirstAsync(Photos);
-
-            var shelveItems = _shelveLookupDataService.GetShelveLookup();
-            ShelvePhotos.Clear();
-            foreach (var item in shelveItems)
-            {
-                ShelvePhotos.Add(
-                    new PhotoNavigationItemViewModel(
-                        item.Id, 
-                        item.DisplayMemberItem, 
-                        item.PhotoPath, 
-                        ColorMap.Map[item.ColorFlag], 
-                        nameof(PhotoDetailViewModel), 
-                        _eventAggregator, 
-                        _bulkAttributeSetter));
-            }
+            LoadShelve();
 
             var albums = await _albumLookupDataService.GetAlbumLookupAsync();
             Albums.Clear();
@@ -127,6 +113,28 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        private void LoadShelve()
+        {
+            var shelveItems = _shelveLookupDataService.GetShelveLookup();
+            ShelvePhotos.Clear();
+            if (shelveItems != null)
+            {
+                foreach (var item in shelveItems)
+                {
+                    ShelvePhotos.Add(
+                        new PhotoNavigationItemViewModel(
+                            item.Id,
+                            item.DisplayMemberItem,
+                            item.PhotoPath,
+                            ColorMap.Map[item.ColorFlag],
+                            nameof(PhotoDetailViewModel),
+                            _eventAggregator,
+                            _bulkAttributeSetter
+                            ));
+                }
+            }
+        }
+
         private void ReloadShelve(AfterDetailSavedEventArgs args)
         {
             var shelveLookupItem = ShelvePhotos.SingleOrDefault(p => p.Id == args.Id);
@@ -141,7 +149,15 @@ namespace PhotoOrganizer.UI.ViewModel
                 if (args.IsShelveChanges)
                 {
                     var photo = Photos.SingleOrDefault(p => p.Id == args.Id);
-                    ShelvePhotos.Add(photo);
+                    ShelvePhotos.Add(new PhotoNavigationItemViewModel(
+                        photo.Id,
+                        photo.DisplayMemberItem,
+                        photo.PhotoPath,
+                        photo.ColorFlag,
+                        nameof(PhotoDetailViewModel),
+                        _eventAggregator,
+                        _bulkAttributeSetter
+                        ));
                 }                
             }
             else

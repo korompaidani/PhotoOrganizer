@@ -76,6 +76,11 @@ namespace PhotoOrganizer.UI.Data.Lookups
             using (var context = _contextCreator())
             {
                 var shelve = GetOrCreateShelve(context);
+
+                if(shelve.Photos is null || shelve.Photos.Count == 0)
+                {
+                    return null;
+                }
                 return shelve.Photos.OrderBy(p => p.Id)
                     .Select(p =>
                     new LookupItem
@@ -90,13 +95,12 @@ namespace PhotoOrganizer.UI.Data.Lookups
 
         private Shelve GetOrCreateShelve(PhotoOrganizerDbContext context)
         {
-            var all = context.Shelves.ToList();
-
             var shelve = context.Shelves.FirstOrDefault(s => s.Id > -1);
             if (shelve == null)
             {
                 shelve = new Shelve { Id = 0 };
                 context.Shelves.Add(shelve);
+                context.SaveChanges();
             }
 
             return shelve;
