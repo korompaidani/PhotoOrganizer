@@ -12,144 +12,162 @@
     </UserControl.Resources>
     <ScrollViewer>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65"/>
                 <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="565"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="3"  Grid.Column="3" Grid.ZIndex="0" Orientation="Vertical">
-                <Button Content="Save" Width="125" Margin="5"
-                    Command="{Binding SaveCommand}"/>
-                <Button Content="Set All" Width="125" Margin="5"
-                    Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Title;LocationId;Coordinates;Peoples;Description;Year;Month;Day;HHMMSS"
-                        />
-                <Button Content="Finalize" Width="125" Margin="5"
-                    Command="{Binding FinalizeCommand}"/>
-                <Button Content="Mark as unchanged" Width="125" Margin="5"
-                    Command="{Binding MarkAsUnchanged}"/>
-                <Button Content="Add to Shelve" Width="125" Margin="5"
-                    Command="{Binding AddToShelveCommand}"/>
-                <Button Content="Remove from shelve" Width="125" Margin="5"
-                    Command="{Binding RemoveFromShelveCommand}"/>
-                <Button Content="Write Metadata" Width="125" Margin="5"
-                    Command="{Binding WriteMetadataCommand}"/>
-            </StackPanel>
+            <Grid Grid.Column="0">
+                
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid>
+                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
+                                    Background="#44000000" >
+                        <Border.RenderTransform>
+                            <TranslateTransform X="0" Y="0" />
+                        </Border.RenderTransform>
+                        <Border.BitmapEffect>
+                            <BlurBitmapEffect Radius="5" />
+                        </Border.BitmapEffect>
+                    </Border>
+                    <Border BorderThickness="1" BorderBrush="#2c2c2c">
+                        <Grid>
+                            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown"/>
+                        </Grid>
+                        
+                    </Border>
+                </Grid>
+                
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="470"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
+                <Label Grid.Row="0" Grid.Column="0" Content="Title:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Photo.Title,
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 5"/>
-            <Button Grid.Row="0" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                <Button Grid.Row="0" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="Title"
                     />
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath}" Margin="5 0 5 5" IsReadOnly="True"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Path:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath}" Margin="5 0 5 5" IsReadOnly="True"/>
 
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Locations}" 
+                <Label Grid.Row="2" Grid.Column="0" Content="Location:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <ComboBox ItemsSource="{Binding Locations}" 
                           DisplayMemberPath="DisplayMemberItem"
                           SelectedValuePath="Id"
                           SelectedValue="{Binding Photo.LocationId, Mode=TwoWay}"
                           Margin="5 0 5 5"
-                          Width="250"/>
-                <Button Content="Map" Margin="5 0 5 5"
+                          Width="230"/>
+                    <Button Content="Map" Margin="5 0 5 5"
                         Command="{Binding OpenMapCommand}"/>
-                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            </StackPanel>
-            <Button Grid.Row="2" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <Button Grid.Row="2" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="LocationId;Coordinates"
                     />
 
-            <DockPanel Grid.Row="3" Grid.Column="1">
 
-                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="5 0 5 5" MouseDown="OnMouseDown"/>
 
-            </DockPanel>
-
-            <Label Grid.Row="4" Grid.Column="0" Content="Peoples:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <DockPanel Grid.Row="4" Grid.Column="1">
-                <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" Margin="5 0 0 5" 
+                <Label Grid.Row="3" Grid.Column="0" Content="Peoples:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <DockPanel Grid.Row="3" Grid.Column="1">
+                    <Button Content="+" FontSize="10" Height="5" Width="25" VerticalAlignment="Top" Margin="5 0 0 5" 
                         Command="{Binding OpenPeopleAddViewCommand}"/>
 
-                <ListBox x:Name="PeoplesListBox"
+                    <ListBox x:Name="PeoplesListBox"
                      ItemsSource="{Binding Peoples}"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Button Content="{Binding People.DisplayName}"
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding People.DisplayName}"
                                     Command="{Binding RemovePeopleFromPhotoCommand}"
                                     Padding="3 0 3 0"
                                     FontSize="10"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
 
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </DockPanel>
 
-            </DockPanel>
-            
-            
-            
-            <Button Grid.Row="4" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                <Button Grid.Row="3" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Peoples"
-                    />
+                    CommandParameter="Peoples"/>
 
-            
-
-            <Label Grid.Row="5" Grid.Column="0" Content="Description" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap" Height="70" VerticalContentAlignment="Top"
+                <Label Grid.Row="4" Grid.Column="0" Content="Description" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap" Height="70" VerticalContentAlignment="Top"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Disabled"
-                Text="{Binding Photo.Description, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-            <Button Grid.Row="5" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                Text="{Binding Photo.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Row="4" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Description"
-                    />
+                    CommandParameter="Description"/>
 
-            <Label Grid.Row="6" Grid.Column="1" Content="{Binding Photo.Comment}" Margin="5 0 5 0"/>
-            
-            <Label Grid.Row="7" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
-                <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
-                    <toolkit:TimePicker Value="{Binding TakenTime, Mode=TwoWay}" Foreground="White"
+                <Label Grid.Row="5" Grid.Column="1" Content="{Binding Photo.Comment}" Margin="5 0 5 0"/>
+
+                <Label Grid.Row="6" Grid.Column="0" Content="Taken Date:" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+                    <Calendar Margin="5 0 5 5" SelectedDate="{Binding TakenDate, Mode=TwoWay}" DisplayDate="{Binding TakenDate}" Focusable="False" SelectedDatesChanged="OnSelectedDatesChanged"/>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding TakenDate, Mode=TwoWay}"/>
+                        <toolkit:TimePicker Value="{Binding TakenTime, Mode=TwoWay}" Foreground="White"
                         Format="Custom" 
                         FormatString="HH:mm"/>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <Button Grid.Row="7" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
+                <Button Grid.Row="6" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Year;Month;Day;HHMMSS"
-                    />
-
+                    CommandParameter="Year;Month;Day;HHMMSS"/>
+            </Grid>
+            <Grid Grid.Column="3">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="Save" Width="125" Margin="5 0 5 5"
+                    Command="{Binding SaveCommand}"/>
+                    <Button Content="Set All" Width="125" Margin="5"
+                    Command="{Binding BulkSetAttribute}"
+                    CommandParameter="Title;LocationId;Coordinates;Peoples;Description;Year;Month;Day;HHMMSS"
+                        />
+                    <Button Content="Finalize" Width="125" Margin="5"
+                    Command="{Binding FinalizeCommand}"/>
+                    <Button Content="Mark as unchanged" Width="125" Margin="5"
+                    Command="{Binding MarkAsUnchanged}"/>
+                    <Button Content="Add to Shelve" Width="125" Margin="5"
+                    Command="{Binding AddToShelveCommand}"/>
+                    <Button Content="Remove from shelve" Width="125" Margin="5"
+                    Command="{Binding RemoveFromShelveCommand}"/>
+                    <Button Content="Write Metadata" Width="125" Margin="5"
+                    Command="{Binding WriteMetadataCommand}"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </ScrollViewer>
 </UserControl>
