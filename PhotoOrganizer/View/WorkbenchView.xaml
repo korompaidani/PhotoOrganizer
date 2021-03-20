@@ -23,6 +23,7 @@
                           CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
                 <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
+                <MenuItem Header="Save All Tab" Command="{Binding SaveAllOpenTab}"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Location" Command="{Binding OpenSingleDetailViewCommand}"
@@ -31,6 +32,9 @@
             <MenuItem Header="Options">
                 <MenuItem Header="Settings" Command="{Binding OpenSettingsViewCommand}"
                               CommandParameter="{x:Type viewModel:SettingsViewModel}"/>
+            </MenuItem>
+            <MenuItem Header="Window">
+                <MenuItem Header="Close open tabs" Command="{Binding CloseOpenTabsCommand}"/>
             </MenuItem>
         </Menu>
 

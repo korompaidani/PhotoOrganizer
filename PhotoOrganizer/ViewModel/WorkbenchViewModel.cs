@@ -32,6 +32,9 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenSettingsViewCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
         public ICommand WriteAllSavedMetadataCommand { get; }
+        public ICommand CloseOpenTabsCommand { get; }
+        public ICommand SaveAllOpenTab { get; }
+
         public INavigationViewModel NavigationViewModel { get; }
 
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
@@ -84,6 +87,36 @@ namespace PhotoOrganizer.UI.ViewModel
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
             OpenSettingsViewCommand = new DelegateCommand(OnOpenSettingsViewExecute);
             WriteAllSavedMetadataCommand = new DelegateCommand(OnWriteAllSavedMetadataCommand);
+            CloseOpenTabsCommand = new DelegateCommand(OnCloseOpenTabs);
+            SaveAllOpenTab = new DelegateCommand(OnSaveAllOpenTab);
+        }
+
+        private async void OnSaveAllOpenTab()
+        {
+            var result = await _context.SaveAllTab(isForceSaveAll: true);
+            _eventAggregator.GetEvent<AfterTabClosedEvent>().
+                Publish(
+                    new AfterTabClosedEventArgs
+                    {
+                        DetailInfo = result.Select(d => d.Value).ToList()
+                    });
+        }
+
+        private async void OnCloseOpenTabs()
+        {
+            var result = await _context.SaveAllTab();
+
+            foreach(var tab in result)
+            {
+                RemoveDetailViewModel(tab.Key, tab.Value.ViewModelName);
+            }
+
+            _eventAggregator.GetEvent<AfterTabClosedEvent>().
+                Publish(
+                    new AfterTabClosedEventArgs
+                    {
+                        DetailInfo = result.Select(d => d.Value).ToList()
+                    });
         }
 
         private async void AfterProgressWindowClosed(CloseProgressWindowEventArgs args)

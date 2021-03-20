@@ -158,6 +158,7 @@
     <Compile Include="Event\AfterDetailRemovedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
+    <Compile Include="Event\AfterTabClosedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
     <Compile Include="Event\SaveAllDetailViewEvent.cs" />
     <Compile Include="Event\CloseProgressWindowEvent.cs" />

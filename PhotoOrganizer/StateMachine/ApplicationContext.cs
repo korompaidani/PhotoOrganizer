@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.Common;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Helpers;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.ViewModel;
@@ -20,7 +21,6 @@ namespace PhotoOrganizer.UI.StateMachine
         private IPhotoRepository _photorepository;
         private ILocationRepository _locationRepository;
         private IAlbumRepository _albumRepository;
-        private bool _isCumulativeAffirmativeDecision = false;
         private MessageDialogResult _internalAnswer;
 
         private List<IDetailViewModel> _openedPhotoDetailViewModels;
@@ -93,7 +93,62 @@ namespace PhotoOrganizer.UI.StateMachine
         }
 
 
-        public async Task<bool> SaveAllOpenedDetailView()
+        public async Task<List<KeyValuePair<int, PhotoDetailInfo>>> SaveAllTab(bool isForceSaveAll = false)
+        {
+            var tabIds = new List<KeyValuePair<int, PhotoDetailInfo>>();
+            await SaveAllOpenedDetailView(false, isForceSaveAll);
+            if(_internalAnswer == MessageDialogResult.Cancel)
+            {
+                return tabIds;
+            }
+
+            foreach(var photoTab in _openedPhotoDetailViewModels)
+            {
+                var photo = (PhotoDetailViewModel)photoTab;
+                var detailInfo = new PhotoDetailInfo
+                {
+                    Id = photoTab.Id,
+                    Title = photo.Photo.Title,
+                    FullFilePath = photo.Photo.FullPath,
+                    ColorFlag = ColorMap.Map[photo.Photo.ColorFlag],
+                    ViewModelName = nameof(PhotoDetailViewModel),
+                    IsShelveRelevant = false
+                };
+
+                var keyValues = new KeyValuePair<int, PhotoDetailInfo>(photoTab.Id, detailInfo);
+                tabIds.Add(keyValues);
+            }
+
+            foreach (var albumTab in _openedAlbumDetailViewModels)
+            {
+                var album = (AlbumDetailViewModel)albumTab;
+                var detailInfo = new PhotoDetailInfo
+                {
+                    Id = albumTab.Id,
+                    Title = album.Title,
+                    ViewModelName = nameof(AlbumDetailViewModel)
+                };
+
+                var keyValues = new KeyValuePair<int, PhotoDetailInfo>(albumTab.Id, detailInfo);
+                tabIds.Add(keyValues);
+            }
+
+            foreach (var locationTab in _openedLocationDetailViewModels)
+            {
+                var detailInfo = new PhotoDetailInfo
+                {
+                    Id = locationTab.Id,
+                    ViewModelName = nameof(LocationDetailViewModel)
+                };
+
+                var keyValues = new KeyValuePair<int, PhotoDetailInfo>(locationTab.Id, detailInfo);
+                tabIds.Add(keyValues);
+            }
+
+            return tabIds;
+        }
+
+        public async Task<bool> SaveAllOpenedDetailView(bool isOnClosing = true, bool isForceSaveAll = false)
         {
             bool canClose = false;
             MessageDialogResult result = MessageDialogResult.Ok;
@@ -103,9 +158,14 @@ namespace PhotoOrganizer.UI.StateMachine
                 _openedLocationDetailViewModels.Count > 0)
             {
 
-                result = await _messageDialogService.ShowSaveDialog();
-
-                _isCumulativeAffirmativeDecision = result == MessageDialogResult.SaveAll;
+                if (!isForceSaveAll)
+                {
+                    result = await _messageDialogService.ShowSaveDialog();
+                }
+                else
+                {
+                    result = MessageDialogResult.SaveAll;
+                }
 
                 if (result != MessageDialogResult.DiscardAll && result != MessageDialogResult.Cancel)
                 {
@@ -117,7 +177,7 @@ namespace PhotoOrganizer.UI.StateMachine
                 }
             }
             
-            if (result != MessageDialogResult.Cancel)
+            if (result != MessageDialogResult.Cancel && isOnClosing)
             {
                 System.Windows.Application.Current.Shutdown();
             }

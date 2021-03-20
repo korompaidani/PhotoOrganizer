@@ -49,9 +49,28 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
             _eventAggregator.GetEvent<AfterBulkSetPhotoDetailAttributesEvent>().Subscribe(AfterBulkSetPhotoDetailAttributes);
+            _eventAggregator.GetEvent<AfterTabClosedEvent>().Subscribe(AfterTabsClosed);
 
             LoadDownNavigationCommand = new DelegateCommand(OnLoadNavigationDownExecute, OnLoadNavigationDownCanExecute);
             LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);            
+        }
+
+        private void AfterTabsClosed(AfterTabClosedEventArgs args)
+        {
+            foreach(var tab in args.DetailInfo)
+            {
+                var afterSaveEventArgs = new AfterDetailSavedEventArgs
+                {
+                    Id = tab.Id,
+                    Title = tab.Title,
+                    PhotoPath = tab.FullFilePath,
+                    ColorFlag = tab.ColorFlag,
+                    ViewModelName = tab.ViewModelName,
+                    IsShelveChanges = tab.IsShelveRelevant,
+                    IsRemovingFromShelve = tab.IsShelveRelevant
+                };
+                AfterDetailSaved(afterSaveEventArgs);
+            }
         }
 
         private void AfterBulkSetPhotoDetailAttributes(AfterBulkSetPhotoDetailAttributesEventArgs args)
