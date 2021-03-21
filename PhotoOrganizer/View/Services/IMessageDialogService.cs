@@ -11,7 +11,7 @@ namespace PhotoOrganizer.UI.View.Services
         Task<MessageDialogResult> ShowExtendOrOverwriteCancelDialogAsync(string text, string title);
         Task ShowInfoDialogAsync(string text);
         Task<MessageDialogResult> ShowSaveSaveAllDiscardDiscardAllDialogAsync();
-        Task<string> SelectFolderPathAsync(string baseFolderPath);
+        Task<string> SelectFolderPathAsync(string baseFolderPath, string description);
         Task ShowProgressDuringTaskAsync(string title, string message, Func<string, Task> awaitableTask, string taskParameter);
     }
 }

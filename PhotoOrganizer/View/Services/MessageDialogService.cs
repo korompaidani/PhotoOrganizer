@@ -75,10 +75,11 @@ namespace PhotoOrganizer.UI.View.Services
             return MessageDialogResult.Cancel;
         }
 
-        public async Task<string> SelectFolderPathAsync(string baseFolderPath)
+        public async Task<string> SelectFolderPathAsync(string baseFolderPath, string description)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             folderDialog.SelectedPath = baseFolderPath;
+            folderDialog.Description = description;
             folderDialog.ShowDialog();
             var selectedPath = folderDialog.SelectedPath;
 
@@ -103,7 +104,7 @@ namespace PhotoOrganizer.UI.View.Services
 
                 if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                 {
-                    return await SelectFolderPathAsync(baseFolderPath);
+                    return await SelectFolderPathAsync(baseFolderPath, description);
                 }
 
                 return string.Empty;

@@ -41,59 +41,89 @@ namespace PhotoOrganizer.UI.Services
                     answer = await _messageDialogService.ShowYesOrNoDialogAsync("Would you like to backup database first before erase all photo data?", "Question");
                     if (answer == MessageDialogResult.Yes)
                     {
-                        // save data here
-                        string backupFolder = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString());
-                        if (string.IsNullOrEmpty(backupFolder))
-                        {
-                            return;
-                        }
-
-                        var entities = await _photoRepository.GetAllAsync();
-
-                        await _messageDialogService.ShowProgressDuringTaskAsync("", "", _backupService.CreateBackup, backupFolder);
-
-                        var result = await _messageDialogService.ShowYesOrNoDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
-                        if (result == MessageDialogResult.No)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            await _photoRepository.RemoveAllPhotoFromTableAsync();
-                        }
+                        await CreateBackup();
+                        await EraseFormerData();
                     }
-                    else
+                    if (answer == MessageDialogResult.Cancel)
                     {
                         return;
                     }
                 }
+                if(answer == MessageDialogResult.Cancel)
+                {
+                    return;
+                }
             }
 
-            string folderPath = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString());
+            string folderPath = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a 'photo' location:");
+            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Reading files...", ReadAllFilesFromFolder, folderPath);
+        }
+
+        private async Task CreateBackup()
+        {
+            // save data here
+            string backupFolder = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString(), "Please choose folder for 'backup':");
+            if (string.IsNullOrEmpty(backupFolder))
+            {
+                return;
+            }
+
+            var entities = await _photoRepository.GetAllAsync();
+
+            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Creating backup...", _backupService.CreateBackup, backupFolder);
+        }
+
+        private async Task EraseFormerData()
+        {
+            var result = await _messageDialogService.ShowYesOrNoDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+            if (result == MessageDialogResult.No)
+            {
+                return;
+            }
+            else
+            {
+                await _photoRepository.RemoveAllPhotoFromTableAsync();
+            }
+        }
+
+        private async Task ReadAllFilesFromFolder(string folderPath)
+        {
             if (string.IsNullOrEmpty(folderPath))
             {
                 return;
             }
 
-            _directoryReader.ReadDirectory(folderPath);
-
-            foreach (var photo in ConvertFileNamesToPhotos())
+            var result = await Task<bool>.Run(() => ConvertFileNamesToPhotos(folderPath));
+            if (result)
             {
-                CreateNewPhoto(photo);
+                await _photoRepository.SaveAsync();
             }
-            await _photoRepository.SaveAsync();
         }
 
-        private Photo[] ConvertFileNamesToPhotos()
+        private bool ConvertFileNamesToPhotos(string folderPath)
         {
-            var list = new List<Photo>();
-            foreach (var file in _directoryReader.FileList)
+            try
             {
-                var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
-                list.Add(photo);
-            }
+                _directoryReader.ReadDirectory(folderPath);
 
-            return list.ToArray();
+                var list = new List<Photo>();
+                foreach (var file in _directoryReader.FileList)
+                {
+                    var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
+                    list.Add(photo);
+                }
+
+                foreach (var photo in list)
+                {
+                    CreateNewPhoto(photo);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         private Photo CreateNewPhoto(Photo photo = null)
