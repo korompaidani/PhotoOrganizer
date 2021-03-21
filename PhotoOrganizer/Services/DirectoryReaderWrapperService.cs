@@ -31,6 +31,17 @@ namespace PhotoOrganizer.UI.Services
             _photoMetaWrapperService = photoMetaWrapperService;
         }
 
+        public async Task<int> LoadSinglePhotoFromLibraryAsync()
+        {
+            var filePath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a photo", isFileDialog: true);
+
+            var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(filePath);
+
+            var createdPhoto = CreateNewPhoto(photo);
+            await _photoRepository.SaveAsync();
+            return createdPhoto.Id;
+        }
+
         public async Task LoadAllFromLibraryAsync()
         {
             if (await _photoRepository.HasPhotosAsync())
@@ -42,9 +53,12 @@ namespace PhotoOrganizer.UI.Services
                     if (answer == MessageDialogResult.Yes)
                     {
                         await CreateBackup();
-                        await EraseFormerData();
                     }
                     if (answer == MessageDialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    if(!await EraseFormerData())
                     {
                         return;
                     }
@@ -55,14 +69,14 @@ namespace PhotoOrganizer.UI.Services
                 }
             }
 
-            string folderPath = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a 'photo' location:");
+            string folderPath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a 'photo' location:");
             await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Reading files...", ReadAllFilesFromFolder, folderPath);
         }
 
         private async Task CreateBackup()
         {
             // save data here
-            string backupFolder = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString(), "Please choose folder for 'backup':");
+            string backupFolder = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please choose folder for 'backup':");
             if (string.IsNullOrEmpty(backupFolder))
             {
                 return;
@@ -73,16 +87,17 @@ namespace PhotoOrganizer.UI.Services
             await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Creating backup...", _backupService.CreateBackup, backupFolder);
         }
 
-        private async Task EraseFormerData()
+        private async Task<bool> EraseFormerData()
         {
             var result = await _messageDialogService.ShowYesOrNoDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
             if (result == MessageDialogResult.No)
             {
-                return;
+                return false;
             }
             else
             {
                 await _photoRepository.RemoveAllPhotoFromTableAsync();
+                return true;
             }
         }
 

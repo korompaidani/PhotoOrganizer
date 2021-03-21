@@ -91,8 +91,7 @@ namespace PhotoOrganizer.UI.ViewModel
             ) : base(eventAggregator, messageDialogService)
         {
             _photoRepository = photoRepository;
-            _locationLookupDataService = locationLookupDataService;
-            _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+            _locationLookupDataService = locationLookupDataService;            
             _bulkAttributeSetter = bulkAttributeSetter;
             _photoMetaWrapperService = photoMetaWrapperService;
 
@@ -371,6 +370,10 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             SetTitle();
+            if(photo.Year < 2)
+            {
+                _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+            }
         }
 
         private void SetCoordinateBasedOnLookupChange()

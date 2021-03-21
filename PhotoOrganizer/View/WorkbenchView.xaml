@@ -19,8 +19,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Write saved items metadata" Command="{Binding WriteAllSavedMetadataCommand}"/>
                 <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
-                <MenuItem Header="New Photo" Command="{Binding CreateNewDetailCommand}"
-                          CommandParameter="{x:Type viewModel:PhotoDetailViewModel}"/>
+                <MenuItem Header="Add Photo..." Command="{Binding AddNewPhotoCommand}"/>
                 <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
                 <MenuItem Header="Save All Tab" Command="{Binding SaveAllOpenTab}"/>

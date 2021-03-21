@@ -75,20 +75,42 @@ namespace PhotoOrganizer.UI.View.Services
             return MessageDialogResult.Cancel;
         }
 
-        public async Task<string> SelectFolderPathAsync(string baseFolderPath, string description)
+        public async Task<string> SelectFileOrFolderDialogAsync(string baseFolderPath, string description, bool isFileDialog = false)
         {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            folderDialog.SelectedPath = baseFolderPath;
-            folderDialog.Description = description;
-            folderDialog.ShowDialog();
-            var selectedPath = folderDialog.SelectedPath;
+            string selectedPath = string.Empty;
+
+            if (isFileDialog)
+            {
+                var fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = baseFolderPath;
+                fileDialog.Title = description;
+                fileDialog.ShowDialog();
+                selectedPath = fileDialog.FileName;
+            }
+            else
+            {
+                var folderDialog = new FolderBrowserDialog();
+                folderDialog.SelectedPath = baseFolderPath;
+                folderDialog.Description = description;
+                folderDialog.ShowDialog();
+                selectedPath = folderDialog.SelectedPath;
+            }
+            
 
             if (string.IsNullOrEmpty(selectedPath))
             {
                 return string.Empty;
             }
 
-            var isValid = Directory.Exists(selectedPath);
+            bool isValid;
+            if (isFileDialog)
+            {
+                isValid = File.Exists(selectedPath);
+            }
+            else
+            {
+                isValid = Directory.Exists(selectedPath);
+            }
 
             if (!isValid)
             {
@@ -104,7 +126,7 @@ namespace PhotoOrganizer.UI.View.Services
 
                 if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                 {
-                    return await SelectFolderPathAsync(baseFolderPath, description);
+                    return await SelectFileOrFolderDialogAsync(baseFolderPath, description);
                 }
 
                 return string.Empty;

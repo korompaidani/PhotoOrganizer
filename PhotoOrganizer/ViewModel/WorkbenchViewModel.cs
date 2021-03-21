@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Helpers;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
@@ -9,6 +10,7 @@ using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,6 +30,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private int nextNewItemId = 0;
 
         public ICommand CreateNewDetailCommand { get; }
+        public ICommand AddNewPhotoCommand { get; }
         public ICommand OpenSingleDetailViewCommand { get; }
         public ICommand OpenSettingsViewCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
@@ -83,6 +86,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
+            AddNewPhotoCommand = new DelegateCommand(OnAddNewPhotoExecute);
             CreatePhotosFromLibraryCommand = new DelegateCommand(OnCreatePhotosFromLibraryExecute);
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
             OpenSettingsViewCommand = new DelegateCommand(OnOpenSettingsViewExecute);
@@ -94,6 +98,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnSaveAllOpenTab()
         {
             var result = await _context.SaveAllTab(isForceSaveAll: true);
+
             _eventAggregator.GetEvent<AfterTabClosedEvent>().
                 Publish(
                     new AfterTabClosedEventArgs
@@ -104,12 +109,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnCloseOpenTabs()
         {
-            var result = await _context.SaveAllTab();
-
-            foreach(var tab in result)
-            {
-                RemoveDetailViewModel(tab.Key, tab.Value.ViewModelName);
-            }
+            var result = await CloseAllTabsAsync();
 
             _eventAggregator.GetEvent<AfterTabClosedEvent>().
                 Publish(
@@ -151,15 +151,21 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnCreatePhotosFromLibraryExecute()
         {
-            // TODO:            
-            // 1.       Detect that database has entries
-            // 2.       if yes: ask to save --> and if yes than save
-            // 3. DONE  Delete all data from photo
-            // 4. DONE  Read data from library
-            // 5.       show progressbar during load
-
+            await CloseAllTabsAsync(true);
             await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
             await LoadAsync();
+        }
+
+        private async Task<List<KeyValuePair<int, PhotoDetailInfo>>> CloseAllTabsAsync(bool isForceSave = false)
+        {
+            var result = await _context.SaveAllTab(isForceSave);
+
+            foreach (var tab in result)
+            {
+                RemoveDetailViewModel(tab.Key, tab.Value.ViewModelName);
+            }
+
+            return result;
         }
 
         private async void OnOpenDetailView(OpenDetailViewEventArgs args)
@@ -188,6 +194,12 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             SelectedDetailViewModel = detailViewModel;
+        }
+
+        private async void OnAddNewPhotoExecute()
+        {
+            var id = await _directoryReaderWrapperService.LoadSinglePhotoFromLibraryAsync();
+            OnOpenDetailView(new OpenDetailViewEventArgs { Id = id, ViewModelName = nameof(PhotoDetailViewModel) });
         }
 
         private void OnCreateNewDetailExecute(Type viewModelType)
