@@ -44,6 +44,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand AddToShelveCommand { get; }
         public ICommand RemoveFromShelveCommand { get; }
         public ICommand WriteMetadataCommand { get; }
+        public ICommand CopyToClipBoardCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -117,9 +118,15 @@ namespace PhotoOrganizer.UI.ViewModel
             AddToShelveCommand = new DelegateCommand(OnAddToShelveExecute, OnAddToShelveCanExecute);
             RemoveFromShelveCommand = new DelegateCommand(OnRemoveFromShelveExecute, OnRemoveFromShelveCanExecute);
             WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute, OnWriteMetadataCanExecute);
+            CopyToClipBoardCommand = new DelegateCommand(OnCopyToClipBoardExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private void OnCopyToClipBoardExecute()
+        {
+            Clipboard.SetText(Photo.FullPath);
         }
 
         private bool OnWriteMetadataCanExecute()

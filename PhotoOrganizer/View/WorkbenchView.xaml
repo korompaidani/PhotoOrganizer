@@ -9,7 +9,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="450"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -37,7 +36,18 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Row="1" Grid.Column="0" 
+        <Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Margin="1" Padding="1" BorderBrush="#353535">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TabControl  Grid.Row="0" Grid.Column="0"
                     ItemsSource="{Binding DetailViewModels}"
                     SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}">
             <TabControl.ItemContainerStyle>
@@ -83,8 +93,10 @@
                 </DataTemplate>
             </TabControl.ItemTemplate>
         </TabControl>
-
-        <view:NavigationView Grid.Row="2" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
-
+        
+        
+        <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
+        </Grid>
+        </Border>
     </Grid>
 </UserControl>

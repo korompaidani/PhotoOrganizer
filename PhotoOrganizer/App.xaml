@@ -7,19 +7,118 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              Startup="Application_Startup">
     <Application.Resources>
+        
         <ResourceDictionary>
+            <!--<Image x:Key="mapImage" Source="map_white_icon.png"/>-->
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatButton.xaml" />
                 <!-- Theme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <ResourceDictionary>
-                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style x:Key="NameButton" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
                         <Setter Property="FontSize" Value="10"/>
                         <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Content" Value="{Binding}"/>
                         <Setter Property="BorderThickness" Value="1"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                                <Setter Property="Content" Value="-" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
+                    <Style x:Key="MyMetroSquareButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style x:Key="MyMetroMapButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="FontSize" Value="10" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                                <Setter Property="Content" Value="map" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Style x:Key="MyMetroSetButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="FontSize" Value="10" />
+                        <Setter Property="Content" Value="Set" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="MyMetroCopyButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="FontSize" Value="10" />
+                        <Setter Property="Content" Value="copy" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
                     <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
                         <Setter Property="FontSize" Value="10"/>
                     </Style>

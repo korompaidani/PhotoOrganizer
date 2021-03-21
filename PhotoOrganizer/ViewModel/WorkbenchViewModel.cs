@@ -5,7 +5,6 @@ using PhotoOrganizer.UI.Helpers;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
-using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -14,7 +13,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.ViewModel

@@ -177,8 +177,8 @@
         </GroupBox>
 
         <StackPanel Grid.Column="2" Orientation="Vertical">
-            <Button Content="Up" Command="{Binding LoadUpNavigationCommand}"/>
-            <Button Content="Down" Command="{Binding LoadDownNavigationCommand}"/>
+            <Button Content="U" Height="30" Width="30" Command="{Binding LoadUpNavigationCommand}" Style="{DynamicResource MahApps.Styles.Button.Circle}" />
+            <Button Content="D" Height="30" Width="30" Command="{Binding LoadDownNavigationCommand}" Style="{DynamicResource MahApps.Styles.Button.Circle}"/>
         </StackPanel>
 
     </Grid>
