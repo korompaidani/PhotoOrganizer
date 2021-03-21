@@ -3,6 +3,7 @@ using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.View.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,28 +35,47 @@ namespace PhotoOrganizer.UI.Services
         {
             if (await _photoRepository.HasPhotosAsync())
             {
-                var answer = await _messageDialogService.ShowOkCancelDialogAsync("The database has entry(s). Would you like to save data first before erase all photo data?", "Question");
-                if (answer == MessageDialogResult.Ok)
+                var answer = await _messageDialogService.ShowExtendOrOverwriteCancelDialogAsync("The database has entry(s). Would you like to 'Extend' existing or 'Overwrite'?", "Question");
+                if (answer == MessageDialogResult.Overwrite)
                 {
-                    // save data here
-                    var entities = await _photoRepository.GetAllAsync();
-                    _backupService.CreateBackup(null);
-                }
-                else
-                {
-                    return;
-                }
+                    answer = await _messageDialogService.ShowYesOrNoDialogAsync("Would you like to backup database first before erase all photo data?", "Question");
+                    if (answer == MessageDialogResult.Yes)
+                    {
+                        // save data here
+                        string backupFolder = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString());
+                        if (string.IsNullOrEmpty(backupFolder))
+                        {
+                            return;
+                        }
 
-                var result = await _messageDialogService.ShowOkCancelDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
-                if (result == MessageDialogResult.Cancel)
-                {
-                    return;
-                }
-                else
-                {
-                    await _photoRepository.RemoveAllPhotoFromTableAsync();
+                        var entities = await _photoRepository.GetAllAsync();
+
+                        await _messageDialogService.ShowProgressDuringTaskAsync("", "", _backupService.CreateBackup, backupFolder);
+
+                        var result = await _messageDialogService.ShowYesOrNoDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+                        if (result == MessageDialogResult.No)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            await _photoRepository.RemoveAllPhotoFromTableAsync();
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
+
+            string folderPath = await _messageDialogService.SelectFolderPathAsync(Environment.SpecialFolder.Personal.ToString());
+            if (string.IsNullOrEmpty(folderPath))
+            {
+                return;
+            }
+
+            _directoryReader.ReadDirectory(folderPath);
 
             foreach (var photo in ConvertFileNamesToPhotos())
             {

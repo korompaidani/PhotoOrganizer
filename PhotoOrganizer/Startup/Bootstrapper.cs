@@ -31,6 +31,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
             builder.RegisterType<DirectoryReader>().AsSelf();
+            builder.RegisterType<XmlWriterComponent>().AsSelf();
 
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();

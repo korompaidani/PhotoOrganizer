@@ -126,8 +126,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 });
         }
 
-        protected async Task SaveWithOptimisticConcurrencyAsync(Func<Task> saveFunc,
-            Action afterSaveAction)
+        protected async Task SaveWithOptimisticConcurrencyAsync(Func<Task> saveFunc, Action afterSaveAction)
         {
             try
             {
@@ -163,8 +162,7 @@ namespace PhotoOrganizer.UI.ViewModel
             afterSaveAction();
         }
 
-        protected async Task SaveWithPessimisticConcurrencyAsync(Func<Task> saveFunc,
-            Action afterSaveAction)
+        protected async Task SaveWithPessimisticConcurrencyAsync(Func<Task> saveFunc, Action afterSaveAction)
         {
             try
             {

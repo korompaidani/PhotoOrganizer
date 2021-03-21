@@ -1,8 +1,10 @@
-﻿namespace PhotoOrganizer.UI.Services
+﻿using System.Threading.Tasks;
+
+namespace PhotoOrganizer.UI.Services
 {
     public interface IBackupService
     {
-        void CreateBackup(string path);
+        Task CreateBackup(string path);
         void RestoreFromBackup(string path);
     }
 }

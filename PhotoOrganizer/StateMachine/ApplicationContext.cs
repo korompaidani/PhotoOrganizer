@@ -160,7 +160,7 @@ namespace PhotoOrganizer.UI.StateMachine
 
                 if (!isForceSaveAll)
                 {
-                    result = await _messageDialogService.ShowSaveDialog();
+                    result = await _messageDialogService.ShowSaveSaveAllDiscardDiscardAllDialogAsync();
                 }
                 else
                 {
@@ -201,7 +201,7 @@ namespace PhotoOrganizer.UI.StateMachine
                     }
                     if (answer != MessageDialogResult.DiscardAll && answer != MessageDialogResult.SaveAll)
                     {
-                        _internalAnswer = await _messageDialogService.ShowSaveDialog();
+                        _internalAnswer = await _messageDialogService.ShowSaveSaveAllDiscardDiscardAllDialogAsync();
                         answer = _internalAnswer;
                     }
                     if(answer == MessageDialogResult.Cancel)

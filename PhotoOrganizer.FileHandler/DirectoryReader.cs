@@ -16,24 +16,22 @@ namespace PhotoOrganizer.FileHandler
         {
             _rootDirectoryPath = directoryPath;
             _fileList = new Dictionary<string, string>();
-
-            ReadDirectory(_rootDirectoryPath);
         }
 
         public void ReadDirectory(string dir)
         {
             try
-            {
+            {                
+                foreach (var file in Directory.GetFiles(dir))
+                {
+                    if (IsImageFile(Path.GetExtension(file)))
+                    {
+                        _fileList.Add(file, Path.GetFileNameWithoutExtension(file));
+                    }                                                
+                }
+
                 foreach (var directory in Directory.GetDirectories(dir))
                 {
-                    foreach (var file in Directory.GetFiles(directory))
-                    {
-                        if (IsImageFile(Path.GetExtension(file)))
-                        {
-                            _fileList.Add(file, Path.GetFileNameWithoutExtension(file));
-                        }                                                
-                    }
-
                     ReadDirectory(directory);
                 }
             }

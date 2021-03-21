@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.Common;
 using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.FileHandler;
+using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
 {
@@ -10,14 +11,16 @@ namespace PhotoOrganizer.UI.Services
 
         private BackupManager _backupManager;
         private PhotoOrganizerDbContext _photoOrganizerDbContext;
+        private XmlWriterComponent _xmlWriter;
 
-        public BackupService(BackupManager backupManager, PhotoOrganizerDbContext photoOrganizerDbContext)
+        public BackupService(BackupManager backupManager, PhotoOrganizerDbContext photoOrganizerDbContext, XmlWriterComponent xmlWriter)
         {
             _backupManager = backupManager;
             _photoOrganizerDbContext = photoOrganizerDbContext;
+            _xmlWriter = xmlWriter;
         }
 
-        public void CreateBackup(string path)
+        public async Task CreateBackup(string path)
         {
             // TODO: save to config: use event
             if (path == null) { path = FilePaths.DefaultBackupFolder; }
@@ -25,7 +28,10 @@ namespace PhotoOrganizer.UI.Services
 
             // Use backupManager here
             _backupManager.ReadAllTable(_photoOrganizerDbContext);
+
             // Write file here
+            await _xmlWriter.WriteXmlAsync(path);
+
         }
 
         public void RestoreFromBackup(string path)

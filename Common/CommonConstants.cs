@@ -11,7 +11,9 @@ namespace PhotoOrganizer.Common
         Save,
         SaveAll,
         Discard,
-        DiscardAll
+        DiscardAll,
+        Extend,
+        Overwrite
     }
 
     public enum ErrorTypes
