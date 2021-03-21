@@ -68,7 +68,8 @@
                                 </Border>
                                 
                                 <Border Padding="0" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1" Width="120">
-                                    <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
+                                    <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}">
+                                    </Image>
                                 </Border>
                                 <Label Content="{Binding DisplayMemberItem}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Margin="0" Padding="2"/>
                                 <Button Content="" 
@@ -84,6 +85,7 @@
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter Property="Cursor" Value="Hand"/>
                                                     <Setter Property="FontWeight" Value="Bold"/>
+                                                    <Setter Property="Width" Value="150"/>
                                                 </Trigger>
                                                 <Trigger Property="IsPressed" Value="True">
                                                     <Setter Property="FontWeight" Value="Normal"/>
@@ -98,7 +100,7 @@
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <local:CascadingPanel ItemOffset="50"/>
+                            <local:CascadingPanel ItemOffset="25"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>

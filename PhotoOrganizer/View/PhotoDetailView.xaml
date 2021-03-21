@@ -25,7 +25,7 @@
             <Grid Grid.Column="1">
                 <Grid>
                     <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
-                                    Background="#44000000" >
+                                    Background="#222222" >
                         <Border.RenderTransform>
                             <TranslateTransform X="0" Y="0" />
                         </Border.RenderTransform>
@@ -35,7 +35,7 @@
                     </Border>
                     <Border BorderThickness="1" BorderBrush="#2c2c2c">
                         <Grid>
-                            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown"/>
+                            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown" />
                         </Grid>
                         
                     </Border>
@@ -79,16 +79,22 @@
                           DisplayMemberPath="DisplayMemberItem"
                           SelectedValuePath="Id"
                           SelectedValue="{Binding Photo.LocationId, Mode=TwoWay}"
-                          Margin="5 0 5 5"
+                          Margin="5 0 5 5"                              
                           Width="230"/>
-                    <Button Content="Map" Margin="5 0 5 5"
-                        Command="{Binding OpenMapCommand}"/>
+                    <Grid Margin="5 0 5 5" Width="25">
+                        <Image Source="map_white_icon.png">
+                        </Image>
+                        <Button Content="map"
+                        Command="{Binding OpenMapCommand}"
+                                Background="Transparent"
+                                BorderThickness="0">
+                        </Button>
+                    </Grid>
                     <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </StackPanel>
                 <Button Grid.Row="2" Grid.Column="2" Content="Set" Margin="0 0 5 5" Height="25" VerticalAlignment="Top"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="LocationId;Coordinates"
-                    />
+                    CommandParameter="LocationId;Coordinates"/>
 
 
 

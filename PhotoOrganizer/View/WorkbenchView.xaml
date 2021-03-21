@@ -61,7 +61,25 @@
                         <Button Command="{Binding CloseDetailViewCommand}"
                                 Style="{StaticResource MahApps.Styles.Button.Chromeless}"
                                 VerticalContentAlignment="Center" Margin="5 0 1 1"
-                                Content="X" FontSize="10"/>
+                                Content="X" FontSize="10">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid x:Name="grid">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter Property="FontWeight" Value="Normal"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>

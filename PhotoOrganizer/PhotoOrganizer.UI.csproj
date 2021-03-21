@@ -685,6 +685,9 @@
     <Resource Include="splash_screen.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="View\map_white_icon.png" />
+    <Resource Include="Resources\Icons\map_gray_icon.png" />
+    <Resource Include="Resources\Icons\map_white_icon.png" />
     <Content Include="Resources\Web\OpenLayersMap.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
