@@ -1,7 +1,11 @@
-﻿using PhotoOrganizer.Common;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
+using PhotoOrganizer.UI.View.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,11 +18,15 @@ namespace PhotoOrganizer.UI.Services
     {
         private IPhotoRepository _photoRepository;
         private ExifIO _exifToFileWriter;
+        private IMessageDialogService _messageDialogService;
+        private ApplicationContext _context;
 
-        public PhotoMetaWrapperService(IPhotoRepository photoRepository, ExifIO exifToFileWriter)
+        public PhotoMetaWrapperService(IPhotoRepository photoRepository, ExifIO exifToFileWriter, IMessageDialogService messageDialogService)
         {
             _photoRepository = photoRepository;
             _exifToFileWriter = exifToFileWriter;
+            _messageDialogService = messageDialogService;
+            _context = Bootstrapper.Container.Resolve<ApplicationContext>();
         }
 
         public bool WriteMetaInfoToSingleFile(Photo photoModel, string targetFile)
@@ -30,8 +38,23 @@ namespace PhotoOrganizer.UI.Services
 
         public async Task WriteMetaInfoToAllFileAsync()
         {
-            var allPhotos = await _photoRepository.GetAllAsync();
-            throw new System.NotImplementedException();
+            var allPhotos = await _photoRepository.GetModifiedPhotosAsync();
+
+            foreach(var photo in allPhotos)
+            {
+                var result = await Task<bool>.Run(() => WriteMetaInfoToSingleFile(photo, photo.FullPath));
+                if (result)
+                {
+                    photo.ColorFlag = ColorSign.Finalized;
+                }
+                else
+                {
+                    _context.AddErrorMessage(ErrorTypes.MetaWritingError, $"{photo.Id}(id:{photo.Id}) didn't saved.");
+                }
+            }
+
+            await _photoRepository.SaveAsync();
+
         }
 
         public Photo CreatePhotoModelFromFile(string filePath)

@@ -194,6 +194,17 @@ namespace PhotoOrganizer.UI.View.Services
             progress = null;
         }
 
+        public async Task ShowProgressDuringTaskAsync(string title, string message, Func<Task> awaitableTask)
+        {
+            var progress = await MetroWindow.ShowProgressAsync(title, message, false);
+            progress.SetIndeterminate();
+
+            await awaitableTask();
+            await progress.CloseAsync();
+
+            progress = null;
+        }
+
         private Task<bool?> ShowDialogAsync(Window self)
         {
             if (self == null) throw new ArgumentNullException("self");

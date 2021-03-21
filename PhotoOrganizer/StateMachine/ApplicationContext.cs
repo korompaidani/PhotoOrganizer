@@ -16,7 +16,6 @@ namespace PhotoOrganizer.UI.StateMachine
     {
         private IMessageDialogService _messageDialogService;
         private IBulkAttributeSetterService _bulkAttributeSetter;
-        private IPhotoMetaWrapperService _photoMetaWrapperService;
         private IEventAggregator _eventAggregator;
         private IPhotoRepository _photorepository;
         private ILocationRepository _locationRepository;
@@ -26,12 +25,11 @@ namespace PhotoOrganizer.UI.StateMachine
         private List<IDetailViewModel> _openedPhotoDetailViewModels;
         private List<IDetailViewModel> _openedAlbumDetailViewModels;
         private List<IDetailViewModel> _openedLocationDetailViewModels;
-        private Dictionary<ErrorTypes, string> _errorMessages;
+        private List<KeyValuePair<ErrorTypes, string>> _errorMessages;
 
         public ApplicationContext(
             IMessageDialogService messageDialogService,
             IBulkAttributeSetterService bulkAttributeSetter,
-            IPhotoMetaWrapperService photoMetaWrapperService,
             IEventAggregator eventAggregator,
             IPhotoRepository photoRepository, 
             ILocationRepository locationRepository, 
@@ -39,7 +37,6 @@ namespace PhotoOrganizer.UI.StateMachine
         {
             _messageDialogService = messageDialogService;
             _bulkAttributeSetter = bulkAttributeSetter;
-            _photoMetaWrapperService = photoMetaWrapperService;
             _eventAggregator = eventAggregator;
             _photorepository = photoRepository;
             _locationRepository = locationRepository;
@@ -48,7 +45,7 @@ namespace PhotoOrganizer.UI.StateMachine
             _openedPhotoDetailViewModels = new List<IDetailViewModel>();
             _openedAlbumDetailViewModels = new List<IDetailViewModel>();
             _openedLocationDetailViewModels = new List<IDetailViewModel>();
-            _errorMessages = new Dictionary<ErrorTypes, string>();
+            _errorMessages = new List<KeyValuePair<ErrorTypes, string>>();
 
             _eventAggregator.GetEvent<WriteAllMetadataEvent>()
                 .Subscribe(WriteAllMetadata);
@@ -92,6 +89,11 @@ namespace PhotoOrganizer.UI.StateMachine
             }
         }
 
+
+        public void AddErrorMessage(ErrorTypes errorType, string errorMessage)
+        {
+            _errorMessages.Add(new KeyValuePair<ErrorTypes, string>(errorType, errorMessage));
+        }
 
         public async Task<List<KeyValuePair<int, PhotoDetailInfo>>> SaveAllTab(bool isForceSaveAll = false)
         {
@@ -211,7 +213,7 @@ namespace PhotoOrganizer.UI.StateMachine
                 }
                 catch (Exception ex)
                 {
-                    _errorMessages.Add(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
+                    _errorMessages.Add(new KeyValuePair<ErrorTypes, string>(ErrorTypes.DetailViewClosingError, ex.InnerException.Message));
                 }
             }
         }

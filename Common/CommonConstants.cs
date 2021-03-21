@@ -18,7 +18,8 @@ namespace PhotoOrganizer.Common
 
     public enum ErrorTypes
     {
-        DetailViewClosingError
+        DetailViewClosingError,
+        MetaWritingError
     }
 
     public enum MetaProperty

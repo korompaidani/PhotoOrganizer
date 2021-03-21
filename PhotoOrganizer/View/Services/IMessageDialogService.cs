@@ -13,5 +13,6 @@ namespace PhotoOrganizer.UI.View.Services
         Task<MessageDialogResult> ShowSaveSaveAllDiscardDiscardAllDialogAsync();
         Task<string> SelectFileOrFolderDialogAsync(string baseFolderPath, string description, bool isFileDialog = false);
         Task ShowProgressDuringTaskAsync(string title, string message, Func<string, Task> awaitableTask, string taskParameter);
+        Task ShowProgressDuringTaskAsync(string title, string message, Func<Task> awaitableTask);
     }
 }

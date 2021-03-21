@@ -124,15 +124,13 @@ namespace PhotoOrganizer.UI.ViewModel
             await NavigationViewModel.LoadAsync();
         }
 
-        private void OnWriteAllSavedMetadataCommand()
+        private async void OnWriteAllSavedMetadataCommand()
         {
-            var window = new WritingToFileView();
-            var peopleSelectionViewModel = new WritingToFileViewModel(_eventAggregator, _photoMetaWrapperService);
+            await CloseAllTabsAsync();
+            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Writing image metadata...", _photoMetaWrapperService.WriteMetaInfoToAllFileAsync);
+            await NavigationViewModel.LoadAsync();
 
-            window.DataContext = peopleSelectionViewModel;
-            window.Owner = Application.Current.MainWindow;
-
-            window.ShowDialog();
+            // Display error messages if it is any
         }
 
         private void OnOpenSettingsViewExecute()

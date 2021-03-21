@@ -134,7 +134,6 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnWriteMetadataExecute()
         {
             var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model, Photo.FullPath);
-            // message service as singleton must be implemented, which has messdialog service reference also
             var message = result ? "File has been succesfully modified" : "File cannot be modified";
             if (result)
             {

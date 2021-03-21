@@ -1,4 +1,5 @@
-﻿using PhotoOrganizer.DataAccess;
+﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.Model;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,6 +13,11 @@ namespace PhotoOrganizer.UI.Data.Repositories
     {
         public PhotoRepository(PhotoOrganizerDbContext context) : base(context)
         {
+        }
+
+        public async Task<List<Photo>> GetModifiedPhotosAsync()
+        {
+            return await Context.Photos.Where(p => p.ColorFlag == ColorSign.Modified).ToListAsync();
         }
 
         public override async Task<Photo> GetByIdAsync(int photoId)

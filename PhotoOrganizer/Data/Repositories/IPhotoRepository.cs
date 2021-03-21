@@ -10,6 +10,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
         void RemovePeople(People model);
         Task<bool> HasPhotosAsync();
         Task RemoveAllPhotoFromTableAsync();
+        Task<List<Photo>> GetModifiedPhotosAsync();
         Task<int?> GetMaxPhotoIdAsync();
         void AddRange(Photo[] photos);
         Task AddRangeAsync(Photo[] photos);
