@@ -4,22 +4,23 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
                        mc:Ignorable="d"
                        WindowStartupLocation="CenterScreen"
-                       Title="SaveDialog" Height="180" Width="450"
+                       Title="{x:Static resources:TextResources.SaveDialog_windowTitle}" Height="150" Width="520"
                        Loaded="OnLoaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="0 25 0 5"  Text="Do you want to save opened tabs before close?" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Margin="0 25 0 5"  Text="{x:Static resources:TextResources.SaveWindowMessage}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
-            <Button Content="Save" Margin="5" Width="90" Click="SaveClick"/>
-            <Button Content="Save All" Margin="5" Width="90" Click="SaveAllClick"/>
-            <Button Content="Discard" Margin="5" Width="90" Click="DiscardClick"/>
-            <Button Content="Discard All" Margin="5" Width="90" Click="DiscardAllClick"/>
-            <Button Content="Cancel" Margin="5" Width="90" Click="CancelClick"/>
+            <Button Content="{x:Static resources:TextResources.Save}" Margin="5" Width="90" Click="SaveClick" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.SaveAll}" Margin="5" Width="90" Click="SaveAllClick" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.Discard}" Margin="5" Width="90" Click="DiscardClick" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.DiscardAll}" Margin="5" Width="90" Click="DiscardAllClick" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.Cancel}" Margin="5" Width="90" Click="CancelClick" Style="{DynamicResource MyMetroSquareButton}"/>
         </StackPanel>
     </Grid>
     

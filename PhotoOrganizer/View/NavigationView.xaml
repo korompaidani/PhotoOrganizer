@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
              xmlns:converters="clr-namespace:PhotoOrganizer.UI.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -49,7 +50,7 @@
                 <RowDefinition Height="180"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <GroupBox Grid.Row="0" Header="Shelve">
+            <GroupBox Grid.Row="0" Header="{x:Static resources:TextResources.Shelve}">
 
                 <ListBox Grid.Row="0" x:Name="ShelveImageListbox"
                      ItemsSource="{Binding ShelvePhotos}"
@@ -106,7 +107,7 @@
                 </ListBox>
 
             </GroupBox>
-            <GroupBox Grid.Row="1" Header="Albums">
+            <GroupBox Grid.Row="1" Header="{x:Static resources:TextResources.Albums}">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
@@ -118,7 +119,7 @@
         </GroupBox>
         </Grid>
 
-        <GroupBox Grid.Column="1" Header="Photos">
+        <GroupBox Grid.Column="1" Header="{x:Static resources:TextResources.Photos}">
 
             <ListBox Grid.Row="0" x:Name="ImageListbox"
                      ItemsSource="{Binding Photos}"

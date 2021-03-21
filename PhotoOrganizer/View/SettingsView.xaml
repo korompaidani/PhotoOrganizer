@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -17,7 +18,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="1000">
-            <GroupBox Header="Performance">
+            <GroupBox Header="{x:Static resources:TextResources.Performance}">
                 <ComboBox ItemsSource="{Binding PageSizes}"
                           SelectedItem="{Binding SelectedPageSize}"
                           Margin="5 0 5 5"
@@ -27,9 +28,9 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Apply" Margin="5 0 5 5" Width="50"
-                        Command="{Binding ApplyCommand}"/>
+                        Command="{Binding ApplyCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
             <Button Content="Ok" Margin="5 0 5 5" Width="50"
-                        Command="{Binding OkCommand}"/>
+                        Command="{Binding OkCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
         </StackPanel>
 
         <Button Grid.Column="2" Grid.Row="0" Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"

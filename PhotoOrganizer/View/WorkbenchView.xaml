@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
              xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
              mc:Ignorable="d" >
     <Grid>
@@ -15,24 +16,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="12">
-            <MenuItem Header="File">
-                <MenuItem Header="Write saved items metadata" Command="{Binding WriteAllSavedMetadataCommand}"/>
-                <MenuItem Header="Read Photo Library..." Command="{Binding CreatePhotosFromLibraryCommand}"/>
-                <MenuItem Header="Add Photo..." Command="{Binding AddNewPhotoCommand}"/>
-                <MenuItem Header="New Album" Command="{Binding CreateNewDetailCommand}"
+            <MenuItem Header="{x:Static resources:TextResources.File_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.WriteSavedItemsMetadata_menu}" Command="{Binding WriteAllSavedMetadataCommand}"/>
+                <MenuItem Header="{x:Static resources:TextResources.ReadPhotoLibrary_menu}" Command="{Binding CreatePhotosFromLibraryCommand}"/>
+                <MenuItem Header="{x:Static resources:TextResources.AddPhoto_menu}" Command="{Binding AddNewPhotoCommand}"/>
+                <MenuItem Header="{x:Static resources:TextResources.NewAlbum_menu}" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
-                <MenuItem Header="Save All Tab" Command="{Binding SaveAllOpenTab}"/>
+                <MenuItem Header="{x:Static resources:TextResources.SaveAllTab_menu}" Command="{Binding SaveAllOpenTab}"/>
             </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Location" Command="{Binding OpenSingleDetailViewCommand}"
+            <MenuItem Header="{x:Static resources:TextResources.Edit_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.Locations_menu}" Command="{Binding OpenSingleDetailViewCommand}"
                               CommandParameter="{x:Type viewModel:LocationDetailViewModel}"/>
             </MenuItem>
-            <MenuItem Header="Options">
-                <MenuItem Header="Settings" Command="{Binding OpenSettingsViewCommand}"
+            <MenuItem Header="{x:Static resources:TextResources.Options_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.Settings_menu}" Command="{Binding OpenSettingsViewCommand}"
                               CommandParameter="{x:Type viewModel:SettingsViewModel}"/>
             </MenuItem>
-            <MenuItem Header="Window">
-                <MenuItem Header="Close open tabs" Command="{Binding CloseOpenTabsCommand}"/>
+            <MenuItem Header="{x:Static resources:TextResources.Window_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.CloseOpenTabs_menu}" Command="{Binding CloseOpenTabsCommand}"/>
             </MenuItem>
         </Menu>
 

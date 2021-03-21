@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.Common;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
@@ -81,7 +82,7 @@ namespace PhotoOrganizer.UI.ViewModel
             if (HasChanges)
             {
                 var result = await MessageDialogService.ShowOkCancelDialogAsync(
-                    "You've made changes. Do you really want to close this item?", "Question");
+                    TextResources.CloseConfirmation_message, TextResources.Question_windowTitle);
                 if(result == MessageDialogResult.Cancel)
                 {
                     return;
@@ -137,12 +138,12 @@ namespace PhotoOrganizer.UI.ViewModel
                 var databaseValues = ex.Entries.Single().GetDatabaseValues();
                 if (databaseValues == null)
                 {
-                    await MessageDialogService.ShowInfoDialogAsync("The entity has been deleted by another user");
+                    await MessageDialogService.ShowInfoDialogAsync(TextResources.EntityHasBeenDeleted_message);
                     RaiseDetailDeletedEvent(Id);
                     return;
                 }
 
-                var result = await MessageDialogService.ShowOkCancelDialogAsync("The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database.", "Question");
+                var result = await MessageDialogService.ShowOkCancelDialogAsync(TextResources.EntityHasBeenChanged_message, TextResources.Question_windowTitle);
 
                 if (result == MessageDialogResult.Ok)
                 {

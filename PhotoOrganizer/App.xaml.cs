@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using PhotoOrganizer.UI.Resources.Language;
+using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -16,6 +19,11 @@ namespace PhotoOrganizer.UI
             var bootstrapper = new Bootstrapper();
             bootstrapper.Bootstrap();
             base.OnStartup(e);
+
+            var settingsHandler = Bootstrapper.Container.Resolve<ISettingsHandler>();
+
+            TextResources.Culture = new CultureInfo("hu-HU");
+
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
         }
 

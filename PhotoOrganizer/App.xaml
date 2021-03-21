@@ -18,6 +18,12 @@
                 <!-- Theme setting -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
                 <ResourceDictionary>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="FontSize" Value="10"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
                     <Style x:Key="NameButton" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
                         <Setter Property="FontSize" Value="10"/>
                         <Setter Property="Padding" Value="0"/>

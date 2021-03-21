@@ -2,6 +2,7 @@
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -93,7 +94,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected async override void OnDeleteExecute()
         {
-            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to delete {Album.Title}?", "Question");
+            var result = await MessageDialogService.ShowOkCancelDialogAsync(String.Format(TextResources.DoYouReallyWantDelete_message, Album.Title), TextResources.Question_windowTitle);
             if (result == MessageDialogResult.Ok)
             {
                 _albumRepository.Remove(Album.Model);

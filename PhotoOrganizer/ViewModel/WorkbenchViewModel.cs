@@ -2,6 +2,7 @@
 using Autofac.Features.Indexed;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Helpers;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
@@ -125,7 +126,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnWriteAllSavedMetadataCommand()
         {
             await CloseAllTabsAsync();
-            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Writing image metadata...", _photoMetaWrapperService.WriteMetaInfoToAllFileAsync);
+            await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.WritingMetadata_message, _photoMetaWrapperService.WriteMetaInfoToAllFileAsync);
             await NavigationViewModel.LoadAsync();
 
             // Display error messages if it is any
@@ -181,7 +182,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 catch (Exception)
                 {
 
-                    await _messageDialogService.ShowInfoDialogAsync("Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.");
+                    await _messageDialogService.ShowInfoDialogAsync(TextResources.CouldNotLoadEntity_message);
                     await NavigationViewModel.LoadAsync();
                     return;
                 }

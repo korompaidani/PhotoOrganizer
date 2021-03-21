@@ -184,6 +184,12 @@
     <Compile Include="Helpers\DirectionArgs.cs" />
     <Compile Include="Helpers\PhotoDetailInfo.cs" />
     <Compile Include="MainWindowClose.cs" />
+    <Compile Include="Resources\Language\TextResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextResources.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </Compile>
     <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\BulkAttributeSetterService.cs" />
     <Compile Include="Services\CacheServiceBase.cs" />
@@ -212,7 +218,6 @@
     <Compile Include="StateMachine\PhotoDetailContext.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
-    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
@@ -361,6 +366,11 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\TextResources.hu-HU.resx" />
+    <EmbeddedResource Include="Resources\Language\TextResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -686,7 +696,6 @@
     <Resource Include="splash_screen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\map_white_icon.png" />
     <Resource Include="Resources\Icons\map_gray_icon.png" />
     <Resource Include="Resources\Icons\map_white_icon.png" />
     <Content Include="Resources\Web\OpenLayersMap.html" />

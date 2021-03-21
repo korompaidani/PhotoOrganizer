@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
              xmlns:WebEngine="clr-namespace:PhotoOrganizer.UI.Engine"
              mc:Ignorable="d" 
              >
@@ -15,13 +16,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <Label Content="Location Name"/>
+            <Label Content="{x:Static resources:TextResources.LocationName}"/>
             <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-            <Button Content="Set Coordinate" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}"/>
-            <Button Content="Save Existing" Command="{Binding SaveOverrideLocationCommand}"/>
-            <Button Content="Save As New" Command="{Binding SaveAsNewLocationCommand}"/>
-            <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}"/>
-            <Button Content="Alter Save" Background="Transparent" Command="{Binding SaveCommand}"/>
+            <Button Content="{x:Static resources:TextResources.Coordinates}" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.SaveExisting}" Command="{Binding SaveOverrideLocationCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="{x:Static resources:TextResources.SaveAsNew}" Command="{Binding SaveAsNewLocationCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
         </StackPanel>
 
         <ContentPresenter Grid.Row="1" Content="{x:Static WebEngine:ChromiumBrowserEngine.ControlInstance}"/>

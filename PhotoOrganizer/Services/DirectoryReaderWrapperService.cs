@@ -2,6 +2,7 @@
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.View.Services;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace PhotoOrganizer.UI.Services
 
         public async Task<int> LoadSinglePhotoFromLibraryAsync()
         {
-            var filePath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a photo", isFileDialog: true);
+            var filePath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.SelectPhoto_message, isFileDialog: true);
 
             var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(filePath);
 
@@ -46,10 +47,10 @@ namespace PhotoOrganizer.UI.Services
         {
             if (await _photoRepository.HasPhotosAsync())
             {
-                var answer = await _messageDialogService.ShowExtendOrOverwriteCancelDialogAsync("The database has entry(s). Would you like to 'Extend' existing or 'Overwrite'?", "Question");
+                var answer = await _messageDialogService.ShowExtendOrOverwriteCancelDialogAsync(TextResources.ExtendOrOverwrite_message, TextResources.Question_windowTitle);
                 if (answer == MessageDialogResult.Overwrite)
                 {
-                    answer = await _messageDialogService.ShowYesOrNoDialogAsync("Would you like to backup database first before erase all photo data?", "Question");
+                    answer = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.DoYouWantBackup_message, TextResources.Question_windowTitle);
                     if (answer == MessageDialogResult.Yes)
                     {
                         await CreateBackup();
@@ -69,14 +70,14 @@ namespace PhotoOrganizer.UI.Services
                 }
             }
 
-            string folderPath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please select a 'photo' location:");
-            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Reading files...", ReadAllFilesFromFolder, folderPath);
+            string folderPath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.SelectPhotoLocation_message);
+            await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.ReadingFiles_message, ReadAllFilesFromFolder, folderPath);
         }
 
         private async Task CreateBackup()
         {
             // save data here
-            string backupFolder = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), "Please choose folder for 'backup':");
+            string backupFolder = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.ChooseFolder_windowTitle);
             if (string.IsNullOrEmpty(backupFolder))
             {
                 return;
@@ -84,12 +85,12 @@ namespace PhotoOrganizer.UI.Services
 
             var entities = await _photoRepository.GetAllAsync();
 
-            await _messageDialogService.ShowProgressDuringTaskAsync("Please wait", "Creating backup...", _backupService.CreateBackup, backupFolder);
+            await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.CreatingBackup_message, _backupService.CreateBackup, backupFolder);
         }
 
         private async Task<bool> EraseFormerData()
         {
-            var result = await _messageDialogService.ShowYesOrNoDialogAsync("This operation will erase all previous data from Database. Are you sure to load new library data?", "Question");
+            var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
             if (result == MessageDialogResult.No)
             {
                 return false;

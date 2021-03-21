@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.ViewModel;
 using System;
 using System.IO;
@@ -24,7 +25,7 @@ namespace PhotoOrganizer.UI.View.Services
 
         public async Task ShowInfoDialogAsync(string text)
         {
-            await MetroWindow.ShowMessageAsync("Info", text);
+            await MetroWindow.ShowMessageAsync(TextResources.Info_windowTitle, text);
         }
 
         public async Task<MessageDialogResult> ShowYesOrNoDialogAsync(string text, string title)
@@ -32,9 +33,9 @@ namespace PhotoOrganizer.UI.View.Services
             var settings = new MetroDialogSettings
             {
                 DefaultButtonFocus = MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative,
-                AffirmativeButtonText = "Yes",
-                NegativeButtonText = "No",
-                FirstAuxiliaryButtonText = "Cancel"
+                AffirmativeButtonText = TextResources.Yes,
+                NegativeButtonText = TextResources.No,
+                FirstAuxiliaryButtonText = TextResources.Cancel
             };
 
             var result = await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, settings);
@@ -56,9 +57,9 @@ namespace PhotoOrganizer.UI.View.Services
             var settings = new MetroDialogSettings
             {
                 DefaultButtonFocus = MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative,
-                AffirmativeButtonText = "Extend",
-                NegativeButtonText = "Overwrite",
-                FirstAuxiliaryButtonText = "Cancel"
+                AffirmativeButtonText = TextResources.Extend,
+                NegativeButtonText = TextResources.Overwrite,
+                FirstAuxiliaryButtonText = TextResources.Cancel
             };
 
             var result = await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, settings);
@@ -117,12 +118,12 @@ namespace PhotoOrganizer.UI.View.Services
                 var settings = new MetroDialogSettings
                 {
                     DefaultButtonFocus = MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative,
-                    AffirmativeButtonText = "Yes",
-                    NegativeButtonText = "No",
-                    FirstAuxiliaryButtonText = "Cancel"
+                    AffirmativeButtonText = TextResources.Yes,
+                    NegativeButtonText = TextResources.No,
+                    FirstAuxiliaryButtonText = TextResources.Cancel
                 };
 
-                var result = await MetroWindow.ShowMessageAsync("Warning", "The selected path is invalid, would you like to try again?", MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, settings);
+                var result = await MetroWindow.ShowMessageAsync(TextResources.Warning_windoTitle, TextResources.TheSelectedPathInvalid_message, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, settings);
 
                 if (result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative)
                 {
@@ -155,10 +156,10 @@ namespace PhotoOrganizer.UI.View.Services
             var settings = new MetroDialogSettings
             {
                 DefaultButtonFocus = MahApps.Metro.Controls.Dialogs.MessageDialogResult.Negative,
-                AffirmativeButtonText = "Save",
-                NegativeButtonText = "Save All",
-                FirstAuxiliaryButtonText = "Discard",
-                SecondAuxiliaryButtonText = "Discard All",
+                AffirmativeButtonText = TextResources.Save,
+                NegativeButtonText = TextResources.SaveAll,
+                FirstAuxiliaryButtonText = TextResources.Discard,
+                SecondAuxiliaryButtonText = TextResources.DiscardAll
             };
 
             var result = await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary, settings);
@@ -207,7 +208,7 @@ namespace PhotoOrganizer.UI.View.Services
 
         private Task<bool?> ShowDialogAsync(Window self)
         {
-            if (self == null) throw new ArgumentNullException("self");
+            if (self == null) throw new ArgumentNullException(nameof(Window));
 
             TaskCompletionSource<bool?> completion = new TaskCompletionSource<bool?>();
             self.Dispatcher.BeginInvoke(new Action(() => completion.SetResult(self.ShowDialog())));

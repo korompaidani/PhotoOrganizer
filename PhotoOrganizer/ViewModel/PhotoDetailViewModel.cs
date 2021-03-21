@@ -3,6 +3,7 @@ using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View;
 using PhotoOrganizer.UI.View.Services;
@@ -67,7 +68,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 Photo.Year = value.Year;
                 Photo.Month = value.Month;
                 Photo.Day = value.Day;
-                _date = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+                _date = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
                 OnPropertyChanged();
             }
         }
@@ -141,7 +142,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnWriteMetadataExecute()
         {
             var result = _photoMetaWrapperService.WriteMetaInfoToSingleFile(Photo.Model, Photo.FullPath);
-            var message = result ? "File has been succesfully modified" : "File cannot be modified";
+            var message = result ? TextResources.FileHasBeenModifiedSucc_message : TextResources.FileHasBeenModifiedFailed_message;
             if (result)
             {
                 SetFinalizedStateFlag();
@@ -246,7 +247,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if (photo.Month != 0 && photo.Day != 0)
             {
-                TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+                TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, 12, 00, 00, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
             }
             TakenTime = new DateTime(photo.HHMMSS.Ticks);
         }
@@ -378,7 +379,7 @@ namespace PhotoOrganizer.UI.ViewModel
             SetTitle();
             if(photo.Year < 2)
             {
-                _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo("hu-HU", false).Calendar);
+                _date = new DateTime(1986, 05, 02, 12, 00, 00, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
             }
         }
 
@@ -466,11 +467,11 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if(await _photoRepository.HasAlbums(Photo.Id))
             {
-                await MessageDialogService.ShowInfoDialogAsync($"{Photo.Title} can't be deleted as it is part of at least one album.");
+                await MessageDialogService.ShowInfoDialogAsync(String.Format(TextResources.PhotoCantDeleted_message, Photo.Title));
                 return;
             }
 
-            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to delete {Photo.Title}?", "Question");
+            var result = await MessageDialogService.ShowOkCancelDialogAsync(String.Format(TextResources.DoYouReallyWantDelete_message, Photo.Title), TextResources.Question_windowTitle);
             if(result == MessageDialogResult.Ok)
             {
                 _photoRepository.Remove(Photo.Model);

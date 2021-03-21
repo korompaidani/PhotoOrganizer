@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+        xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
         mc:Ignorable="d"
         Title="PeopleSelectionCreationView" Height="450" Width="800"
         WindowStartupLocation="CenterOwner">
     <Grid>
         <DockPanel Grid.Row="6" Grid.Column="1" Margin="5 0 5 5">
             <StackPanel DockPanel.Dock="Right">
-                <Button Content="Add" Width="125" Margin="5 0 5 5"
-                            Command="{Binding AddPeopleCommand}"/>
-                <Button Content="Remove" Width="125" Margin="5"
-                            Command="{Binding RemovePeopleCommand}"/>
+                <Button Content="{x:Static resources:TextResources.Add}" Width="125" Margin="5 0 5 5"
+                            Command="{Binding AddPeopleCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+                <Button Content="{x:Static resources:TextResources.Remove}" Width="125" Margin="5"
+                            Command="{Binding RemovePeopleCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
 
-                <Button Content="Add to photo" Width="125" Margin="5"
-                            Command="{Binding AddSelectedPeopleToPhotoCommand}"/>
+                <Button Content="{x:Static resources:TextResources.AddToPhoto}" Width="125" Margin="5"
+                            Command="{Binding AddSelectedPeopleToPhotoCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
             </StackPanel>
             <DataGrid ItemsSource="{Binding Peoples}"
                 SelectedItem="{Binding SelectedPeople, Mode=TwoWay}"
@@ -29,7 +30,7 @@
                                             EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
                                             Binding="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.Header>
-                            <TextBlock FontSize="10" Text="People"/>
+                            <TextBlock FontSize="10" Text="{x:Static resources:TextResources.People}"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                 </DataGrid.Columns>

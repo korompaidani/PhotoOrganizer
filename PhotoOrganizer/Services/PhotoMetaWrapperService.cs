@@ -3,6 +3,7 @@ using PhotoOrganizer.Common;
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View.Services;
@@ -49,7 +50,7 @@ namespace PhotoOrganizer.UI.Services
                 }
                 else
                 {
-                    _context.AddErrorMessage(ErrorTypes.MetaWritingError, $"{photo.Id}(id:{photo.Id}) didn't saved.");
+                    _context.AddErrorMessage(ErrorTypes.MetaWritingError, String.Format(TextResources.DidntSave_errorMessage, photo.Title, photo.Id));
                 }
             }
 

@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.Wrapper;
 using Prism.Commands;
@@ -40,7 +41,7 @@ namespace PhotoOrganizer.UI.ViewModel
             : base(eventAggregator, messageDialogService)
         {
             _locationRepository = locationRepository;
-            Title = "Location";
+            Title = TextResources.Location;
             Locations = new ObservableCollection<LocationWrapper>();
 
             AddCommand = new DelegateCommand(OnAddExecute);
@@ -117,8 +118,8 @@ namespace PhotoOrganizer.UI.ViewModel
                     {
                         ex = ex.InnerException;
                     }
-                    await MessageDialogService.ShowInfoDialogAsync("Error while saving the entities, " +
-                        "the data will be reloaded. Details: " + ex.Message);
+                    await MessageDialogService.ShowInfoDialogAsync(TextResources.ErrorWhileSaveEntities_errorMessage +
+                       TextResources.DataWillReloaded_message + ex.Message);
 
                     await LoadAsync(Id);
                 }
@@ -137,7 +138,7 @@ namespace PhotoOrganizer.UI.ViewModel
             var isReferenced = await _locationRepository.IsReferencedByPhotoAsync(SelectedLocation.Id);
             if (isReferenced)
             {
-                await MessageDialogService.ShowInfoDialogAsync($"The location {SelectedLocation.LocationName} can't be removed, as it is referenced by at least one photo");
+                await MessageDialogService.ShowInfoDialogAsync(String.Format(TextResources.LocationCantBeRemovedBecauseItIsUsedByEntity_message, SelectedLocation.LocationName));
                 return;
             }
 
@@ -157,8 +158,8 @@ namespace PhotoOrganizer.UI.ViewModel
             Locations.Add(wrapper);
 
             // Trigger the validation
-            wrapper.LocationName = "new place";
-            wrapper.Coordinates = "46.84172812451524, 16.84248724161438";
+            wrapper.LocationName = TextResources.NewPlace;
+            wrapper.Coordinates = TextResources.DefaultCoordinates;
         }
 
         private async void AfterCoordinatesSavedAsNew(SaveCoordinatesAsNewEventArgs args)
