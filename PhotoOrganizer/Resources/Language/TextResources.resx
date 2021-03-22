@@ -367,6 +367,9 @@
   <data name="Title_colon" xml:space="preserve">
     <value>Title:</value>
   </data>
+  <data name="UnhandledExceptionOccurred_errorMessage" xml:space="preserve">
+    <value>An unhandled exception occurred: {0}</value>
+  </data>
   <data name="Up" xml:space="preserve">
     <value>Up</value>
   </data>

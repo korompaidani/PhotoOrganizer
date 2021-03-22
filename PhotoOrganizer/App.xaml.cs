@@ -34,7 +34,7 @@ namespace PhotoOrganizer.UI
 
         void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            string errorMessage = string.Format("An unhandled exception occurred: {0}", e.Exception.Message);
+            string errorMessage = string.Format(TextResources.UnhandledExceptionOccurred_errorMessage, e.Exception.Message);
             e.Handled = true;
         }
 

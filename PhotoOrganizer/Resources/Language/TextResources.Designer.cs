@@ -808,6 +808,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception occurred: {0}.
+        /// </summary>
+        public static string UnhandledExceptionOccurred_errorMessage {
+            get {
+                return ResourceManager.GetString("UnhandledExceptionOccurred_errorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Up.
         /// </summary>
         public static string Up {
