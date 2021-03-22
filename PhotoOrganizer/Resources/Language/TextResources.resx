@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActualSettingIs" xml:space="preserve">
+    <value>The actual setting is: </value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -207,6 +210,9 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="EntityHasBeenChanged_message" xml:space="preserve">
     <value>The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database.</value>
   </data>
@@ -234,6 +240,9 @@
   <data name="Finalize" xml:space="preserve">
     <value>Finalize</value>
   </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Hungarian</value>
+  </data>
   <data name="Info_windowTitle" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -241,7 +250,10 @@
     <value>Language</value>
   </data>
   <data name="LanguageSettingsDescription" xml:space="preserve">
-    <value>Language change will be applied after program restart.</value>
+    <value>You can change the display language of the application. This change will take effect after restart.</value>
+  </data>
+  <data name="Language_colon" xml:space="preserve">
+    <value>Language: </value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>
@@ -276,6 +288,12 @@
   </data>
   <data name="Overwrite" xml:space="preserve">
     <value>Overwrite</value>
+  </data>
+  <data name="PageSizeSettingsDescription" xml:space="preserve">
+    <value>The page size determines how many photo will appear in navigation bar. Memory consumtion is lower in case of lower page size.</value>
+  </data>
+  <data name="PageSize_colon" xml:space="preserve">
+    <value>Page size: </value>
   </data>
   <data name="Path_colon" xml:space="preserve">
     <value>Path:</value>

@@ -19,6 +19,8 @@ namespace PhotoOrganizer.UI.ViewModel
         private SettingsWrapper _settings;
         private int _selectedPageSize;
         private string _selectedLanguage;
+        private string _actualLanguageSet;
+        private int _actualPageSet;
         private bool _hasChanges;
 
         public ICommand OpenWorkbenchCommand { get; }
@@ -27,6 +29,26 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ObservableCollection<int> PageSizes { get; private set; }
         public ObservableCollection<string> Languages { get; private set; }
+
+        public string ActualLanguageSet
+        {
+            get { return _actualLanguageSet; }
+            set
+            {
+                _actualLanguageSet = value;               
+                OnPropertyChanged();
+            }
+        }
+
+        public int ActualPageSet
+        {
+            get { return _actualPageSet; }
+            set
+            {
+                _actualPageSet = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int SelectedPageSize
         {
@@ -79,6 +101,7 @@ namespace PhotoOrganizer.UI.ViewModel
                     _hasChanges = value;
                     OnPropertyChanged();
                     ((DelegateCommand)ApplyCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)OkCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -92,17 +115,19 @@ namespace PhotoOrganizer.UI.ViewModel
 
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
             ApplyCommand = new DelegateCommand(OnApplyExecute, OnApplyCanExecute);
-            OkCommand = new DelegateCommand(OnOkExecute);
+            OkCommand = new DelegateCommand(OnOkExecute, OnOkCanExecute);
             LoadPageSizesCombo();
             LoadLanguagesCombo();
         }
 
+        private bool OnOkCanExecute()
+        {
+            return HasChanges;
+        }
+
         private async void OnOkExecute()
         {
-            if (HasChanges)
-            {
-                await ApplyAndSave();
-            }
+            await ApplyAndSave();
 
             _eventAggregator.GetEvent<CloseSettingsEvent>().
                 Publish(new CloseSettingsEventArgs());
@@ -110,25 +135,33 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnApplyCanExecute()
         {
-            //return HasChanges;
-            return true;
+            return HasChanges;
         }
 
         private async void OnApplyExecute()
         {
             await ApplyAndSave();
+            await LoadAsync();
         }
 
         public async Task LoadAsync()
         {
-            var settings = await _settingsHandler.LoadSettingsAsync();
-            if(settings == null)
+            if(Settings == null)
             {
-                settings = new Settings { PageSize = PageSizes[0] };
+                var settings = await _settingsHandler.LoadSettingsAsync();
+                if (settings == null)
+                {
+                    settings = new Settings { PageSize = PageSizes[0] };
+                }
+
+                Settings = new SettingsWrapper(settings);
             }
 
-            Settings = new SettingsWrapper(settings);
             SelectedPageSize = Settings.PageSize;
+
+            ActualPageSet = Settings.PageSize;
+            ActualLanguageSet = Settings.Language;
+            HasChanges = false;
         }
 
         private void OnOpenWorkbench()
@@ -155,7 +188,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 PageSizes.Add(comboItem);
             }
 
-            SelectedPageSize = PageSizes[0];
+            SelectedPageSize = PageSizes[0];            
         }
 
         private void LoadLanguagesCombo()
@@ -170,7 +203,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 Languages.Add(comboItem);
             }
 
-            _selectedLanguage = Languages[0];
+            SelectedLanguage = Languages[0];            
         }
     }
 }

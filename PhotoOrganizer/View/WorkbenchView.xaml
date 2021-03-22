@@ -17,9 +17,11 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="12">
             <MenuItem Header="{x:Static resources:TextResources.File_menu}">
-                <MenuItem Header="{x:Static resources:TextResources.WriteSavedItemsMetadata_menu}" Command="{Binding WriteAllSavedMetadataCommand}"/>
                 <MenuItem Header="{x:Static resources:TextResources.ReadPhotoLibrary_menu}" Command="{Binding CreatePhotosFromLibraryCommand}"/>
                 <MenuItem Header="{x:Static resources:TextResources.AddPhoto_menu}" Command="{Binding AddNewPhotoCommand}"/>
+                <GridSplitter Height="1"></GridSplitter>
+                <MenuItem Header="{x:Static resources:TextResources.WriteSavedItemsMetadata_menu}" Command="{Binding WriteAllSavedMetadataCommand}"/>
+                <GridSplitter Height="1"></GridSplitter>
                 <MenuItem Header="{x:Static resources:TextResources.NewAlbum_menu}" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
                 <MenuItem Header="{x:Static resources:TextResources.SaveAllTab_menu}" Command="{Binding SaveAllOpenTab}"/>
@@ -41,62 +43,67 @@
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="450"/>
+                    <RowDefinition Height="2"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <TabControl  Grid.Row="0" Grid.Column="0"
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <TabControl  
                     ItemsSource="{Binding DetailViewModels}"
                     SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}">
-            <TabControl.ItemContainerStyle>
-                <Style TargetType="TabItem"
+                        <TabControl.ItemContainerStyle>
+                            <Style TargetType="TabItem"
                        BasedOn="{StaticResource {x:Type TabItem}}">
-                    <Setter Property="Background" Value="#333333"/>
-                    <Setter Property="BorderBrush" Value="Transparent"/>
-                    <Setter Property="BorderThickness" Value="2"/>
-                </Style>
-            </TabControl.ItemContainerStyle>
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Title}"
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Style>
+                        </TabControl.ItemContainerStyle>
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Title}"
                                    FontSize="10"
                                    HorizontalAlignment="Center"/>
-                        <TextBlock Text="*" Visibility="{Binding HasChanges,
+                                    <TextBlock Text="*" Visibility="{Binding HasChanges,
                             Converter={StaticResource booleanToVisibilityConverter}}"
                             FontSize="10"/>
-                        <Button Command="{Binding CloseDetailViewCommand}"
+                                    <Button Command="{Binding CloseDetailViewCommand}"
                                 Style="{StaticResource MahApps.Styles.Button.Chromeless}"
                                 VerticalContentAlignment="Center" Margin="5 0 1 1"
                                 Content="X" FontSize="10">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid x:Name="grid">
-                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Grid x:Name="grid">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                            <Setter Property="FontWeight" Value="Bold"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter Property="FontWeight" Value="Normal"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>
-        
-        
-        <view:NavigationView Grid.Row="1" Grid.Column="0" DataContext="{Binding NavigationViewModel}"/>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Cursor" Value="Hand"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="FontWeight" Value="Normal"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
+                    </TabControl>
+                </Grid>
+                <GridSplitter Grid.Row="1" Grid.Column="0"/>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <view:NavigationView DataContext="{Binding NavigationViewModel}"/>
+                </Grid>
+                
         </Grid>
         </Border>
     </Grid>

@@ -101,12 +101,13 @@
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <local:CascadingPanel ItemOffset="25"/>
+                            <local:CascadingPanel ItemOffset="45"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
 
             </GroupBox>
+            
             <GroupBox Grid.Row="1" Header="{x:Static resources:TextResources.Albums}">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">

@@ -42,7 +42,6 @@ namespace PhotoOrganizer.UI
         {
             var settingsHandler = Bootstrapper.Container.Resolve<ISettingsHandler>();
 
-            settingsHandler.LoadAtStartupInitialSettings();
             var actualLanguage = settingsHandler.GetLanguageSettings();
 
             TextResources.Culture = new CultureInfo(actualLanguage);

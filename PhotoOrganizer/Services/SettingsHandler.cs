@@ -22,7 +22,6 @@ namespace PhotoOrganizer.UI.Services
         {
             if(settings != null)
             {
-                await SaveSettingsAsync(_initialSettings);
                 await _pageSizeService.SetPageSize(settings.PageSize);
             }
         }
@@ -31,8 +30,11 @@ namespace PhotoOrganizer.UI.Services
         {
             try
             {
-                await ApplySettingsAsync(_initialSettings);
-                return await _jsonFileHandler.ReadModelFromFileAsync();
+                if(_initialSettings == null)
+                {
+                    return await _jsonFileHandler.ReadModelFromFileAsync();
+                }
+                return _initialSettings;
             }
             catch
             {
@@ -45,20 +47,19 @@ namespace PhotoOrganizer.UI.Services
             await _jsonFileHandler.WriteModelToFileAsync(settings);
         }
 
-        public void LoadAtStartupInitialSettings()
-        {
-            try
-            {
-                _initialSettings = _jsonFileHandler.InitialReadModelFromFile();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public string GetLanguageSettings()
         {
+            if (_initialSettings == null)
+            {
+                try
+                {
+                    _initialSettings = _jsonFileHandler.InitialReadModelFromFile();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
             return _initialSettings.Language;
         }
     }

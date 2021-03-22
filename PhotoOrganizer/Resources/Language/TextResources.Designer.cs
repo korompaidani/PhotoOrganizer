@@ -61,6 +61,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The actual setting is: .
+        /// </summary>
+        public static string ActualSettingIs {
+            get {
+                return ResourceManager.GetString("ActualSettingIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Add {
@@ -331,6 +340,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database..
         /// </summary>
         public static string EntityHasBeenChanged_message {
@@ -412,6 +430,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hungarian.
+        /// </summary>
+        public static string Hungarian {
+            get {
+                return ResourceManager.GetString("Hungarian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Info.
         /// </summary>
         public static string Info_windowTitle {
@@ -430,7 +457,16 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language change will be applied after program restart..
+        ///   Looks up a localized string similar to Language: .
+        /// </summary>
+        public static string Language_colon {
+            get {
+                return ResourceManager.GetString("Language_colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can change the display language of the application. This change will take effect after restart..
         /// </summary>
         public static string LanguageSettingsDescription {
             get {
@@ -534,6 +570,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Overwrite {
             get {
                 return ResourceManager.GetString("Overwrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page size: .
+        /// </summary>
+        public static string PageSize_colon {
+            get {
+                return ResourceManager.GetString("PageSize_colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The page size determines how many photo will appear in navigation bar. Memory consumtion is lower in case of lower page size..
+        /// </summary>
+        public static string PageSizeSettingsDescription {
+            get {
+                return ResourceManager.GetString("PageSizeSettingsDescription", resourceCulture);
             }
         }
         
