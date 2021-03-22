@@ -18,11 +18,9 @@ namespace PhotoOrganizer.UI
         {
             var bootstrapper = new Bootstrapper();
             bootstrapper.Bootstrap();
-            base.OnStartup(e);
+            base.OnStartup(e);            
 
-            var settingsHandler = Bootstrapper.Container.Resolve<ISettingsHandler>();
-
-            TextResources.Culture = new CultureInfo("hu-HU");
+            SetAppLanguage();
 
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
         }
@@ -38,6 +36,16 @@ namespace PhotoOrganizer.UI
         {
             string errorMessage = string.Format("An unhandled exception occurred: {0}", e.Exception.Message);
             e.Handled = true;
+        }
+
+        private void SetAppLanguage()
+        {
+            var settingsHandler = Bootstrapper.Container.Resolve<ISettingsHandler>();
+
+            settingsHandler.LoadAtStartupInitialSettings();
+            var actualLanguage = settingsHandler.GetLanguageSettings();
+
+            TextResources.Culture = new CultureInfo(actualLanguage);
         }
     }
 }

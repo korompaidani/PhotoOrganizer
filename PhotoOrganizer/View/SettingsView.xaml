@@ -18,11 +18,24 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Width="1000">
-            <GroupBox Header="{x:Static resources:TextResources.Performance}">
+            <GroupBox Header="{x:Static resources:TextResources.Performance}" Margin="5">
                 <ComboBox ItemsSource="{Binding PageSizes}"
                           SelectedItem="{Binding SelectedPageSize}"
                           Margin="5 0 5 5"
                           Width="100"/>
+            </GroupBox>
+            
+            <GroupBox Header="{x:Static resources:TextResources.Language}" Margin="5">
+                <Grid>
+                    <StackPanel>
+                    <TextBlock Text="{x:Static resources:TextResources.LanguageSettingsDescription}" TextWrapping="Wrap" Margin="5 0 5 5" FontSize="10"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Languages}"
+                          SelectedItem="{Binding SelectedLanguage}"
+                          Margin="5 0 5 5"
+                          Width="100"/>
+                    </StackPanel>
+                </Grid>
+                
             </GroupBox>
         </StackPanel>
 

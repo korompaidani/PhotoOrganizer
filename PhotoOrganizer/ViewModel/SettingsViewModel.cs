@@ -18,6 +18,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private ISettingsHandler _settingsHandler;
         private SettingsWrapper _settings;
         private int _selectedPageSize;
+        private string _selectedLanguage;
         private bool _hasChanges;
 
         public ICommand OpenWorkbenchCommand { get; }
@@ -25,6 +26,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OkCommand { get; }
 
         public ObservableCollection<int> PageSizes { get; private set; }
+        public ObservableCollection<string> Languages { get; private set; }
 
         public int SelectedPageSize
         {
@@ -35,6 +37,22 @@ namespace PhotoOrganizer.UI.ViewModel
                 if(Settings != null)
                 {
                     Settings.PageSize = _selectedPageSize;
+                }
+
+                OnPropertyChanged();
+                HasChanges = true;
+            }
+        }
+
+        public string SelectedLanguage
+        {
+            get { return _selectedLanguage; }
+            set
+            {
+                _selectedLanguage = value;
+                if (Settings != null)
+                {
+                    Settings.Language = _selectedLanguage;
                 }
 
                 OnPropertyChanged();
@@ -76,6 +94,7 @@ namespace PhotoOrganizer.UI.ViewModel
             ApplyCommand = new DelegateCommand(OnApplyExecute, OnApplyCanExecute);
             OkCommand = new DelegateCommand(OnOkExecute);
             LoadPageSizesCombo();
+            LoadLanguagesCombo();
         }
 
         private async void OnOkExecute()
@@ -137,6 +156,21 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             SelectedPageSize = PageSizes[0];
+        }
+
+        private void LoadLanguagesCombo()
+        {
+            var languagesCombo = new List<string>();
+            languagesCombo.AddRange(CommonContants.Languages);
+
+            Languages = new ObservableCollection<string>();
+
+            foreach (var comboItem in languagesCombo)
+            {
+                Languages.Add(comboItem);
+            }
+
+            _selectedLanguage = Languages[0];
         }
     }
 }

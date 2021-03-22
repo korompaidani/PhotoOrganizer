@@ -214,7 +214,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to eng-US.
+        ///   Looks up a localized string similar to en-US.
         /// </summary>
         public static string CultureInfoUSeng {
             get {
@@ -417,6 +417,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Info_windowTitle {
             get {
                 return ResourceManager.GetString("Info_windowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language change will be applied after program restart..
+        /// </summary>
+        public static string LanguageSettingsDescription {
+            get {
+                return ResourceManager.GetString("LanguageSettingsDescription", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
+using System;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
@@ -21,19 +22,8 @@ namespace PhotoOrganizer.UI.Services
         {
             if(settings != null)
             {
+                await SaveSettingsAsync(_initialSettings);
                 await _pageSizeService.SetPageSize(settings.PageSize);
-            }
-        }
-
-        public async Task LoadInitialSettingsAsync()
-        {
-            try
-            {
-                _initialSettings = await _jsonFileHandler.ReadModelFromFileAsync();
-                await ApplySettingsAsync(_initialSettings);
-            }
-            catch
-            {
             }
         }
 
@@ -41,6 +31,7 @@ namespace PhotoOrganizer.UI.Services
         {
             try
             {
+                await ApplySettingsAsync(_initialSettings);
                 return await _jsonFileHandler.ReadModelFromFileAsync();
             }
             catch
@@ -52,6 +43,23 @@ namespace PhotoOrganizer.UI.Services
         public async Task SaveSettingsAsync(Settings settings)
         {
             await _jsonFileHandler.WriteModelToFileAsync(settings);
+        }
+
+        public void LoadAtStartupInitialSettings()
+        {
+            try
+            {
+                _initialSettings = _jsonFileHandler.InitialReadModelFromFile();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GetLanguageSettings()
+        {
+            return _initialSettings.Language;
         }
     }
 }

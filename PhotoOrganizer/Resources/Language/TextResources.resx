@@ -166,7 +166,7 @@
     <value>hu-HU</value>
   </data>
   <data name="CultureInfoUSeng" xml:space="preserve">
-    <value>eng-US</value>
+    <value>en-US</value>
   </data>
   <data name="CultureInfo_constant" xml:space="preserve">
     <value>en-US</value>
@@ -236,6 +236,12 @@
   </data>
   <data name="Info_windowTitle" xml:space="preserve">
     <value>Info</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageSettingsDescription" xml:space="preserve">
+    <value>Language change will be applied after program restart.</value>
   </data>
   <data name="Location" xml:space="preserve">
     <value>Location</value>

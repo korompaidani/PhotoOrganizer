@@ -5,7 +5,8 @@ namespace PhotoOrganizer.UI.Services
 {
     public interface ISettingsHandler
     {
-        Task LoadInitialSettingsAsync();
+        string GetLanguageSettings();
+        void LoadAtStartupInitialSettings();
         Task<Settings> LoadSettingsAsync();
         Task SaveSettingsAsync(Settings settings);
         Task ApplySettingsAsync(Settings settings);

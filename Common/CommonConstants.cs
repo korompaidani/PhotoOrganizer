@@ -60,6 +60,7 @@ namespace PhotoOrganizer.Common
     public static class CommonContants
     {
         public static List<int> PageSizes = new List<int> { 50, 100, 500, 1000 };
+        public static List<string> Languages = new List<string> { "en-US", "hu-HU" };
     }
 
 }

@@ -8,7 +8,6 @@ using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View.Services;
 using Prism.Commands;
 using Prism.Events;
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -124,11 +123,6 @@ namespace PhotoOrganizer.UI.ViewModel
                 _directoryReaderWrapperService, 
                 _photoMetaWrapperService);
             await _workbenchViewModel.LoadAsync();
-        }
-
-        public async Task LoadInitialSettings()
-        {
-            await _settingsHandler.LoadInitialSettingsAsync();
         }
     }
 }

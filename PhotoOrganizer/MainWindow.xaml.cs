@@ -26,7 +26,6 @@ namespace PhotoOrganizer.UI
 
             ChromiumBrowserEngine.Instance.Initialize();
 
-            await _viewModel.LoadInitialSettings();
             await _viewModel.LoadWorkbenchAsync();
             _viewModel.OpenWorkbenchCommand.Execute(null);
             splashScreen.Visibility = Visibility.Hidden;
