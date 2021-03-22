@@ -10,6 +10,7 @@
              mc:Ignorable="d" >
     <UserControl.Resources>
         <converters:ImageConverter x:Key="imageConverter"></converters:ImageConverter>
+       
     </UserControl.Resources>
     <Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Margin="-1 -5 -1 0" Padding="5" BorderBrush="#353535">
     <ScrollViewer>
@@ -87,8 +88,9 @@
 
                         <Button Margin="5 0 5 5" Width="25" Height="25"
                         Command="{Binding OpenMapCommand}"
-                                Background="Transparent" Style="{DynamicResource MyMetroMapButton}">
-                    </Button>
+                                Background="Transparent" Style="{DynamicResource MyMetroMapButton}"                                
+                                >
+                        </Button>
 
                     <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </StackPanel>

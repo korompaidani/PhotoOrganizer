@@ -159,6 +159,9 @@
   <data name="Coordinates" xml:space="preserve">
     <value>Coordinates</value>
   </data>
+  <data name="Copy_button" xml:space="preserve">
+    <value>copy</value>
+  </data>
   <data name="CouldNotLoadEntity_message" xml:space="preserve">
     <value>Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.</value>
   </data>
@@ -271,6 +274,9 @@
   <data name="Location_colon" xml:space="preserve">
     <value>Location:</value>
   </data>
+  <data name="Map_button" xml:space="preserve">
+    <value>map</value>
+  </data>
   <data name="MarkAsUnchanged" xml:space="preserve">
     <value>Mark as unchanged</value>
   </data>
@@ -366,6 +372,9 @@
   </data>
   <data name="Settings_menu" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Set_button" xml:space="preserve">
+    <value>set</value>
   </data>
   <data name="Shelve" xml:space="preserve">
     <value>Shelve</value>

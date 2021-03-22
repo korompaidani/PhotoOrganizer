@@ -414,6 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Photos\" />
+    <Folder Include="Resources\psd\" />
     <Folder Include="Resources\TestResources\Photos\USA\66\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
@@ -696,8 +697,11 @@
     <Resource Include="splash_screen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Icons\map_gray_icon.png" />
-    <Resource Include="Resources\Icons\map_white_icon.png" />
+    <Resource Include="Resources\Icons\button_map_light.png" />
+    <Resource Include="Resources\Icons\button_copy_light.png" />
+    <Resource Include="Resources\Icons\button_down_light.png" />
+    <Resource Include="Resources\Icons\button_set_light.png" />
+    <Resource Include="Resources\Icons\button_up_light.png" />
     <Content Include="Resources\Web\OpenLayersMap.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

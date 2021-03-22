@@ -187,6 +187,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to copy.
+        /// </summary>
+        public static string Copy_button {
+            get {
+                return ResourceManager.GetString("Copy_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you..
         /// </summary>
         public static string CouldNotLoadEntity_message {
@@ -520,6 +529,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to map.
+        /// </summary>
+        public static string Map_button {
+            get {
+                return ResourceManager.GetString("Map_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mark as unchanged.
         /// </summary>
         public static string MarkAsUnchanged {
@@ -777,6 +795,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string SelectPhotoLocation_message {
             get {
                 return ResourceManager.GetString("SelectPhotoLocation_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to set.
+        /// </summary>
+        public static string Set_button {
+            get {
+                return ResourceManager.GetString("Set_button", resourceCulture);
             }
         }
         
