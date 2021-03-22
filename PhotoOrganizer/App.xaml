@@ -10,7 +10,11 @@
     <Application.Resources>
         
         <ResourceDictionary>
-
+            <Image x:Key="mapImage">
+                <Image.Source>
+                    <BitmapImage UriSource="/Resources/Icons/button_map_light.png" />
+                </Image.Source>
+            </Image>
             <Image x:Key="copyImage">
                 <Image.Source>
                     <BitmapImage UriSource="/Resources/Icons/button_copy_light.png" />
