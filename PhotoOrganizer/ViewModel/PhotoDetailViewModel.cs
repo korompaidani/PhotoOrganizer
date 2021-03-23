@@ -68,7 +68,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 Photo.Year = value.Year;
                 Photo.Month = value.Month;
                 Photo.Day = value.Day;
-                _date = new DateTime(value.Year, value.Month, value.Day, 12, 00, 00, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
+                _date = new DateTime(value.Year, value.Month, value.Day, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
                 OnPropertyChanged();
             }
         }
@@ -247,7 +247,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             if (photo.Month != 0 && photo.Day != 0)
             {
-                TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, 12, 00, 00, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
+                TakenDate = new DateTime(photo.Year, photo.Month, photo.Day, photo.HHMMSS.Hours, photo.HHMMSS.Minutes, photo.HHMMSS.Seconds, new CultureInfo(TextResources.CultureInfo_constant, false).Calendar);
             }
             TakenTime = new DateTime(photo.HHMMSS.Ticks);
         }
@@ -518,7 +518,6 @@ namespace PhotoOrganizer.UI.ViewModel
                     }
                 });
             }
-            
 
             if (!isClosing)
             {

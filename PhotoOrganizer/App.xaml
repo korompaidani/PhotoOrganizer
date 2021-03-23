@@ -12,27 +12,27 @@
         <ResourceDictionary>
             <Image x:Key="mapImage">
                 <Image.Source>
-                    <BitmapImage UriSource="/Resources/Icons/button_map_light.png" />
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
                 </Image.Source>
             </Image>
-            <Image x:Key="copyImage">
+            <Image x:Key="copyImage" Width="15" Height="15">
                 <Image.Source>
-                    <BitmapImage UriSource="/Resources/Icons/button_copy_light.png" />
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png" />
                 </Image.Source>
             </Image>
-            <Image x:Key="setImage">
+            <Image x:Key="setImage" x:Shared="false" Width="20" Height="20">
                 <Image.Source>
-                    <BitmapImage UriSource="/Resources/Icons/button_set_light.png" />
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png" />
                 </Image.Source>
             </Image>
-            <Image x:Key="upImage">
+            <Image x:Key="upImage" Width="15" Height="15">
                 <Image.Source>
-                    <BitmapImage UriSource="/Resources/Icons/button_up_light.png" />
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_up_light.png" />
                 </Image.Source>
             </Image>
-            <Image x:Key="downImage">
+            <Image x:Key="downImage"  Width="15" Height="15">
                 <Image.Source>
-                    <BitmapImage UriSource="/Resources/Icons/button_down_light.png" />
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_down_light.png" />
                 </Image.Source>
             </Image>
             <ResourceDictionary.MergedDictionaries>
@@ -50,22 +50,6 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="Padding" Value="0"/>
                         <Setter Property="BorderThickness" Value="1"/>
-                    </Style>
-                    <Style x:Key="NameButton" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
-                        <Setter Property="FontSize" Value="10"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="BorderThickness" Value="1"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                                <Setter Property="Content" Value="-" />
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                            </Trigger>
-                        </Style.Triggers>
                     </Style>
                     <!-- =================================================metro square button==================================================== -->
                     <Style x:Key="MyMetroSquareButton"
@@ -87,6 +71,50 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+                    <!-- =================================================metro people add button==================================================== -->
+                    <Style x:Key="MyMetroAddPeopleButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="Content" Value="+" />
+                        <Setter Property="FontWeight" Value="Black" />
+                        <Setter Property="Padding" Value="0 0 0 0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                <Setter Property="Content" Value="Add" />
+                                <Setter Property="FontSize" Value="10" />
+                                <Setter Property="FontWeight" Value="Normal" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!-- =================================================name button==================================================== -->
+                    <Style x:Key="NameButton" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
+                        <Setter Property="FontSize" Value="10"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                                <Setter Property="Content" Value="-" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                     <!-- =================================================metro map button==================================================== -->
                     <Style x:Key="MyMetroMapButton"
                            BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
@@ -96,9 +124,10 @@
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-                        <Setter Property="Content" Value="{StaticResource mapImage}"/>
+                        <Setter Property="Content" Value="{DynamicResource mapImage}"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Padding" Value="0 0 0 3" />
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Content" Value="{x:Static resources:TextResources.Map_button}"/>
@@ -120,11 +149,11 @@
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-                        <Setter Property="Content" Value="{StaticResource setImage}" />
+                        <Setter Property="Content" Value="{DynamicResource setImage}" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Padding" Value="0 0 0 3" />
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Content" Value="{x:Static resources:TextResources.Set_button}"/>
                                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                             </Trigger>
@@ -142,15 +171,13 @@
                         <Setter Property="FontSize" Value="10" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-                        <Setter Property="Content" Value="{StaticResource copyImage}" />
+                        <Setter Property="Content" Value="{DynamicResource copyImage}" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Padding" Value="0 0 0 3" />
+                                <Setter Property="BorderBrush" Value="DarkOrange" />
                                 <Setter Property="Content" Value="{x:Static resources:TextResources.Copy_button}"/>
-                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                <Setter Property="Foreground" Value="DarkOrange"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
@@ -162,19 +189,16 @@
                     <Style x:Key="MyMetroUpButton"
                            BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
                            TargetType="Button">
-                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderThickness" Value="4" />
                         <Setter Property="FontSize" Value="10" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="Height" Value="30" />
                         <Setter Property="Width" Value="30" />
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-                        <Setter Property="Content" Value="{StaticResource upImage}" />
+                        <Setter Property="Content" Value="{DynamicResource upImage}" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Content" Value="{x:Static resources:TextResources.Up}"/>
                                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                             </Trigger>
@@ -188,19 +212,16 @@
                     <Style x:Key="MyMetroDownButton"
                            BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
                            TargetType="Button">
-                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderThickness" Value="4" />
                         <Setter Property="FontSize" Value="10" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="Height" Value="30" />
                         <Setter Property="Width" Value="30" />
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
-                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
-                        <Setter Property="Content" Value="{StaticResource downImage}" />
+                        <Setter Property="Content" Value="{DynamicResource downImage}" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Content" Value="{x:Static resources:TextResources.Down}"/>
                                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                             </Trigger>

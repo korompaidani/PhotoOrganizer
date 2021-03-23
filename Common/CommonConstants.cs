@@ -25,7 +25,7 @@ namespace PhotoOrganizer.Common
     public enum MetaProperty
     {
         Title = 40091,
-        Comments = 40092,        
+        Comments = 40092,
         Author = 40093,
         Keywords = 40094,
         Subject = 40095,
@@ -35,6 +35,17 @@ namespace PhotoOrganizer.Common
         Latitude = 2,
         Longitude = 22,
         Desciprion = 270,
+        ExiflibTitle = 100269, //DocumentName
+        ExiflibComments = 237510, //UserComment  
+        ExiflibAuthor = 140093, //WindowsAuthor
+        ExiflibKeywords = 140094, //WindowsKeywords
+        ExiflibSubject = 140095, //WindowsSubject
+        ExiflibCopyright = 133432,
+        ExiflibSoftware = 100305,
+        ExiflibDateTime = 236867, //DateTimeOriginal
+        ExiflibLatitude = 300002,
+        ExiflibLongitude = 300004,
+        ExiflibDesciprion = 100270 //ImageDescription
     }
 
     public enum Months

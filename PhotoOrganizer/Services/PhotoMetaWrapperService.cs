@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Features.Indexed;
 using PhotoOrganizer.Common;
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
@@ -18,14 +19,16 @@ namespace PhotoOrganizer.UI.Services
     public class PhotoMetaWrapperService : IPhotoMetaWrapperService
     {
         private IPhotoRepository _photoRepository;
-        private ExifIO _exifToFileWriter;
+        private IExifReaderWriter _exifToFileWriter;
         private IMessageDialogService _messageDialogService;
         private ApplicationContext _context;
 
-        public PhotoMetaWrapperService(IPhotoRepository photoRepository, ExifIO exifToFileWriter, IMessageDialogService messageDialogService)
+        public PhotoMetaWrapperService(IPhotoRepository photoRepository, 
+            IIndex<string, IExifReaderWriter> exifToFileWriter, 
+            IMessageDialogService messageDialogService)
         {
             _photoRepository = photoRepository;
-            _exifToFileWriter = exifToFileWriter;
+            _exifToFileWriter = exifToFileWriter[nameof(MyExifReaderWriter)];
             _messageDialogService = messageDialogService;
             _context = Bootstrapper.Container.Resolve<ApplicationContext>();
         }

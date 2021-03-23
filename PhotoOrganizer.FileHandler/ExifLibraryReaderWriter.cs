@@ -1,34 +1,31 @@
-﻿using PhotoOrganizer.Common;
+﻿using ExifLibrary;
+using PhotoOrganizer.Common;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Text;
 
 namespace PhotoOrganizer.FileHandler
 {
-    public class ExifIO
+    public class ExifLibraryReaderWriter : IExifReaderWriter
     {
         public Dictionary<MetaProperty, string> ReadMeta(string filepath)
         {
             var result = new Dictionary<MetaProperty, string>();
             using (var memoryStream = new MemoryStream())
             {
-                using (FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+                using (FileStream fs = new FileStream(filepath, FileMode.Open))
                 {
                     fs.CopyTo(memoryStream);
                 }
 
-                Image image = Image.FromStream(memoryStream);
+                var image = ImageFile.FromStream(memoryStream);
 
-                PropertyItem[] imagePropertyItems = image.PropertyItems;
-
-                foreach (PropertyItem propertyItem in imagePropertyItems)
+                foreach (MetaProperty propertyItem in (MetaProperty[])Enum.GetValues(typeof(MetaProperty)))
                 {
-                    if (Enum.IsDefined(typeof(MetaProperty), propertyItem.Id))
+                    var meta = image.Properties.Get<ExifProperty>((ExifTag)propertyItem).ToString();
+                    if (!string.IsNullOrEmpty(meta))
                     {
-                        result.Add((MetaProperty)propertyItem.Id, Encoding.UTF8.GetString(propertyItem.Value));
+                        result.Add(propertyItem, meta);
                     }
                 }
             }
@@ -47,38 +44,32 @@ namespace PhotoOrganizer.FileHandler
                         fs.CopyTo(memoryStream);
                     }
 
-                    Image img = Image.FromStream(memoryStream);
+                    var image = ImageFile.FromStream(memoryStream);
 
                     foreach (var property in properties)
                     {
-                        PropertyItem prop = img.PropertyItems[0];
-                        SetProperty(ref prop, property.Key, property.Value);
-                        img.SetPropertyItem(prop);
+                        image.Properties.Set((ExifTag)MetaProperty.Latitude, property);
                     }
 
-                    img.Save(fullPath);
+                    image.Save(fullPath);
                 }
-                
+
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
-            }            
+            }
         }
 
-        private void SetProperty(ref PropertyItem propertyItem, MetaProperty propertyId, string propertyValue)
+        private byte[] ConvertPropertyToByteArray(MetaProperty propertyId, string propertyValue)
         {
-            int id = (int)propertyId;
             int length = propertyValue.Length + 1;
             byte[] propertyValueByteArray = new Byte[length];
             for (int i = 0; i < length - 1; i++)
                 propertyValueByteArray[i] = (byte)propertyValue[i];
             propertyValueByteArray[length - 1] = 0x00;
-            propertyItem.Id = id;
-            propertyItem.Type = 2;
-            propertyItem.Value = propertyValueByteArray;
-            propertyItem.Len = length;
+            return propertyValueByteArray;
         }
     }
 }
