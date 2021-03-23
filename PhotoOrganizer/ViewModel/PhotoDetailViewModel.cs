@@ -33,7 +33,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IBulkAttributeSetterService _bulkAttributeSetter;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
         private bool _isDetailViewInitialized = false;
-        private bool _isFinalized = false;
+        private bool _evenJustFinalized = false;
         private bool _isAnySelectedNavigationItem = false;
 
         public ICommand FinalizeCommand { get; }
@@ -480,17 +480,13 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public void SetModifiedFlag()
-        {
-            Photo.ColorFlag = ColorSign.Modified;
-        }
-
         private async Task Save(bool isClosing, bool isOptimistic)
         {
-            if (!_isFinalized)
+            if (!_evenJustFinalized)
             {
-                SetModifiedFlag();
+                SetModifiedFlag();                
             }
+            _evenJustFinalized = false;
 
             if (isOptimistic)
             {
@@ -527,16 +523,21 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
+        public void SetModifiedFlag()
+        {
+            Photo.ColorFlag = ColorSign.Modified;
+        }
+
         private void SetFinalizedStateFlag()
         {
             Photo.ColorFlag = ColorSign.Finalized;
-            _isFinalized = true;
+            _evenJustFinalized = true;
         }
 
         private void SetUnmodifiedStateFlag()
         {
             Photo.ColorFlag = ColorSign.Unmodified;
-            _isFinalized = false;
+            _evenJustFinalized = false;
         }
 
         private async void OnFinalizeExecute()
@@ -550,6 +551,8 @@ namespace PhotoOrganizer.UI.ViewModel
                     Id = Photo.Id;
                     RaiseDetailSavedEvent(Photo.Id, $"{Photo.Title}", Photo.ColorFlag);
                 });
+
+            ((DelegateCommand)WriteMetadataCommand).RaiseCanExecuteChanged();
         }
 
         private async void OnMarkAsUnchangedExecute()
