@@ -70,12 +70,20 @@
                     <Button Grid.Row="0" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="Title"
-                    />
+                    >
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
 
                     <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:TextResources.Path_colon}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Photo.FullPath}" Margin="5 0 5 5" IsReadOnly="True" Foreground="Gray"/>
                     <Button Grid.Row="1" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroCopyButton}"
-                    Command="{Binding CopyToClipBoardCommand}"/>
+                    Command="{Binding CopyToClipBoardCommand}">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Copy_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
 
                     <Label Grid.Row="2" Grid.Column="0" Content="{x:Static resources:TextResources.Location_colon}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
@@ -90,21 +98,31 @@
                         Command="{Binding OpenMapCommand}"
                                 Background="Transparent" Style="{DynamicResource MyMetroMapButton}"                                
                                 >
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.OpenMap_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
 
                     <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0 0 0 5"/>
                 </StackPanel>
                     <Button Grid.Row="2" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="LocationId;Coordinates"/>
+                    CommandParameter="LocationId;Coordinates">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
 
 
 
                     <Label Grid.Row="3" Grid.Column="0" Content="{x:Static resources:TextResources.Peoples_colon}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <DockPanel Grid.Row="3" Grid.Column="1">
                         <Button Height="25" Width="25" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5 0 0 5"
-                        Command="{Binding OpenPeopleAddViewCommand}" Style="{DynamicResource MyMetroAddPeopleButton}"/>
-
+                        Command="{Binding OpenPeopleAddViewCommand}" Style="{DynamicResource MyMetroAddPeopleButton}">
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.AddPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
+                        </Button>
                         <ListBox x:Name="PeoplesListBox"
                      ItemsSource="{Binding Peoples}"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
@@ -117,6 +135,9 @@
                                         <Grid>
                                             <TextBlock Text="{Binding People.DisplayName}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                         </Grid>
+                                        <Button.ToolTip >
+                                            <TextBlock Text="{x:Static resources:TextResources.RemovePeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                                        </Button.ToolTip>
                                     </Button>
                                 </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -131,7 +152,11 @@
 
                     <Button Grid.Row="3" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Peoples"/>
+                    CommandParameter="Peoples">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
 
                     <Label Grid.Row="4" Grid.Column="0" Content="{x:Static resources:TextResources.Description_colon}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <TextBox Grid.Row="4" Grid.Column="1" Margin="5 0 5 5" TextWrapping="Wrap" Height="70" VerticalContentAlignment="Top"
@@ -141,7 +166,11 @@
                 Text="{Binding Photo.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Grid.Row="4" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Description"/>
+                    CommandParameter="Description">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
 
                 <Label Grid.Row="5" Grid.Column="1" Content="{Binding Photo.Comment}" FontSize="8" Margin="5 -10 5 -5" FontStyle="Italic" Foreground="DimGray"/>
 
@@ -158,73 +187,74 @@
                 </StackPanel>
                     <Button Grid.Row="6" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
-                    CommandParameter="Year;Month;Day;HHMMSS"/>
+                    CommandParameter="Year;Month;Day;HHMMSS">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                    </Button>
             </Grid>
             <Grid Grid.Column="3">
                 <StackPanel Orientation="Vertical">
-                        <Button Width="145" Height="30" Margin="5 0 5 5"
+                        <Button Width="145" Height="30" Margin="5 0 5 5" ToolTipService.InitialShowDelay="2000"
                             Command="{Binding SaveCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource saveImage}"/>
+
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.Save}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.Save_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding WriteMetadataCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource wrtiteMetaImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.WriteMetadata}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.WriteMetadata_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
 
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding MarkAsUnchanged}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource markAsUnchangedImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.MarkAsUnchanged}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.MarkAsUnchanged_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding FinalizeCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource finalizeImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.Finalize}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.Finalize_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
 
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="Title;LocationId;Coordinates;Peoples;Description;Year;Month;Day;HHMMSS"
                         Style="{DynamicResource MyMetroSquareButton}">
@@ -233,44 +263,41 @@
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource bulkSetImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.SetAll}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.SetAll_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
 
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding AddToShelveCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource addToShelveImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.AddToShelve}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.AddToShelve_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
-                        <Button Width="145" Height="30" Margin="25 5" 
+                        <Button Width="145" Height="30" Margin="25 5" ToolTipService.InitialShowDelay="2000"
                     Command="{Binding RemoveFromShelveCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="25"/>
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0">
-                                    <Image.Source>
-                                        <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-                                    </Image.Source>
-                                </Image>
+                                <Image Grid.Column="0" Source="{DynamicResource removeFromShelveImage}"/>
                                 <TextBlock Grid.Column="1" Text="{x:Static resources:TextResources.RemoveFromShelve}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.RemoveFromShelve_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
                         </Button>
                     
                 </StackPanel>

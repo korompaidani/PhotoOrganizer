@@ -8,8 +8,15 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              Startup="Application_Startup">
     <Application.Resources>
-        
+
         <ResourceDictionary>
+            <BitmapImage  x:Key="saveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="wrtiteMetaImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="markAsUnchangedImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="finalizeImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="bulkSetImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="addToShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="removeFromShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
             <Image x:Key="mapImage">
                 <Image.Source>
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
@@ -35,6 +42,34 @@
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_down_light.png" />
                 </Image.Source>
             </Image>
+            <Image x:Key="selectAll">
+                <Image.Source>
+                    <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_selectDeselectAll.png" />
+                </Image.Source>
+            </Image>
+
+            <Style TargetType="StackPanel" x:Key="DelayShowToolTip">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsVisible, RelativeSource={RelativeSource AncestorType=StackPanel}}" Value="true">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard x:Name="VisibleStory">
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                   Duration="0"
+                                   BeginTime="0:0:2">
+                                        <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}" />
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <RemoveStoryboard BeginStoryboardName="VisibleStory"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
             <ResourceDictionary.MergedDictionaries>
                 <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -50,6 +85,19 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="Padding" Value="0"/>
                         <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                    <!-- =================================================metro selection tile buttons==================================================== -->
+                    <Style x:Key="MyMetroSelectionTilesButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                           TargetType="Button">
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="ToolTipService.InitialShowDelay" Value="3000"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                     <!-- =================================================metro square button==================================================== -->
                     <Style x:Key="MyMetroSquareButton"
@@ -91,6 +139,7 @@
                                 <Setter Property="Content" Value="Add" />
                                 <Setter Property="FontSize" Value="10" />
                                 <Setter Property="FontWeight" Value="Normal" />
+                                <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
@@ -108,6 +157,7 @@
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                                 <Setter Property="Content" Value="-" />
+                                <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
@@ -125,6 +175,7 @@
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
                         <Setter Property="Content" Value="{DynamicResource mapImage}"/>
+                        <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Padding" Value="0 0 0 3" />
@@ -150,6 +201,7 @@
                         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
                         <Setter Property="Content" Value="{DynamicResource setImage}" />
+                        <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Padding" Value="0 0 0 3" />
@@ -172,6 +224,7 @@
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
                         <Setter Property="Content" Value="{DynamicResource copyImage}" />
+                        <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Padding" Value="0 0 0 3" />
@@ -190,6 +243,7 @@
                            BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
                            TargetType="Button">
                         <Setter Property="BorderThickness" Value="4" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
                         <Setter Property="FontSize" Value="10" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="Height" Value="30" />
@@ -213,6 +267,7 @@
                            BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
                            TargetType="Button">
                         <Setter Property="BorderThickness" Value="4" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
                         <Setter Property="FontSize" Value="10" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                         <Setter Property="Height" Value="30" />

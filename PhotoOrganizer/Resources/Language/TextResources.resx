@@ -126,6 +126,9 @@
   <data name="AddedPhotos" xml:space="preserve">
     <value>Added Photos</value>
   </data>
+  <data name="AddPeople_tooltip" xml:space="preserve">
+    <value>You can add people to the photo. It will be written as a keyword after writing metadata.</value>
+  </data>
   <data name="AddPhoto_menu" xml:space="preserve">
     <value>Add Photo...</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="AddToShelve" xml:space="preserve">
     <value>Add to shelve</value>
+  </data>
+  <data name="AddToShelve_tooltip" xml:space="preserve">
+    <value>You can put this image to the shelve. It is useful if you want to set this image data later after processing other images.</value>
   </data>
   <data name="Albums" xml:space="preserve">
     <value>Albums</value>
@@ -161,6 +167,9 @@
   </data>
   <data name="Copy_button" xml:space="preserve">
     <value>copy</value>
+  </data>
+  <data name="Copy_tooltip" xml:space="preserve">
+    <value>Copy the path to the clipboard.</value>
   </data>
   <data name="CouldNotLoadEntity_message" xml:space="preserve">
     <value>Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.</value>
@@ -246,6 +255,9 @@
   <data name="Finalize" xml:space="preserve">
     <value>Finalize</value>
   </data>
+  <data name="Finalize_tooltip" xml:space="preserve">
+    <value>It marks the image as finalized. Write metainfo doesn't take effect on finalized images until next save. It helpful if you would like to see the image in 'done' state.</value>
+  </data>
   <data name="Hungarian" xml:space="preserve">
     <value>Hungarian</value>
   </data>
@@ -283,6 +295,9 @@
   <data name="MarkAsUnchanged" xml:space="preserve">
     <value>Mark as unchanged</value>
   </data>
+  <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
+    <value>It marks the image as unchanged. If you do this the image meta info cannot be written until next save.</value>
+  </data>
   <data name="NewAlbum_menu" xml:space="preserve">
     <value>New Album</value>
   </data>
@@ -291,6 +306,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="OpenMap_tooltip" xml:space="preserve">
+    <value>Open the map to pick gps coordinates for the photo. You can just simply choose a coordinate or you can save it to be able to use it later again. You can change existing saved location if it is selected in the combo box.</value>
   </data>
   <data name="Options_menu" xml:space="preserve">
     <value>Options</value>
@@ -340,6 +358,12 @@
   <data name="RemoveFromShelve" xml:space="preserve">
     <value>Remove from shelve</value>
   </data>
+  <data name="RemoveFromShelve_tooltip" xml:space="preserve">
+    <value>This button removes the image from the shelve.</value>
+  </data>
+  <data name="RemovePeople_tooltip" xml:space="preserve">
+    <value>This people will be removed from the photo after click on it.</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -361,14 +385,23 @@
   <data name="SaveWindowMessage" xml:space="preserve">
     <value>Do you want to save opened tabs before close?</value>
   </data>
+  <data name="Save_tooltip" xml:space="preserve">
+    <value>Save changes on actual tab</value>
+  </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select all</value>
   </data>
   <data name="SelectDeselectAll" xml:space="preserve">
     <value>Select/Deselect all</value>
   </data>
+  <data name="SelectDeselectAll_tooltip" xml:space="preserve">
+    <value>Select/Deselect all visible tiles</value>
+  </data>
   <data name="SelectFinalized" xml:space="preserve">
     <value>Select finalized</value>
+  </data>
+  <data name="SelectFinalized_tooltip" xml:space="preserve">
+    <value>Select only finalized tiles</value>
   </data>
   <data name="SelectPhotoLocation_message" xml:space="preserve">
     <value>Please select a 'photo' location:</value>
@@ -379,14 +412,26 @@
   <data name="SelectPrevious" xml:space="preserve">
     <value>Select previous</value>
   </data>
+  <data name="SelectPrevious_tooltip" xml:space="preserve">
+    <value>Select/Deselect previously selected tiles (works only after any set)</value>
+  </data>
   <data name="SelectSaved" xml:space="preserve">
     <value>Select saved</value>
+  </data>
+  <data name="SelectSaved_tooltip" xml:space="preserve">
+    <value>Select only saved tiles</value>
   </data>
   <data name="SelectUnmodified" xml:space="preserve">
     <value>Select unmodified</value>
   </data>
+  <data name="SelectUnmodified_tooltip" xml:space="preserve">
+    <value>Select only unmodified tiles</value>
+  </data>
   <data name="SetAll" xml:space="preserve">
     <value>Set all</value>
+  </data>
+  <data name="SetAll_tooltip" xml:space="preserve">
+    <value>All actual data will overrite the selected image(s) in the navigation bar.</value>
   </data>
   <data name="SetCoordinate" xml:space="preserve">
     <value>Set Coordinate</value>
@@ -396,6 +441,9 @@
   </data>
   <data name="Set_button" xml:space="preserve">
     <value>set</value>
+  </data>
+  <data name="Set_tooltip" xml:space="preserve">
+    <value>Actual data in the line will overrite the same entry of selected image(s) in the navigation bar.</value>
   </data>
   <data name="Shelve" xml:space="preserve">
     <value>Shelve</value>
@@ -429,6 +477,9 @@
   </data>
   <data name="WriteMetadata" xml:space="preserve">
     <value>Write metadata</value>
+  </data>
+  <data name="WriteMetadata_tooltip" xml:space="preserve">
+    <value>Write actual displayed data directly to image the image file. Only the saved pictures (yellow) will be written.</value>
   </data>
   <data name="WriteSavedItemsMetadata_menu" xml:space="preserve">
     <value>Write Saved Items Metadata</value>

@@ -702,6 +702,7 @@
     <Resource Include="Resources\Icons\button_down_light.png" />
     <Resource Include="Resources\Icons\button_set_light.png" />
     <Resource Include="Resources\Icons\button_up_light.png" />
+    <Resource Include="Resources\Icons\button_selectDeselectAll.png" />
     <Content Include="Resources\Web\OpenLayersMap.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

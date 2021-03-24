@@ -185,16 +185,102 @@
 
         </GroupBox>
 
-        <StackPanel Grid.Column="2" Orientation="Vertical">
-            <Button Command="{Binding LoadUpNavigationCommand}" Style="{DynamicResource MyMetroUpButton}" />
-            <Button Command="{Binding LoadDownNavigationCommand}" Style="{DynamicResource MyMetroDownButton}"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0 5 0 5">
+                <Button Command="{Binding LoadUpNavigationCommand}" Style="{DynamicResource MyMetroUpButton}" />
+                <Button Command="{Binding LoadDownNavigationCommand}" Style="{DynamicResource MyMetroDownButton}"/>
+            </StackPanel>
 
-            <Button Content="{x:Static resources:TextResources.SelectPrevious}" Command="{Binding CheckPreviousSelectionAgainCommand}"/>
-            <Button Content="{x:Static resources:TextResources.SelectDeselectAll}" Command="{Binding SelectDeselectAllCommand}"/>
-            <Button Content="{x:Static resources:TextResources.SelectUnmodified}" Command="{Binding SelectUnmodifiedCommand}"/>
-            <Button Content="{x:Static resources:TextResources.SelectSaved}" Command="{Binding SelectSavedCommand}"/>
-            <Button Content="{x:Static resources:TextResources.SelectFinalized}" Command="{Binding SelectFinalizedCommand}"/>
-        </StackPanel>
+            <Grid Grid.Row="1" ></Grid>
+
+            <WrapPanel Grid.Row="2" Margin="0 5 0 5">
+                <Button Content="{x:Static resources:TextResources.SelectPrevious}" Command="{Binding CheckPreviousSelectionAgainCommand}" Background="#0767b3" Margin="0 0 0 2" Height="20" Width="40" BorderThickness="0" FontSize="10" Foreground="#252525">
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="Button.Content" Value="{DynamicResource selectAll}"/>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
+                            <Style.Triggers>
+                                <Trigger Property="Button.IsMouseOver"  Value="True">
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.ToolTip >
+
+                        <StackPanel>
+                            <TextBlock Text="{x:Static resources:TextResources.SelectPrevious_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Button.ToolTip>
+                </Button>
+                <Button Command="{Binding SelectDeselectAllCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525">
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="Button.Content" Value="{DynamicResource selectAll}"/>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
+                            <Style.Triggers>
+                                <Trigger Property="Button.IsMouseOver"  Value="True">
+                                    <Setter Property="Button.Content" Value="{x:Static resources:TextResources.SelectDeselectAll}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.ToolTip >
+                        <TextBlock Text="{x:Static resources:TextResources.SelectDeselectAll_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button Background="#CCCCCC" Command="{Binding SelectUnmodifiedCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525">
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
+                            <Style.Triggers>
+                                <Trigger Property="Button.IsMouseOver"  Value="True">
+                                    <Setter Property="Button.Content" Value="{x:Static resources:TextResources.SelectUnmodified}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.ToolTip >
+                        <TextBlock Text="{x:Static resources:TextResources.SelectUnmodified_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button Background="#f6f7a6" Command="{Binding SelectSavedCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525">
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
+                            <Style.Triggers>
+                                <Trigger Property="Button.IsMouseOver"  Value="True">
+                                    <Setter Property="Button.Content" Value="{x:Static resources:TextResources.SelectSaved}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.ToolTip>
+                        <TextBlock Text="{x:Static resources:TextResources.SelectSaved_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button Background="#6dbd83" Command="{Binding SelectFinalizedCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525">
+                    <Button.Style>
+                        <Style>
+                            <Setter Property="ToolTipService.InitialShowDelay" Value="2000"/>
+                            <Style.Triggers>
+                                <Trigger Property="Button.IsMouseOver"  Value="True">
+                                    <Setter Property="Button.Content" Value="{x:Static resources:TextResources.SelectFinalized}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Button.ToolTip >
+                        <TextBlock Text="{x:Static resources:TextResources.SelectFinalized_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+            </WrapPanel>
+        </Grid>
 
     </Grid>
 </UserControl>

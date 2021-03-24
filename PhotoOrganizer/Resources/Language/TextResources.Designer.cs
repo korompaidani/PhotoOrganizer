@@ -88,6 +88,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can add people to the photo. It will be written as a keyword after writing metadata..
+        /// </summary>
+        public static string AddPeople_tooltip {
+            get {
+                return ResourceManager.GetString("AddPeople_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Photo....
         /// </summary>
         public static string AddPhoto_menu {
@@ -111,6 +120,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string AddToShelve {
             get {
                 return ResourceManager.GetString("AddToShelve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can put this image to the shelve. It is useful if you want to set this image data later after processing other images..
+        /// </summary>
+        public static string AddToShelve_tooltip {
+            get {
+                return ResourceManager.GetString("AddToShelve_tooltip", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Copy_button {
             get {
                 return ResourceManager.GetString("Copy_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy the path to the clipboard..
+        /// </summary>
+        public static string Copy_tooltip {
+            get {
+                return ResourceManager.GetString("Copy_tooltip", resourceCulture);
             }
         }
         
@@ -448,6 +475,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It marks the image as finalized. Write metainfo doesn&apos;t take effect on finalized images until next save. It helpful if you would like to see the image in &apos;done&apos; state..
+        /// </summary>
+        public static string Finalize_tooltip {
+            get {
+                return ResourceManager.GetString("Finalize_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hungarian.
         /// </summary>
         public static string Hungarian {
@@ -556,6 +592,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It marks the image as unchanged. If you do this the image meta info cannot be written until next save..
+        /// </summary>
+        public static string MarkAsUnchanged_tooltip {
+            get {
+                return ResourceManager.GetString("MarkAsUnchanged_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Album.
         /// </summary>
         public static string NewAlbum_menu {
@@ -579,6 +624,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the map to pick gps coordinates for the photo. You can just simply choose a coordinate or you can save it to be able to use it later again. You can change existing saved location if it is selected in the combo box..
+        /// </summary>
+        public static string OpenMap_tooltip {
+            get {
+                return ResourceManager.GetString("OpenMap_tooltip", resourceCulture);
             }
         }
         
@@ -727,11 +781,38 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This button removes the image from the shelve..
+        /// </summary>
+        public static string RemoveFromShelve_tooltip {
+            get {
+                return ResourceManager.GetString("RemoveFromShelve_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This people will be removed from the photo after click on it..
+        /// </summary>
+        public static string RemovePeople_tooltip {
+            get {
+                return ResourceManager.GetString("RemovePeople_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes on actual tab.
+        /// </summary>
+        public static string Save_tooltip {
+            get {
+                return ResourceManager.GetString("Save_tooltip", resourceCulture);
             }
         }
         
@@ -808,11 +889,29 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select/Deselect all visible tiles.
+        /// </summary>
+        public static string SelectDeselectAll_tooltip {
+            get {
+                return ResourceManager.GetString("SelectDeselectAll_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select finalized.
         /// </summary>
         public static string SelectFinalized {
             get {
                 return ResourceManager.GetString("SelectFinalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select only finalized tiles.
+        /// </summary>
+        public static string SelectFinalized_tooltip {
+            get {
+                return ResourceManager.GetString("SelectFinalized_tooltip", resourceCulture);
             }
         }
         
@@ -844,11 +943,29 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select/Deselect previously selected tiles (works only after any set).
+        /// </summary>
+        public static string SelectPrevious_tooltip {
+            get {
+                return ResourceManager.GetString("SelectPrevious_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select saved.
         /// </summary>
         public static string SelectSaved {
             get {
                 return ResourceManager.GetString("SelectSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select only saved tiles.
+        /// </summary>
+        public static string SelectSaved_tooltip {
+            get {
+                return ResourceManager.GetString("SelectSaved_tooltip", resourceCulture);
             }
         }
         
@@ -862,6 +979,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select only unmodified tiles.
+        /// </summary>
+        public static string SelectUnmodified_tooltip {
+            get {
+                return ResourceManager.GetString("SelectUnmodified_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to set.
         /// </summary>
         public static string Set_button {
@@ -871,11 +997,29 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual data in the line will overrite the same entry of selected image(s) in the navigation bar..
+        /// </summary>
+        public static string Set_tooltip {
+            get {
+                return ResourceManager.GetString("Set_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set all.
         /// </summary>
         public static string SetAll {
             get {
                 return ResourceManager.GetString("SetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All actual data will overrite the selected image(s) in the navigation bar..
+        /// </summary>
+        public static string SetAll_tooltip {
+            get {
+                return ResourceManager.GetString("SetAll_tooltip", resourceCulture);
             }
         }
         
@@ -993,6 +1137,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string WriteMetadata {
             get {
                 return ResourceManager.GetString("WriteMetadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write actual displayed data directly to image the image file. Only the saved pictures (yellow) will be written..
+        /// </summary>
+        public static string WriteMetadata_tooltip {
+            get {
+                return ResourceManager.GetString("WriteMetadata_tooltip", resourceCulture);
             }
         }
         
