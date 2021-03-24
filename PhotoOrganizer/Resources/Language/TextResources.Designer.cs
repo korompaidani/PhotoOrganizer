@@ -277,6 +277,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deselect all.
+        /// </summary>
+        public static string DeselectAll {
+            get {
+                return ResourceManager.GetString("DeselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}(id:{1}) didn&apos;t saved..
         /// </summary>
         public static string DidntSave_errorMessage {
@@ -781,6 +790,33 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select/Deselect all.
+        /// </summary>
+        public static string SelectDeselectAll {
+            get {
+                return ResourceManager.GetString("SelectDeselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select finalized.
+        /// </summary>
+        public static string SelectFinalized {
+            get {
+                return ResourceManager.GetString("SelectFinalized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a photo.
         /// </summary>
         public static string SelectPhoto_message {
@@ -795,6 +831,33 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string SelectPhotoLocation_message {
             get {
                 return ResourceManager.GetString("SelectPhotoLocation_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select previous.
+        /// </summary>
+        public static string SelectPrevious {
+            get {
+                return ResourceManager.GetString("SelectPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select saved.
+        /// </summary>
+        public static string SelectSaved {
+            get {
+                return ResourceManager.GetString("SelectSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select unmodified.
+        /// </summary>
+        public static string SelectUnmodified {
+            get {
+                return ResourceManager.GetString("SelectUnmodified", resourceCulture);
             }
         }
         

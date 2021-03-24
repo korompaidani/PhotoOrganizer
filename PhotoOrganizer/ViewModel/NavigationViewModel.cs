@@ -22,6 +22,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public ICommand LoadDownNavigationCommand { get; }
         public ICommand LoadUpNavigationCommand { get; }
+        public ICommand CheckPreviousSelectionAgainCommand { get; }
+        public ICommand SelectDeselectAllCommand { get; }
+        public ICommand SelectUnmodifiedCommand { get; }
+        public ICommand SelectSavedCommand { get; }
+        public ICommand SelectFinalizedCommand { get; }
+
         public ObservableCollection<PhotoNavigationItemViewModel> Photos { get; set; }
         public ObservableCollection<AlbumNavigationItemViewModel> Albums { get; set; }
         public ObservableCollection<PhotoNavigationItemViewModel> ShelvePhotos { get; set; }
@@ -52,7 +58,13 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterTabClosedEvent>().Subscribe(AfterTabsClosed);
 
             LoadDownNavigationCommand = new DelegateCommand(OnLoadNavigationDownExecute, OnLoadNavigationDownCanExecute);
-            LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);            
+            LoadUpNavigationCommand = new DelegateCommand(OnLoadNavigationUpExecute, OnLoadNavigationUpCanExecute);
+            
+            CheckPreviousSelectionAgainCommand = new DelegateCommand(OnCheckPreviousSelectionAgainExecute, OnCheckPreviousSelectionAgainCanExecute);
+            SelectDeselectAllCommand = new DelegateCommand(OnSelectDeselectAllExecute);
+            SelectUnmodifiedCommand = new DelegateCommand(OnSelectUnmodifiedExecute);
+            SelectSavedCommand = new DelegateCommand(OnSelectSavedExecute);
+            SelectFinalizedCommand = new DelegateCommand(OnSelectFinalizedExecute);
         }
 
         private void AfterTabsClosed(AfterTabClosedEventArgs args)
@@ -84,6 +96,90 @@ namespace PhotoOrganizer.UI.ViewModel
                 
                 lookupItem.SetOriginalColorFlag(navigationAttribute.Item3);
                 lookupItem.IsChecked = false;
+            }
+
+            ((DelegateCommand)CheckPreviousSelectionAgainCommand).RaiseCanExecuteChanged();
+        }
+
+        private void OnSelectFinalizedExecute()
+        {
+            foreach (var lookupItem in Photos)
+            {
+                if (lookupItem.ColorFlag == ColorMap.Map[ColorSign.Finalized])
+                {
+                    lookupItem.IsChecked = true;
+                }
+                else
+                {
+                    lookupItem.IsChecked = false;
+                }
+            }
+        }
+
+        private void OnSelectSavedExecute()
+        {
+            foreach (var lookupItem in Photos)
+            {
+                if (lookupItem.ColorFlag == ColorMap.Map[ColorSign.Modified])
+                {
+                    lookupItem.IsChecked = true;
+                }
+                else
+                {
+                    lookupItem.IsChecked = false;
+                }
+            }
+        }
+
+        private void OnSelectUnmodifiedExecute()
+        {
+            foreach (var lookupItem in Photos)
+            {
+                if(lookupItem.ColorFlag == ColorMap.Map[ColorSign.Unmodified])
+                {
+                    lookupItem.IsChecked = true;
+                }
+                else
+                {
+                    lookupItem.IsChecked = false;
+                }
+            }
+        }
+
+        private void OnSelectDeselectAllExecute()
+        {
+            bool isCheck;
+            if (_bulkAttributeSetter.IsAnySelectedItem())
+            {
+                isCheck = false;
+            }
+            else
+            {
+                isCheck = true;
+            }
+
+            foreach (var lookupItem in Photos)
+            {
+                lookupItem.IsChecked = isCheck;
+            }            
+        }
+
+        private bool OnCheckPreviousSelectionAgainCanExecute()
+        {
+            return _bulkAttributeSetter.HasPreviousSelectionEntries();
+        }
+
+        private void OnCheckPreviousSelectionAgainExecute()
+        {
+            OnSelectDeselectAllExecute();
+
+            foreach (var previousItem in _bulkAttributeSetter.GetPreviousSelection())
+            {
+                var lookupItem = Photos.SingleOrDefault(p => p.Id == previousItem);
+                if(lookupItem != null)
+                {
+                    lookupItem.IsChecked = true;
+                }
             }
         }
 

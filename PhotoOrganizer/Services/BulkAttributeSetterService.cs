@@ -17,6 +17,7 @@ namespace PhotoOrganizer.UI.Services
         private IPhotoRepository _photoRepository;
 
         private IDictionary<int, bool> _navigationItemCheckStatusCollection = new Dictionary<int, bool>();
+        private HashSet<int> _previousNavigationItemCheckStatusCollection = new HashSet<int>();
         private IDictionary<int, IDetailViewModel> _openedPhotoDetailViews = new Dictionary<int, IDetailViewModel>();
 
         public BulkAttributeSetterService(
@@ -54,6 +55,16 @@ namespace PhotoOrganizer.UI.Services
             }
             int afterCount = _navigationItemCheckStatusCollection.Count;
             EvaluateCheckCounts(beforeCount, afterCount);
+        }
+
+        public bool HasPreviousSelectionEntries()
+        {
+            return _previousNavigationItemCheckStatusCollection.Count > 0;
+        }
+
+        public HashSet<int> GetPreviousSelection()
+        {
+            return _previousNavigationItemCheckStatusCollection;
         }
 
         private void EvaluateCheckCounts(int beforeCount, int afterCount)
@@ -156,11 +167,14 @@ namespace PhotoOrganizer.UI.Services
 
         private async Task ReloadNavigation()
         {
+            _previousNavigationItemCheckStatusCollection.Clear();
             var forNavigationItems = new List<Tuple<int, string, string, string>>();
             foreach (var item in _navigationItemCheckStatusCollection)
             {
                 var photo = await _photoRepository.GetByIdAsync(item.Key);
                 forNavigationItems.Add(new Tuple<int, string, string, string>(photo.Id, photo.Title, ColorMap.Map[photo.ColorFlag], photo.FullPath));
+
+                _previousNavigationItemCheckStatusCollection.Add(item.Key);
             }
 
             _eventAggregator.GetEvent<AfterBulkSetPhotoDetailAttributesEvent>().
@@ -169,6 +183,8 @@ namespace PhotoOrganizer.UI.Services
                 {
                     NavigationAttributes = forNavigationItems
                 });
+
+            _navigationItemCheckStatusCollection.Clear();
         }
 
         private void RaiseSelectionChangedEvent(bool isAnySelected)

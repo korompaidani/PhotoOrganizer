@@ -52,79 +52,79 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                
-            
-            <GroupBox Header="{x:Static resources:TextResources.Shelve}">
 
-                <ListBox x:Name="ShelveImageListbox"
+
+                <GroupBox Header="{x:Static resources:TextResources.Shelve}">
+
+                    <ListBox x:Name="ShelveImageListbox"
                      ItemsSource="{Binding ShelvePhotos}"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4"
                                     Background="#44000000" >
-                                    <Border.RenderTransform>
-                                        <TranslateTransform X="5" Y="5" />
-                                    </Border.RenderTransform>
-                                    <Border.BitmapEffect>
-                                        <BlurBitmapEffect Radius="8" />
-                                    </Border.BitmapEffect>
-                                </Border>
-                                
-                                <Border Padding="0" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1" Width="120">
-                                    <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}">
-                                    </Image>
-                                </Border>
-                                <Label Content="{Binding DisplayMemberItem}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Margin="0" Padding="2"/>
-                                <Button Content="" 
+                                        <Border.RenderTransform>
+                                            <TranslateTransform X="5" Y="5" />
+                                        </Border.RenderTransform>
+                                        <Border.BitmapEffect>
+                                            <BlurBitmapEffect Radius="8" />
+                                        </Border.BitmapEffect>
+                                    </Border>
+
+                                    <Border Padding="0" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1" Width="120">
+                                        <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}">
+                                        </Image>
+                                    </Border>
+                                    <Label Content="{Binding DisplayMemberItem}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Margin="0" Padding="2"/>
+                                    <Button Content="" 
                                     Command="{Binding OpenDetailViewCommand}"
                                     FontSize="10">
-                                    <Button.Template>
-                                        <ControlTemplate TargetType="Button">
-                                            <Grid x:Name="grid">
-                                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Grid x:Name="grid">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Cursor" Value="Hand"/>
-                                                    <Setter Property="FontWeight" Value="Bold"/>
-                                                    <Setter Property="Width" Value="150"/>
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter Property="FontWeight" Value="Normal"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Cursor" Value="Hand"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="Width" Value="150"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed" Value="True">
+                                                        <Setter Property="FontWeight" Value="Normal"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
 
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <local:CascadingPanel ItemOffset="45"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <local:CascadingPanel ItemOffset="45"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
 
-            </GroupBox>
+                </GroupBox>
             </Grid>
             <GridSplitter Grid.Row="1" Margin="2 0 2 0"/>
             <Grid Grid.Row="2" >
-            <GroupBox Header="{x:Static resources:TextResources.Albums}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                <GroupBox Header="{x:Static resources:TextResources.Albums}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
-                <ItemsControl ItemsSource="{Binding Albums}"
+                        <ItemsControl ItemsSource="{Binding Albums}"
                           ItemContainerStyle="{StaticResource NaviItemContainerStyle}"
                           ItemTemplate="{StaticResource NaviItemTemplate}"
                           Margin="5 0 5 0"/>
-            </ScrollViewer>
-        </GroupBox>
-        </Grid>
+                    </ScrollViewer>
+                </GroupBox>
+            </Grid>
         </Grid>
 
         <GroupBox Grid.Column="1" Header="{x:Static resources:TextResources.Photos}">
@@ -188,6 +188,12 @@
         <StackPanel Grid.Column="2" Orientation="Vertical">
             <Button Command="{Binding LoadUpNavigationCommand}" Style="{DynamicResource MyMetroUpButton}" />
             <Button Command="{Binding LoadDownNavigationCommand}" Style="{DynamicResource MyMetroDownButton}"/>
+
+            <Button Content="{x:Static resources:TextResources.SelectPrevious}" Command="{Binding CheckPreviousSelectionAgainCommand}"/>
+            <Button Content="{x:Static resources:TextResources.SelectDeselectAll}" Command="{Binding SelectDeselectAllCommand}"/>
+            <Button Content="{x:Static resources:TextResources.SelectUnmodified}" Command="{Binding SelectUnmodifiedCommand}"/>
+            <Button Content="{x:Static resources:TextResources.SelectSaved}" Command="{Binding SelectSavedCommand}"/>
+            <Button Content="{x:Static resources:TextResources.SelectFinalized}" Command="{Binding SelectFinalizedCommand}"/>
         </StackPanel>
 
     </Grid>

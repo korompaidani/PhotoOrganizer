@@ -189,6 +189,9 @@
   <data name="Description_colon" xml:space="preserve">
     <value>Description:</value>
   </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
   <data name="DidntSave_errorMessage" xml:space="preserve">
     <value>{0}(id:{1}) didn't saved.</value>
   </data>
@@ -358,11 +361,29 @@
   <data name="SaveWindowMessage" xml:space="preserve">
     <value>Do you want to save opened tabs before close?</value>
   </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="SelectDeselectAll" xml:space="preserve">
+    <value>Select/Deselect all</value>
+  </data>
+  <data name="SelectFinalized" xml:space="preserve">
+    <value>Select finalized</value>
+  </data>
   <data name="SelectPhotoLocation_message" xml:space="preserve">
     <value>Please select a 'photo' location:</value>
   </data>
   <data name="SelectPhoto_message" xml:space="preserve">
     <value>Please select a photo</value>
+  </data>
+  <data name="SelectPrevious" xml:space="preserve">
+    <value>Select previous</value>
+  </data>
+  <data name="SelectSaved" xml:space="preserve">
+    <value>Select saved</value>
+  </data>
+  <data name="SelectUnmodified" xml:space="preserve">
+    <value>Select unmodified</value>
   </data>
   <data name="SetAll" xml:space="preserve">
     <value>Set all</value>
