@@ -48,9 +48,9 @@ namespace PhotoOrganizer.UI
         {
             DoubleAnimation animation = new DoubleAnimation
             {
-                From = 0,
-                To = 1,
-                Duration = new Duration(TimeSpan.FromSeconds(1)),
+                From = 2,
+                To = 0,
+                Duration = new Duration(TimeSpan.FromSeconds(2)),
                 AutoReverse = true
             };
             splashScreen.BeginAnimation(OpacityProperty, animation);

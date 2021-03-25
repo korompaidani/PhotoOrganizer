@@ -23,6 +23,6 @@
 
     <Grid>
         <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
-        <Image x:Name="splashScreen" Source="intro_screen.jpg" Stretch="UniformToFill" />
+        <Image x:Name="splashScreen" Source="intro_screen.jpg" Stretch="Fill" />
     </Grid>
 </Controls:MetroWindow>
