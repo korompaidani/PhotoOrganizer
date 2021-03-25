@@ -1159,6 +1159,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type a name here:.
+        /// </summary>
+        public static string TypeName {
+            get {
+                return ResourceManager.GetString("TypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unhandled exception occurred: {0}.
         /// </summary>
         public static string UnhandledExceptionOccurred_errorMessage {

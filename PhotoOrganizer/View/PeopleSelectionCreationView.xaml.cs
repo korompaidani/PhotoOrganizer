@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using System.Windows.Input;
 
 namespace PhotoOrganizer.UI.View
 {
@@ -10,6 +11,12 @@ namespace PhotoOrganizer.UI.View
         public PeopleSelectionCreationView()
         {
             InitializeComponent();
+        }
+
+        private void OnLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            FocusManager.SetFocusedElement(this, NameTextBox);
+            Keyboard.Focus(NameTextBox);
         }
     }
 }

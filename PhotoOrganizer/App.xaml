@@ -326,10 +326,13 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                    <!-- ************************************************************************************************************ -->
+                    <!-- ************************************************************************************************************ -->                    
                 </ResourceDictionary>
                 <ResourceDictionary>
+                    <!-- **********************************************<<<CONVERTERS>>>************************************************* -->
                     <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+                    <!-- ************************************************************************************************************ -->
+                    <!-- **********************************************<<<TEXTBOX>>>************************************************* -->
                     <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                         <Setter Property="Validation.ErrorTemplate">
                             <Setter.Value>
@@ -356,8 +359,11 @@
                         </Style.Triggers>
                     </Style>
 
+                    <!-- ************************************************************************************************************ -->
+                    <!-- **********************************************<<<DATAGRID COLUMN>>>************************************************* -->
+                    
                     <Style x:Key="DataGridColumnStyle" TargetType="TextBlock">
-
+                        <Setter Property="Margin" Value="10 0 0 0"/>
                         <Style.Triggers>
                             <Trigger Property="Validation.HasError" Value="True">
                                 <Setter Property="Background" Value="DarkRed"/>

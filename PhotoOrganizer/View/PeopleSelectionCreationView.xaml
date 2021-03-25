@@ -8,34 +8,17 @@
         xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
         mc:Ignorable="d"
         Title="PeopleSelectionCreationView" Height="450" Width="800"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner" Loaded="OnLoaded">
     <Grid>
-        <DockPanel Grid.Row="6" Grid.Column="1" Margin="5 0 5 5">
-            <StackPanel DockPanel.Dock="Right">
-                <TextBox Text="{Binding NameInputTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Margin="5 10 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <Button Content="{x:Static resources:TextResources.CreateNewPeople_button}" Width="125" Margin="5 0 5 5"
-                            Command="{Binding AddPeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
-                    <Button.ToolTip >
-                        <TextBlock Text="{x:Static resources:TextResources.AddNewPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="{x:Static resources:TextResources.RemovePeopleFromDb_button}" Width="125" Margin="5"
-                            Command="{Binding RemovePeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
-                    <Button.ToolTip >
-                        <TextBlock Text="{x:Static resources:TextResources.RemoveSelectedPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="{x:Static resources:TextResources.AddSelectedPeople_button}" Width="125" Margin="5"
-                            Command="{Binding AddSelectedPeopleToPhotoCommand}" Style="{DynamicResource MyMetroSquareButton}">
-                        <Button.ToolTip >
-                            <TextBlock Text="{x:Static resources:TextResources.AddPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                        </Button.ToolTip>
-                </Button>
-            </StackPanel>
-            <DataGrid ItemsSource="{Binding Peoples}"
+            <DataGrid Grid.Column="0" ItemsSource="{Binding Peoples}"
                 SelectedItem="{Binding SelectedPeople, Mode=TwoWay}"
-                AutoGenerateColumns="False" RowHeaderWidth="0"
+                AutoGenerateColumns="False"
                 FontSize="10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*"                                            
@@ -43,11 +26,44 @@
                                             EditingElementStyle="{StaticResource DataGridEditingColumnStyle}"
                                             Binding="{Binding DisplayName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <DataGridTextColumn.Header>
-                            <TextBlock FontSize="10" Text="{x:Static resources:TextResources.People}"/>
+                            <TextBlock FontSize="12" Text="{x:Static resources:TextResources.People}"/>
                         </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </DockPanel>
+            <Border Grid.Column="1" BorderThickness="1" BorderBrush="{DynamicResource MahApps.Brushes.Gray8}" Margin="5 0 5 0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Grid.Column="0" Content="{x:Static resources:TextResources.TypeName}" Margin="5"/>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+
+                        <TextBox x:Name="NameTextBox" Text="{Binding NameInputTextBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" Margin="5"/>
+
+                        <Button Content="{x:Static resources:TextResources.CreateNewPeople_button}" Width="150" Margin="5"
+                            Command="{Binding AddPeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.AddNewPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button Content="{x:Static resources:TextResources.RemovePeopleFromDb_button}" Width="150" Margin="5"
+                            Command="{Binding RemovePeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                    <Button.ToolTip >
+                        <TextBlock Text="{x:Static resources:TextResources.RemoveSelectedPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                    </Button.ToolTip>
+                </Button>
+                <Button Content="{x:Static resources:TextResources.AddSelectedPeople_button}" Width="150" Margin="5"
+                            Command="{Binding AddSelectedPeopleToPhotoCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                        <Button.ToolTip >
+                            <TextBlock Text="{x:Static resources:TextResources.AddPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                        </Button.ToolTip>
+                </Button>
+            </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Controls:MetroWindow>
