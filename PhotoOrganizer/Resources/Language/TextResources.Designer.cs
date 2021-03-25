@@ -88,6 +88,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new people to the photo. After click on it, new people will be automatically added to the photo and after save this photo it will be available for other photos..
+        /// </summary>
+        public static string AddNewPeople_tooltip {
+            get {
+                return ResourceManager.GetString("AddNewPeople_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can add people to the photo. It will be written as a keyword after writing metadata..
         /// </summary>
         public static string AddPeople_tooltip {
@@ -102,6 +111,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string AddPhoto_menu {
             get {
                 return ResourceManager.GetString("AddPhoto_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add selected people.
+        /// </summary>
+        public static string AddSelectedPeople_button {
+            get {
+                return ResourceManager.GetString("AddSelectedPeople_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add existing people to the photo..
+        /// </summary>
+        public static string AddSelectedPeople_tooltip {
+            get {
+                return ResourceManager.GetString("AddSelectedPeople_tooltip", resourceCulture);
             }
         }
         
@@ -228,6 +255,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string CouldNotLoadEntity_message {
             get {
                 return ResourceManager.GetString("CouldNotLoadEntity_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create new people.
+        /// </summary>
+        public static string CreateNewPeople_button {
+            get {
+                return ResourceManager.GetString("CreateNewPeople_button", resourceCulture);
             }
         }
         
@@ -795,6 +831,33 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string RemovePeople_tooltip {
             get {
                 return ResourceManager.GetString("RemovePeople_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove from database.
+        /// </summary>
+        public static string RemovePeopleFromDb_button {
+            get {
+                return ResourceManager.GetString("RemovePeopleFromDb_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected.
+        /// </summary>
+        public static string RemoveSelectedPeople_button {
+            get {
+                return ResourceManager.GetString("RemoveSelectedPeople_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected people from the database. If you remove it, it takes effect for other photos..
+        /// </summary>
+        public static string RemoveSelectedPeople_tooltip {
+            get {
+                return ResourceManager.GetString("RemoveSelectedPeople_tooltip", resourceCulture);
             }
         }
         

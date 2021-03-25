@@ -14,6 +14,7 @@ namespace PhotoOrganizer.UI.ViewModel
     {
         private PhotoDetailViewModel _detailView;
         private PeopleWrapper _selectedPeople;
+        private string _nameInputTextBox;
         private IPhotoRepository _photoRepository;
         private IEventAggregator _eventAggregator;
         public ICommand AddPeopleCommand { get; }
@@ -29,8 +30,20 @@ namespace PhotoOrganizer.UI.ViewModel
             set
             {
                 _selectedPeople = value;
+                OnPropertyChanged();
                 ((DelegateCommand)RemovePeopleCommand).RaiseCanExecuteChanged();
                 ((DelegateCommand)AddSelectedPeopleToPhotoCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        public string NameInputTextBox
+        {
+            get { return _nameInputTextBox; }
+            set
+            {
+                _nameInputTextBox = value;
+                OnPropertyChanged();
+                ((DelegateCommand)AddPeopleCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -47,7 +60,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator = eventAggregator;
             Peoples = new ObservableCollection<PeopleWrapper>();
             _detailView = detailView;
-            AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute);
+            AddPeopleCommand = new DelegateCommand(OnAddPeopleExecute, OnAddPeopleCanExecute);
             RemovePeopleCommand = new DelegateCommand(OnRemovePeopleExecute, OnRemovePeopleCanExecute);
 
             AddSelectedPeopleToPhotoCommand = new DelegateCommand(OnAddSelectedPeopleToPhotoExecute, OnAddSelectedPeopleToPhotoCanExecute);
@@ -95,15 +108,46 @@ namespace PhotoOrganizer.UI.ViewModel
             SelectedPeople = null;
         }
 
+        private bool OnAddPeopleCanExecute()
+        {
+            if(!string.IsNullOrEmpty(NameInputTextBox))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void OnAddPeopleExecute()
         {
-            var newPeople = new PeopleWrapper(new People());
-            newPeople.PropertyChanged += _detailView.PeopleWrapper_PropertyChanged;
-            var peopleItem = new PeopleItemViewModel(newPeople, _eventAggregator);
-            Peoples.Add(newPeople);
-            PeoplesOnPhoto.Add(peopleItem);
-            _detailView.Photo.AddPeople(newPeople.Model);
-            newPeople.DisplayName = "";
+            var existingPeople = Peoples.FirstOrDefault(p => p.DisplayName == NameInputTextBox);
+            var isPeopleOnPhoto = PeoplesOnPhoto.Any(p => p.People.DisplayName == NameInputTextBox);
+            if (existingPeople != null || isPeopleOnPhoto)
+            {
+                SelectedPeople = null;                
+                Peoples.Remove(existingPeople);
+
+                if (!isPeopleOnPhoto)
+                {
+                    var peopleItem = new PeopleItemViewModel(existingPeople, _eventAggregator);
+                    PeoplesOnPhoto.Add(peopleItem);
+                }
+                
+                if(existingPeople != null)
+                {                
+                    _detailView.Photo.AddPeople(existingPeople.Model);
+                }
+            }
+            else
+            {
+                var newPeople = new PeopleWrapper(new People { DisplayName = NameInputTextBox });
+                newPeople.PropertyChanged += _detailView.PeopleWrapper_PropertyChanged;
+                var peopleItem = new PeopleItemViewModel(newPeople, _eventAggregator);
+                PeoplesOnPhoto.Add(peopleItem);
+                _detailView.Photo.AddPeople(newPeople.Model);
+            }
+
+            NameInputTextBox = string.Empty;
         }
 
         public async Task LoadAsync()

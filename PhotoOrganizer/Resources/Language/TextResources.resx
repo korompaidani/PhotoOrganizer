@@ -126,11 +126,20 @@
   <data name="AddedPhotos" xml:space="preserve">
     <value>Added Photos</value>
   </data>
+  <data name="AddNewPeople_tooltip" xml:space="preserve">
+    <value>Add new people to the photo. After click on it, new people will be automatically added to the photo and after save this photo it will be available for other photos.</value>
+  </data>
   <data name="AddPeople_tooltip" xml:space="preserve">
     <value>You can add people to the photo. It will be written as a keyword after writing metadata.</value>
   </data>
   <data name="AddPhoto_menu" xml:space="preserve">
     <value>Add Photo...</value>
+  </data>
+  <data name="AddSelectedPeople_button" xml:space="preserve">
+    <value>Add selected people</value>
+  </data>
+  <data name="AddSelectedPeople_tooltip" xml:space="preserve">
+    <value>Add existing people to the photo.</value>
   </data>
   <data name="AddToPhoto" xml:space="preserve">
     <value>Add to photo</value>
@@ -173,6 +182,9 @@
   </data>
   <data name="CouldNotLoadEntity_message" xml:space="preserve">
     <value>Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.</value>
+  </data>
+  <data name="CreateNewPeople_button" xml:space="preserve">
+    <value>Create new people</value>
   </data>
   <data name="CreatingBackup_message" xml:space="preserve">
     <value>Creating backup...</value>
@@ -361,8 +373,17 @@
   <data name="RemoveFromShelve_tooltip" xml:space="preserve">
     <value>This button removes the image from the shelve.</value>
   </data>
+  <data name="RemovePeopleFromDb_button" xml:space="preserve">
+    <value>Remove from database</value>
+  </data>
   <data name="RemovePeople_tooltip" xml:space="preserve">
     <value>This people will be removed from the photo after click on it.</value>
+  </data>
+  <data name="RemoveSelectedPeople_button" xml:space="preserve">
+    <value>Remove selected</value>
+  </data>
+  <data name="RemoveSelectedPeople_tooltip" xml:space="preserve">
+    <value>Remove selected people from the database. If you remove it, it takes effect for other photos.</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
