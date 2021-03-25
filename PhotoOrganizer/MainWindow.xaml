@@ -10,7 +10,7 @@
         xmlns:mwc="clr-namespace:PhotoOrganizer.UI"
         mwc:MainWindowClose.CancelClosing="{Binding OpenCancelClosingAppCommand}"
         mc:Ignorable="d"
-        Title="PhotoOrganizer" MinHeight="760" MinWidth="1280" FontSize="20"
+        Title="Korompai PhotoVersor©" MinHeight="760" MinWidth="1280" FontSize="20"
         WindowStartupLocation="CenterScreen" Closing="WindowClosing">
     <Window.Resources>
         <DataTemplate DataType="{x:Type view:WorkbenchView}">
@@ -22,15 +22,7 @@
     </Window.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition MinHeight="720"/>
-        </Grid.RowDefinitions>
-
         <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
-        <Image x:Name="splashScreen" Source="splash_screen.jpg" Stretch="UniformToFill" />
-        <StackPanel x:Name="navigation" DockPanel.Dock="Left">
-            <Button Content="Workbench" Command="{Binding OpenWorkbenchCommand}" Visibility="Hidden"/>
-        </StackPanel>
-
+        <Image x:Name="splashScreen" Source="intro_screen.jpg" Stretch="UniformToFill" />
     </Grid>
 </Controls:MetroWindow>

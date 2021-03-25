@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PhotoVersor_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
@@ -694,15 +697,23 @@
     <Resource Include="Resources\Pictures\splash_screen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="splash_screen.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Icons\button_map_light.png" />
     <Resource Include="Resources\Icons\button_copy_light.png" />
     <Resource Include="Resources\Icons\button_down_light.png" />
     <Resource Include="Resources\Icons\button_set_light.png" />
     <Resource Include="Resources\Icons\button_up_light.png" />
     <Resource Include="Resources\Icons\button_selectDeselectAll.png" />
+    <Resource Include="Resources\Icons\button_finalize_light.png" />
+    <Resource Include="Resources\Icons\button_save_light.png" />
+    <Resource Include="Resources\Icons\button_shelve_light.png" />
+    <Resource Include="Resources\Icons\button_unchanged_light.png" />
+    <Resource Include="Resources\Icons\button_unshelve_light.png" />
+    <Resource Include="Resources\Icons\button_writemeta_light.png" />
+    <Resource Include="Resources\Pictures\intro_screen.jpg" />
+    <Resource Include="intro_screen.jpg" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.png" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.ico" />
+    <Resource Include="PhotoVersor_icon.ico" />
     <Content Include="Resources\Web\OpenLayersMap.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

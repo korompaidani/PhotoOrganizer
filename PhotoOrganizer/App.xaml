@@ -10,13 +10,13 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <BitmapImage  x:Key="saveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-            <BitmapImage  x:Key="wrtiteMetaImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-            <BitmapImage  x:Key="markAsUnchangedImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-            <BitmapImage  x:Key="finalizeImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="saveImage" UriSource="pack://application:,,,/Resources/Icons/button_save_light.png"/>
+            <BitmapImage  x:Key="wrtiteMetaImage" UriSource="pack://application:,,,/Resources/Icons/button_writemeta_light.png"/>
+            <BitmapImage  x:Key="markAsUnchangedImage" UriSource="pack://application:,,,/Resources/Icons/button_unchanged_light.png"/>
+            <BitmapImage  x:Key="finalizeImage" UriSource="pack://application:,,,/Resources/Icons/button_finalize_light.png"/>
             <BitmapImage  x:Key="bulkSetImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-            <BitmapImage  x:Key="addToShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
-            <BitmapImage  x:Key="removeFromShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
+            <BitmapImage  x:Key="addToShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_shelve_light.png"/>
+            <BitmapImage  x:Key="removeFromShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_unshelve_light.png"/>
             <Image x:Key="mapImage">
                 <Image.Source>
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
