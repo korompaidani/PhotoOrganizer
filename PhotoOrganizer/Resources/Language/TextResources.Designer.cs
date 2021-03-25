@@ -907,6 +907,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save location and coordinates in the database. You can use it in case of other photos in the future..
+        /// </summary>
+        public static string SaveAsNew_tooltip {
+            get {
+                return ResourceManager.GetString("SaveAsNew_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save Dialog.
         /// </summary>
         public static string SaveDialog_windowTitle {
@@ -921,6 +930,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string SaveExisting {
             get {
                 return ResourceManager.GetString("SaveExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It overrides existing location in database and also set and save coordinates..
+        /// </summary>
+        public static string SaveExisting_tooltip {
+            get {
+                return ResourceManager.GetString("SaveExisting_tooltip", resourceCulture);
             }
         }
         
@@ -1092,6 +1110,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string SetCoordinate {
             get {
                 return ResourceManager.GetString("SetCoordinate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set coordinates.
+        /// </summary>
+        public static string SetCoordinates_button {
+            get {
+                return ResourceManager.GetString("SetCoordinates_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can set the coordinate without saving the location to the database..
+        /// </summary>
+        public static string SetCoordinates_tooltip {
+            get {
+                return ResourceManager.GetString("SetCoordinates_tooltip", resourceCulture);
             }
         }
         

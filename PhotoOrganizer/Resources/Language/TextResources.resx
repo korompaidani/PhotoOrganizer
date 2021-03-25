@@ -397,11 +397,17 @@
   <data name="SaveAsNew" xml:space="preserve">
     <value>Save As New</value>
   </data>
+  <data name="SaveAsNew_tooltip" xml:space="preserve">
+    <value>Save location and coordinates in the database. You can use it in case of other photos in the future.</value>
+  </data>
   <data name="SaveDialog_windowTitle" xml:space="preserve">
     <value>Save Dialog</value>
   </data>
   <data name="SaveExisting" xml:space="preserve">
     <value>Save Existing</value>
+  </data>
+  <data name="SaveExisting_tooltip" xml:space="preserve">
+    <value>It overrides existing location in database and also set and save coordinates.</value>
   </data>
   <data name="SaveWindowMessage" xml:space="preserve">
     <value>Do you want to save opened tabs before close?</value>
@@ -456,6 +462,12 @@
   </data>
   <data name="SetCoordinate" xml:space="preserve">
     <value>Set Coordinate</value>
+  </data>
+  <data name="SetCoordinates_button" xml:space="preserve">
+    <value>Set coordinates</value>
+  </data>
+  <data name="SetCoordinates_tooltip" xml:space="preserve">
+    <value>You can set the coordinate without saving the location to the database.</value>
   </data>
   <data name="Settings_menu" xml:space="preserve">
     <value>Settings</value>

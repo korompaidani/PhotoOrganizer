@@ -11,19 +11,59 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <Label Content="{x:Static resources:TextResources.LocationName}"/>
-            <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-            <Button Content="{x:Static resources:TextResources.Coordinates}" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
-            <Button Content="{x:Static resources:TextResources.SaveExisting}" Command="{Binding SaveOverrideLocationCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
-            <Button Content="{x:Static resources:TextResources.SaveAsNew}" Command="{Binding SaveAsNewLocationCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
-            <Button Content="X" Background="Transparent" Command="{Binding CloseMapCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <Label Content="{x:Static resources:TextResources.LocationName}" Height="50" Margin="5 11" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Location.LocationName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="20"/>
+            
+            <Button Content="{x:Static resources:TextResources.SaveExisting}" Height="20" Width="100" Margin="10 5 5 5" Command="{Binding SaveOverrideLocationCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                <Button.ToolTip >
+                    <TextBlock Text="{x:Static resources:TextResources.SaveExisting_tooltip}" Width="100" TextWrapping="Wrap"/>
+                </Button.ToolTip>
+            </Button>
+                <Button Content="{x:Static resources:TextResources.SaveAsNew}" Height="20" Width="100" Margin="10 5 5 5" Command="{Binding SaveAsNewLocationCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                <Button.ToolTip >
+                    <TextBlock Text="{x:Static resources:TextResources.SaveAsNew_tooltip}" Width="100" TextWrapping="Wrap"/>
+                </Button.ToolTip>
+            </Button>
+
+                <Button Content="{x:Static resources:TextResources.SetCoordinates_button}" Height="20" Width="100" Margin="10 5 5 5" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                <Button.ToolTip >
+                    <TextBlock Text="{x:Static resources:TextResources.SetCoordinates_tooltip}" Width="100" TextWrapping="Wrap"/>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+            <Grid/>
+            <Button Grid.Column="2" Content="X" Command="{Binding CloseMapCommand}" FontSize="40" Background="Transparent" Foreground="White" Margin="0 0 10 0">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="grid">
+                            <ContentPresenter HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="FontWeight" Value="Normal"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
         <ContentPresenter Grid.Row="1" Content="{x:Static WebEngine:ChromiumBrowserEngine.ControlInstance}"/>
         
     </Grid>
