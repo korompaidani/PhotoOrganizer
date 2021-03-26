@@ -13,24 +13,32 @@ namespace PhotoOrganizer.FileHandler
         public Dictionary<MetaProperty, string> ReadMeta(string filepath)
         {
             var result = new Dictionary<MetaProperty, string>();
-            using (var memoryStream = new MemoryStream())
+
+            try
             {
-                using (FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+                using (var memoryStream = new MemoryStream())
                 {
-                    fs.CopyTo(memoryStream);
-                }
-
-                Image image = Image.FromStream(memoryStream);
-
-                PropertyItem[] imagePropertyItems = image.PropertyItems;
-
-                foreach (PropertyItem propertyItem in imagePropertyItems)
-                {
-                    if (Enum.IsDefined(typeof(MetaProperty), propertyItem.Id))
+                    using (FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read))
                     {
-                        result.Add((MetaProperty)propertyItem.Id, Encoding.UTF8.GetString(propertyItem.Value));
+                        fs.CopyTo(memoryStream);
+                    }
+
+                    Image image = Image.FromStream(memoryStream);
+
+                    PropertyItem[] imagePropertyItems = image.PropertyItems;
+
+                    foreach (PropertyItem propertyItem in imagePropertyItems)
+                    {
+                        if (Enum.IsDefined(typeof(MetaProperty), propertyItem.Id))
+                        {
+                            result.Add((MetaProperty)propertyItem.Id, Encoding.UTF8.GetString(propertyItem.Value));
+                        }
                     }
                 }
+            }
+            catch
+            {
+
             }
 
             return result;

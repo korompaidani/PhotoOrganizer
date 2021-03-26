@@ -8,11 +8,13 @@ namespace PhotoOrganizer.FileHandler
 {
     public class BackupManager
     {
-        private Dictionary<Type, List<Dictionary<string, Tuple<Type, object>>>> tableContent;
+        private Dictionary<string, List<Dictionary<string, Tuple<string, string>>>> _tableContent;
+
+        public Dictionary<string, List<Dictionary<string, Tuple<string, string>>>> AllTableData => _tableContent;
 
         public void ReadAllTable<T>(T dbContext)
         {
-            tableContent = new Dictionary<Type, List<Dictionary<string, Tuple<Type, object>>>>();
+            _tableContent = new Dictionary<string, List<Dictionary<string, Tuple<string, string>>>>();
 
             Type contextType = typeof(T);
             PropertyInfo[] properties = contextType.GetProperties();
@@ -48,21 +50,26 @@ namespace PhotoOrganizer.FileHandler
                 return;
             }
 
-            var listOfOneType = new List<Dictionary<string, Tuple<Type, object>>>();
+            var listOfOneType = new List<Dictionary<string, Tuple<string, string>>>();
             Type itemType = null;
             foreach (var item in table)
             {
-                var entityContent = new Dictionary<string, Tuple<Type, object>>();
+                var entityContent = new Dictionary<string, Tuple<string, string>>();
                 itemType = item.GetType();
                 var props = itemType.GetProperties();
                 //it doesn't know the type must be casted
                 foreach (var prop in props)
                 {
-                    entityContent.Add(prop.Name, new Tuple<Type, object>(prop.PropertyType, item.GetType().GetProperty(prop.Name).GetValue(item)));
+                    var value = item.GetType().GetProperty(prop.Name).GetValue(item);
+                    if (value is null)
+                    {
+                        value = "null";
+                    }
+                    entityContent.Add(prop.Name, new Tuple<string, string>(prop.PropertyType.Name, value.ToString()));
                 }
                 listOfOneType.Add(entityContent);
             }
-            tableContent.Add(itemType, listOfOneType);
+            _tableContent.Add(itemType.Name, listOfOneType);
         }
     }
 }

@@ -140,29 +140,36 @@ namespace PhotoOrganizer.UI.Services
         private async Task SetPropertiesOfCheckedItems(IDictionary<string, object> properyNamesAndValues, int callerId)
         {
             List<Photo> photos = new List<Photo>();
-            foreach (var item in _navigationItemCheckStatusCollection)
+            try 
             {
-                if (item.Key == callerId)
+                foreach (var item in _navigationItemCheckStatusCollection)
                 {
-                    continue;
-                }
-
-                if (item.Value)
-                {
-                    var photo = await _photoRepository.GetByIdAsync(item.Key);
-                    photos.Add(photo);
-                    photo.ColorFlag = ColorSign.Modified;
-                    foreach (var property in properyNamesAndValues)
+                    if (item.Key == callerId)
                     {
-                        PropertyInfo prop = photo.GetType().GetProperty(property.Key, BindingFlags.Public | BindingFlags.Instance);
-                        if (prop != null && prop.CanWrite)
+                        continue;
+                    }
+
+                    if (item.Value)
+                    {
+                        var photo = await _photoRepository.GetByIdAsync(item.Key);
+                        photos.Add(photo);
+                        photo.ColorFlag = ColorSign.Modified;
+                        foreach (var property in properyNamesAndValues)
                         {
-                            prop.SetValue(photo, property.Value, null);
+                            PropertyInfo prop = photo.GetType().GetProperty(property.Key, BindingFlags.Public | BindingFlags.Instance);
+                            if (prop != null && prop.CanWrite)
+                            {
+                                prop.SetValue(photo, property.Value, null);
+                            }
                         }
                     }
                 }
+                await _photoRepository.SaveAsync();
             }
-            await _photoRepository.SaveAsync();
+            catch
+            {
+
+            }
         }
 
         private async Task ReloadNavigation()

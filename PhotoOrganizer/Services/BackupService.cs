@@ -30,8 +30,14 @@ namespace PhotoOrganizer.UI.Services
             _backupManager.ReadAllTable(_photoOrganizerDbContext);
 
             // Write file here
-            await _xmlWriter.WriteXmlAsync(path);
+            try
+            {
+                await _xmlWriter.WriteXmlAsync(path, _backupManager.AllTableData);
+            }
+            catch
+            {
 
+            }
         }
 
         public void RestoreFromBackup(string path)
