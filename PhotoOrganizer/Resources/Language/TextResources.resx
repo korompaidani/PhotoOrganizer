@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutLink" xml:space="preserve">
+    <value>https://github.com/korompaidani/</value>
+  </data>
+  <data name="AboutLinkText" xml:space="preserve">
+    <value>My Github page:</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>I am happy to know that you are using my application. My intention was to create a useful app to modify my photo's meta data. And I also practice coding and wide my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much fun as I made it.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>Welcome to my app!</value>
+  </data>
   <data name="About_menu" xml:space="preserve">
     <value>About</value>
   </data>
@@ -198,6 +210,12 @@
   <data name="CreatingBackup_message" xml:space="preserve">
     <value>Creating backup...</value>
   </data>
+  <data name="CreditsText" xml:space="preserve">
+    <value>Thank you for the following components:</value>
+  </data>
+  <data name="CreditsTitle" xml:space="preserve">
+    <value>Credits</value>
+  </data>
   <data name="CultureInfoHun" xml:space="preserve">
     <value>hu-HU</value>
   </data>
@@ -236,6 +254,9 @@
   </data>
   <data name="Down" xml:space="preserve">
     <value>Down</value>
+  </data>
+  <data name="DownPage_tooltip" xml:space="preserve">
+    <value>Based on page size (you can change in setting menu) if there is content above this button is enabled.</value>
   </data>
   <data name="DoYouReallyWantDelete_message" xml:space="preserve">
     <value>Do you really want to delete {0}?</value>
@@ -295,10 +316,10 @@
     <value>Getting started</value>
   </data>
   <data name="GettingStarted_description" xml:space="preserve">
-    <value>With this application you are able to change metadata easily. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
+    <value>With this application you are able to change your favourite photo's metadata easily.. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
   </data>
   <data name="GettingStarted_Title" xml:space="preserve">
-    <value>Welcome</value>
+    <value>Hello!</value>
   </data>
   <data name="Help_menu" xml:space="preserve">
     <value>Help</value>
@@ -337,6 +358,9 @@
   <data name="Location_colon" xml:space="preserve">
     <value>Location:</value>
   </data>
+  <data name="MahappsLink" xml:space="preserve">
+    <value>https://mahapps.com/</value>
+  </data>
   <data name="Map_button" xml:space="preserve">
     <value>map</value>
   </data>
@@ -354,6 +378,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="OpenLayersLink" xml:space="preserve">
+    <value>https://openlayers.org/</value>
   </data>
   <data name="OpenMap_tooltip" xml:space="preserve">
     <value>Open the map to pick gps coordinates for the photo. You can just simply choose a coordinate or you can save it to be able to use it later again. You can change existing saved location if it is selected in the combo box.</value>
@@ -476,7 +503,7 @@
     <value>Please select a photo</value>
   </data>
   <data name="SelectPrevious" xml:space="preserve">
-    <value>Select previous</value>
+    <value>Previous</value>
   </data>
   <data name="SelectPrevious_tooltip" xml:space="preserve">
     <value>Select/Deselect previously selected tiles (works only after any set)</value>
@@ -543,6 +570,9 @@
   </data>
   <data name="Up" xml:space="preserve">
     <value>Up</value>
+  </data>
+  <data name="UpPage_tooltip" xml:space="preserve">
+    <value>Based on page size (you can change in setting menu) if there is content below this button is enabled.</value>
   </data>
   <data name="ViewHelp_menu" xml:space="preserve">
     <value>View help</value>

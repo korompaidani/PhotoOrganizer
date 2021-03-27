@@ -70,6 +70,42 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/korompaidani/.
+        /// </summary>
+        public static string AboutLink {
+            get {
+                return ResourceManager.GetString("AboutLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Github page:.
+        /// </summary>
+        public static string AboutLinkText {
+            get {
+                return ResourceManager.GetString("AboutLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am happy to know that you are using my application. My intention was to create a useful app to modify my photo&apos;s meta data. And I also practice coding and wide my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much fun as I made it..
+        /// </summary>
+        public static string AboutText {
+            get {
+                return ResourceManager.GetString("AboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to my app!.
+        /// </summary>
+        public static string AboutTitle {
+            get {
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The actual setting is: .
         /// </summary>
         public static string ActualSettingIs {
@@ -304,6 +340,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thank you for the following components:.
+        /// </summary>
+        public static string CreditsText {
+            get {
+                return ResourceManager.GetString("CreditsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string CreditsTitle {
+            get {
+                return ResourceManager.GetString("CreditsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to en-US.
         /// </summary>
         public static string CultureInfo_constant {
@@ -417,6 +471,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Down {
             get {
                 return ResourceManager.GetString("Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Based on page size (you can change in setting menu) if there is content above this button is enabled..
+        /// </summary>
+        public static string DownPage_tooltip {
+            get {
+                return ResourceManager.GetString("DownPage_tooltip", resourceCulture);
             }
         }
         
@@ -592,7 +655,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With this application you are able to change metadata easily. Just load your photos from folder and enjoy your work. Let&apos;s photoverse!.
+        ///   Looks up a localized string similar to With this application you are able to change your favourite photo&apos;s metadata easily.. Just load your photos from folder and enjoy your work. Let&apos;s photoverse!.
         /// </summary>
         public static string GettingStarted_description {
             get {
@@ -601,7 +664,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome.
+        ///   Looks up a localized string similar to Hello!.
         /// </summary>
         public static string GettingStarted_Title {
             get {
@@ -718,6 +781,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://mahapps.com/.
+        /// </summary>
+        public static string MahappsLink {
+            get {
+                return ResourceManager.GetString("MahappsLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to map.
         /// </summary>
         public static string Map_button {
@@ -768,6 +840,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://openlayers.org/.
+        /// </summary>
+        public static string OpenLayersLink {
+            get {
+                return ResourceManager.GetString("OpenLayersLink", resourceCulture);
             }
         }
         
@@ -1132,7 +1213,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select previous.
+        ///   Looks up a localized string similar to Previous.
         /// </summary>
         public static string SelectPrevious {
             get {
@@ -1335,6 +1416,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Up {
             get {
                 return ResourceManager.GetString("Up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Based on page size (you can change in setting menu) if there is content below this button is enabled..
+        /// </summary>
+        public static string UpPage_tooltip {
+            get {
+                return ResourceManager.GetString("UpPage_tooltip", resourceCulture);
             }
         }
         

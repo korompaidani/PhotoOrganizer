@@ -400,6 +400,7 @@
     <EmbeddedResource Include="Resources\Language\TextResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -740,6 +741,7 @@
     <Resource Include="Resources\Icons\PhotoVersor_icon.png" />
     <Resource Include="Resources\Icons\PhotoVersor_icon.ico" />
     <Resource Include="PhotoVersor_icon.ico" />
+    <Resource Include="Resources\Icons\arrow_1.png" />
     <Content Include="Resources\Web\OpenLayersMap.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

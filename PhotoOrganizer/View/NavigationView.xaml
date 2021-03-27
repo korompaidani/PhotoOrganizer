@@ -217,7 +217,7 @@
                         </StackPanel>
                     </Button.ToolTip>
                 </Button>
-                <Button Command="{Binding SelectDeselectAllCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525">
+                <Button Command="{Binding SelectDeselectAllCommand}" Height="20" Width="20" BorderThickness="0" FontSize="8" Foreground="#252525" Background="#0767b3">
                     <Button.Style>
                         <Style>
                             <Setter Property="Button.Content" Value="{DynamicResource selectAll}"/>

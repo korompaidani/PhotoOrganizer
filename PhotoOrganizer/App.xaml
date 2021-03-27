@@ -17,6 +17,11 @@
             <BitmapImage  x:Key="bulkSetImage" UriSource="pack://application:,,,/Resources/Icons/button_set_light.png"/>
             <BitmapImage  x:Key="addToShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_shelve_light.png"/>
             <BitmapImage  x:Key="removeFromShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_unshelve_light.png"/>
+            <BitmapImage  x:Key="mapButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_map_light.png"/>
+            <BitmapImage  x:Key="copyButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png"/>
+
+            <BitmapImage  x:Key="upButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_map_light.png"/>
+            <BitmapImage  x:Key="downButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png"/>
             <Image x:Key="mapImage">
                 <Image.Source>
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
@@ -99,6 +104,20 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+                    <!-- =================================================metro link buttons==================================================== -->
+                    <Style x:Key="MyLinkButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                           TargetType="Button">
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="Background" Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                     <!-- =================================================metro square button==================================================== -->
                     <Style x:Key="MyMetroSquareButton"
                            BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
@@ -112,6 +131,30 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!-- =================================================metro get started button==================================================== -->
+                    <Style x:Key="MyMetroGetStartedButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Circle}"
+                           TargetType="Button">
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                        <Setter Property="Height" Value="150" />
+                        <Setter Property="Width" Value="150" />
+                        <Setter Property="FontSize" Value="18" />
+                        <Setter Property="Content" Value="{x:Static resources:TextResources.GettingStarted_button}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
