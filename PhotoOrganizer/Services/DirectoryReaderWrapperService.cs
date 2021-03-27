@@ -91,14 +91,14 @@ namespace PhotoOrganizer.UI.Services
         private async Task<bool> EraseFormerData()
         {
             var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
-            if (result == MessageDialogResult.No)
-            {
-                return false;
-            }
-            else
+            if (result == MessageDialogResult.Yes)
             {
                 await _photoRepository.RemoveAllPhotoFromTableAsync();
                 return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
