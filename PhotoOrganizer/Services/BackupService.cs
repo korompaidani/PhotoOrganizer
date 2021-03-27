@@ -1,6 +1,7 @@
 ﻿using PhotoOrganizer.Common;
 using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.FileHandler;
+using System;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
@@ -34,7 +35,7 @@ namespace PhotoOrganizer.UI.Services
             {
                 await _xmlWriter.WriteXmlAsync(path, _backupManager.AllTableData);
             }
-            catch
+            catch(Exception ex)
             {
 
             }

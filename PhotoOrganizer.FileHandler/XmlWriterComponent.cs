@@ -25,6 +25,8 @@ namespace PhotoOrganizer.FileHandler
             {
                 XmlWriterSettings settings = new XmlWriterSettings();
                 settings.Async = true;
+                settings.NewLineOnAttributes = true;
+                settings.Indent = true;
 
                 using (XmlWriter writer = XmlWriter.Create(fs, settings))
                 {
@@ -36,6 +38,7 @@ namespace PhotoOrganizer.FileHandler
 
                         foreach (var secondLevel in firstLevel.Value) 
                         {
+                            await writer.WriteStartElementAsync(null, "Entity", null);
                             foreach (var thirdLevel in secondLevel)
                             {
                                 await writer.WriteStartElementAsync(null, thirdLevel.Key, null);
@@ -43,6 +46,8 @@ namespace PhotoOrganizer.FileHandler
                                 await writer.WriteStringAsync(thirdLevel.Value.Item2.Replace("\0", string.Empty));
                                 await writer.WriteEndElementAsync();
                             }
+
+                            await writer.WriteEndElementAsync();
                         }
 
                         await writer.WriteEndElementAsync();
