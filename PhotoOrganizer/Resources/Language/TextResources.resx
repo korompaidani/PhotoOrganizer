@@ -258,6 +258,9 @@
   <data name="ErrorWhileSaveEntities_errorMessage" xml:space="preserve">
     <value>Error while saving the entities,</value>
   </data>
+  <data name="Exit_menu" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="Extend" xml:space="preserve">
     <value>Extend</value>
   </data>
@@ -411,6 +414,9 @@
   </data>
   <data name="SaveDialog_windowTitle" xml:space="preserve">
     <value>Save Dialog</value>
+  </data>
+  <data name="SaveDiscardItemByTitle_message" xml:space="preserve">
+    <value>Do you want to save {0}?</value>
   </data>
   <data name="SaveExisting" xml:space="preserve">
     <value>Save Existing</value>

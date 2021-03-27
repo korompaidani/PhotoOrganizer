@@ -136,10 +136,15 @@ namespace PhotoOrganizer.UI.View.Services
             return selectedPath;
         }
 
-        public async Task<MessageDialogResult> ShowSaveSaveAllDiscardDiscardAllDialogAsync()
+        public async Task<MessageDialogResult> ShowSaveSaveAllDiscardDiscardAllDialogAsync(string title = null)
         {
             var window = new SaveDialog();
             var model = new SaveModel();
+
+            if(title != null)
+            {
+                model.Title = title;
+            }
 
             window.DataContext = model;
             window.Owner = System.Windows.Application.Current.MainWindow;

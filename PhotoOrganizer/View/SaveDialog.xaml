@@ -14,7 +14,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="0 25 0 5"  Text="{x:Static resources:TextResources.SaveWindowMessage}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" Margin="0 25 0 5"  Text="{Binding Message}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Height="40" HorizontalAlignment="Center">
             <Button Content="{x:Static resources:TextResources.Save}" Margin="5" Width="90" Click="SaveClick" Style="{DynamicResource MyMetroSquareButton}"/>
             <Button Content="{x:Static resources:TextResources.SaveAll}" Margin="5" Width="90" Click="SaveAllClick" Style="{DynamicResource MyMetroSquareButton}"/>

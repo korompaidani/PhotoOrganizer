@@ -25,6 +25,8 @@
                 <MenuItem Header="{x:Static resources:TextResources.NewAlbum_menu}" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
                 <MenuItem Header="{x:Static resources:TextResources.SaveAllTab_menu}" Command="{Binding SaveAllOpenTab}"/>
+                <GridSplitter Height="1"></GridSplitter>
+                <MenuItem Header="{x:Static resources:TextResources.Exit_menu}" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="{x:Static resources:TextResources.Data_menu}">
                 <MenuItem Header="{x:Static resources:TextResources.CreateBackup_menu}" Command="{Binding CreateDatabaseBackupCommand}"/>

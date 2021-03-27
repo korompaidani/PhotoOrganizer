@@ -38,6 +38,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand WriteAllSavedMetadataCommand { get; }
         public ICommand CloseOpenTabsCommand { get; }
         public ICommand SaveAllOpenTab { get; }
+        public ICommand ExitCommand { get; }
 
         public INavigationViewModel NavigationViewModel { get; }
 
@@ -96,6 +97,12 @@ namespace PhotoOrganizer.UI.ViewModel
             WriteAllSavedMetadataCommand = new DelegateCommand(OnWriteAllSavedMetadataCommand);
             CloseOpenTabsCommand = new DelegateCommand(OnCloseOpenTabs);
             SaveAllOpenTab = new DelegateCommand(OnSaveAllOpenTab);
+            ExitCommand = new DelegateCommand(OnExitExecute);
+        }
+
+        private async void OnExitExecute()
+        {
+            await _context.SaveAllOpenedDetailView();
         }
 
         private async void OnSaveAllOpenTab()

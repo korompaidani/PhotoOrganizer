@@ -203,7 +203,14 @@ namespace PhotoOrganizer.UI.StateMachine
                     }
                     if (answer != MessageDialogResult.DiscardAll && answer != MessageDialogResult.SaveAll)
                     {
-                        _internalAnswer = await _messageDialogService.ShowSaveSaveAllDiscardDiscardAllDialogAsync();
+                        var detailViewModelBase = detailView as DetailViewModelBase;
+                        string title = null;
+                        if (detailViewModelBase != null)
+                        {
+                            title = detailViewModelBase.Title;
+                        }
+
+                        _internalAnswer = await _messageDialogService.ShowSaveSaveAllDiscardDiscardAllDialogAsync(title);
                         answer = _internalAnswer;
                     }
                     if(answer == MessageDialogResult.Cancel)

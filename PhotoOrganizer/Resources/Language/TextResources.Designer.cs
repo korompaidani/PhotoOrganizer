@@ -484,6 +484,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Exit_menu {
+            get {
+                return ResourceManager.GetString("Exit_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extend.
         /// </summary>
         public static string Extend {
@@ -948,6 +957,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string SaveDialog_windowTitle {
             get {
                 return ResourceManager.GetString("SaveDialog_windowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save {0}?.
+        /// </summary>
+        public static string SaveDiscardItemByTitle_message {
+            get {
+                return ResourceManager.GetString("SaveDiscardItemByTitle_message", resourceCulture);
             }
         }
         
