@@ -8,5 +8,6 @@ namespace PhotoOrganizer.UI.Event
 
     public class CloseMapViewEventArgs
     {
+        public string ViewModel { get; set; }
     }
 }

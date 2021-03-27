@@ -291,6 +291,15 @@
   <data name="FunctionalitiesTitle" xml:space="preserve">
     <value>Functionalities</value>
   </data>
+  <data name="GettingStarted_button" xml:space="preserve">
+    <value>Getting started</value>
+  </data>
+  <data name="GettingStarted_description" xml:space="preserve">
+    <value>With this application you are able to change metadata easily. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
+  </data>
+  <data name="GettingStarted_Title" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
   <data name="Help_menu" xml:space="preserve">
     <value>Help</value>
   </data>

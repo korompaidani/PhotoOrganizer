@@ -583,6 +583,33 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting started.
+        /// </summary>
+        public static string GettingStarted_button {
+            get {
+                return ResourceManager.GetString("GettingStarted_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this application you are able to change metadata easily. Just load your photos from folder and enjoy your work. Let&apos;s photoverse!.
+        /// </summary>
+        public static string GettingStarted_description {
+            get {
+                return ResourceManager.GetString("GettingStarted_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string GettingStarted_Title {
+            get {
+                return ResourceManager.GetString("GettingStarted_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help_menu {

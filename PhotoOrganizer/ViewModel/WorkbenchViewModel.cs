@@ -86,7 +86,7 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailClosedEvent>().
                 Subscribe(AfterDetailClosed);
             _eventAggregator.GetEvent<CloseProgressWindowEvent>().
-                Subscribe(AfterProgressWindowClosed);
+                Subscribe(AfterProgressWindowClosed);            
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
@@ -197,7 +197,6 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await CloseAllTabsAsync(true);
             await _directoryReaderWrapperService.EraseFormerData();
-            await NavigationViewModel.ClearNavigationIfEmptyAsync();
             await LoadAsync();
         }
 

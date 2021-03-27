@@ -24,6 +24,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IIndex<string, IDetailViewModel> _detailViewModelCreator;
         private ILocationRepository _locationRepository;
         private WorkbenchViewModel _workbenchViewModel;
+        private bool _isStartMode = false;
 
         public ICommand OpenWorkbenchCommand { get; set; }
         public ICommand OpenClosingAppCommand { get; set; }
@@ -66,11 +67,18 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<OpenSettingsEvent>().Subscribe(OnOpenSettingsView);
             _eventAggregator.GetEvent<CloseSettingsEvent>().Subscribe(OnCloseSettingsView);
             _eventAggregator.GetEvent<OpenHelpMenuEvent>().Subscribe(OnOpenHelpMenu);
+            _eventAggregator.GetEvent<OpenStartScreenEvent>().Subscribe(OnOpenStartScreen);
 
             CanClose = false;
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
             OpenClosingAppCommand = new DelegateCommand(OnClosingApp);
             OpenCancelClosingAppCommand = new DelegateCommand(OnCancelClosingApp);
+        }
+
+        private void OnOpenStartScreen(OpenStartScreenEventArgs args)
+        {
+            SelectedViewModel = new StartScreenViewModel(_eventAggregator);
+            _isStartMode = true;
         }
 
         private void OnOpenHelpMenu(OpenHelpMenuEventArgs args)
@@ -95,7 +103,7 @@ namespace PhotoOrganizer.UI.ViewModel
         }
 
         private void OnCloseSettingsView(CloseSettingsEventArgs args)
-        {
+        {            
             SelectedViewModel = _workbenchViewModel;
         }
 
@@ -113,6 +121,12 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenWorkbenchView(CloseMapViewEventArgs args)
         {
+            if(args.ViewModel == nameof(StartScreenViewModel))
+            {
+                _workbenchViewModel.CreatePhotosFromLibraryCommand.Execute(null);
+                _isStartMode = false;
+            }
+            
             SelectedViewModel = _workbenchViewModel;
         }
 
@@ -123,7 +137,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private void OnOpenWorkbench()
         {
-            SelectedViewModel = _workbenchViewModel;
+            if (!_isStartMode)
+            {
+                SelectedViewModel = _workbenchViewModel;
+            }
         }
 
         public async Task LoadWorkbenchAsync()

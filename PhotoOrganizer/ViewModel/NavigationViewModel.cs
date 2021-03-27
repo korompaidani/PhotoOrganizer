@@ -185,6 +185,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         public async Task LoadAsync()
         {
+            if(await ClearNavigationIfEmptyAsync())
+            {
+                return;
+            }
+
             await _cacheService.LoadFirstAsync(Photos);
             LoadShelve();
 
@@ -351,13 +356,20 @@ namespace PhotoOrganizer.UI.ViewModel
             ((DelegateCommand)LoadDownNavigationCommand).RaiseCanExecuteChanged();
         }
 
-        public async Task ClearNavigationIfEmptyAsync()
+        public async Task<bool> ClearNavigationIfEmptyAsync()
         {
             var photoCount = await _photoLookupDataService.GetPhotoCountAsync();
             if (photoCount == 0)
             {
                 Photos.Clear();
+
+                _eventAggregator.GetEvent<OpenStartScreenEvent>().
+                    Publish(new OpenStartScreenEventArgs());
+
+                return true;
             }
+
+            return false;
         }
     }
 }

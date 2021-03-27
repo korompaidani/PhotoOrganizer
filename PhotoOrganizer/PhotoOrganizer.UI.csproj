@@ -165,6 +165,7 @@
     <Compile Include="Event\AfterTabClosedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
     <Compile Include="Event\OpenHelpMenuEvent.cs" />
+    <Compile Include="Event\OpenStartScreenEvent.cs" />
     <Compile Include="Event\SaveAllDetailViewEvent.cs" />
     <Compile Include="Event\CloseProgressWindowEvent.cs" />
     <Compile Include="Event\CloseSettingsEvent.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="ViewModel\SaveModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\ShelveViewModel.cs" />
+    <Compile Include="ViewModel\StartScreenViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
@@ -286,6 +288,9 @@
     </Compile>
     <Compile Include="View\ShelveView.xaml.cs">
       <DependentUpon>ShelveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorkbenchView.xaml.cs">
       <DependentUpon>WorkbenchView.xaml</DependentUpon>
@@ -357,6 +362,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ShelveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
