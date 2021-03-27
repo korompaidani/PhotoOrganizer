@@ -169,7 +169,7 @@
     <value>Close Open Tabs</value>
   </data>
   <data name="ConfirmationBeforeErase_message" xml:space="preserve">
-    <value>This operation will erase all previous data from Database. Are you sure to load new library data?</value>
+    <value>This operation will erase all previous data from Database. Are you sure to delete all data?</value>
   </data>
   <data name="Coordinates" xml:space="preserve">
     <value>Coordinates</value>
@@ -182,6 +182,9 @@
   </data>
   <data name="CouldNotLoadEntity_message" xml:space="preserve">
     <value>Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.</value>
+  </data>
+  <data name="CreateBackup_menu" xml:space="preserve">
+    <value>Create backup...</value>
   </data>
   <data name="CreateNewPeople_button" xml:space="preserve">
     <value>Create new people</value>
@@ -200,6 +203,9 @@
   </data>
   <data name="DataWillReloaded_message" xml:space="preserve">
     <value>the data will be reloaded. Details:</value>
+  </data>
+  <data name="Data_menu" xml:space="preserve">
+    <value>Data</value>
   </data>
   <data name="DefaultCoordinates" xml:space="preserve">
     <value>46.84172812451524, 16.84248724161438</value>
@@ -245,6 +251,9 @@
   </data>
   <data name="EntityHasBeenDeleted_message" xml:space="preserve">
     <value>The entity has been deleted by another user</value>
+  </data>
+  <data name="EraseAllData_menu" xml:space="preserve">
+    <value>Erase all data...</value>
   </data>
   <data name="ErrorWhileSaveEntities_errorMessage" xml:space="preserve">
     <value>Error while saving the entities,</value>

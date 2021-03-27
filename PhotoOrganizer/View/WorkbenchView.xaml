@@ -26,6 +26,10 @@
                           CommandParameter="{x:Type viewModel:AlbumDetailViewModel}"/>
                 <MenuItem Header="{x:Static resources:TextResources.SaveAllTab_menu}" Command="{Binding SaveAllOpenTab}"/>
             </MenuItem>
+            <MenuItem Header="{x:Static resources:TextResources.Data_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.CreateBackup_menu}" Command="{Binding CreateDatabaseBackupCommand}"/>
+                <MenuItem Header="{x:Static resources:TextResources.EraseAllData_menu}" Command="{Binding DeleteDatabaseCommand}"/>
+            </MenuItem>
             <MenuItem Header="{x:Static resources:TextResources.Edit_menu}">
                 <MenuItem Header="{x:Static resources:TextResources.Locations_menu}" Command="{Binding OpenSingleDetailViewCommand}"
                               CommandParameter="{x:Type viewModel:LocationDetailViewModel}"/>

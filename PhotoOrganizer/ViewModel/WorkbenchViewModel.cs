@@ -33,6 +33,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand OpenSingleDetailViewCommand { get; }
         public ICommand OpenSettingsViewCommand { get; }
         public ICommand CreatePhotosFromLibraryCommand { get; }
+        public ICommand DeleteDatabaseCommand { get; }
+        public ICommand CreateDatabaseBackupCommand { get; }
         public ICommand WriteAllSavedMetadataCommand { get; }
         public ICommand CloseOpenTabsCommand { get; }
         public ICommand SaveAllOpenTab { get; }
@@ -87,6 +89,8 @@ namespace PhotoOrganizer.UI.ViewModel
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
             AddNewPhotoCommand = new DelegateCommand(OnAddNewPhotoExecute);
             CreatePhotosFromLibraryCommand = new DelegateCommand(OnCreatePhotosFromLibraryExecute);
+            DeleteDatabaseCommand = new DelegateCommand(OnDeleteDatabaseExecute);
+            CreateDatabaseBackupCommand = new DelegateCommand(OnCreateDatabaseBackupExecute);
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
             OpenSettingsViewCommand = new DelegateCommand(OnOpenSettingsViewExecute);
             WriteAllSavedMetadataCommand = new DelegateCommand(OnWriteAllSavedMetadataCommand);
@@ -150,6 +154,18 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await CloseAllTabsAsync(true);
             await _directoryReaderWrapperService.LoadAllFromLibraryAsync();
+            await LoadAsync();
+        }
+
+        private async void OnCreateDatabaseBackupExecute()
+        {
+            await _directoryReaderWrapperService.CreateBackup();
+        }
+
+        private async void OnDeleteDatabaseExecute()
+        {
+            await CloseAllTabsAsync(true);
+            await _directoryReaderWrapperService.EraseFormerData();
             await LoadAsync();
         }
 

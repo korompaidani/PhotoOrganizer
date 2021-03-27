@@ -74,21 +74,7 @@ namespace PhotoOrganizer.UI.Services
             await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.ReadingFiles_message, ReadAllFilesFromFolder, folderPath);
         }
 
-        private async Task CreateBackup()
-        {
-            // save data here
-            string backupFolder = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.ChooseFolder_windowTitle);
-            if (string.IsNullOrEmpty(backupFolder))
-            {
-                return;
-            }
-
-            var entities = await _photoRepository.GetAllAsync();
-
-            await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.CreatingBackup_message, _backupService.CreateBackup, backupFolder);
-        }
-
-        private async Task<bool> EraseFormerData()
+        public async Task<bool> EraseFormerData()
         {
             var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
             if (result == MessageDialogResult.Yes)
@@ -100,6 +86,20 @@ namespace PhotoOrganizer.UI.Services
             {
                 return false;
             }
+        }
+
+        public async Task CreateBackup()
+        {
+            // save data here
+            string backupFolder = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.ChooseFolder_windowTitle);
+            if (string.IsNullOrEmpty(backupFolder))
+            {
+                return;
+            }
+
+            var entities = await _photoRepository.GetAllAsync();
+
+            await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.CreatingBackup_message, _backupService.CreateBackup, backupFolder);
         }
 
         private async Task ReadAllFilesFromFolder(string folderPath)

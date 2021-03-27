@@ -214,7 +214,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This operation will erase all previous data from Database. Are you sure to load new library data?.
+        ///   Looks up a localized string similar to This operation will erase all previous data from Database. Are you sure to delete all data?.
         /// </summary>
         public static string ConfirmationBeforeErase_message {
             get {
@@ -255,6 +255,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string CouldNotLoadEntity_message {
             get {
                 return ResourceManager.GetString("CouldNotLoadEntity_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create backup....
+        /// </summary>
+        public static string CreateBackup_menu {
+            get {
+                return ResourceManager.GetString("CreateBackup_menu", resourceCulture);
             }
         }
         
@@ -300,6 +309,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string CultureInfoUSeng {
             get {
                 return ResourceManager.GetString("CultureInfoUSeng", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string Data_menu {
+            get {
+                return ResourceManager.GetString("Data_menu", resourceCulture);
             }
         }
         
@@ -444,6 +462,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string EntityHasBeenDeleted_message {
             get {
                 return ResourceManager.GetString("EntityHasBeenDeleted_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erase all data....
+        /// </summary>
+        public static string EraseAllData_menu {
+            get {
+                return ResourceManager.GetString("EraseAllData_menu", resourceCulture);
             }
         }
         

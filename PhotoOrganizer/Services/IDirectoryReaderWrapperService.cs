@@ -6,5 +6,7 @@ namespace PhotoOrganizer.UI.Services
     {
         Task<int> LoadSinglePhotoFromLibraryAsync();
         Task LoadAllFromLibraryAsync();
+        Task<bool> EraseFormerData();
+        Task CreateBackup();
     }
 }
