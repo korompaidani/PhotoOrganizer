@@ -197,6 +197,7 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await CloseAllTabsAsync(true);
             await _directoryReaderWrapperService.EraseFormerData();
+            await NavigationViewModel.ClearNavigationIfEmptyAsync();
             await LoadAsync();
         }
 

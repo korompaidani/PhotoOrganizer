@@ -12,5 +12,6 @@ namespace PhotoOrganizer.UI.Services
         Task LoadDownAsync(ObservableCollection<PhotoNavigationItemViewModel> itemViewModels);
         bool CanMoveUp();
         bool CanMoveDown();
+        bool CleanCache();
     }
 }

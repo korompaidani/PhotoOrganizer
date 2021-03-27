@@ -350,5 +350,14 @@ namespace PhotoOrganizer.UI.ViewModel
             ((DelegateCommand)LoadUpNavigationCommand).RaiseCanExecuteChanged();
             ((DelegateCommand)LoadDownNavigationCommand).RaiseCanExecuteChanged();
         }
+
+        public async Task ClearNavigationIfEmptyAsync()
+        {
+            var photoCount = await _photoLookupDataService.GetPhotoCountAsync();
+            if (photoCount == 0)
+            {
+                Photos.Clear();
+            }
+        }
     }
 }

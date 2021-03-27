@@ -126,5 +126,23 @@ namespace PhotoOrganizer.UI.Services
         {
             _pageSizeService.SetNavigationViewModel(navigation);
         }
+
+        public override bool CleanCache()
+        {
+            try
+            {
+                foreach (var page in _pages)
+                {
+                    page.Value.KillThisPage();
+                }
+
+                _pages.Clear();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
     }
 }

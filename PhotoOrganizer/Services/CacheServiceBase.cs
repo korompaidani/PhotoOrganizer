@@ -23,5 +23,6 @@ namespace PhotoOrganizer.UI.Services
         public abstract bool CanMoveDown();
         public abstract bool CanMoveUp();
         public abstract void SetViewModelForReload(INavigationViewModel navigation);
+        public abstract bool CleanCache();
     }
 }
