@@ -38,8 +38,19 @@
                     </Border>
                     <Border BorderThickness="1" BorderBrush="#2c2c2c">
                         <Grid>
-                            <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown" />
-                        </Grid>
+                                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown" >
+                                    <Image.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <Trigger  Property="Image.IsMouseOver" Value="True">
+                                                    <Setter Property="Image.Opacity"  Value="0.8"/>
+                                                    <Setter Property="Image.Cursor"  Value="Hand"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
                         
                     </Border>
                 </Grid>
@@ -92,7 +103,7 @@
                           SelectedValuePath="Id"
                           SelectedValue="{Binding Photo.LocationId, Mode=TwoWay}"
                           Margin="5 0 5 5"                              
-                          Width="210"/>
+                          Width="220"/>
 
                         <Button Margin="5 0 5 5" Width="25" Height="25"
                         Command="{Binding OpenMapCommand}"
@@ -102,9 +113,14 @@
                                 <TextBlock Text="{x:Static resources:TextResources.OpenMap_tooltip}" Width="100" TextWrapping="Wrap"/>
                             </Button.ToolTip>
                         </Button>
-
-                    <Label Grid.Row="2" Grid.Column="1" Content="{Binding Photo.Coordinates}" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0 0 0 5"/>
-                </StackPanel>
+                        <Button Content="{Binding Photo.Coordinates}"
+                        Command="{Binding OpenCoordinatesInBrowserCommand}"
+                                Background="Transparent" Style="{DynamicResource MyMetroWebButton}">
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.OpenInBrowser_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
                     <Button Grid.Row="2" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
                     CommandParameter="LocationId;Coordinates">
@@ -112,8 +128,6 @@
                             <TextBlock Text="{x:Static resources:TextResources.Set_tooltip}" Width="100" TextWrapping="Wrap"/>
                         </Button.ToolTip>
                     </Button>
-
-
 
                     <Label Grid.Row="3" Grid.Column="0" Content="{x:Static resources:TextResources.Peoples_colon}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <DockPanel Grid.Row="3" Grid.Column="1">

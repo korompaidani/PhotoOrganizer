@@ -20,8 +20,8 @@
             <BitmapImage  x:Key="mapButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_map_light.png"/>
             <BitmapImage  x:Key="copyButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png"/>
 
-            <BitmapImage  x:Key="upButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_map_light.png"/>
-            <BitmapImage  x:Key="downButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png"/>
+            <BitmapImage  x:Key="upButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_up_light.png"/>
+            <BitmapImage  x:Key="downButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_down_light.png"/>
             <Image x:Key="mapImage">
                 <Image.Source>
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
@@ -230,6 +230,22 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
                                 <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!-- =================================================metro WEB button==================================================== -->
+                    <Style x:Key="MyMetroWebButton"
+                           BasedOn="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                           TargetType="Button">
+                        <Setter Property="FontSize" Value="10" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Setter Property="Padding" Value="0 0 0 5" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="Background" Value="Transparent" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>

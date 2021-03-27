@@ -1,4 +1,5 @@
 ﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.MapTools;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Lookups;
 using PhotoOrganizer.UI.Data.Repositories;
@@ -14,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -46,6 +48,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand RemoveFromShelveCommand { get; }
         public ICommand WriteMetadataCommand { get; }
         public ICommand CopyToClipBoardCommand { get; }
+        public ICommand OpenCoordinatesInBrowserCommand { get; }
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -120,9 +123,16 @@ namespace PhotoOrganizer.UI.ViewModel
             RemoveFromShelveCommand = new DelegateCommand(OnRemoveFromShelveExecute, OnRemoveFromShelveCanExecute);
             WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute, OnWriteMetadataCanExecute);
             CopyToClipBoardCommand = new DelegateCommand(OnCopyToClipBoardExecute);
+            OpenCoordinatesInBrowserCommand = new DelegateCommand(OnOpenCoordinatesInBrowserExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private void OnOpenCoordinatesInBrowserExecute()
+        {
+            var googleMapsLink = Photo.Coordinates.ConvertCoordinateToGoogleMapUrl();
+            Process.Start(googleMapsLink);
         }
 
         private void OnCopyToClipBoardExecute()

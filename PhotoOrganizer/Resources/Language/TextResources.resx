@@ -379,6 +379,12 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="OpenInBrowser_button" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="OpenInBrowser_tooltip" xml:space="preserve">
+    <value>Click on it to Open the coordinates in the default internet browser</value>
+  </data>
   <data name="OpenLayersLink" xml:space="preserve">
     <value>https://openlayers.org/</value>
   </data>

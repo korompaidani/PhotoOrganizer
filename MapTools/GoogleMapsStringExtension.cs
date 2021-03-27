@@ -35,7 +35,9 @@ namespace PhotoOrganizer.MapTools
 
         public static string ConvertCoordinateToGoogleMapUrl(this string coordinate)
         {
-            var sb = new StringBuilder("https://www.google.hu/maps/");
+            coordinate = coordinate.Replace("\0", string.Empty);
+            var sb = new StringBuilder(GoogleMapsUrl);
+            sb.Append("/");
             var coordinateSegments = coordinate.Split(',');
 
             if (coordinateSegments.Length == 3)
@@ -44,7 +46,7 @@ namespace PhotoOrganizer.MapTools
             }
             else if(coordinateSegments.Length == 2)
             {
-                return sb.Append("@").Append(coordinate).ToString();
+                return sb.Append("@").Append(coordinate).Append(",16z").ToString();
             }
             else
             {

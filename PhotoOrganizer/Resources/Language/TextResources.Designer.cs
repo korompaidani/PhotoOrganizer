@@ -844,6 +844,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open in browser.
+        /// </summary>
+        public static string OpenInBrowser_button {
+            get {
+                return ResourceManager.GetString("OpenInBrowser_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on it to Open the coordinates in the default internet browser.
+        /// </summary>
+        public static string OpenInBrowser_tooltip {
+            get {
+                return ResourceManager.GetString("OpenInBrowser_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://openlayers.org/.
         /// </summary>
         public static string OpenLayersLink {
