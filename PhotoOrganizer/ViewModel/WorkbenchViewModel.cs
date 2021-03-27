@@ -39,6 +39,8 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand CloseOpenTabsCommand { get; }
         public ICommand SaveAllOpenTab { get; }
         public ICommand ExitCommand { get; }
+        public ICommand OpenViewHelpCommand { get; }
+        public ICommand OpenAboutCommand { get; }
 
         public INavigationViewModel NavigationViewModel { get; }
 
@@ -98,6 +100,28 @@ namespace PhotoOrganizer.UI.ViewModel
             CloseOpenTabsCommand = new DelegateCommand(OnCloseOpenTabs);
             SaveAllOpenTab = new DelegateCommand(OnSaveAllOpenTab);
             ExitCommand = new DelegateCommand(OnExitExecute);
+            OpenViewHelpCommand = new DelegateCommand(OnViewHelpExecute);
+            OpenAboutCommand = new DelegateCommand(OnOpenAboutExecute);
+        }
+
+        private void OnOpenAboutExecute()
+        {
+            _eventAggregator.GetEvent<OpenHelpMenuEvent>().
+                Publish(
+                    new OpenHelpMenuEventArgs
+                    {
+                        ViewModelName = nameof(AboutViewModel)
+                    });
+        }
+
+        private void OnViewHelpExecute()
+        {
+            _eventAggregator.GetEvent<OpenHelpMenuEvent>().
+                Publish(
+                    new OpenHelpMenuEventArgs
+                    {
+                        ViewModelName = nameof(HelpViewModel)
+                    });
         }
 
         private async void OnExitExecute()

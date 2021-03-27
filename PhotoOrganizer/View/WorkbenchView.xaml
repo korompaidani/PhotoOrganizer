@@ -43,6 +43,10 @@
             <MenuItem Header="{x:Static resources:TextResources.Window_menu}">
                 <MenuItem Header="{x:Static resources:TextResources.CloseOpenTabs_menu}" Command="{Binding CloseOpenTabsCommand}"/>
             </MenuItem>
+            <MenuItem Header="{x:Static resources:TextResources.Help_menu}">
+                <MenuItem Header="{x:Static resources:TextResources.ViewHelp_menu}" Command="{Binding OpenViewHelpCommand}"/>
+                <MenuItem Header="{x:Static resources:TextResources.About_menu}" Command="{Binding OpenAboutCommand}"/>
+            </MenuItem>
         </Menu>
 
         <Border BorderThickness="1" Grid.Row="1" Grid.Column="0" Margin="1" Padding="1" BorderBrush="#353535">

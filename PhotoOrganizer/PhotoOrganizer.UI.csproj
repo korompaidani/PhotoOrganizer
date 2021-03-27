@@ -164,6 +164,7 @@
     <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
     <Compile Include="Event\AfterTabClosedEvent.cs" />
     <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\OpenHelpMenuEvent.cs" />
     <Compile Include="Event\SaveAllDetailViewEvent.cs" />
     <Compile Include="Event\CloseProgressWindowEvent.cs" />
     <Compile Include="Event\CloseSettingsEvent.cs" />
@@ -219,9 +220,11 @@
     <Compile Include="StateMachine\MetaSerializationStates\OpeningPhotoDetailState.cs" />
     <Compile Include="StateMachine\MetaSerializationStates\OpenPhotoDetailState.cs" />
     <Compile Include="StateMachine\PhotoDetailContext.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
     <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
     <Compile Include="ViewModel\IMapViewModel.cs" />
@@ -246,8 +249,14 @@
     <Compile Include="ViewModel\LocationDetailViewModel.cs" />
     <Compile Include="ViewModel\WorkbenchViewModel.cs" />
     <Compile Include="ViewModel\WritingToFileViewModel.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AlbumDetailView.xaml.cs">
       <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
@@ -303,7 +312,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -61,6 +61,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About_menu {
+            get {
+                return ResourceManager.GetString("About_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The actual setting is: .
         /// </summary>
         public static string ActualSettingIs {
@@ -174,6 +183,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string AvailablePhotos {
             get {
                 return ResourceManager.GetString("AvailablePhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buttons.
+        /// </summary>
+        public static string ButtonsTitle {
+            get {
+                return ResourceManager.GetString("ButtonsTitle", resourceCulture);
             }
         }
         
@@ -552,6 +570,33 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Finalize_tooltip {
             get {
                 return ResourceManager.GetString("Finalize_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functionalities.
+        /// </summary>
+        public static string FunctionalitiesTitle {
+            get {
+                return ResourceManager.GetString("FunctionalitiesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string Help_menu {
+            get {
+                return ResourceManager.GetString("Help_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to use this app.
+        /// </summary>
+        public static string HowToUseTitle {
+            get {
+                return ResourceManager.GetString("HowToUseTitle", resourceCulture);
             }
         }
         
@@ -1263,6 +1308,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Up {
             get {
                 return ResourceManager.GetString("Up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View help.
+        /// </summary>
+        public static string ViewHelp_menu {
+            get {
+                return ResourceManager.GetString("ViewHelp_menu", resourceCulture);
             }
         }
         

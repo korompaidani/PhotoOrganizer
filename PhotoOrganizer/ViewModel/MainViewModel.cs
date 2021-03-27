@@ -65,11 +65,24 @@ namespace PhotoOrganizer.UI.ViewModel
             _eventAggregator.GetEvent<CloseMapViewEvent>().Subscribe(OnOpenWorkbenchView);
             _eventAggregator.GetEvent<OpenSettingsEvent>().Subscribe(OnOpenSettingsView);
             _eventAggregator.GetEvent<CloseSettingsEvent>().Subscribe(OnCloseSettingsView);
-            
+            _eventAggregator.GetEvent<OpenHelpMenuEvent>().Subscribe(OnOpenHelpMenu);
+
             CanClose = false;
             OpenWorkbenchCommand = new DelegateCommand(OnOpenWorkbench);
             OpenClosingAppCommand = new DelegateCommand(OnClosingApp);
             OpenCancelClosingAppCommand = new DelegateCommand(OnCancelClosingApp);
+        }
+
+        private void OnOpenHelpMenu(OpenHelpMenuEventArgs args)
+        {
+            if(args.ViewModelName == nameof(HelpViewModel))
+            {
+                SelectedViewModel = new HelpViewModel(_eventAggregator);
+            }
+            if (args.ViewModelName == nameof(AboutViewModel))
+            {
+                SelectedViewModel = new AboutViewModel(_eventAggregator);
+            }
         }
 
         private void OnCancelClosingApp()
