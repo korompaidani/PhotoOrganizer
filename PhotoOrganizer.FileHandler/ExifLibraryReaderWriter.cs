@@ -46,10 +46,11 @@ namespace PhotoOrganizer.FileHandler
 
                     var image = ImageFile.FromStream(memoryStream);
 
-                    foreach (var property in properties)
-                    {
-                        image.Properties.Set((ExifTag)MetaProperty.Latitude, property);
-                    }
+                    ConvertData(image, properties);
+                    //foreach (var property in properties)
+                    //{
+                    //    image.Properties.Set((ExifTag)MetaProperty.Latitude, property);
+                    //}
 
                     image.Save(fullPath);
                 }
@@ -70,6 +71,21 @@ namespace PhotoOrganizer.FileHandler
                 propertyValueByteArray[i] = (byte)propertyValue[i];
             propertyValueByteArray[length - 1] = 0x00;
             return propertyValueByteArray;
+        }
+
+        private void ConvertData(ImageFile image, Dictionary<MetaProperty, string> properties)
+        {
+            foreach(var property in properties)
+            {
+                switch (property.Key)
+                {
+                    case MetaProperty.Latitude:
+
+                        GPSLatitudeLongitude latitude = image.Properties[ExifTag.GPSLatitude] as GPSLatitudeLongitude;
+                        latitude.Degrees.Set(5, 19);
+                        break;
+                }
+            }
         }
     }
 }
