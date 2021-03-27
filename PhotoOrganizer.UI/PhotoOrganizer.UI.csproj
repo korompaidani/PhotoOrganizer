@@ -1,0 +1,780 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEB810D4-625A-491A-A376-4900BF9D5C42}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PhotoOrganizer.UI</RootNamespace>
+    <AssemblyName>PhotoOrganizer.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PhotoVersor_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.3\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.0.0.1909, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.0.0.1909\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
+    <Compile Include="Data\Lookups\ILocationLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IShelveLookupDataService.cs" />
+    <Compile Include="Data\Repositories\AlbumRepository.cs" />
+    <Compile Include="Data\Repositories\GenericRepository.cs" />
+    <Compile Include="Data\Repositories\IAlbumRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IMaintenanceRepository.cs" />
+    <Compile Include="Data\Repositories\IPeopleRepository.cs" />
+    <Compile Include="Data\Repositories\IPhotoRepository.cs" />
+    <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
+    <Compile Include="Data\Lookups\LookupDataService.cs" />
+    <Compile Include="Data\Repositories\ILocationRepository.cs" />
+    <Compile Include="Data\Repositories\MaintenanceRepository.cs" />
+    <Compile Include="Data\Repositories\PeopleRepository.cs" />
+    <Compile Include="Data\Repositories\PhotoRepository.cs" />
+    <Compile Include="Data\Repositories\LocationRepository.cs" />
+    <Compile Include="Engines\ChromiumBrowserEngine.cs" />
+    <Compile Include="Engines\IExplorerBrowserEngine.cs" />
+    <Compile Include="Event\AfterBulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\AfterCollectionSavedEvent.cs" />
+    <Compile Include="Event\AfterDetailClosedEvent.cs" />
+    <Compile Include="Event\AfterDetailDeletedEvent.cs" />
+    <Compile Include="Event\AfterDetailRemovedEvent.cs" />
+    <Compile Include="Event\AfterDetailSavedEvent.cs" />
+    <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
+    <Compile Include="Event\AfterTabClosedEvent.cs" />
+    <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\OpenHelpMenuEvent.cs" />
+    <Compile Include="Event\OpenStartScreenEvent.cs" />
+    <Compile Include="Event\SaveAllDetailViewEvent.cs" />
+    <Compile Include="Event\CloseProgressWindowEvent.cs" />
+    <Compile Include="Event\CloseSettingsEvent.cs" />
+    <Compile Include="Event\DisplayMessageEvent.cs" />
+    <Compile Include="Event\ErrorEvent.cs" />
+    <Compile Include="Event\LocationChangedEventArgs.cs" />
+    <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
+    <Compile Include="Event\OpenSettingsEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
+    <Compile Include="Event\SelectionChangedEvent.cs" />
+    <Compile Include="Event\SetCoordinatesEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
+    <Compile Include="Event\GetBrowserDataEvent.cs" />
+    <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Event\OpenMapViewEvent.cs" />
+    <Compile Include="Event\OpenPhotoViewEvent.cs" />
+    <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\WriteAllMetadataEvent.cs" />
+    <Compile Include="Event\WriteMetadataEvent.cs" />
+    <Compile Include="Event\WriteMetadataFinishedEvent.cs" />
+    <Compile Include="Helpers\DirectionArgs.cs" />
+    <Compile Include="Helpers\PhotoDetailInfo.cs" />
+    <Compile Include="MainWindowClose.cs" />
+    <Compile Include="Resources\Language\TextResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextResources.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Services\BackupService.cs" />
+    <Compile Include="Services\BulkAttributeSetterService.cs" />
+    <Compile Include="Services\CacheServiceBase.cs" />
+    <Compile Include="Services\DirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IBackupService.cs" />
+    <Compile Include="Services\IBulkAttributeSetterService.cs" />
+    <Compile Include="Services\ICacheService.cs" />
+    <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IPageSizeService.cs" />
+    <Compile Include="Services\IPhotoMetaWrapperService.cs" />
+    <Compile Include="Services\ISettingsHandler.cs" />
+    <Compile Include="Services\Page.cs" />
+    <Compile Include="Services\PageSizeService.cs" />
+    <Compile Include="Services\PhotoCacheService.cs" />
+    <Compile Include="Services\PhotoMetaWrapperService.cs" />
+    <Compile Include="Services\SettingsHandler.cs" />
+    <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="StateMachine\ApplicationContext.cs" />
+    <Compile Include="StateMachine\IPhotoDetailContext.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosedPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosingPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\IPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\PhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpeningPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpenPhotoDetailState.cs" />
+    <Compile Include="StateMachine\PhotoDetailContext.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
+    <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\DetailViewModelBase.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
+    <Compile Include="ViewModel\IDetailViewModel.cs" />
+    <Compile Include="ViewModel\IMapViewModel.cs" />
+    <Compile Include="ViewModel\INavigationViewModel.cs" />
+    <Compile Include="ViewModel\IPeopleSelectionCreationViewModel.cs" />
+    <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\IPhotoViewModel.cs" />
+    <Compile Include="ViewModel\ISettingsViewModel.cs" />
+    <Compile Include="ViewModel\IShelveViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
+    <Compile Include="ViewModel\PeopleItemViewModel.cs" />
+    <Compile Include="ViewModel\PeopleSelectionCreationViewModel.cs" />
+    <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\PhotoViewModel.cs" />
+    <Compile Include="ViewModel\SaveModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ShelveViewModel.cs" />
+    <Compile Include="ViewModel\StartScreenViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\LocationDetailViewModel.cs" />
+    <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="ViewModel\WritingToFileViewModel.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlbumDetailView.xaml.cs">
+      <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NavigationView.xaml.cs">
+      <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PeopleSelectionCreationView.xaml.cs">
+      <DependentUpon>PeopleSelectionCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhotoDetailView.xaml.cs">
+      <DependentUpon>PhotoDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhotoView.xaml.cs">
+      <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaveDialog.xaml.cs">
+      <DependentUpon>SaveDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Services\IMessageDialogService.cs" />
+    <Compile Include="View\Services\MessageDialogService.cs" />
+    <Compile Include="View\LocationDetailView.xaml.cs">
+      <DependentUpon>LocationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShelveView.xaml.cs">
+      <DependentUpon>ShelveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WritingToFileView.xaml.cs">
+      <DependentUpon>WritingToFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\AlbumWrapper.cs" />
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\PeopleWrapper.cs" />
+    <Compile Include="Wrapper\PhotoWrapper.cs" />
+    <Compile Include="Wrapper\LocationWrapper.cs" />
+    <Compile Include="Wrapper\SettingsWrapper.cs" />
+    <Compile Include="Wrapper\ShelveWrapper.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PeopleSelectionCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LocationDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SaveDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShelveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkbenchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WritingToFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\TextResources.hu-HU.resx" />
+    <EmbeddedResource Include="Resources\Language\TextResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Pictures\DefaultPicture.psd" />
+    <None Include="Resources\Pictures\splash_screen.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_072446_Canon_EOS_450D_IMG_1606.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190314_141615_Canon_EOS_450D_IMG_1866.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190315_100244_Canon_EOS_450D_IMG_2123.JPG" />
+    <Resource Include="Resources\TestResources\Photos\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Photos\" />
+    <Folder Include="Resources\psd\" />
+    <Folder Include="Resources\TestResources\Photos\USA\66\NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\SAN_20190315_094802_Canon_EOS_450D_IMG_2107.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\USA\SAN_20190314_085317_Canon_EOS_450D_IMG_1676.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_161249_iPhone_XR_IMG_0691.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_161538_iPhone_XR_IMG_0694.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_161554_iPhone_XR_IMG_0695.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_162017_iPhone_XR_IMG_0700.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_164206_iPhone_XR_IMG_0707.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_164654_iPhone_XR_IMG_0713.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_170702_iPhone_XR_IMG_0718.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_170903_iPhone_XR_IMG_0719.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_181254_iPhone XR_IMG_0733.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_181950_iPhone_XR_IMG_0734-1.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_192241_iPhone XR_IMG_0756.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_213531_iPhone XR_IMG_0772.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_214440_iPhone XR_IMG_0791.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_214704_iPhone XR_IMG_0797.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_214814_iPhone_XR_IMG_0798.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_214820_iPhone XR_IMG_0799.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_215119_iPhone XR_IMG_0805.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_223830_iPhone XR_IMG_0813.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_225030_iPhone XR_IMG_0815.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_225947_iPhone_XR_IMG_0817.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190313_230318_iPhone_XR_IMG_0818.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_064922_Canon_EOS_450D_IMG_1536.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_065431_Canon_EOS_450D_IMG_1542.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_065555_Canon_EOS_450D_IMG_1543.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_065558_Canon_EOS_450D_IMG_1545.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_070139_Canon_EOS_450D_IMG_1552.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_070145_Canon_EOS_450D_IMG_1553_stitch.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_070232_Canon_EOS_450D_IMG_1565.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_070304_Canon_EOS_450D_IMG_1566.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_071020_Canon_EOS_450D_IMG_1584.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_071043_Canon_EOS_450D_IMG_1587.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_071945_Canon_EOS_450D_IMG_1592.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_071959_Canon_EOS_450D_IMG_1593.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072021_Canon_EOS_450D_IMG_1596.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072234_Canon_EOS_450D_IMG_1598.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072259_Canon_EOS_450D_IMG_1599.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072330_Canon_EOS_450D_IMG_1602.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072348_Canon_EOS_450D_IMG_1605.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072446_Canon_EOS_450D_IMG_1606.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072502_Canon_EOS_450D_IMG_1610.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_072805_Canon_EOS_450D_IMG_1612.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_073023_Canon_EOS_450D_IMG_1613.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_073047_Canon_EOS_450D_IMG_1616.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_073136_Canon_EOS_450D_IMG_1620.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_073717_Canon_EOS_450D_IMG_1624.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_074441_Canon_EOS_450D_IMG_1625.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_074452_Canon_EOS_450D_IMG_1627.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_074700_Canon_EOS_450D_IMG_1628.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_075257_Canon_EOS_450D_IMG_1632.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_075725_Canon_EOS_450D_IMG_1641.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_081257_Canon_EOS_450D_IMG_1653.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084425_Canon_EOS_450D_IMG_1659.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084520_Canon_EOS_450D_IMG_1661.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084629_Canon_EOS_450D_IMG_1668.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084714_Canon_EOS_450D_IMG_1669.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084741_Canon_EOS_450D_IMG_1672.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_084825_Canon_EOS_450D_IMG_1673.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_085317_Canon_EOS_450D_IMG_1676.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_085558_Canon_EOS_450D_IMG_1678.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_085749_Canon_EOS_450D_IMG_1683.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_085856_Canon_EOS_450D_IMG_1686.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_090151_Canon_EOS_450D_IMG_1692.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_090529_Canon_EOS_450D_IMG_1695.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_090537_Canon_EOS_450D_IMG_1696_stitch.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_090614_Canon_EOS_450D_IMG_1703.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_091418_Canon_EOS_450D_IMG_1705.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_092306_Canon_EOS_450D_IMG_1707.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_095722_Canon_EOS_450D_IMG_1711.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_095846_Canon_EOS_450D_IMG_1713.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_102129_Canon_EOS_450D_IMG_1716.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_110215_Canon_EOS_450D_IMG_1718.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_110418_Canon_EOS_450D_IMG_1719.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_110505_Canon_EOS_450D_IMG_1721.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_110621_Canon_EOS_450D_IMG_1723.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_111219_Canon_EOS_450D_IMG_1727.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_111539_Canon_EOS_450D_IMG_1734.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_113315_Canon_EOS_450D_IMG_1786.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_113344_Canon_EOS_450D_IMG_1791.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_113542_Canon_EOS_450D_IMG_1798.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_114539_Canon_EOS_450D_IMG_1827.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_114807_Canon_EOS_450D_IMG_1832.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_115948_Canon_EOS_450D_IMG_1847.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_120024_Canon_EOS_450D_IMG_1848.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_120044_Canon_EOS_450D_IMG_1850.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141328_Canon_EOS_450D_IMG_1859.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141417_Canon_EOS_450D_IMG_1861.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141501_Canon_EOS_450D_IMG_1862.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141545_Canon_EOS_450D_IMG_1864.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141615_Canon_EOS_450D_IMG_1866.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141636_Canon_EOS_450D_IMG_1867.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141731_Canon_EOS_450D_IMG_1868.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141823_Canon_EOS_450D_IMG_1869.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141917_Canon_EOS_450D_IMG_1872.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\LA\SAN_20190314_141933_Canon_EOS_450D_IMG_1873.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_192835_Canon_EOS_450D_IMG_0338.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_192844_Canon_EOS_450D_IMG_0339.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_192854_Canon_EOS_450D_IMG_0342.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193248_Canon_EOS_450D_IMG_0344.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193302_Canon_EOS_450D_IMG_0346.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193310_Canon_EOS_450D_IMG_0347.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193317_Canon_EOS_450D_IMG_0348.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193322_Canon_EOS_450D_IMG_0349.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193353_Canon_EOS_450D_IMG_0351.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193403_Canon_EOS_450D_IMG_0353.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193418_Canon_EOS_450D_IMG_0355.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193432_iPhone_SE_IMG_0854.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_193700_Canon_EOS_450D_IMG_0357.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_195743_Canon_EOS_450D_IMG_0367.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_195744_Canon_EOS_450D_IMG_0368.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_195752_Canon_EOS_450D_IMG_0372.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_195928_Canon_EOS_450D_IMG_0373.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_200015_Canon_EOS_450D_IMG_0374.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_200431_Canon_EOS_450D_IMG_0380.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190310_203249_iPhone_SE_IMG_0885.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_065252_iPhone_XR_IMG_0008.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_070030_iPhone_XR_IMG_0011.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073453_Canon_EOS_450D_IMG_0384.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073524_Canon_EOS_450D_IMG_0387.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073602_Canon_EOS_450D_IMG_0388.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073634_iPhone_XR_IMG_0014.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073644_iPhone_XR_IMG_0015.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073708_iPhone_XR_IMG_0017.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073723_iPhone_XR_IMG_0018.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073844_Canon_EOS_450D_IMG_0391.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073904_Canon_EOS_450D_IMG_0394.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_073932_Canon_EOS_450D_IMG_0398.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_074141_iPhone_XR_IMG_0027.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_074215_Canon_EOS_450D_IMG_0404.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_074939_Canon_EOS_450D_IMG_0412.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_075011_Canon_EOS_450D_IMG_0415.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_075019_Canon_EOS_450D_IMG_0416.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_075042_iPhone_XR_IMG_0029.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_075044_iPhone_XR_IMG_0030.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_075047_iPhone_XR_IMG_0031.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_080242_Canon_EOS_450D_IMG_0417.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_080304_Canon_EOS_450D_IMG_0420.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_080332_iPhone_XR_IMG_0041.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_080955_iPhone_XR_IMG_0044.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_081920_iPhone_XR_IMG_0046.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_082353_Canon_EOS_450D_IMG_0422.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_082425_Canon_EOS_450D_IMG_0425.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_082857_iPhone_XR_IMG_0053.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_083117_Canon_EOS_450D_IMG_0430.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_083133_Canon_EOS_450D_IMG_0433.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_083327_Canon_EOS_450D_IMG_0436.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_083331_Canon_EOS_450D_IMG_0438.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_084511_Canon_EOS_450D_IMG_0442.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_084553_Canon_EOS_450D_IMG_0448.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_084602_Canon_EOS_450D_IMG_0450.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_085233_iPhone_XR_IMG_0078.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_085258_iPhone_XR_IMG_0080.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_085422_iPhone_XR_IMG_0085.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090231_Canon_EOS_450D_IMG_0451.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090234_Canon_EOS_450D_IMG_0452_stitch_a.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090234_Canon_EOS_450D_IMG_0452_stitch_b.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090300_Canon_EOS_450D_IMG_0459.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090403_Canon_EOS_450D_IMG_0462.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090429_Canon_EOS_450D_IMG_0466.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090455_Canon_EOS_450D_IMG_0470.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090519_Canon_EOS_450D_IMG_0472.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090534_Canon_EOS_450D_IMG_0474_stitch.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090847_Canon_EOS_450D_IMG_0484.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_090857_Canon_EOS_450D_IMG_0485.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_091110_iPhone_XR_IMG_0094.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_093143_Canon_EOS_450D_IMG_0488.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_093155_Canon_EOS_450D_IMG_0489.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_093212_Canon_EOS_450D_IMG_0492.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_094013_Canon_EOS_450D_IMG_0497.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_094056_Canon_EOS_450D_IMG_0510.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Frisco\SAN_20190311_094534_Canon_EOS_450D_IMG_0513.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190317_212722_iPhone_XR_IMG_2080.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062215_iPhone_XR_IMG_2084.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062227_iPhone_XR_IMG_2085.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062233_iPhone_XR_IMG_2086.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062342_Canon_EOS_450D_IMG_2600.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062550_iPhone_XR_IMG_2090.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062608_iPhone_XR_IMG_2091.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062619_iPhone_XR_IMG_2092.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062626_iPhone_XR_IMG_2093.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062734_Canon_EOS_450D_IMG_2604 %282%29.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062734_Canon_EOS_450D_IMG_2604.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062749_Canon_EOS_450D_IMG_2605.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062831_iPhone_XR_IMG_2094.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_062928_iPhone_XR_IMG_2098.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063013_iPhone_XR_IMG_2101.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063254_iPhone_XR_IMG_2104.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063642_iPhone_XR_IMG_2107.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063900_iPhone_XR_IMG_2109.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063928_iPhone_XR_IMG_2111.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063932_iPhone_XR_IMG_2112.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_063954_iPhone_XR_IMG_2113.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064032_Canon_EOS_450D_IMG_2610.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064147_iPhone_XR_IMG_2115.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064218_iPhone_XR_IMG_2120.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064353_Canon_EOS_450D_IMG_2616.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064411_Canon_EOS_450D_IMG_2620.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064430_Canon_EOS_450D_IMG_2621.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064433_Canon_EOS_450D_IMG_2623.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064631_Canon_EOS_450D_IMG_2624.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064636_Canon_EOS_450D_IMG_2625.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064734_iPhone_XR_IMG_2122.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064747_iPhone_XR_IMG_2125.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_064911_Canon_EOS_450D_IMG_2626.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065038_Canon_EOS_450D_IMG_2628.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065041_Canon_EOS_450D_IMG_2629.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065044_Canon_EOS_450D_IMG_2630.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065054_Canon_EOS_450D_IMG_2631.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065120_iPhone_XR_IMG_2126.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065252_Canon_EOS_450D_IMG_2636_stitch.jpg" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065319_Canon_EOS_450D_IMG_2638.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065351_Canon_EOS_450D_IMG_2642.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\Canyon\SAN_20190318_065632_iPhone_XR_IMG_2133.JPEG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_145221_iPhone_XR_IMG_1907.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_145234_iPhone_XR_IMG_1909.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_145337_iPhone_XR_IMG_1914.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_145448_iPhone_XR_IMG_1920.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_145526_iPhone_XR_IMG_1924.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_151054_iPhone_XR_IMG_1943.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_151702_iPhone_XR_IMG_1950.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_151721_iPhone_XR_IMG_1953.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_151729_iPhone_XR_IMG_1957.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_165911_iPhone_XR_IMG_1967.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_172520_iPhone_XR_IMG_1970.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_172536_iPhone_XR_IMG_1975.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_172631_iPhone_XR_IMG_1976.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_172712_iPhone_XR_IMG_1977.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_172724_iPhone_XR_IMG_1982.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174031_iPhone_XR_IMG_1987.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174045_iPhone_XR_IMG_1988.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174111_iPhone_XR_IMG_1990.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174225_Canon_EOS_450D_IMG_2590.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174252_Canon_EOS_450D_IMG_2591.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174309_iPhone_XR_IMG_1992.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174329_iPhone_XR_IMG_1993.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174341_iPhone_XR_IMG_1994.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174656_iPhone_XR_IMG_2005.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174731_Canon_EOS_450D_IMG_2592.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_174908_Canon_EOS_450D_IMG_2595.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_175004_iPhone_XR_IMG_2009.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_175026_iPhone_XR_IMG_2011.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_175044_iPhone_XR_IMG_2012.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_180007_iPhone_XR_IMG_2024.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_183611_iPhone_XR_IMG_2038.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_183636_iPhone_XR_IMG_2041.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_183820_iPhone_XR_IMG_2043.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_183847_iPhone_XR_IMG_2044.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_183854_iPhone_XR_IMG_2045.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_184057_iPhone_XR_IMG_2054.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_184544_iPhone_XR_IMG_2057.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_190625_iPhone_XR_IMG_2063.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190317_191218_iPhone_XR_IMG_2067.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190318_093026_iPhone_XR_IMG_2140.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190318_095402_Canon_EOS_450D_IMG_2644.JPG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190318_095518_iPhone_XR_IMG_2149.JPEG" />
+    <Resource Include="Resources\TestResources\Photos\USA\66\SAN_20190318_112918_iPhone_XR_IMG_2151.JPEG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\DefaultPicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\splash_screen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\button_map_light.png" />
+    <Resource Include="Resources\Icons\button_copy_light.png" />
+    <Resource Include="Resources\Icons\button_down_light.png" />
+    <Resource Include="Resources\Icons\button_set_light.png" />
+    <Resource Include="Resources\Icons\button_up_light.png" />
+    <Resource Include="Resources\Icons\button_selectDeselectAll.png" />
+    <Resource Include="Resources\Icons\button_finalize_light.png" />
+    <Resource Include="Resources\Icons\button_save_light.png" />
+    <Resource Include="Resources\Icons\button_shelve_light.png" />
+    <Resource Include="Resources\Icons\button_unchanged_light.png" />
+    <Resource Include="Resources\Icons\button_unshelve_light.png" />
+    <Resource Include="Resources\Icons\button_writemeta_light.png" />
+    <Resource Include="Resources\Pictures\intro_screen.jpg" />
+    <Resource Include="intro_screen.jpg" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.png" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.ico" />
+    <Resource Include="PhotoVersor_icon.ico" />
+    <Resource Include="Resources\Icons\arrow_1.png" />
+    <Content Include="Resources\Web\OpenLayersMap.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoOrganizer.Common\PhotoOrganizer.Common.csproj">
+      <Project>{47e30d1e-7d24-49be-a3bd-d3639736212d}</Project>
+      <Name>PhotoOrganizer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.DataAccess\PhotoOrganizer.DataAccess.csproj">
+      <Project>{15a32c07-e81e-4b3d-9157-f1f91168d967}</Project>
+      <Name>PhotoOrganizer.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.FileHandler\PhotoOrganizer.FileHandler.csproj">
+      <Project>{16bbe06d-3fa6-4267-9ff7-7e6b74773ed4}</Project>
+      <Name>PhotoOrganizer.FileHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.MapTools\PhotoOrganizer.MapTools.csproj">
+      <Project>{daff572e-755f-43ae-b401-a90e81389347}</Project>
+      <Name>PhotoOrganizer.MapTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.Model\PhotoOrganizer.Model.csproj">
+      <Project>{b548d6ae-15a1-42a2-834f-877368b881ea}</Project>
+      <Name>PhotoOrganizer.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" />
+</Project>

@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 *.psd
+/PhotoOrganizer.UI/Resources/TestResources/Photos
