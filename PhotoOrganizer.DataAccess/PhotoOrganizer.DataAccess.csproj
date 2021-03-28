@@ -71,89 +71,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202102130956436_InitialDatabase.cs" />
-    <Compile Include="Migrations\202102130956436_InitialDatabase.designer.cs">
+    <Compile Include="Migrations\202103280824030_InitialDatabase1.cs" />
+    <Compile Include="Migrations\202103280824030_InitialDatabase1.designer.cs">
+      <DependentUpon>202103280824030_InitialDatabase1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103280826275_InitialDatabase2.cs" />
+    <Compile Include="Migrations\202103280826275_InitialDatabase2.designer.cs">
+      <DependentUpon>202103280826275_InitialDatabase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103280827567_InitialDatabase3.cs" />
+    <Compile Include="Migrations\202103280827567_InitialDatabase3.designer.cs">
+      <DependentUpon>202103280827567_InitialDatabase3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldMigrations\202102130956436_InitialDatabase.cs" />
+    <Compile Include="OldMigrations\202102130956436_InitialDatabase.designer.cs">
       <DependentUpon>202102130956436_InitialDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102222033526_GpsInstadOfYear.cs" />
-    <Compile Include="Migrations\202102222033526_GpsInstadOfYear.designer.cs">
+    <Compile Include="OldMigrations\202102222033526_GpsInstadOfYear.cs" />
+    <Compile Include="OldMigrations\202102222033526_GpsInstadOfYear.designer.cs">
       <DependentUpon>202102222033526_GpsInstadOfYear.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102231748309_GpsTableNameToLocation.cs" />
-    <Compile Include="Migrations\202102231748309_GpsTableNameToLocation.designer.cs">
+    <Compile Include="OldMigrations\202102231748309_GpsTableNameToLocation.cs" />
+    <Compile Include="OldMigrations\202102231748309_GpsTableNameToLocation.designer.cs">
       <DependentUpon>202102231748309_GpsTableNameToLocation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102261235112_PeopleDisplayNameProperty.cs" />
-    <Compile Include="Migrations\202102261235112_PeopleDisplayNameProperty.designer.cs">
+    <Compile Include="OldMigrations\202102261235112_PeopleDisplayNameProperty.cs" />
+    <Compile Include="OldMigrations\202102261235112_PeopleDisplayNameProperty.designer.cs">
       <DependentUpon>202102261235112_PeopleDisplayNameProperty.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102270803337_NtoNPeoplePhoto.cs" />
-    <Compile Include="Migrations\202102270803337_NtoNPeoplePhoto.designer.cs">
+    <Compile Include="OldMigrations\202102270803337_NtoNPeoplePhoto.cs" />
+    <Compile Include="OldMigrations\202102270803337_NtoNPeoplePhoto.designer.cs">
       <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.cs" />
-    <Compile Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.designer.cs">
+    <Compile Include="OldMigrations\202102271910547_PhotoTableWithStringCoordinates.cs" />
+    <Compile Include="OldMigrations\202102271910547_PhotoTableWithStringCoordinates.designer.cs">
       <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103012239303_1toNPhotoLocation.cs" />
-    <Compile Include="Migrations\202103012239303_1toNPhotoLocation.designer.cs">
+    <Compile Include="OldMigrations\202103012239303_1toNPhotoLocation.cs" />
+    <Compile Include="OldMigrations\202103012239303_1toNPhotoLocation.designer.cs">
       <DependentUpon>202103012239303_1toNPhotoLocation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.cs" />
-    <Compile Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.designer.cs">
+    <Compile Include="OldMigrations\202103022045078_BackTo1to1LocationAndPhoto.cs" />
+    <Compile Include="OldMigrations\202103022045078_BackTo1to1LocationAndPhoto.designer.cs">
       <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.cs" />
-    <Compile Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.designer.cs">
+    <Compile Include="OldMigrations\202103031914508_CoordinatesIsNoMoreReq.cs" />
+    <Compile Include="OldMigrations\202103031914508_CoordinatesIsNoMoreReq.designer.cs">
       <DependentUpon>202103031914508_CoordinatesIsNoMoreReq.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103071116147_virtualPeoples.cs" />
-    <Compile Include="Migrations\202103071116147_virtualPeoples.designer.cs">
+    <Compile Include="OldMigrations\202103071116147_virtualPeoples.cs" />
+    <Compile Include="OldMigrations\202103071116147_virtualPeoples.designer.cs">
       <DependentUpon>202103071116147_virtualPeoples.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103071615530_ColorFlagToEnum.cs" />
-    <Compile Include="Migrations\202103071615530_ColorFlagToEnum.designer.cs">
+    <Compile Include="OldMigrations\202103071615530_ColorFlagToEnum.cs" />
+    <Compile Include="OldMigrations\202103071615530_ColorFlagToEnum.designer.cs">
       <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103071753029_AddDescriptionAndCreator.cs" />
-    <Compile Include="Migrations\202103071753029_AddDescriptionAndCreator.designer.cs">
+    <Compile Include="OldMigrations\202103071753029_AddDescriptionAndCreator.cs" />
+    <Compile Include="OldMigrations\202103071753029_AddDescriptionAndCreator.designer.cs">
       <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151116312_ShelveHasBeenCreated.cs" />
-    <Compile Include="Migrations\202103151116312_ShelveHasBeenCreated.designer.cs">
+    <Compile Include="OldMigrations\202103151116312_ShelveHasBeenCreated.cs" />
+    <Compile Include="OldMigrations\202103151116312_ShelveHasBeenCreated.designer.cs">
       <DependentUpon>202103151116312_ShelveHasBeenCreated.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151123469_ShelveNameRequired.cs" />
-    <Compile Include="Migrations\202103151123469_ShelveNameRequired.designer.cs">
+    <Compile Include="OldMigrations\202103151123469_ShelveNameRequired.cs" />
+    <Compile Include="OldMigrations\202103151123469_ShelveNameRequired.designer.cs">
       <DependentUpon>202103151123469_ShelveNameRequired.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151126401_ShelveCreated.cs" />
-    <Compile Include="Migrations\202103151126401_ShelveCreated.designer.cs">
+    <Compile Include="OldMigrations\202103151126401_ShelveCreated.cs" />
+    <Compile Include="OldMigrations\202103151126401_ShelveCreated.designer.cs">
       <DependentUpon>202103151126401_ShelveCreated.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151127302_ShelveCreatedAgain.cs" />
-    <Compile Include="Migrations\202103151127302_ShelveCreatedAgain.designer.cs">
+    <Compile Include="OldMigrations\202103151127302_ShelveCreatedAgain.cs" />
+    <Compile Include="OldMigrations\202103151127302_ShelveCreatedAgain.designer.cs">
       <DependentUpon>202103151127302_ShelveCreatedAgain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151142396_ShelvePhotoN2N.cs" />
-    <Compile Include="Migrations\202103151142396_ShelvePhotoN2N.designer.cs">
+    <Compile Include="OldMigrations\202103151142396_ShelvePhotoN2N.cs" />
+    <Compile Include="OldMigrations\202103151142396_ShelvePhotoN2N.designer.cs">
       <DependentUpon>202103151142396_ShelvePhotoN2N.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.cs" />
-    <Compile Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.designer.cs">
+    <Compile Include="OldMigrations\202103151622446_ShelvePhotoN2NPhotoId.cs" />
+    <Compile Include="OldMigrations\202103151622446_ShelvePhotoN2NPhotoId.designer.cs">
       <DependentUpon>202103151622446_ShelvePhotoN2NPhotoId.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs" />
-    <Compile Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.designer.cs">
+    <Compile Include="OldMigrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs" />
+    <Compile Include="OldMigrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.designer.cs">
       <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.cs" />
-    <Compile Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.designer.cs">
+    <Compile Include="OldMigrations\202103162241012_CommentHasBeenAddedToPhoto.cs" />
+    <Compile Include="OldMigrations\202103162241012_CommentHasBeenAddedToPhoto.designer.cs">
       <DependentUpon>202103162241012_CommentHasBeenAddedToPhoto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103171956526_FileEntryTableCreated.cs" />
-    <Compile Include="Migrations\202103171956526_FileEntryTableCreated.designer.cs">
+    <Compile Include="OldMigrations\202103171956526_FileEntryTableCreated.cs" />
+    <Compile Include="OldMigrations\202103171956526_FileEntryTableCreated.designer.cs">
       <DependentUpon>202103171956526_FileEntryTableCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldMigrations\202103280821597_InitialDatabaseForLocalDb.cs" />
+    <Compile Include="OldMigrations\202103280821597_InitialDatabaseForLocalDb.designer.cs">
+      <DependentUpon>202103280821597_InitialDatabaseForLocalDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhotoOrganizerDbContext.cs" />
@@ -177,68 +193,80 @@
     <Content Include="dbSetupSteps.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102130956436_InitialDatabase.resx">
+    <EmbeddedResource Include="Migrations\202103280824030_InitialDatabase1.resx">
+      <DependentUpon>202103280824030_InitialDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103280826275_InitialDatabase2.resx">
+      <DependentUpon>202103280826275_InitialDatabase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103280827567_InitialDatabase3.resx">
+      <DependentUpon>202103280827567_InitialDatabase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldMigrations\202102130956436_InitialDatabase.resx">
       <DependentUpon>202102130956436_InitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102222033526_GpsInstadOfYear.resx">
+    <EmbeddedResource Include="OldMigrations\202102222033526_GpsInstadOfYear.resx">
       <DependentUpon>202102222033526_GpsInstadOfYear.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102231748309_GpsTableNameToLocation.resx">
+    <EmbeddedResource Include="OldMigrations\202102231748309_GpsTableNameToLocation.resx">
       <DependentUpon>202102231748309_GpsTableNameToLocation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102261235112_PeopleDisplayNameProperty.resx">
+    <EmbeddedResource Include="OldMigrations\202102261235112_PeopleDisplayNameProperty.resx">
       <DependentUpon>202102261235112_PeopleDisplayNameProperty.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102270803337_NtoNPeoplePhoto.resx">
+    <EmbeddedResource Include="OldMigrations\202102270803337_NtoNPeoplePhoto.resx">
       <DependentUpon>202102270803337_NtoNPeoplePhoto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102271910547_PhotoTableWithStringCoordinates.resx">
+    <EmbeddedResource Include="OldMigrations\202102271910547_PhotoTableWithStringCoordinates.resx">
       <DependentUpon>202102271910547_PhotoTableWithStringCoordinates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103012239303_1toNPhotoLocation.resx">
+    <EmbeddedResource Include="OldMigrations\202103012239303_1toNPhotoLocation.resx">
       <DependentUpon>202103012239303_1toNPhotoLocation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103022045078_BackTo1to1LocationAndPhoto.resx">
+    <EmbeddedResource Include="OldMigrations\202103022045078_BackTo1to1LocationAndPhoto.resx">
       <DependentUpon>202103022045078_BackTo1to1LocationAndPhoto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103031914508_CoordinatesIsNoMoreReq.resx">
+    <EmbeddedResource Include="OldMigrations\202103031914508_CoordinatesIsNoMoreReq.resx">
       <DependentUpon>202103031914508_CoordinatesIsNoMoreReq.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103071116147_virtualPeoples.resx">
+    <EmbeddedResource Include="OldMigrations\202103071116147_virtualPeoples.resx">
       <DependentUpon>202103071116147_virtualPeoples.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103071615530_ColorFlagToEnum.resx">
+    <EmbeddedResource Include="OldMigrations\202103071615530_ColorFlagToEnum.resx">
       <DependentUpon>202103071615530_ColorFlagToEnum.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103071753029_AddDescriptionAndCreator.resx">
+    <EmbeddedResource Include="OldMigrations\202103071753029_AddDescriptionAndCreator.resx">
       <DependentUpon>202103071753029_AddDescriptionAndCreator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151116312_ShelveHasBeenCreated.resx">
+    <EmbeddedResource Include="OldMigrations\202103151116312_ShelveHasBeenCreated.resx">
       <DependentUpon>202103151116312_ShelveHasBeenCreated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151123469_ShelveNameRequired.resx">
+    <EmbeddedResource Include="OldMigrations\202103151123469_ShelveNameRequired.resx">
       <DependentUpon>202103151123469_ShelveNameRequired.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151126401_ShelveCreated.resx">
+    <EmbeddedResource Include="OldMigrations\202103151126401_ShelveCreated.resx">
       <DependentUpon>202103151126401_ShelveCreated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151127302_ShelveCreatedAgain.resx">
+    <EmbeddedResource Include="OldMigrations\202103151127302_ShelveCreatedAgain.resx">
       <DependentUpon>202103151127302_ShelveCreatedAgain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151142396_ShelvePhotoN2N.resx">
+    <EmbeddedResource Include="OldMigrations\202103151142396_ShelvePhotoN2N.resx">
       <DependentUpon>202103151142396_ShelvePhotoN2N.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151622446_ShelvePhotoN2NPhotoId.resx">
+    <EmbeddedResource Include="OldMigrations\202103151622446_ShelvePhotoN2NPhotoId.resx">
       <DependentUpon>202103151622446_ShelvePhotoN2NPhotoId.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.resx">
+    <EmbeddedResource Include="OldMigrations\202103151631182_ShelvePhotoN2NPhotoIdvirtual.resx">
       <DependentUpon>202103151631182_ShelvePhotoN2NPhotoIdvirtual.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103162241012_CommentHasBeenAddedToPhoto.resx">
+    <EmbeddedResource Include="OldMigrations\202103162241012_CommentHasBeenAddedToPhoto.resx">
       <DependentUpon>202103162241012_CommentHasBeenAddedToPhoto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103171956526_FileEntryTableCreated.resx">
+    <EmbeddedResource Include="OldMigrations\202103171956526_FileEntryTableCreated.resx">
       <DependentUpon>202103171956526_FileEntryTableCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldMigrations\202103280821597_InitialDatabaseForLocalDb.resx">
+      <DependentUpon>202103280821597_InitialDatabaseForLocalDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
