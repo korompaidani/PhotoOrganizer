@@ -639,5 +639,10 @@ namespace PhotoOrganizer.UI.ViewModel
 
             return resultList;
         }
+
+        public override void DisposeConnection()
+        {
+            _photoRepository.DisposeConnection();
+        }
     }
 }

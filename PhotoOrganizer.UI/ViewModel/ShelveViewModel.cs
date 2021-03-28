@@ -36,5 +36,9 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             throw new NotImplementedException();
         }
+
+        public override void DisposeConnection()
+        {
+        }
     }
 }

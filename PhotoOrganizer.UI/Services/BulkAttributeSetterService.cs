@@ -88,6 +88,7 @@ namespace PhotoOrganizer.UI.Services
 
             await SetPropertiesOfCheckedItems(args.PropertyNamesAndValues, args.CallerId);
             await ReloadNavigation();
+            //_photoRepository.DisposeConnection();
         }
 
         private void CloseAllOpenDetailViews(int callerId)
@@ -164,7 +165,7 @@ namespace PhotoOrganizer.UI.Services
                         }
                     }
                 }
-                await _photoRepository.SaveAsync();
+                await _photoRepository.SaveAsync();                
             }
             catch
             {

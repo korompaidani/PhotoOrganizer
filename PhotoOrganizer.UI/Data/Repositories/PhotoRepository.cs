@@ -90,7 +90,7 @@ namespace PhotoOrganizer.UI.Data.Repositories
             {
                 Context.Photos.Remove(photo);
             }
-
+            
             await SaveAsync();
         }
 

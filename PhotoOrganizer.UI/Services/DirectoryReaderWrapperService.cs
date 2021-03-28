@@ -1,8 +1,10 @@
-﻿using PhotoOrganizer.Common;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Resources.Language;
+using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.View.Services;
 using System;
 using System.Collections.Generic;
@@ -18,14 +20,30 @@ namespace PhotoOrganizer.UI.Services
         private IBackupService _backupService;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
 
+        public IPhotoRepository PhotoRepository
+        {
+            get 
+            {
+                if(_photoRepository == null || _photoRepository.IsDisposed)
+                {
+                    _photoRepository = Bootstrapper.Container.Resolve<IPhotoRepository>();
+                }
+                return _photoRepository;
+            }
+            set
+            {
+                _photoRepository = value;
+            }
+        }
+
         public DirectoryReaderWrapperService(
-            DirectoryReader directoryReader, 
+            DirectoryReader directoryReader,
             IPhotoRepository photoRepository,
             IMessageDialogService messageDialogService,
             IBackupService backupService,
             IPhotoMetaWrapperService photoMetaWrapperService)
         {
-            _photoRepository = photoRepository;
+            PhotoRepository = photoRepository;
             _directoryReader = directoryReader;
             _messageDialogService = messageDialogService;
             _backupService = backupService;
@@ -39,13 +57,14 @@ namespace PhotoOrganizer.UI.Services
             var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(filePath);
 
             var createdPhoto = CreateNewPhoto(photo);
-            await _photoRepository.SaveAsync();
+            await PhotoRepository.SaveAsync();
+            PhotoRepository.DisposeConnection();
             return createdPhoto.Id;
         }
 
         public async Task LoadAllFromLibraryAsync()
         {
-            if (await _photoRepository.HasPhotosAsync())
+            if (await PhotoRepository.HasPhotosAsync())
             {
                 var answer = await _messageDialogService.ShowExtendOrOverwriteCancelDialogAsync(TextResources.ExtendOrOverwrite_message, TextResources.Question_windowTitle);
                 if (answer == MessageDialogResult.Overwrite)
@@ -59,12 +78,12 @@ namespace PhotoOrganizer.UI.Services
                     {
                         return;
                     }
-                    if(!await EraseFormerData())
+                    if (!await EraseFormerData())
                     {
                         return;
                     }
                 }
-                if(answer == MessageDialogResult.Cancel)
+                if (answer == MessageDialogResult.Cancel)
                 {
                     return;
                 }
@@ -79,7 +98,8 @@ namespace PhotoOrganizer.UI.Services
             var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
             if (result == MessageDialogResult.Yes)
             {
-                await _photoRepository.RemoveAllPhotoFromTableAsync();
+                await PhotoRepository.RemoveAllPhotoFromTableAsync();
+                PhotoRepository.DisposeConnection();
                 return true;
             }
             else
@@ -97,7 +117,7 @@ namespace PhotoOrganizer.UI.Services
                 return;
             }
 
-            var entities = await _photoRepository.GetAllAsync();
+            var entities = await PhotoRepository.GetAllAsync();
 
             await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.CreatingBackup_message, _backupService.CreateBackup, backupFolder);
         }
@@ -112,7 +132,8 @@ namespace PhotoOrganizer.UI.Services
             var result = await Task<bool>.Run(() => ConvertFileNamesToPhotos(folderPath));
             if (result)
             {
-                await _photoRepository.SaveAsync();
+                await PhotoRepository.SaveAsync();
+                PhotoRepository.DisposeConnection();
             }
         }
 
@@ -149,7 +170,7 @@ namespace PhotoOrganizer.UI.Services
                 photo = new Photo();
             }
 
-            _photoRepository.Add(photo);
+            PhotoRepository.Add(photo);
             return photo;
         }
     }

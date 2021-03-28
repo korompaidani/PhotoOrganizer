@@ -77,6 +77,8 @@ namespace PhotoOrganizer.UI.ViewModel
 
         protected abstract void OnSaveExecute();
 
+        public abstract void DisposeConnection();
+
         protected async virtual void OnCloseDetailViewExecute()
         {
             if (HasChanges)

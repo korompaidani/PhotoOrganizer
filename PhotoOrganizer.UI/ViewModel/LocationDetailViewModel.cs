@@ -176,5 +176,10 @@ namespace PhotoOrganizer.UI.ViewModel
         {
             await Save(isClosing);
         }
+
+        public override void DisposeConnection()
+        {
+            _locationRepository.DisposeConnection();
+        }
     }
 }

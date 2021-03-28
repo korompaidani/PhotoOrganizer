@@ -15,9 +15,17 @@ namespace PhotoOrganizer.UI.Data.Repositories
             this.Context = context;
         }
 
+        public bool IsDisposed { get; set; }
+
         public void Add(TEntity model)
         {
             Context.Set<TEntity>().Add(model);
+        }
+
+        public void DisposeConnection()
+        {
+            Context.Dispose();
+            IsDisposed = true;
         }
 
         public async Task<List<TEntity>> GetAllAsync()

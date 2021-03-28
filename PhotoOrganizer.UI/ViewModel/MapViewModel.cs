@@ -290,5 +290,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 HasChanges = _locationRepository.HasChanges();
             }
         }
+
+        public override void DisposeConnection()
+        {
+            _locationRepository.DisposeConnection();
+        }
     }
 }

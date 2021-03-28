@@ -244,5 +244,10 @@ namespace PhotoOrganizer.UI.ViewModel
                 RaiseDetailSavedEvent(Album.Id, Album.Title);
             }            
         }
+
+        public override void DisposeConnection()
+        {
+            _albumRepository.DisposeConnection();
+        }
     }
 }
