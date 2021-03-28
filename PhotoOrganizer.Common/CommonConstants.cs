@@ -20,7 +20,13 @@ namespace PhotoOrganizer.Common
     {
         DetailViewClosingError,
         MetaWritingError,
-        BackupError
+        BackupError,
+        InitializationError,
+        BulkSetAttributError,
+        DirectoryReaderError,
+        CacheError,
+        MetaReadError,
+        SettingsError
     }
 
     public enum MetaProperty

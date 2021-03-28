@@ -147,7 +147,12 @@ namespace PhotoOrganizer.UI.Services
             catch (Exception ex)
             {
                 var context = Bootstrapper.Container.Resolve<ApplicationContext>();
-                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
+                string innerException = string.Empty;
+                if (ex.InnerException != null && ex.InnerException.Message != null)
+                {
+                    innerException = ex.InnerException.Message;
+                }
+                context.AddErrorMessage(ErrorTypes.CacheError, ex.Message + innerException);
                 return false;
             }
         }
