@@ -4,7 +4,10 @@ using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
+using System;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -19,6 +22,9 @@ namespace PhotoOrganizer.UI
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            var dbPath = Path.GetFullPath(FilePaths.ProgramData);
+            AppDomain.CurrentDomain.SetData(FilePaths.DataDirectory, dbPath);
+
             var bootstrapper = new Bootstrapper();
             bootstrapper.Bootstrap();
             base.OnStartup(e);            
