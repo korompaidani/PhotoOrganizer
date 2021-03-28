@@ -26,13 +26,12 @@ namespace PhotoOrganizer.UI.Services
             // TODO: save to config: use event
             if (path == null) { path = FilePaths.DefaultBackupFolder; }
             else { backupFolder = path; }
-
-            // Use backupManager here
-            _backupManager.ReadAllTable(_photoOrganizerDbContext);
-
-            // Write file here
+            
             try
             {
+                // Use backupManager here
+                await Task.Run(() => _backupManager.ReadAllTable(_photoOrganizerDbContext));
+                // Write file here
                 await _xmlWriter.WriteXmlAsync(path, _backupManager.AllTableData);
             }
             catch(Exception ex)
