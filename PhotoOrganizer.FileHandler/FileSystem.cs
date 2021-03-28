@@ -25,7 +25,7 @@ namespace PhotoOrganizer.FileHandler
                     fullTempFileNamePath = null;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 fullTempFileNamePath = null;
             }
