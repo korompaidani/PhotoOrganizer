@@ -1,6 +1,9 @@
-﻿using PhotoOrganizer.Common;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.DataAccess;
 using PhotoOrganizer.FileHandler;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using System;
 using System.Threading.Tasks;
 
@@ -36,7 +39,8 @@ namespace PhotoOrganizer.UI.Services
             }
             catch(Exception ex)
             {
-
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
             }
         }
 

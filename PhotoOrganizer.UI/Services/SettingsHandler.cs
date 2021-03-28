@@ -1,5 +1,9 @@
-﻿using PhotoOrganizer.FileHandler;
+﻿using Autofac;
+using PhotoOrganizer.Common;
+using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.Model;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using System;
 using System.Threading.Tasks;
 
@@ -36,8 +40,10 @@ namespace PhotoOrganizer.UI.Services
                 }
                 return _initialSettings;
             }
-            catch
+            catch(Exception ex)
             {
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
                 return null;
             }
         }
@@ -57,6 +63,8 @@ namespace PhotoOrganizer.UI.Services
                 }
                 catch (Exception ex)
                 {
+                    var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                    context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
                     throw ex;
                 }
             }

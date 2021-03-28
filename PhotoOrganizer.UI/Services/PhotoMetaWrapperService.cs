@@ -64,7 +64,18 @@ namespace PhotoOrganizer.UI.Services
         public Photo CreatePhotoModelFromFile(string filePath)
         {
             var fullPath = Path.GetFullPath(filePath);
-            var result = _exifToFileWriter.ReadMeta(fullPath);
+
+            Dictionary<MetaProperty, string> result = new Dictionary<MetaProperty, string>();
+
+            try
+            {
+                result = _exifToFileWriter.ReadMeta(fullPath);
+            }
+            catch(Exception ex)
+            {
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
+            }
 
             var date = CreatePhotoComformTakenDate(result);
             var time = new TimeSpan(date.Hour, date.Minute, date.Second);

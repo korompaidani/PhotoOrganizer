@@ -1,7 +1,10 @@
-﻿using PhotoOrganizer.Common;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System;
@@ -167,9 +170,10 @@ namespace PhotoOrganizer.UI.Services
                 }
                 await _photoRepository.SaveAsync();                
             }
-            catch
+            catch(Exception ex)
             {
-
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
             }
         }
 

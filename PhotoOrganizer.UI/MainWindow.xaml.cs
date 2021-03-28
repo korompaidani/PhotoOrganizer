@@ -3,6 +3,7 @@ using MahApps.Metro.Controls;
 using PhotoOrganizer.UI.Engine;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.ViewModel;
 using System;
 using System.Threading.Tasks;
@@ -65,7 +66,10 @@ namespace PhotoOrganizer.UI
                 _viewModel.OpenClosingAppCommand.Execute(null);
 
                 canClose = _viewModel.CanClose;
-            }           
+            }
+
+            var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+            context.WriteErrorMessages();
         }
     }
 }

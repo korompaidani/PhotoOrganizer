@@ -37,9 +37,7 @@ namespace PhotoOrganizer.FileHandler
             }
             catch (Exception ex)
             {
-            }
-            finally
-            {
+                throw ex;
             }
         }
 

@@ -46,7 +46,7 @@ namespace PhotoOrganizer.FileHandler
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -76,7 +76,7 @@ namespace PhotoOrganizer.FileHandler
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }

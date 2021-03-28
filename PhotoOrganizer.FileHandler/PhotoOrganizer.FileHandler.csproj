@@ -215,6 +215,7 @@
     <Compile Include="BackupManager.cs" />
     <Compile Include="BitmapExtension.cs" />
     <Compile Include="DirectoryReader.cs" />
+    <Compile Include="ErrorMessageWriter.cs" />
     <Compile Include="ExifLibraryReaderWriter.cs" />
     <Compile Include="MyExifReaderWriter.cs" />
     <Compile Include="FileSystem.cs" />

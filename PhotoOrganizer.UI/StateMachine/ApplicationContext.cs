@@ -1,13 +1,16 @@
 ﻿using PhotoOrganizer.Common;
+using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Helpers;
+using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.View.Services;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.StateMachine
@@ -91,8 +94,10 @@ namespace PhotoOrganizer.UI.StateMachine
 
 
         public void AddErrorMessage(ErrorTypes errorType, string errorMessage)
-        {
+        {            
             _errorMessages.Add(new KeyValuePair<ErrorTypes, string>(errorType, errorMessage));
+            var message = string.Format(TextResources.DefaultError_message, errorType, Path.GetFullPath(FilePaths.ErrorLogPath));
+            _messageDialogService.ShowInfoDialogAsync(message);
         }
 
         public async Task<List<KeyValuePair<int, PhotoDetailInfo>>> SaveAllTab(bool isForceSaveAll = false)
@@ -220,8 +225,16 @@ namespace PhotoOrganizer.UI.StateMachine
                 }
                 catch (Exception ex)
                 {
-                    _errorMessages.Add(new KeyValuePair<ErrorTypes, string>(ErrorTypes.DetailViewClosingError, ex.InnerException.Message));
+                    AddErrorMessage(ErrorTypes.DetailViewClosingError, ex.InnerException.Message);
                 }
+            }
+        }
+
+        public void WriteErrorMessages()
+        {
+            if(_errorMessages.Count > 0)
+            {
+                ErrorMessageWriter.WriteErrorMessagesToFile(_errorMessages);
             }
         }
 
@@ -240,7 +253,7 @@ namespace PhotoOrganizer.UI.StateMachine
             throw new NotImplementedException();
         }
 
-        private void GetAnError(ErrorEventArgs args)
+        private void GetAnError(Event.ErrorEventArgs args)
         {
             throw new NotImplementedException();
         }

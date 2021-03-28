@@ -5,6 +5,7 @@ using PhotoOrganizer.Model;
 using PhotoOrganizer.UI.Data.Repositories;
 using PhotoOrganizer.UI.Resources.Language;
 using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View.Services;
 using System;
 using System.Collections.Generic;
@@ -159,6 +160,8 @@ namespace PhotoOrganizer.UI.Services
             }
             catch (Exception ex)
             {
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
                 return false;
             }
         }

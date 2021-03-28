@@ -234,6 +234,10 @@
   <data name="DefaultCoordinates" xml:space="preserve">
     <value>46.84172812451524, 16.84248724161438</value>
   </data>
+  <data name="DefaultError_message" xml:space="preserve">
+    <value>{0} error happened during the process. After closing the application an error log will be generated here: {1}
+If something unusual happens please restart the Application!</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>

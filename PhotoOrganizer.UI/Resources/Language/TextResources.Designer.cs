@@ -412,6 +412,16 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} error happened during the process. After closing the application an error log will be generated here: {1}
+        ///If something unusual happens please restart the Application!.
+        /// </summary>
+        public static string DefaultError_message {
+            get {
+                return ResourceManager.GetString("DefaultError_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

@@ -1,6 +1,11 @@
-﻿using PhotoOrganizer.UI.Data.Lookups;
+﻿using Autofac;
+using PhotoOrganizer.Common;
+using PhotoOrganizer.UI.Data.Lookups;
+using PhotoOrganizer.UI.Startup;
+using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -139,8 +144,10 @@ namespace PhotoOrganizer.UI.Services
                 _pages.Clear();
                 return true;
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
+                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                context.AddErrorMessage(ErrorTypes.BackupError, ex.Message);
                 return false;
             }
         }
