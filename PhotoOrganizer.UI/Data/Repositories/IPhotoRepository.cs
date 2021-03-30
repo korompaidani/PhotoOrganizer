@@ -26,6 +26,5 @@ namespace PhotoOrganizer.UI.Data.Repositories
         Task RemovePhotoToShelveAsync(Photo photo);
         bool IsPhotoExistOnShelve(int photoId);
         Task ReloadPhotoAsync(int photoId);
-        List<Photo> GetAllPhotoOfShelve();
     }
 }

@@ -157,12 +157,6 @@ namespace PhotoOrganizer.UI.Data.Repositories
             await Context.SaveChangesAsync();
         }
 
-        public List<Photo> GetAllPhotoOfShelve()
-        {
-            var shelve = Context.Shelves.FirstOrDefault(s => s.Id > -1);
-            return shelve.Photos.ToList();
-        }
-
         public bool IsPhotoExistOnShelve(int photoId)
         {
             var shelve = Context.Shelves.FirstOrDefault(s => s.Id > -1);

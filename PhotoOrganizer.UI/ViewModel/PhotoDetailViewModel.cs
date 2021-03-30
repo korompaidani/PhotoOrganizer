@@ -37,6 +37,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private bool _isDetailViewInitialized = false;
         private bool _evenJustFinalized = false;
         private bool _isAnySelectedNavigationItem = false;
+        private bool _isPhotoOnShelve;
 
         public ICommand FinalizeCommand { get; }
         public ICommand OpenPhotoCommand { get; }        
@@ -164,12 +165,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnRemoveFromShelveCanExecute()
         {
-            return !HasChanges && _photoRepository.IsPhotoExistOnShelve(Photo.Id);
+            return !HasChanges && _isPhotoOnShelve;
         }
 
         private async void OnRemoveFromShelveExecute()
         {
             await _photoRepository.RemovePhotoToShelveAsync(Photo.Model);
+            _isPhotoOnShelve = false;
             ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
             ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
 
@@ -178,12 +180,13 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private bool OnAddToShelveCanExecute()
         {
-            return !HasChanges && !_photoRepository.IsPhotoExistOnShelve(Photo.Id);
+            return !HasChanges && !_isPhotoOnShelve;
         }
 
         private async void OnAddToShelveExecute()
         {
             await _photoRepository.AddPhotoToShelveAsync(Photo.Model);
+            _isPhotoOnShelve = true;
             ((DelegateCommand)AddToShelveCommand).RaiseCanExecuteChanged();
             ((DelegateCommand)RemoveFromShelveCommand).RaiseCanExecuteChanged();
 
@@ -227,6 +230,8 @@ namespace PhotoOrganizer.UI.ViewModel
                 : CreateNewPhoto();
 
             Id = photoId;
+
+            _isPhotoOnShelve = await Task<bool>.Run(() => _photoRepository.IsPhotoExistOnShelve(Id));
 
             InitializePhoto(photo);
             InitializePeople(photo.Peoples);
