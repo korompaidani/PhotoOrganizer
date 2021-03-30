@@ -26,7 +26,8 @@ namespace PhotoOrganizer.Common
         DirectoryReaderError,
         CacheError,
         MetaReadError,
-        SettingsError
+        SettingsError,
+        UnKnownError
     }
 
     public enum MetaProperty

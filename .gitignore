@@ -340,3 +340,7 @@ ASALocalRun/
 healthchecksdb
 *.psd
 /PhotoOrganizer.UI/Resources/TestResources/Photos
+*.mdf
+*.ldf
+ProgramData/PhotoVersor.mdf
+ProgramData/PhotoVersor_log.ldf
