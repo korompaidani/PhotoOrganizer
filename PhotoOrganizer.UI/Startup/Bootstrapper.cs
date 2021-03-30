@@ -36,7 +36,6 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();
             builder.RegisterType<MyExifReaderWriter>().Keyed<IExifReaderWriter>(nameof(MyExifReaderWriter));
-            builder.RegisterType<ExifLibraryReaderWriter>().Keyed<IExifReaderWriter>(nameof(ExifLibraryReaderWriter));
             builder.RegisterType<BackupService>().As<IBackupService>();
             builder.RegisterType<PhotoCacheService>().As<ICacheService>();
             builder.RegisterType<PageSizeService>().As<IPageSizeService>().SingleInstance();
