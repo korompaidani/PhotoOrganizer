@@ -5,7 +5,6 @@ using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.UI.Startup;
 using PhotoOrganizer.UI.StateMachine;
 using System;
-using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Windows;
@@ -44,7 +43,7 @@ namespace PhotoOrganizer.UI
         void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             string errorMessage = string.Format(TextResources.UnhandledExceptionOccurred_errorMessage, e.Exception.Message);
-            _applicationContext.AddErrorMessage(ErrorTypes.BackupError, errorMessage);
+            _applicationContext.AddErrorMessage(ErrorTypes.UnKnownError, errorMessage);
             e.Handled = true; 
         }
 
