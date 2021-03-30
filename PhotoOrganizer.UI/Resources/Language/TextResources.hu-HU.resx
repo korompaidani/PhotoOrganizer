@@ -168,6 +168,9 @@
   <data name="Albums" xml:space="preserve">
     <value>Albumok</value>
   </data>
+  <data name="AutofacLink" xml:space="preserve">
+    <value>https://autofac.org/</value>
+  </data>
   <data name="AvailablePhotos" xml:space="preserve">
     <value>Rendelkezésre álló képek</value>
   </data>
@@ -211,7 +214,7 @@
     <value>Biztonsági mentés készítése…</value>
   </data>
   <data name="CreditsText" xml:space="preserve">
-    <value>Hálás köszönet az alábbi komponensekért:</value>
+    <value>Hálás köszönet az alábbi komponensekért/megszerzett tudásért:</value>
   </data>
   <data name="CreditsTitle" xml:space="preserve">
     <value>Kredit</value>
@@ -276,6 +279,9 @@
   <data name="English" xml:space="preserve">
     <value>Angol</value>
   </data>
+  <data name="EntityFramWorkLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/en-us/ef/</value>
+  </data>
   <data name="EntityHasBeenChanged_message" xml:space="preserve">
     <value>Ez az elem időközben megváltozott egy másik párhuzamos művelet során. Kattints az 'OK'-ra, hogyha mégis ezt szeretnéd menteni, vagy kattints a 'Mégse'-re, hogy újra töltsem az elemet az adatbázisból.</value>
   </data>
@@ -324,6 +330,9 @@
   <data name="GettingStarted_Title" xml:space="preserve">
     <value>Hello!</value>
   </data>
+  <data name="GithubLink" xml:space="preserve">
+    <value>https://github.com/</value>
+  </data>
   <data name="Help_menu" xml:space="preserve">
     <value>Súgó</value>
   </data>
@@ -371,6 +380,12 @@
   </data>
   <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
     <value>Megjelölheted a képet változatlanként. Ha ezt teszed, akkor a meta adatok írása hatástalan lesz erre a képre egészen annak legközelebbi módosításáig és mentéséig.</value>
+  </data>
+  <data name="MsdnLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/</value>
+  </data>
+  <data name="mssqlLink" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/download/details.aspx?id=101064</value>
   </data>
   <data name="NewAlbum_menu" xml:space="preserve">
     <value>Új Album</value>
@@ -425,6 +440,9 @@
   </data>
   <data name="PleaseWait_windowTitle" xml:space="preserve">
     <value>Kérlek várj</value>
+  </data>
+  <data name="PrismLink" xml:space="preserve">
+    <value>https://www.nuget.org/packages/Prism.Wpf/</value>
   </data>
   <data name="Question_windowTitle" xml:space="preserve">
     <value>Kérdés</value>
@@ -555,8 +573,14 @@
   <data name="Shelve" xml:space="preserve">
     <value>Polc</value>
   </data>
+  <data name="StackOverflowLink" xml:space="preserve">
+    <value>https://stackoverflow.com/</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="TakenDate_colon" xml:space="preserve">
     <value>Készítés ideje:</value>
@@ -587,6 +611,9 @@
   </data>
   <data name="Warning_windoTitle" xml:space="preserve">
     <value>Figyelmeztetés</value>
+  </data>
+  <data name="Web2ViewLink" xml:space="preserve">
+    <value>https://developer.microsoft.com/en-us/microsoft-edge/webview2/</value>
   </data>
   <data name="Window_menu" xml:space="preserve">
     <value>Ablak</value>

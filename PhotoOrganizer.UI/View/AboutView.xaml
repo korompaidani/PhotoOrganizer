@@ -14,8 +14,17 @@
 <!-- ========================================================================================================================================================================================================================================================== -->
             <TextBlock Text="{x:Static resources:TextResources.CreditsTitle}" Width="400" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="-319 25 0 5"/>
             <TextBlock Text="{x:Static resources:TextResources.CreditsText}" Width="400" TextWrapping="Wrap" FontSize="11" TextAlignment="Justify" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="0 5 0 20"/>
-            <Button Content="{x:Static resources:TextResources.MahappsLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.MahappsLink}" Style="{DynamicResource MyLinkButton}"/>
+
             <Button Content="{x:Static resources:TextResources.OpenLayersLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.OpenLayersLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.MahappsLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.MahappsLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.PrismLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.PrismLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.AutofacLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.AutofacLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.GithubLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.GithubLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.EntityFramWorkLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.EntityFramWorkLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.Web2ViewLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.Web2ViewLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.MsdnLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.MsdnLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.mssqlLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.mssqlLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.StackOverflowLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.StackOverflowLink}" Style="{DynamicResource MyLinkButton}"/>
         </StackPanel>
         <Button Content="X" FontSize="50" Background="Transparent" Foreground="White" Margin="0 0 20 0"
                 Command="{Binding OpenWorkbenchCommand}">

@@ -124,7 +124,7 @@
     <value>My Github page:</value>
   </data>
   <data name="AboutText" xml:space="preserve">
-    <value>I am happy to know that you are using my application. My intention was to create a useful app to modify my photo's meta data. And I also practice coding and wide my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much fun as I made it.</value>
+    <value>I am happy to know that you are using my application. My intention was to create an app which might be a useful tool to modify photo's meta data. I think especially on that ones which have wrong data (e.g. old, scanned photos). In other hand thanks to this project I can practice coding and widen my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much joy as I made it with.</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>Welcome to my app!</value>
@@ -142,10 +142,10 @@
     <value>Added Photos</value>
   </data>
   <data name="AddNewPeople_tooltip" xml:space="preserve">
-    <value>Add new people to the photo. After click on it, new people will be automatically added to the photo and after save this photo it will be available for other photos.</value>
+    <value>Add new people to the photo. After click on it, newly created people will be automatically added to the photo. If you type an exisiting name, that one will be added instead of creating a new one. New people will be available for other photos only after save the photo which originally contains the people.</value>
   </data>
   <data name="AddPeople_tooltip" xml:space="preserve">
-    <value>You can add people to the photo. It will be written as a keyword after writing metadata.</value>
+    <value>You can add people who appears on the photo. It will be written as a keyword after writing metadata.</value>
   </data>
   <data name="AddPhoto_menu" xml:space="preserve">
     <value>Add Photo...</value>
@@ -168,8 +168,11 @@
   <data name="Albums" xml:space="preserve">
     <value>Albums</value>
   </data>
+  <data name="AutofacLink" xml:space="preserve">
+    <value>https://autofac.org/</value>
+  </data>
   <data name="AvailablePhotos" xml:space="preserve">
-    <value>Available Photos</value>
+    <value>Available photos</value>
   </data>
   <data name="ButtonsTitle" xml:space="preserve">
     <value>Buttons</value>
@@ -178,7 +181,7 @@
     <value>Cancel</value>
   </data>
   <data name="ChooseFolder_windowTitle" xml:space="preserve">
-    <value>Please choose folder for 'backup':</value>
+    <value>Please choose a target path for the 'backup':</value>
   </data>
   <data name="CloseConfirmation_message" xml:space="preserve">
     <value>You've made changes. Do you really want to close this item?</value>
@@ -211,7 +214,7 @@
     <value>Creating backup...</value>
   </data>
   <data name="CreditsText" xml:space="preserve">
-    <value>Thank you for the following components:</value>
+    <value>Thank you for the following components/knowledge:</value>
   </data>
   <data name="CreditsTitle" xml:space="preserve">
     <value>Credits</value>
@@ -226,13 +229,13 @@
     <value>en-US</value>
   </data>
   <data name="DataWillReloaded_message" xml:space="preserve">
-    <value>the data will be reloaded. Details:</value>
+    <value>The data will be reloaded. Details:</value>
   </data>
   <data name="Data_menu" xml:space="preserve">
     <value>Data</value>
   </data>
   <data name="DefaultCoordinates" xml:space="preserve">
-    <value>46.84172812451524, 16.84248724161438</value>
+    <value>34.00769634714019, -118.49514233934161</value>
   </data>
   <data name="DefaultError_message" xml:space="preserve">
     <value>{0} error happened during the process. After closing the application an error log will be generated here: {1}
@@ -276,6 +279,9 @@ If something unusual happens please restart the Application!</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="EntityFramWorkLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/en-us/ef/</value>
   </data>
   <data name="EntityHasBeenChanged_message" xml:space="preserve">
     <value>The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database.</value>
@@ -325,6 +331,9 @@ If something unusual happens please restart the Application!</value>
   <data name="GettingStarted_Title" xml:space="preserve">
     <value>Hello!</value>
   </data>
+  <data name="GithubLink" xml:space="preserve">
+    <value>https://github.com/</value>
+  </data>
   <data name="Help_menu" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -373,6 +382,12 @@ If something unusual happens please restart the Application!</value>
   </data>
   <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
     <value>It marks the image as unchanged. If you do this the image meta info cannot be written until next save.</value>
+  </data>
+  <data name="MsdnLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/</value>
+  </data>
+  <data name="mssqlLink" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/download/details.aspx?id=101064</value>
   </data>
   <data name="NewAlbum_menu" xml:space="preserve">
     <value>New Album</value>
@@ -427,6 +442,9 @@ If something unusual happens please restart the Application!</value>
   </data>
   <data name="PleaseWait_windowTitle" xml:space="preserve">
     <value>Please wait</value>
+  </data>
+  <data name="PrismLink" xml:space="preserve">
+    <value>https://www.nuget.org/packages/Prism.Wpf/</value>
   </data>
   <data name="Question_windowTitle" xml:space="preserve">
     <value>Question</value>
@@ -557,6 +575,9 @@ If something unusual happens please restart the Application!</value>
   <data name="Shelve" xml:space="preserve">
     <value>Shelve</value>
   </data>
+  <data name="StackOverflowLink" xml:space="preserve">
+    <value>https://stackoverflow.com/</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
@@ -589,6 +610,9 @@ If something unusual happens please restart the Application!</value>
   </data>
   <data name="Warning_windoTitle" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="Web2ViewLink" xml:space="preserve">
+    <value>https://developer.microsoft.com/en-us/microsoft-edge/webview2/</value>
   </data>
   <data name="Window_menu" xml:space="preserve">
     <value>Window</value>

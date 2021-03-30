@@ -88,7 +88,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I am happy to know that you are using my application. My intention was to create a useful app to modify my photo&apos;s meta data. And I also practice coding and wide my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much fun as I made it..
+        ///   Looks up a localized string similar to I am happy to know that you are using my application. My intention was to create an app which might be a useful tool to modify photo&apos;s meta data. I think especially on that ones which have wrong data (e.g. old, scanned photos). In other hand thanks to this project I can practice coding and widen my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much joy as I made it with..
         /// </summary>
         public static string AboutText {
             get {
@@ -133,7 +133,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new people to the photo. After click on it, new people will be automatically added to the photo and after save this photo it will be available for other photos..
+        ///   Looks up a localized string similar to Add new people to the photo. After click on it, newly created people will be automatically added to the photo. If you type an exisiting name, that one will be added instead of creating a new one. New people will be available for other photos only after save the photo which originally contains the people..
         /// </summary>
         public static string AddNewPeople_tooltip {
             get {
@@ -142,7 +142,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can add people to the photo. It will be written as a keyword after writing metadata..
+        ///   Looks up a localized string similar to You can add people who appears on the photo. It will be written as a keyword after writing metadata..
         /// </summary>
         public static string AddPeople_tooltip {
             get {
@@ -214,7 +214,16 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Available Photos.
+        ///   Looks up a localized string similar to https://autofac.org/.
+        /// </summary>
+        public static string AutofacLink {
+            get {
+                return ResourceManager.GetString("AutofacLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available photos.
         /// </summary>
         public static string AvailablePhotos {
             get {
@@ -241,7 +250,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please choose folder for &apos;backup&apos;:.
+        ///   Looks up a localized string similar to Please choose a target path for the &apos;backup&apos;:.
         /// </summary>
         public static string ChooseFolder_windowTitle {
             get {
@@ -340,7 +349,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for the following components:.
+        ///   Looks up a localized string similar to Thank you for the following components/knowledge:.
         /// </summary>
         public static string CreditsText {
             get {
@@ -394,7 +403,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to the data will be reloaded. Details:.
+        ///   Looks up a localized string similar to The data will be reloaded. Details:.
         /// </summary>
         public static string DataWillReloaded_message {
             get {
@@ -403,7 +412,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 46.84172812451524, 16.84248724161438.
+        ///   Looks up a localized string similar to 34.00769634714019, -118.49514233934161.
         /// </summary>
         public static string DefaultCoordinates {
             get {
@@ -535,6 +544,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string English {
             get {
                 return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://docs.microsoft.com/en-us/ef/.
+        /// </summary>
+        public static string EntityFramWorkLink {
+            get {
+                return ResourceManager.GetString("EntityFramWorkLink", resourceCulture);
             }
         }
         
@@ -683,6 +701,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/.
+        /// </summary>
+        public static string GithubLink {
+            get {
+                return ResourceManager.GetString("GithubLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help_menu {
@@ -823,6 +850,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string MarkAsUnchanged_tooltip {
             get {
                 return ResourceManager.GetString("MarkAsUnchanged_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://docs.microsoft.com/.
+        /// </summary>
+        public static string MsdnLink {
+            get {
+                return ResourceManager.GetString("MsdnLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.microsoft.com/en-us/download/details.aspx?id=101064.
+        /// </summary>
+        public static string mssqlLink {
+            get {
+                return ResourceManager.GetString("mssqlLink", resourceCulture);
             }
         }
         
@@ -985,6 +1030,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string PleaseWait_windowTitle {
             get {
                 return ResourceManager.GetString("PleaseWait_windowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.nuget.org/packages/Prism.Wpf/.
+        /// </summary>
+        public static string PrismLink {
+            get {
+                return ResourceManager.GetString("PrismLink", resourceCulture);
             }
         }
         
@@ -1376,6 +1430,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://stackoverflow.com/.
+        /// </summary>
+        public static string StackOverflowLink {
+            get {
+                return ResourceManager.GetString("StackOverflowLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {
@@ -1471,6 +1534,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string Warning_windoTitle {
             get {
                 return ResourceManager.GetString("Warning_windoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://developer.microsoft.com/en-us/microsoft-edge/webview2/.
+        /// </summary>
+        public static string Web2ViewLink {
+            get {
+                return ResourceManager.GetString("Web2ViewLink", resourceCulture);
             }
         }
         

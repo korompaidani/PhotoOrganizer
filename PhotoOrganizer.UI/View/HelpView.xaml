@@ -14,7 +14,7 @@
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="600">
         <Grid HorizontalAlignment="Center" Margin="0 15 0 15">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="800"/>
             </Grid.ColumnDefinitions>
