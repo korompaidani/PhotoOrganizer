@@ -14,5 +14,6 @@
         public const string DefaultPicturePath = @".\..\..\..\Resources\Pictures\DefaultPicture.jpg";
         public const string MapLocation = @".\..\..\..\Resources\Web\OpenLayersMap.html";        
         public const string DataDirectory = "DataDirectory";
+        public const string ExplorerExe = "explorer.exe";
     }
 }

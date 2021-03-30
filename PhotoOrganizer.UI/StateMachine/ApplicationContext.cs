@@ -10,6 +10,7 @@ using PhotoOrganizer.UI.ViewModel;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -187,6 +188,7 @@ namespace PhotoOrganizer.UI.StateMachine
             if (result != MessageDialogResult.Cancel && isOnClosing)
             {
                 System.Windows.Application.Current.Shutdown();
+                WriteErrorMessages();
             }
 
             return canClose;
@@ -234,7 +236,14 @@ namespace PhotoOrganizer.UI.StateMachine
         {
             if(_errorMessages.Count > 0)
             {
-                ErrorMessageWriter.WriteErrorMessagesToFile(_errorMessages);
+                try
+                {
+                    ErrorMessageWriter.WriteErrorMessagesToFile(_errorMessages);
+                    Process.Start(FilePaths.ExplorerExe, Path.GetFullPath(FilePaths.ErrorLogPath));
+                }
+                catch
+                {
+                }                
             }
         }
 
