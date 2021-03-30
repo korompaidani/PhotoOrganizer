@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Common", "Ph
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{D0BF328D-2622-4619-ADDE-AD54D769F06F}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoVersorInstaller", "PhotoVersorInstaller\PhotoVersorInstaller.wixproj", "{40472250-805C-4355-9DE4-93D5EE20827E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PhotoVersorSetup", "PhotoVersorSetup\PhotoVersorSetup.vdproj", "{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,8 +39,8 @@ Global
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x64.ActiveCfg = Release|x64
 		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x64.Build.0 = Release|x64
-		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x86.ActiveCfg = Release|Win32
-		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x86.Build.0 = Release|Win32
+		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x86.ActiveCfg = Release|Any CPU
+		{EEB810D4-625A-491A-A376-4900BF9D5C42}.Release|x86.Build.0 = Release|Any CPU
 		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A32C07-E81E-4B3D-9157-F1F91168D967}.Debug|x64.ActiveCfg = Debug|x64
@@ -101,20 +101,18 @@ Global
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x64.Build.0 = Release|x64
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.ActiveCfg = Release|Any CPU
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.Build.0 = Release|Any CPU
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Debug|x64.ActiveCfg = Debug|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Debug|x86.ActiveCfg = Debug|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Debug|x86.Build.0 = Debug|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Release|Any CPU.ActiveCfg = Release|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Release|x64.ActiveCfg = Release|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Release|x86.ActiveCfg = Release|x86
-		{40472250-805C-4355-9DE4-93D5EE20827E}.Release|x86.Build.0 = Release|x86
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|Any CPU.ActiveCfg = Debug
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|x64.ActiveCfg = Debug
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|x86.ActiveCfg = Debug
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|Any CPU.ActiveCfg = Release
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|x64.ActiveCfg = Release
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{40472250-805C-4355-9DE4-93D5EE20827E} = {D0BF328D-2622-4619-ADDE-AD54D769F06F}
+		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690} = {D0BF328D-2622-4619-ADDE-AD54D769F06F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6198210-7E2A-4233-A671-FF79FFF2DC69}
