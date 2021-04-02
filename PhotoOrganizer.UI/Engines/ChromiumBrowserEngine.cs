@@ -10,6 +10,8 @@ namespace PhotoOrganizer.UI.Engine
     {
         private static ChromiumBrowserEngine _instance = null;
 
+        private string _initialCoordinates;
+
         public static ChromiumBrowserEngine Instance
         {
             get
@@ -30,13 +32,41 @@ namespace PhotoOrganizer.UI.Engine
         public WebView2 Control { get; private set; }
 
         public bool IsReady { get; private set; }
-
+        
         public async Task RestoreMapDefaults()
         {
             if (IsReady)
             {
                 var script = @"disposeMap()";
                 await Control.ExecuteScriptAsync(script);
+            }
+        }
+
+        public void PinInitialLocation(string coordinates)
+        {
+            _initialCoordinates = coordinates;
+            Control.NavigationCompleted += Control_NavigationCompleted;
+            if (IsReady)
+            {
+                Control_NavigationCompleted(null, null);
+            }
+        }
+
+        private void Control_NavigationCompleted(object sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(_initialCoordinates)) { return; }
+
+            var longLat = _initialCoordinates.Split(',');
+            if (longLat.Length == 2)
+            {
+                var longitude = longLat[0].Replace("\0", "");
+                var latitude = longLat[1].Replace("\0", "");
+
+                if (IsReady)
+                {
+                    var script = $@"placeInitialPinOnCoordinates({longitude}, {latitude})";
+                    Control.ExecuteScriptAsync(script).Await();
+                }
             }
         }
 
@@ -54,7 +84,7 @@ namespace PhotoOrganizer.UI.Engine
         public void Initialize()
         {
             Control = new WebView2();
-            Control.Initialized += Control_Initialized;
+            Control.Initialized += Control_Initialized;            
         }
 
         private async void Control_Initialized(object sender, EventArgs e)
@@ -65,7 +95,7 @@ namespace PhotoOrganizer.UI.Engine
             {
                 Control.NavigateToString(reader.ReadToEnd());
             }
-
+            
             IsReady = true;
         }
     }

@@ -115,7 +115,7 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async void OnOpenMapViewAsync(OpenMapViewEventArgs args)
         {
-            SelectedViewModel = new MapViewModel(_eventAggregator, _messageDialogService, _locationRepository, args.PhotoId);
+            SelectedViewModel = new MapViewModel(_eventAggregator, _messageDialogService, _locationRepository, args.PhotoId, args.Coordinates);
             await ((IDetailViewModel)SelectedViewModel).LoadAsync(args.Id);
         }
 

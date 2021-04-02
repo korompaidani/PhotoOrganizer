@@ -122,6 +122,13 @@
         coordinatesResult = ''
     }
 
+    function placeInitialPinOnCoordinates(longitude, latitude){
+        var targetPoint = new ol.geom.Point([latitude, longitude]);
+        coordinatesResult = targetPoint.flatCoordinates[1] + "," + targetPoint.flatCoordinates[0];
+        cleanFormerPointAndPopup();
+        placePointOnCoordinate(targetPoint);   
+    }
+
     </script>
 
     <script>

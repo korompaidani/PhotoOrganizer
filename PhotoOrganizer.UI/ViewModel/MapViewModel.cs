@@ -17,6 +17,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private LocationWrapper _location;
         private ILocationRepository _locationRepository;
         private int _photoId;
+        private string _coordinatesForMap;
         private string _webUrl;
         private string _originalLocationName;
         private string _originalCoordinates;
@@ -59,7 +60,8 @@ namespace PhotoOrganizer.UI.ViewModel
              IEventAggregator eventAggregator,
              IMessageDialogService messageDialogService,
              ILocationRepository locationRepository,
-             int photoId)
+             int photoId,
+             string coordinates)
             : base(eventAggregator, messageDialogService)
         {
             CloseMapCommand = new DelegateCommand(OnCloseMapAskCommand);
@@ -68,6 +70,7 @@ namespace PhotoOrganizer.UI.ViewModel
             SaveAsNewLocationCommand = new DelegateCommand(OnSaveAsNewLocationCommandExecute, OnSaveAsNewLocationCommandCanExecute);
             _locationRepository = locationRepository;
             _photoId = photoId;
+            _coordinatesForMap = coordinates;
         }
 
         private async Task<string> RequestCoordinates()
@@ -244,6 +247,11 @@ namespace PhotoOrganizer.UI.ViewModel
             }
 
             Location.PropertyChanged += Location_PropertyChanged;
+
+            if (!string.IsNullOrEmpty(_coordinatesForMap))
+            {
+                ChromiumBrowserEngine.Instance.PinInitialLocation(_coordinatesForMap);
+            }
         }
 
         private void Location_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
