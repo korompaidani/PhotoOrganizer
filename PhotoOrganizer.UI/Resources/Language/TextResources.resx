@@ -235,11 +235,11 @@
     <value>Data</value>
   </data>
   <data name="DefaultCoordinates" xml:space="preserve">
-    <value>34.00769634714019, -118.49514233934161</value>
+    <value> </value>
   </data>
   <data name="DefaultError_message" xml:space="preserve">
     <value>{0} error happened during the process. After closing the application an error log will be generated here: {1}
-If something unusual happens please restart the Application!</value>
+If something unusual happens in the app please restart it!</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -263,13 +263,13 @@ If something unusual happens please restart the Application!</value>
     <value>Down</value>
   </data>
   <data name="DownPage_tooltip" xml:space="preserve">
-    <value>Based on page size (you can change in setting menu) if there is content above this button is enabled.</value>
+    <value>Based on page size (you can change it in setting menu) if there is content above this button is enabled.</value>
   </data>
   <data name="DoYouReallyWantDelete_message" xml:space="preserve">
     <value>Do you really want to delete {0}?</value>
   </data>
   <data name="DoYouWantBackup_message" xml:space="preserve">
-    <value>Would you like to backup database first before erase all photo data?</value>
+    <value>Would you like to 'backup' database first before erase all photo data?</value>
   </data>
   <data name="Edit_menu" xml:space="preserve">
     <value>Edit</value>
@@ -284,10 +284,10 @@ If something unusual happens please restart the Application!</value>
     <value>https://docs.microsoft.com/en-us/ef/</value>
   </data>
   <data name="EntityHasBeenChanged_message" xml:space="preserve">
-    <value>The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database.</value>
+    <value>The entity has been changed in the meantime by a parallel process. Click 'Ok' to save your changes anyway, click 'Cancel' to reload the entity from the database.</value>
   </data>
   <data name="EntityHasBeenDeleted_message" xml:space="preserve">
-    <value>The entity has been deleted by another user</value>
+    <value>The entity has been deleted by another process.</value>
   </data>
   <data name="EraseAllData_menu" xml:space="preserve">
     <value>Erase all data...</value>
@@ -302,7 +302,7 @@ If something unusual happens please restart the Application!</value>
     <value>Extend</value>
   </data>
   <data name="ExtendOrOverwrite_message" xml:space="preserve">
-    <value>The database has entry(s). Would you like to 'Extend' existing or 'Overwrite'?</value>
+    <value>The database has entry(s). Would you like to 'Extend' existing data or 'Overwrite' them?</value>
   </data>
   <data name="FileHasBeenModifiedFailed_message" xml:space="preserve">
     <value>File cannot be modified</value>
@@ -317,7 +317,7 @@ If something unusual happens please restart the Application!</value>
     <value>Finalize</value>
   </data>
   <data name="Finalize_tooltip" xml:space="preserve">
-    <value>It marks the image as finalized. Write metainfo doesn't take effect on finalized images until next save. It helpful if you would like to see the image in 'done' state.</value>
+    <value>It marks the image as 'finalized'. 'Write metadata' doesn't take effect on finalized images until next change and save. It can be helpful if you would like to see the image in 'done' state.</value>
   </data>
   <data name="FunctionalitiesTitle" xml:space="preserve">
     <value>Functionalities</value>
@@ -326,7 +326,7 @@ If something unusual happens please restart the Application!</value>
     <value>Getting started</value>
   </data>
   <data name="GettingStarted_description" xml:space="preserve">
-    <value>With this application you are able to change your favourite photo's metadata easily.. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
+    <value>With this application you are able to change metadata of your favourite photos easily.. Like in the old time when people took notes on the verso (back page) of photos. It is useful especially in case of older scanned pictures which has originally wrong and/or missing information. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
   </data>
   <data name="GettingStarted_Title" xml:space="preserve">
     <value>Hello!</value>
@@ -360,7 +360,7 @@ If something unusual happens please restart the Application!</value>
     <comment>C</comment>
   </data>
   <data name="LocationCantBeRemovedBecauseItIsUsedByEntity_message" xml:space="preserve">
-    <value>The location {0} can't be removed, as it is referenced by at least one photo</value>
+    <value>The location {0} can't be removed, as it is referenced by at least one photo.</value>
   </data>
   <data name="LocationName" xml:space="preserve">
     <value>Location Name</value>
@@ -381,7 +381,7 @@ If something unusual happens please restart the Application!</value>
     <value>Mark as unchanged</value>
   </data>
   <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
-    <value>It marks the image as unchanged. If you do this the image meta info cannot be written until next save.</value>
+    <value>It marks the image as unchanged. If you do this the image meta info cannot be written until next change and save.</value>
   </data>
   <data name="MsdnLink" xml:space="preserve">
     <value>https://docs.microsoft.com/</value>
@@ -393,16 +393,16 @@ If something unusual happens please restart the Application!</value>
     <value>New Album</value>
   </data>
   <data name="NewPlace" xml:space="preserve">
-    <value>new place</value>
+    <value>New Place</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
   <data name="OpenInBrowser_button" xml:space="preserve">
-    <value>Open in browser</value>
+    <value>Open in the web browser</value>
   </data>
   <data name="OpenInBrowser_tooltip" xml:space="preserve">
-    <value>Click on it to Open the coordinates in the default internet browser</value>
+    <value>Click on it to Open the coordinates in the default internet browser.</value>
   </data>
   <data name="OpenLayersLink" xml:space="preserve">
     <value>https://openlayers.org/</value>
@@ -417,7 +417,7 @@ If something unusual happens please restart the Application!</value>
     <value>Overwrite</value>
   </data>
   <data name="PageSizeSettingsDescription" xml:space="preserve">
-    <value>The page size determines how many photo will appear in navigation bar. Memory consumtion is lower in case of lower page size.</value>
+    <value>The page size determines how many photo will appear in the 'Navigation Bar'. Memory consumtion is lower and performance is better in case of lower page size.</value>
   </data>
   <data name="PageSize_colon" xml:space="preserve">
     <value>Page size: </value>
@@ -465,16 +465,16 @@ If something unusual happens please restart the Application!</value>
     <value>This button removes the image from the shelve.</value>
   </data>
   <data name="RemovePeopleFromDb_button" xml:space="preserve">
-    <value>Remove from database</value>
+    <value>Delete from database</value>
   </data>
   <data name="RemovePeople_tooltip" xml:space="preserve">
-    <value>This people will be removed from the photo after click on it.</value>
+    <value>This people will be removed from the photo after click on it. It won't be deleted from the database.</value>
   </data>
   <data name="RemoveSelectedPeople_button" xml:space="preserve">
     <value>Remove selected</value>
   </data>
   <data name="RemoveSelectedPeople_tooltip" xml:space="preserve">
-    <value>Remove selected people from the database. If you remove it, it takes effect for other photos.</value>
+    <value>It will delete selected people from the database. If you do this, it takes effect for other photos.</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
@@ -489,7 +489,7 @@ If something unusual happens please restart the Application!</value>
     <value>Save As New</value>
   </data>
   <data name="SaveAsNew_tooltip" xml:space="preserve">
-    <value>Save location and coordinates in the database. You can use it in case of other photos in the future.</value>
+    <value>Save location and coordinates in the database as a new item. You can use it in the future here and in case of other photos.</value>
   </data>
   <data name="SaveDialog_windowTitle" xml:space="preserve">
     <value>Save Dialog</value>
@@ -498,16 +498,16 @@ If something unusual happens please restart the Application!</value>
     <value>Do you want to save {0}?</value>
   </data>
   <data name="SaveExisting" xml:space="preserve">
-    <value>Save Existing</value>
+    <value>Overwrite Existing</value>
   </data>
   <data name="SaveExisting_tooltip" xml:space="preserve">
-    <value>It overrides existing location in database and also set and save coordinates.</value>
+    <value>It overrides existing location in the database and also set and save coordinates. If there isn't any pin on the map the coordinates will be filled by wrong data but it doesn't results error in the application.</value>
   </data>
   <data name="SaveWindowMessage" xml:space="preserve">
     <value>Do you want to save opened tabs before close?</value>
   </data>
   <data name="Save_tooltip" xml:space="preserve">
-    <value>Save changes on actual tab</value>
+    <value>Save changes of actual tab</value>
   </data>
   <data name="SelectAll" xml:space="preserve">
     <value>Select all</value>
@@ -561,7 +561,7 @@ If something unusual happens please restart the Application!</value>
     <value>Set coordinates</value>
   </data>
   <data name="SetCoordinates_tooltip" xml:space="preserve">
-    <value>You can set the coordinate without saving the location to the database.</value>
+    <value>You can set the coordinates only without saving the location to the database. Using this option is recommended if you wouldn't like to use this coordinates again or you use this location rarely.</value>
   </data>
   <data name="Settings_menu" xml:space="preserve">
     <value>Settings</value>
@@ -603,7 +603,7 @@ If something unusual happens please restart the Application!</value>
     <value>Up</value>
   </data>
   <data name="UpPage_tooltip" xml:space="preserve">
-    <value>Based on page size (you can change in setting menu) if there is content below this button is enabled.</value>
+    <value>Based on page size (you can change it in setting menu) if there is content below this button is enabled.</value>
   </data>
   <data name="ViewHelp_menu" xml:space="preserve">
     <value>View help</value>
@@ -621,7 +621,7 @@ If something unusual happens please restart the Application!</value>
     <value>Write metadata</value>
   </data>
   <data name="WriteMetadata_tooltip" xml:space="preserve">
-    <value>Write actual displayed data directly to image the image file. Only the saved pictures (yellow) will be written.</value>
+    <value>Write actual displayed data directly to the image file. Only the saved pictures will be written.</value>
   </data>
   <data name="WriteSavedItemsMetadata_menu" xml:space="preserve">
     <value>Write Saved Items Metadata</value>

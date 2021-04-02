@@ -412,7 +412,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 34.00769634714019, -118.49514233934161.
+        ///   Looks up a localized string similar to  .
         /// </summary>
         public static string DefaultCoordinates {
             get {
@@ -422,7 +422,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         
         /// <summary>
         ///   Looks up a localized string similar to {0} error happened during the process. After closing the application an error log will be generated here: {1}
-        ///If something unusual happens please restart the Application!.
+        ///If something unusual happens in the app please restart it!.
         /// </summary>
         public static string DefaultError_message {
             get {
@@ -494,7 +494,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Based on page size (you can change in setting menu) if there is content above this button is enabled..
+        ///   Looks up a localized string similar to Based on page size (you can change it in setting menu) if there is content above this button is enabled..
         /// </summary>
         public static string DownPage_tooltip {
             get {
@@ -512,7 +512,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Would you like to backup database first before erase all photo data?.
+        ///   Looks up a localized string similar to Would you like to &apos;backup&apos; database first before erase all photo data?.
         /// </summary>
         public static string DoYouWantBackup_message {
             get {
@@ -557,7 +557,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The entity has been changed in the meantime by someone else. Click OK to save your changes anyway, click Cancel to reload the entity from the database..
+        ///   Looks up a localized string similar to The entity has been changed in the meantime by a parallel process. Click &apos;Ok&apos; to save your changes anyway, click &apos;Cancel&apos; to reload the entity from the database..
         /// </summary>
         public static string EntityHasBeenChanged_message {
             get {
@@ -566,7 +566,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The entity has been deleted by another user.
+        ///   Looks up a localized string similar to The entity has been deleted by another process..
         /// </summary>
         public static string EntityHasBeenDeleted_message {
             get {
@@ -611,7 +611,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The database has entry(s). Would you like to &apos;Extend&apos; existing or &apos;Overwrite&apos;?.
+        ///   Looks up a localized string similar to The database has entry(s). Would you like to &apos;Extend&apos; existing data or &apos;Overwrite&apos; them?.
         /// </summary>
         public static string ExtendOrOverwrite_message {
             get {
@@ -656,7 +656,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It marks the image as finalized. Write metainfo doesn&apos;t take effect on finalized images until next save. It helpful if you would like to see the image in &apos;done&apos; state..
+        ///   Looks up a localized string similar to It marks the image as &apos;finalized&apos;. &apos;Write metadata&apos; doesn&apos;t take effect on finalized images until next change and save. It can be helpful if you would like to see the image in &apos;done&apos; state..
         /// </summary>
         public static string Finalize_tooltip {
             get {
@@ -683,7 +683,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With this application you are able to change your favourite photo&apos;s metadata easily.. Just load your photos from folder and enjoy your work. Let&apos;s photoverse!.
+        ///   Looks up a localized string similar to With this application you are able to change metadata of your favourite photos easily.. Like in the old time when people took notes on the verso (back page) of photos. It is useful especially in case of older scanned pictures which has originally wrong and/or missing information. Just load your photos from folder and enjoy your work. Let&apos;s photoverse!.
         /// </summary>
         public static string GettingStarted_description {
             get {
@@ -791,7 +791,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The location {0} can&apos;t be removed, as it is referenced by at least one photo.
+        ///   Looks up a localized string similar to The location {0} can&apos;t be removed, as it is referenced by at least one photo..
         /// </summary>
         public static string LocationCantBeRemovedBecauseItIsUsedByEntity_message {
             get {
@@ -845,7 +845,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It marks the image as unchanged. If you do this the image meta info cannot be written until next save..
+        ///   Looks up a localized string similar to It marks the image as unchanged. If you do this the image meta info cannot be written until next change and save..
         /// </summary>
         public static string MarkAsUnchanged_tooltip {
             get {
@@ -881,7 +881,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to new place.
+        ///   Looks up a localized string similar to New Place.
         /// </summary>
         public static string NewPlace {
             get {
@@ -899,7 +899,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open in browser.
+        ///   Looks up a localized string similar to Open in the web browser.
         /// </summary>
         public static string OpenInBrowser_button {
             get {
@@ -908,7 +908,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click on it to Open the coordinates in the default internet browser.
+        ///   Looks up a localized string similar to Click on it to Open the coordinates in the default internet browser..
         /// </summary>
         public static string OpenInBrowser_tooltip {
             get {
@@ -962,7 +962,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The page size determines how many photo will appear in navigation bar. Memory consumtion is lower in case of lower page size..
+        ///   Looks up a localized string similar to The page size determines how many photo will appear in the &apos;Navigation Bar&apos;. Memory consumtion is lower and performance is better in case of lower page size..
         /// </summary>
         public static string PageSizeSettingsDescription {
             get {
@@ -1097,7 +1097,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This people will be removed from the photo after click on it..
+        ///   Looks up a localized string similar to This people will be removed from the photo after click on it. It won&apos;t be deleted from the database..
         /// </summary>
         public static string RemovePeople_tooltip {
             get {
@@ -1106,7 +1106,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove from database.
+        ///   Looks up a localized string similar to Delete from database.
         /// </summary>
         public static string RemovePeopleFromDb_button {
             get {
@@ -1124,7 +1124,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove selected people from the database. If you remove it, it takes effect for other photos..
+        ///   Looks up a localized string similar to It will delete selected people from the database. If you do this, it takes effect for other photos..
         /// </summary>
         public static string RemoveSelectedPeople_tooltip {
             get {
@@ -1142,7 +1142,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save changes on actual tab.
+        ///   Looks up a localized string similar to Save changes of actual tab.
         /// </summary>
         public static string Save_tooltip {
             get {
@@ -1178,7 +1178,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save location and coordinates in the database. You can use it in case of other photos in the future..
+        ///   Looks up a localized string similar to Save location and coordinates in the database as a new item. You can use it in the future here and in case of other photos..
         /// </summary>
         public static string SaveAsNew_tooltip {
             get {
@@ -1205,7 +1205,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Existing.
+        ///   Looks up a localized string similar to Overwrite Existing.
         /// </summary>
         public static string SaveExisting {
             get {
@@ -1214,7 +1214,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It overrides existing location in database and also set and save coordinates..
+        ///   Looks up a localized string similar to It overrides existing location in the database and also set and save coordinates. If there isn&apos;t any pin on the map the coordinates will be filled by wrong data but it doesn&apos;t results error in the application..
         /// </summary>
         public static string SaveExisting_tooltip {
             get {
@@ -1403,7 +1403,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can set the coordinate without saving the location to the database..
+        ///   Looks up a localized string similar to You can set the coordinates only without saving the location to the database. Using this option is recommended if you wouldn&apos;t like to use this coordinates again or you use this location rarely..
         /// </summary>
         public static string SetCoordinates_tooltip {
             get {
@@ -1511,7 +1511,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Based on page size (you can change in setting menu) if there is content below this button is enabled..
+        ///   Looks up a localized string similar to Based on page size (you can change it in setting menu) if there is content below this button is enabled..
         /// </summary>
         public static string UpPage_tooltip {
             get {
@@ -1565,7 +1565,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Write actual displayed data directly to image the image file. Only the saved pictures (yellow) will be written..
+        ///   Looks up a localized string similar to Write actual displayed data directly to the image file. Only the saved pictures will be written..
         /// </summary>
         public static string WriteMetadata_tooltip {
             get {

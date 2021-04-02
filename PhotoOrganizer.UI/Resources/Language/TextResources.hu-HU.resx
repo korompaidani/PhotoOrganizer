@@ -235,7 +235,7 @@
     <value>Adatok</value>
   </data>
   <data name="DefaultCoordinates" xml:space="preserve">
-    <value>46.84172812451524, 16.84248724161438</value>
+    <value> </value>
   </data>
   <data name="DefaultError_message" xml:space="preserve">
     <value>{0} típusú hiba történt a feldolgozás során. A program bezárása után a hiba leírását tartalmazó fájl itt lesz megtalálható: {1} Ha ezek után bármi az alkalmazás nem a tőle várt módon viselkedne, kérlek indítsd újra a programot!</value>
@@ -355,7 +355,7 @@
     <value>Nyelv:</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>Helyszín</value>
+    <value>Helyszínek</value>
   </data>
   <data name="LocationCantBeRemovedBecauseItIsUsedByEntity_message" xml:space="preserve">
     <value>A {0} helyszínt nem sikerült törölni, mivel egy vagy több fényképen használva van.</value>
@@ -514,7 +514,7 @@
     <value>Mindet/Semmit</value>
   </data>
   <data name="SelectDeselectAll_tooltip" xml:space="preserve">
-    <value>Minden látható csempét kijelöli vagy visszavonja a kijelölést.</value>
+    <value>Minden látható csempét kijelöl vagy visszavonja a kijelölést.</value>
   </data>
   <data name="SelectFinalized" xml:space="preserve">
     <value>Véglegesek</value>
@@ -607,7 +607,7 @@
     <value>Oldal méret (ez változtatható a beállítások alatt) és a képek számának függvényében felfelé lapoz, ha van ott tartalom.</value>
   </data>
   <data name="ViewHelp_menu" xml:space="preserve">
-    <value>Súgú megtekintése</value>
+    <value>Súgó megtekintése</value>
   </data>
   <data name="Warning_windoTitle" xml:space="preserve">
     <value>Figyelmeztetés</value>
