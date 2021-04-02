@@ -10,7 +10,7 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock Text="{x:Static resources:TextResources.GettingStarted_Title}" Width="150" TextWrapping="Wrap" FontSize="53" TextAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 5 0 5"/>
             <TextBlock Text="{x:Static resources:TextResources.GettingStarted_description}" Width="150" TextWrapping="Wrap" FontSize="11" TextAlignment="Justify" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="0 5 0 20"/>
-            <Button Command="{Binding OpenWorkbenchCommand}" Style="{DynamicResource MyMetroGetStartedButton}"/>
+            <Button Content="{x:Static resources:TextResources.GettingStarted_button}" Command="{Binding OpenWorkbenchCommand}" Style="{DynamicResource MyMetroGetStartedButton}"/>
         </StackPanel>
     </Grid>
 </UserControl>

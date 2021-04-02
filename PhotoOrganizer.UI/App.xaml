@@ -19,9 +19,9 @@
             <BitmapImage  x:Key="removeFromShelveImage" UriSource="pack://application:,,,/Resources/Icons/button_unshelve_light.png"/>
             <BitmapImage  x:Key="mapButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_map_light.png"/>
             <BitmapImage  x:Key="copyButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_copy_light.png"/>
-
             <BitmapImage  x:Key="upButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_up_light.png"/>
             <BitmapImage  x:Key="downButtonImage" UriSource="pack://application:,,,/Resources/Icons/button_down_light.png"/>
+
             <Image x:Key="mapImage">
                 <Image.Source>
                     <BitmapImage UriSource="pack://application:,,,/Resources/Icons/button_map_light.png" />
@@ -150,7 +150,6 @@
                         <Setter Property="Height" Value="150" />
                         <Setter Property="Width" Value="150" />
                         <Setter Property="FontSize" Value="18" />
-                        <Setter Property="Content" Value="{x:Static resources:TextResources.GettingStarted_button}" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
