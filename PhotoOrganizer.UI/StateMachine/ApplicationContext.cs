@@ -25,6 +25,7 @@ namespace PhotoOrganizer.UI.StateMachine
         private ILocationRepository _locationRepository;
         private IAlbumRepository _albumRepository;
         private MessageDialogResult _internalAnswer;
+        private bool _isFolderOpened = false;
 
         private List<IDetailViewModel> _openedPhotoDetailViewModels;
         private List<IDetailViewModel> _openedAlbumDetailViewModels;
@@ -239,7 +240,13 @@ namespace PhotoOrganizer.UI.StateMachine
                 try
                 {
                     ErrorMessageWriter.WriteErrorMessagesToFile(_errorMessages);
-                    Process.Start(FilePaths.ExplorerExe, Path.GetFullPath(FilePaths.ErrorLogPath));
+                    _errorMessages.Clear();
+
+                    if (!_isFolderOpened)
+                    {
+                        Process.Start(FilePaths.ExplorerExe, Path.GetFullPath(FilePaths.ErrorLogPath));
+                        _isFolderOpened = true;
+                    }
                 }
                 catch
                 {
