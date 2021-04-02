@@ -1,0 +1,20 @@
+- exiflib
+- langmap
+- dispose pattern for backup manager
+
+BUGS:
+- dictionary in C:\Users\korom\source\repos\PhotoOrganizer\PhotoOrganizer.FileHandler\DirectoryReader.cs
+should be nulled
+- At create backup not the last saved items is written to file but (maybe repo must be closed when photodetail closed)
+- Navi load happens twice (1st due to apply settings 2nd due to MainWindow_onLoad)
+- shelveset problem in relation of bulkset
+
+
+private Shelve GetShelve()
+{
+	return Context.Shelves.FirstOrDefault(s => s.Id > -1);            
+}
+in C:\Users\korom\source\repos\PhotoOrganizer\PhotoOrganizer\Data\Repositories\PhotoRepository.cs
+
+scenario: select items which are closed an open (mixed) and bulk set some data
+
