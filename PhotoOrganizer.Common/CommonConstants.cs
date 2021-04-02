@@ -41,8 +41,10 @@ namespace PhotoOrganizer.Common
         Copyright = 33432,
         Software = 11,
         DateTime = 36867,
+        LatitudeDir = 1,
         Latitude = 2,
-        Longitude = 22,
+        LongitudeDir = 3,
+        Longitude = 4,
         Desciprion = 270,
         ExiflibTitle = 100269, //DocumentName
         ExiflibComments = 237510, //UserComment  

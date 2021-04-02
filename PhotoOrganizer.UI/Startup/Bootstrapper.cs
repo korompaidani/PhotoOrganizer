@@ -9,6 +9,7 @@ using PhotoOrganizer.UI.Services;
 using PhotoOrganizer.FileHandler;
 using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.StateMachine.MetaSerializationStates;
+using PhotoOrganizer.FileHandler.MetaConverters;
 
 namespace PhotoOrganizer.UI.Startup
 {
@@ -35,6 +36,8 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();
+            
+            builder.RegisterType<ConverterFactory>().As<IConverterFactory>();
             builder.RegisterType<MyExifReaderWriter>().Keyed<IExifReaderWriter>(nameof(MyExifReaderWriter));
             builder.RegisterType<BackupService>().As<IBackupService>();
             builder.RegisterType<PhotoCacheService>().As<ICacheService>();
@@ -62,7 +65,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<OpenPhotoDetailState>().AsSelf();
             builder.RegisterType<ClosingPhotoDetailState>().AsSelf();
             builder.RegisterType<ClosedPhotoDetailState>().AsSelf();
-
+            
             builder.RegisterType<FileSystem>().AsSelf();
 
             Container = builder.Build();
