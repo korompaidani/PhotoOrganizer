@@ -28,6 +28,17 @@ namespace PhotoOrganizer.UI.Data.Repositories
                 AnyAsync(p => p.LocationId == locationId);
         }
 
+        public async Task RemoveAllPhotoFromTableAsync()
+        {
+            var locations = await GetAllAsync();
+            foreach (var location in locations)
+            {
+                Context.Locations.Remove(location);
+            }
+
+            await SaveAsync();
+        }
+
         public void Save()
         {
             Context.SaveChanges();

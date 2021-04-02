@@ -358,7 +358,7 @@
     <value>Helyszín</value>
   </data>
   <data name="LocationCantBeRemovedBecauseItIsUsedByEntity_message" xml:space="preserve">
-    <value>A {} helyszínt nem sikerült törölni, mivel egy vagy több fényképen használva van.</value>
+    <value>A {0} helyszínt nem sikerült törölni, mivel egy vagy több fényképen használva van.</value>
   </data>
   <data name="LocationName" xml:space="preserve">
     <value>Helyszín neve</value>

@@ -16,6 +16,7 @@ namespace PhotoOrganizer.UI.Services
     public class DirectoryReaderWrapperService : IDirectoryReaderWrapperService
     {
         private IPhotoRepository _photoRepository;
+        private ILocationRepository _locationRepository;
         private DirectoryReader _directoryReader;
         private IMessageDialogService _messageDialogService;
         private IBackupService _backupService;
@@ -37,14 +38,32 @@ namespace PhotoOrganizer.UI.Services
             }
         }
 
+        public ILocationRepository LocationRepository
+        {
+            get
+            {
+                if (_locationRepository == null || _locationRepository.IsDisposed)
+                {
+                    _locationRepository = Bootstrapper.Container.Resolve<ILocationRepository>();
+                }
+                return _locationRepository;
+            }
+            set
+            {
+                _locationRepository = value;
+            }
+        }
+
         public DirectoryReaderWrapperService(
             DirectoryReader directoryReader,
             IPhotoRepository photoRepository,
+            ILocationRepository locationRepository,
             IMessageDialogService messageDialogService,
             IBackupService backupService,
             IPhotoMetaWrapperService photoMetaWrapperService)
         {
             PhotoRepository = photoRepository;
+            _locationRepository = locationRepository;
             _directoryReader = directoryReader;
             _messageDialogService = messageDialogService;
             _backupService = backupService;
@@ -99,9 +118,26 @@ namespace PhotoOrganizer.UI.Services
             var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
             if (result == MessageDialogResult.Yes)
             {
-                await PhotoRepository.RemoveAllPhotoFromTableAsync();
-                PhotoRepository.DisposeConnection();
-                return true;
+                try
+                {
+                    await PhotoRepository.RemoveAllPhotoFromTableAsync();
+                    PhotoRepository.DisposeConnection();
+
+                    await LocationRepository.RemoveAllPhotoFromTableAsync();
+                    LocationRepository.DisposeConnection();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+                    string innerException = string.Empty;
+                    if (ex.InnerException != null && ex.InnerException.Message != null)
+                    {
+                        innerException = ex.InnerException.Message;
+                    }
+                    context.AddErrorMessage(ErrorTypes.DataBaseError, ex.Message + innerException);
+                    return false;
+                }
             }
             else
             {
