@@ -47,21 +47,23 @@
                             Command="{Binding AddPeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
                             <Button.ToolTip >
                                 <TextBlock Text="{x:Static resources:TextResources.AddNewPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="{x:Static resources:TextResources.RemovePeopleFromDb_button}" Width="150" Margin="5"
-                            Command="{Binding RemovePeopleCommand}" Style="{DynamicResource MyMetroSquareButton}">
-                    <Button.ToolTip >
-                        <TextBlock Text="{x:Static resources:TextResources.RemoveSelectedPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                    </Button.ToolTip>
-                </Button>
-                <Button Content="{x:Static resources:TextResources.AddSelectedPeople_button}" Width="150" Margin="5"
-                            Command="{Binding AddSelectedPeopleToPhotoCommand}" Style="{DynamicResource MyMetroSquareButton}">
-                        <Button.ToolTip >
-                            <TextBlock Text="{x:Static resources:TextResources.AddPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
-                        </Button.ToolTip>
-                </Button>
-            </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+                
+                        <Button Content="{x:Static resources:TextResources.AddSelectedPeople_button}" Width="150" Margin="5"
+                                    Command="{Binding AddSelectedPeopleToPhotoCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                                <Button.ToolTip >
+                                    <TextBlock Text="{x:Static resources:TextResources.AddPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                                </Button.ToolTip>
+                        </Button>
+
+                        <Button Content="{x:Static resources:TextResources.RemovePeopleFromDb_button}" Width="150" Margin="5"
+                            Command="{Binding RemovePeopleCommand}" Style="{DynamicResource MyMetroSquareButton}" Background="IndianRed" BorderBrush="IndianRed">
+                            <Button.ToolTip >
+                                <TextBlock Text="{x:Static resources:TextResources.RemoveSelectedPeople_tooltip}" Width="100" TextWrapping="Wrap"/>
+                            </Button.ToolTip>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Border>
         </Grid>

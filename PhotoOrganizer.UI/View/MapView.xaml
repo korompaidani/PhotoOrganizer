@@ -37,7 +37,7 @@
                 </Button.ToolTip>
             </Button>
 
-                <Button Content="{x:Static resources:TextResources.SetCoordinates_button}" Height="20" Width="120" Margin="10 5 5 5" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                <Button Content="{x:Static resources:TextResources.SetCoordinates_button}" Height="20" Width="120" Margin="10 5 5 5" Command="{Binding OnSetCoordinatesOnPhotoOnlyCommand}" Style="{DynamicResource MyMetroSquareButton}" Background="{DynamicResource MahApps.Brushes.Accent}" BorderBrush="{DynamicResource MahApps.Brushes.Accent}">
                 <Button.ToolTip >
                     <TextBlock Text="{x:Static resources:TextResources.SetCoordinates_tooltip}" Width="100" TextWrapping="Wrap"/>
                 </Button.ToolTip>
