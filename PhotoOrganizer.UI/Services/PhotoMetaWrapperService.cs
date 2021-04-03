@@ -183,10 +183,11 @@ namespace PhotoOrganizer.UI.Services
             }
 
             DateTime date;
-
-            DateTime.TryParse(cleanedDateString, out date);
-
-            if(date.Year == 1)
+            try
+            {
+                date = DateTime.ParseExact(cleanedDateString, "yyyy:MM:dd HH:mm:ss", null);
+            }
+            catch
             {
                 date = new DateTime(1986, 05, 02);
             }
@@ -255,7 +256,7 @@ namespace PhotoOrganizer.UI.Services
                     minute: photoModel.HHMMSS.Minutes,
                     second: photoModel.HHMMSS.Seconds);
 
-                var takenDate = date.ToString("yyyy.MM.dd HH:mm:ss") + '\0';
+                var takenDate = date.ToString("yyyy:MM:dd HH:mm:ss") + '\0';
                 properties.Add(MetaProperty.DateTime, takenDate);
             }
 
