@@ -7,6 +7,6 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
         public KeyWordConverter()
         {
             MetaType = MetaProperty.Keywords;
-        }
+        }       
     }
 }

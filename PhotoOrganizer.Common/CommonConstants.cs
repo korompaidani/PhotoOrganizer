@@ -34,13 +34,13 @@ namespace PhotoOrganizer.Common
     public enum MetaProperty
     {
         Author = 40093,
-        Title = 40091,
+        Title = 270,
         Comments = 40092,
         Keywords = 40094,
         DateTime = 36867,
         Latitude = 2,
         Longitude = 4,
-        Desciprion = 270
+        Desciprion = 37510
     }
 
     public enum HiddenMetaProperty

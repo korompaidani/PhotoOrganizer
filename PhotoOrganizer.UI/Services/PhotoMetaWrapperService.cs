@@ -220,6 +220,11 @@ namespace PhotoOrganizer.UI.Services
                 properties.Add(MetaProperty.Title, photoModel.Title);
             }
 
+            if (photoModel.Description != null)
+            {
+                properties.Add(MetaProperty.Desciprion, photoModel.Description);
+            }
+
             if (photoModel.Peoples != null && photoModel.Peoples.Count > 0)
             {
                 var sb = new StringBuilder();
@@ -230,15 +235,14 @@ namespace PhotoOrganizer.UI.Services
                     sb.Append(people.DisplayName);
                     if (counter != photoModel.Peoples.Count)
                     {
-                        sb.Append(",");
+                        sb.Append(" @");
                     }
                 }
-                properties.Add(MetaProperty.Keywords, sb.ToString());
-            }
 
-            if (photoModel.Description != null)
-            {
-                properties.Add(MetaProperty.Desciprion, photoModel.Description);
+                string description = string.Empty;
+                properties.TryGetValue(MetaProperty.Desciprion, out description);
+
+                properties[MetaProperty.Desciprion] = PutPeoplesToDescription(description, sb.ToString());
             }
 
             if (photoModel.Creator != null)
@@ -261,6 +265,32 @@ namespace PhotoOrganizer.UI.Services
             }
 
             return properties;
+        }
+
+        private string PutPeoplesToDescription(string description, string peoplesSequence)
+        {
+            string startTag = "<#";
+            string endTag = "#>";
+
+            description = description.Replace("\0", "");
+
+            var peopleBuilder = new StringBuilder(startTag).Append(peoplesSequence).Append(endTag);
+            var descriptionBuilder = new StringBuilder(description);
+
+            var start = description.IndexOf(startTag);
+            var end = description.IndexOf(endTag);
+            
+            if(start != -1)
+            {                
+                descriptionBuilder.Remove(start, end - start + 2);
+                descriptionBuilder.Insert(start, peopleBuilder.ToString());
+            }
+            else
+            {
+                descriptionBuilder.Append(" ").Append(peopleBuilder.ToString());
+            }
+            
+            return descriptionBuilder.ToString();
         }
     }
 }
