@@ -115,7 +115,7 @@ namespace PhotoOrganizer.UI.Services
             };
         }
 
-        string CreatePhotoComformCoordinates(Dictionary<MetaProperty, string> rawData)
+        private string CreatePhotoComformCoordinates(Dictionary<MetaProperty, string> rawData)
         {
             string latitude;
             string longitude;
@@ -134,7 +134,7 @@ namespace PhotoOrganizer.UI.Services
             return sb.ToString();
         }
 
-        string CreatePhotoComformTitle(Dictionary<MetaProperty, string> rawData)
+        private string CreatePhotoComformTitle(Dictionary<MetaProperty, string> rawData)
         {
             string title = null;
 
@@ -143,7 +143,7 @@ namespace PhotoOrganizer.UI.Services
             return title;
         }
 
-        string CreatePhotoComformDescription(Dictionary<MetaProperty, string> rawData)
+        private string CreatePhotoComformDescription(Dictionary<MetaProperty, string> rawData)
         {
             string description = null;
 
@@ -152,7 +152,7 @@ namespace PhotoOrganizer.UI.Services
             return description;
         }
 
-        string CreatePhotoComformCreator(Dictionary<MetaProperty, string> rawData)
+        private string CreatePhotoComformCreator(Dictionary<MetaProperty, string> rawData)
         {
             string creator = null;
 
@@ -161,7 +161,7 @@ namespace PhotoOrganizer.UI.Services
             return creator;
         }
 
-        string CreatePhotoComformPeoples(Dictionary<MetaProperty, string> rawData)
+        private string CreatePhotoComformPeoples(Dictionary<MetaProperty, string> rawData)
         {
             string peoples = null;
 
@@ -170,7 +170,7 @@ namespace PhotoOrganizer.UI.Services
             return peoples;
         }
 
-        DateTime CreatePhotoComformTakenDate(Dictionary<MetaProperty, string> rawData)
+        private DateTime CreatePhotoComformTakenDate(Dictionary<MetaProperty, string> rawData)
         {
             string dateString = null;
             string cleanedDateString = null;
@@ -222,7 +222,8 @@ namespace PhotoOrganizer.UI.Services
 
             if (photoModel.Description != null)
             {
-                properties.Add(MetaProperty.Desciprion, photoModel.Description);
+                var cleanedDescription = photoModel.Description.Replace("\0", "");
+                properties.Add(MetaProperty.Desciprion, cleanedDescription);
             }
 
             if (photoModel.Peoples != null && photoModel.Peoples.Count > 0)
@@ -267,6 +268,7 @@ namespace PhotoOrganizer.UI.Services
             return properties;
         }
 
+        // Script component instead of this method
         private string PutPeoplesToDescription(string description, string peoplesSequence)
         {
             string startTag = "<#";
@@ -278,7 +280,7 @@ namespace PhotoOrganizer.UI.Services
             var descriptionBuilder = new StringBuilder(description);
 
             var start = description.IndexOf(startTag);
-            var end = description.IndexOf(endTag);
+            var end = description.LastIndexOf(endTag);
             
             if(start != -1)
             {                
