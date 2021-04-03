@@ -124,7 +124,6 @@ namespace PhotoOrganizer.UI.Services
                     PhotoRepository.DisposeConnection();
 
                     await LocationRepository.RemoveAllPhotoFromTableAsync();
-                    LocationRepository.DisposeConnection();
                     return true;
                 }
                 catch (Exception ex)
