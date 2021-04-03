@@ -93,7 +93,7 @@
         map.on('click', function (event) {
             cleanFormerPointAndPopup();
             var mypoint = map.getCoordinateFromPixel(event.pixel);
-            coordinatesResult = mypoint[1] + "," + mypoint[0];
+            coordinatesResult = mypoint[1] + ";" + mypoint[0];
             
             var point = new ol.geom.Point(mypoint);
             placePointOnCoordinate(point);
@@ -124,7 +124,7 @@
 
     function placeInitialPinOnCoordinates(longitude, latitude){
         var targetPoint = new ol.geom.Point([latitude, longitude]);
-        coordinatesResult = targetPoint.flatCoordinates[1] + "," + targetPoint.flatCoordinates[0];
+        coordinatesResult = targetPoint.flatCoordinates[1] + ";" + targetPoint.flatCoordinates[0];
         cleanFormerPointAndPopup();
         placePointOnCoordinate(targetPoint);   
     }

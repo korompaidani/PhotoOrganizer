@@ -56,7 +56,7 @@ namespace PhotoOrganizer.UI.Engine
         {
             if (string.IsNullOrEmpty(_initialCoordinates)) { return; }
 
-            var longLat = _initialCoordinates.Split(',');
+            var longLat = _initialCoordinates.Split(';');
             if (longLat.Length == 2)
             {
                 var longitude = longLat[0].Replace("\0", "");

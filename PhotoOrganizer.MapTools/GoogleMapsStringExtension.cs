@@ -38,15 +38,21 @@ namespace PhotoOrganizer.MapTools
             coordinate = coordinate.Replace("\0", string.Empty);
             var sb = new StringBuilder(GoogleMapsUrl);
             sb.Append("/");
-            var coordinateSegments = coordinate.Split(',');
+
+            if (coordinate.Contains(","))
+            {
+                coordinate.Replace(",", ".");
+            }
+
+            var coordinateSegments = coordinate.Split(';');
 
             if (coordinateSegments.Length == 3)
             {
-                return sb.Append("@").Append(coordinate).Append("z").ToString();
+                return sb.Append("@").Append(coordinate.Replace(";", ",")).Append("z").ToString();
             }
             else if(coordinateSegments.Length == 2)
             {
-                return sb.Append("@").Append(coordinate).Append(",16z").ToString();
+                return sb.Append("@").Append(coordinate.Replace(";", ",")).Append(",16z").ToString();
             }
             else
             {

@@ -129,7 +129,7 @@ namespace PhotoOrganizer.UI.Services
             }
 
             var sb = new StringBuilder(latitude);
-            sb.Append(",");
+            sb.Append(";");
             sb.Append(longitude);
             return sb.ToString();
         }
@@ -201,7 +201,7 @@ namespace PhotoOrganizer.UI.Services
 
             if (photoModel.Coordinates != null)
             {
-                var coordinates = photoModel.Coordinates.Split(',');
+                var coordinates = photoModel.Coordinates.Split(';');
                 string latitude = string.Empty;
                 string longitude = string.Empty;
 
