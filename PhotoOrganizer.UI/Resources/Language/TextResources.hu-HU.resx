@@ -309,6 +309,9 @@
   <data name="FileHasBeenModifiedSucc_message" xml:space="preserve">
     <value>A fájl sikeresen módosult</value>
   </data>
+  <data name="FileProperty_errorMessage" xml:space="preserve">
+    <value>Az alábbi metaadat: {0} nem támogatott formátumban van, de a fájl maga feldolgozásra került.</value>
+  </data>
   <data name="File_menu" xml:space="preserve">
     <value>Fájl</value>
   </data>

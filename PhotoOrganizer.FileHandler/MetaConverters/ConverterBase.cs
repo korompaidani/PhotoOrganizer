@@ -1,6 +1,8 @@
 ﻿using PhotoOrganizer.Common;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Text;
 
 namespace PhotoOrganizer.FileHandler.MetaConverters
 {
@@ -8,9 +10,11 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
     {
         public MetaProperty MetaType { get; set; }
 
-        public virtual string ConvertMetaToProperty(byte[] data)
+        public virtual string ConvertMetaToProperty(PropertyItem meta, Image image)
         {
-            return string.Empty;
+            if (meta.Id != (int)MetaType) { return null; }
+
+            return Encoding.UTF8.GetString(meta.Value);
         }
 
         public virtual void ConvertPropertyToMeta(ref Image image, string propertyValue)

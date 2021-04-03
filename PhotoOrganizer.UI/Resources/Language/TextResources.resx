@@ -310,6 +310,9 @@ If something unusual happens in the app please restart it!</value>
   <data name="FileHasBeenModifiedSucc_message" xml:space="preserve">
     <value>File has been succesfully modified</value>
   </data>
+  <data name="FileProperty_errorMessage" xml:space="preserve">
+    <value>The metadata: {0} is in not supported format, but the file has been processed.</value>
+  </data>
   <data name="File_menu" xml:space="preserve">
     <value>File</value>
   </data>

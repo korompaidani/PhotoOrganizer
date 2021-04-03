@@ -1,19 +1,56 @@
 ﻿using PhotoOrganizer.Common;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
 
 namespace PhotoOrganizer.FileHandler.MetaConverters
 {
     public class CoordinatesConverterBase : ConverterBase
     {
-        protected MetaProperty DirMetaType;
+        protected HiddenMetaProperty DirMetaType;
         protected char PositiveDirection;
         protected char NegativeDirection;
         protected byte CoordinateIndex;
 
-        public override string ConvertMetaToProperty(byte[] data)
+        public override string ConvertMetaToProperty(PropertyItem meta, Image image)
         {
-            return string.Empty;
+            if(meta.Id != (int)MetaType) { return null; }
+
+            uint degreesNumerator = BitConverter.ToUInt32(meta.Value, 0);
+            uint degreesDenominator = BitConverter.ToUInt32(meta.Value, 4);
+            double degrees = degreesNumerator / (double)degreesDenominator;
+
+            uint minutesNumerator = BitConverter.ToUInt32(meta.Value, 8);
+            uint minutesDenominator = BitConverter.ToUInt32(meta.Value, 12);
+            double minutes = minutesNumerator / (double)minutesDenominator;
+
+            uint secondsNumerator = BitConverter.ToUInt32(meta.Value, 16);
+            uint secondsDenominator = BitConverter.ToUInt32(meta.Value, 20);
+            double seconds = secondsNumerator / (double)secondsDenominator;
+
+            double coorditate = degrees + (minutes / 60d) + (seconds / 3600d);
+
+            var dir = image.PropertyItems.FirstOrDefault(p => p.Id == (int)DirMetaType);
+            
+            if(dir == null)
+            {
+                return null;
+            }
+
+            char[] coordinateDir = System.Text.Encoding.ASCII.GetChars(new byte[1] { dir.Value[0] });
+
+            if(coordinateDir == null || coordinateDir.Length != 1)
+            {
+                return null; 
+            }
+
+            if (coordinateDir[0] == NegativeDirection)
+            {
+                coorditate *= -1;
+            }
+
+            return coorditate.ToString().Replace(",", ".");
         }
 
         public override void ConvertPropertyToMeta(ref Image image, string propertyValue)
@@ -72,22 +109,25 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
         {
             double temp;
             temp = Math.Abs(latitude);
-            int degrees = (int)Math.Truncate(temp);
-            temp = (temp - degrees) * 60;
 
-            int minutes = (int)Math.Truncate(temp);
-            temp = (temp - minutes) * 60;
+            uint degreesNumerator = (uint)Math.Truncate(temp);
+            temp = (temp - degreesNumerator) * 60;
 
-            int secondsNominator = (int)Math.Truncate(10000000 * temp);
-            int secondsDenoninator = 10000000;
+            uint minutesNumerator = (uint)Math.Truncate(temp);
+            temp = (temp - minutesNumerator) * 60;
+
+            uint secondsNominator = (uint)Math.Truncate(10000000 * temp);
+            uint secondsDenominator = 10000000;
 
             byte[] result = new byte[24];
-            Array.Copy(BitConverter.GetBytes(degrees), 0, result, 0, 4);
+            Array.Copy(BitConverter.GetBytes(degreesNumerator), 0, result, 0, 4);
             Array.Copy(BitConverter.GetBytes(1), 0, result, 4, 4);
-            Array.Copy(BitConverter.GetBytes(minutes), 0, result, 8, 4);
+
+            Array.Copy(BitConverter.GetBytes(minutesNumerator), 0, result, 8, 4);
             Array.Copy(BitConverter.GetBytes(1), 0, result, 12, 4);
+
             Array.Copy(BitConverter.GetBytes(secondsNominator), 0, result, 16, 4);
-            Array.Copy(BitConverter.GetBytes(secondsDenoninator), 0, result, 20, 4);
+            Array.Copy(BitConverter.GetBytes(secondsDenominator), 0, result, 20, 4);
             return result;
         }
     }

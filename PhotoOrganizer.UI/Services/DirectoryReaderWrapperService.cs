@@ -183,8 +183,14 @@ namespace PhotoOrganizer.UI.Services
                 var list = new List<Photo>();
                 foreach (var file in _directoryReader.FileList)
                 {
-                    var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
-                    list.Add(photo);
+                    try
+                    {
+                        var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
+                        list.Add(photo);
+                    }
+                    catch
+                    {
+                    }
                 }
 
                 foreach (var photo in list)

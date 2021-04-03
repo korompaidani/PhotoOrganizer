@@ -66,14 +66,24 @@ namespace PhotoOrganizer.UI.Services
             var fullPath = Path.GetFullPath(filePath);
 
             Dictionary<MetaProperty, string> result = new Dictionary<MetaProperty, string>();
+            var context = Bootstrapper.Container.Resolve<ApplicationContext>();
 
             try
             {
                 result = _exifToFileWriter.ReadMeta(fullPath);
+                if (_exifToFileWriter.ErrorMessages.Count > 0)
+                {
+                    foreach (var error in _exifToFileWriter.ErrorMessages)
+                    {
+                        var errorMessage = String.Format(TextResources.FileProperty_errorMessage, error);
+                        context.AddErrorMessage(ErrorTypes.MetaReadError, errorMessage);
+                    }
+
+                    _exifToFileWriter.ErrorMessages.Clear();
+                }
             }
             catch(Exception ex)
             {
-                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
                 string innerException = string.Empty;
                 if (ex.InnerException != null && ex.InnerException.Message != null)
                 {

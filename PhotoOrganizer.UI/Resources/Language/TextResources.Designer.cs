@@ -647,6 +647,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The metadata: {0} is in not supported format, but the file has been processed..
+        /// </summary>
+        public static string FileProperty_errorMessage {
+            get {
+                return ResourceManager.GetString("FileProperty_errorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finalize.
         /// </summary>
         public static string Finalize {

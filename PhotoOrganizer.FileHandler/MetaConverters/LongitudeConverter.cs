@@ -7,7 +7,7 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
         public LongitudeConverter()
         {
             MetaType = MetaProperty.Longitude;
-            DirMetaType = MetaProperty.LongitudeDir;
+            DirMetaType = HiddenMetaProperty.LongitudeDir;
             PositiveDirection = 'E';
             NegativeDirection = 'W';
             CoordinateIndex = 1;

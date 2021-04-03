@@ -7,7 +7,7 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
         public LatitudeConverter()
         {
             MetaType = MetaProperty.Latitude;
-            DirMetaType = MetaProperty.LatitudeDir;
+            DirMetaType = HiddenMetaProperty.LatitudeDir;
             PositiveDirection = 'N';
             NegativeDirection = 'S';
             CoordinateIndex = 0;
