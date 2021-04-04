@@ -1,5 +1,4 @@
 ﻿using PhotoOrganizer.Common;
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
@@ -14,25 +13,22 @@ namespace PhotoOrganizer.FileHandler.MetaConverters
         {
             if (meta.Id != (int)MetaType) { return null; }
 
-            return Encoding.UTF8.GetString(meta.Value);
+            return Encoding.GetEncoding("iso-8859-2").GetString(meta.Value);
         }
 
         public virtual void ConvertPropertyToMeta(ref Image image, string propertyValue)
         {
             var propertyItem = image.PropertyItems[0];
             int id = (int)MetaType;
-            int length = propertyValue.Length + 1;
-            byte[] propertyValueByteArray = new Byte[length];
+            byte[] propertyValueByteArray = Encoding.GetEncoding("iso-8859-2").GetBytes(propertyValue);
+            byte[] biggerPropertyValueByteArray = new byte[propertyValueByteArray.Length + 1];
+            propertyValueByteArray.CopyTo(biggerPropertyValueByteArray, 0);
+            int length = biggerPropertyValueByteArray.Length;
 
-            for (int i = 0; i < length - 1; i++)
-            {
-                propertyValueByteArray[i] = (byte)propertyValue[i];
-            }
-
-            propertyValueByteArray[length - 1] = 0x00;
+            biggerPropertyValueByteArray[length - 1] = 0x00;
             propertyItem.Id = id;
             propertyItem.Type = 2;
-            propertyItem.Value = propertyValueByteArray;
+            propertyItem.Value = biggerPropertyValueByteArray;
             propertyItem.Len = length;
             image.SetPropertyItem(propertyItem);
         }

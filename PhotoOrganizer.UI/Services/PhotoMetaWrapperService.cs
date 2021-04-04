@@ -330,7 +330,7 @@ namespace PhotoOrganizer.UI.Services
             var descriptionBuilder = new StringBuilder(description.Substring(0, end));
             descriptionBuilder.Remove(0, start);
 
-            var splitTarget = Regex.Replace(descriptionBuilder.ToString(), @"[^0-9a-zA-Z:@]+", "");
+            var splitTarget = Regex.Replace(descriptionBuilder.ToString(), @"[^0-9a-zA-Z:@öüóőúéáűíÖÜÓŐÚÉÁŰÍ]+", "");
             var names = splitTarget.Split('@');
 
             if(names != null && names.Length > 0)
