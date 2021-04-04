@@ -526,7 +526,7 @@
     <value>Csak a véglegesített csempék kijelölése</value>
   </data>
   <data name="SelectPhotoLocation_message" xml:space="preserve">
-    <value>Válassz egy helyszínt a fotónak:</value>
+    <value>Válassz egy fotókat tartalmazó mappát (almappák is feldolgozásra kerülnek):</value>
   </data>
   <data name="SelectPhoto_message" xml:space="preserve">
     <value>Kérlek válassz egy fényképet</value>

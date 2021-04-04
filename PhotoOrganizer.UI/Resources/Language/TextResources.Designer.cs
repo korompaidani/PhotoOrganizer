@@ -1295,7 +1295,7 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a &apos;photo&apos; location:.
+        ///   Looks up a localized string similar to Please select a &apos;photo&apos; location (subfolders will be processed also):.
         /// </summary>
         public static string SelectPhotoLocation_message {
             get {
