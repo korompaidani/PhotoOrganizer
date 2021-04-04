@@ -21,6 +21,7 @@ namespace PhotoOrganizer.UI.Services
         private IMessageDialogService _messageDialogService;
         private IBackupService _backupService;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
+        private Dictionary<string, People> _peopleTempCache;
 
         public IPhotoRepository PhotoRepository
         {
@@ -68,6 +69,7 @@ namespace PhotoOrganizer.UI.Services
             _messageDialogService = messageDialogService;
             _backupService = backupService;
             _photoMetaWrapperService = photoMetaWrapperService;
+            _peopleTempCache = new Dictionary<string, People>();
         }
 
         public async Task<int> LoadSinglePhotoFromLibraryAsync()
@@ -75,12 +77,14 @@ namespace PhotoOrganizer.UI.Services
             var filePath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.SelectPhoto_message, isFileDialog: true);
 
             var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(filePath);
+            await AddPeoplesToPhotoAsync(photo);            
+            CleanupCaches(_photoMetaWrapperService.PeopleNames);
 
             var createdPhoto = CreateNewPhoto(photo);
             await PhotoRepository.SaveAsync();
             PhotoRepository.DisposeConnection();
             return createdPhoto.Id;
-        }
+        }       
 
         public async Task LoadAllFromLibraryAsync()
         {
@@ -165,7 +169,7 @@ namespace PhotoOrganizer.UI.Services
                 return;
             }
 
-            var result = await Task<bool>.Run(() => ConvertFileNamesToPhotos(folderPath));
+            var result = await ConvertFileNamesToPhotosAsync(folderPath);
             if (result)
             {
                 await PhotoRepository.SaveAsync();
@@ -173,29 +177,28 @@ namespace PhotoOrganizer.UI.Services
             }
         }
 
-        private bool ConvertFileNamesToPhotos(string folderPath)
+        private async Task<bool> ConvertFileNamesToPhotosAsync(string folderPath)
         {
             try
             {
                 _directoryReader.ReadDirectory(folderPath);
 
-                var list = new List<Photo>();
                 foreach (var file in _directoryReader.FileList)
                 {
                     try
                     {
-                        var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key);
-                        list.Add(photo);
+                        var photo = await Task<Photo>.Run(() => _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key));
+                        CreateNewPhoto(photo);
+                        await AddPeoplesToPhotoAsync(photo);
+                        _photoMetaWrapperService.PeopleNames.Clear();
                     }
                     catch
                     {
                     }
                 }
 
-                foreach (var photo in list)
-                {
-                    CreateNewPhoto(photo);
-                }
+                _directoryReader.FileList.Clear();
+                CleanupCaches(_photoMetaWrapperService.PeopleNames);
 
                 return true;
             }
@@ -221,6 +224,41 @@ namespace PhotoOrganizer.UI.Services
 
             PhotoRepository.Add(photo);
             return photo;
+        }
+
+        private async Task AddPeoplesToPhotoAsync(Photo photo)
+        {
+            var peopleNames = _photoMetaWrapperService.PeopleNames;
+            if (peopleNames != null && peopleNames.Count != 0)
+            {
+                foreach (var peopleName in peopleNames)
+                {
+                    var result = await PhotoRepository.TryGetAnyPeopleByDisplayName(peopleName);
+                    if (result == null)
+                    {
+                        People newPeople = null;
+
+                        if (_peopleTempCache.TryGetValue(peopleName, out newPeople))
+                        {
+                            result = newPeople;
+                        }
+                        else
+                        {
+                            newPeople = new People { DisplayName = peopleName };
+                            _peopleTempCache.Add(peopleName, newPeople);
+                            result = newPeople;
+                        }
+                    }
+
+                    photo.Peoples.Add(result);
+                }
+            }
+        }
+
+        private void CleanupCaches(HashSet<string> peopleGuestCache)
+        {
+            _peopleTempCache.Clear();
+            peopleGuestCache.Clear();
         }
     }
 }

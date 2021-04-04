@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
@@ -22,6 +23,9 @@ namespace PhotoOrganizer.UI.Services
         private IExifReaderWriter _exifToFileWriter;
         private IMessageDialogService _messageDialogService;
         private ApplicationContext _context;
+        private HashSet<string> _peopleNames;
+
+        public HashSet<string> PeopleNames => _peopleNames;
 
         public PhotoMetaWrapperService(IPhotoRepository photoRepository, 
             IIndex<string, IExifReaderWriter> exifToFileWriter, 
@@ -31,6 +35,7 @@ namespace PhotoOrganizer.UI.Services
             _exifToFileWriter = exifToFileWriter[nameof(MyExifReaderWriter)];
             _messageDialogService = messageDialogService;
             _context = Bootstrapper.Container.Resolve<ApplicationContext>();
+            _peopleNames = new HashSet<string>();
         }
 
         public bool WriteMetaInfoToSingleFile(Photo photoModel, string targetFile)
@@ -100,6 +105,9 @@ namespace PhotoOrganizer.UI.Services
                 title = Path.GetFileNameWithoutExtension(filePath);
             }
 
+            var description = CreatePhotoComformDescription(result);
+            CreatePeoplesFromDescription(description);
+
             return new Photo
             {
                 FullPath = fullPath,
@@ -109,9 +117,8 @@ namespace PhotoOrganizer.UI.Services
                 Month = date.Month,
                 Day = date.Day,
                 HHMMSS = time,
-                Description = CreatePhotoComformDescription(result),
-                Creator = CreatePhotoComformCreator(result),
-                Comment = CreatePhotoComformPeoples(result)
+                Description = description,
+                Creator = CreatePhotoComformCreator(result)
             };
         }
 
@@ -228,7 +235,7 @@ namespace PhotoOrganizer.UI.Services
 
             if (photoModel.Peoples != null && photoModel.Peoples.Count > 0)
             {
-                var sb = new StringBuilder();
+                var sb = new StringBuilder("@");
                 int counter = 0;
                 foreach (var people in photoModel.Peoples)
                 {
@@ -271,6 +278,11 @@ namespace PhotoOrganizer.UI.Services
         // Script component instead of this method
         private string PutPeoplesToDescription(string description, string peoplesSequence)
         {
+            if (string.IsNullOrEmpty(description))
+            {
+                description = string.Empty;
+            }
+
             string startTag = "<#";
             string endTag = "#>";
 
@@ -293,6 +305,44 @@ namespace PhotoOrganizer.UI.Services
             }
             
             return descriptionBuilder.ToString();
+        }
+
+        private void CreatePeoplesFromDescription(string description)
+        {           
+            if (string.IsNullOrEmpty(description))
+            {
+                return;
+            }
+
+            description = description.Replace("\0", "");
+
+            string startTag = "<#";
+            string endTag = "#>";
+
+            var start = description.IndexOf(startTag);
+            var end = description.LastIndexOf(endTag);            
+
+            if (start == -1)
+            {
+                return;
+            }
+
+            var descriptionBuilder = new StringBuilder(description.Substring(0, end));
+            descriptionBuilder.Remove(0, start);
+
+            var splitTarget = Regex.Replace(descriptionBuilder.ToString(), @"[^0-9a-zA-Z:@]+", "");
+            var names = splitTarget.Split('@');
+
+            if(names != null && names.Length > 0)
+            {
+                foreach(var name in names)
+                {
+                    if (!string.IsNullOrEmpty(name) && name != " ")
+                    {
+                        _peopleNames.Add(name.Trim());
+                    }
+                }
+            }
         }
     }
 }
