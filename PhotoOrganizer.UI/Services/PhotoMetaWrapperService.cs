@@ -275,7 +275,7 @@ namespace PhotoOrganizer.UI.Services
             return properties;
         }
 
-        // Script component instead of this method
+        // Script component instead of two this methods
         private string PutPeoplesToDescription(string description, string peoplesSequence)
         {
             if (string.IsNullOrEmpty(description))

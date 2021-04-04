@@ -246,6 +246,37 @@
   <data name="Delete" xml:space="preserve">
     <value>Törlés</value>
   </data>
+  <data name="DescriptionScriptLongDescription" xml:space="preserve">
+    <value>Könnyedén hozzáadhatsz embereket, ha jobban szeretsz szkriptet írni, mint kattintgatni. Ehhez csak használnod kell a nyitó '&lt;#' és záró jelölőket '#&gt;'. E kettő között lévő szöveg máris különös figyelemnek örvend majd.
+
+Sorolj fel embereket: Csak akkor lesz hatása, ha leírás mező fölötti emberek szekcióban nem szerepelnek hozzáadott személyek. Ez szándékosan van így, mert a felületen végrehajtott műveletek elsőbbséget élveznek.
+Ha a megadott személyek nem léteztek a szkript megírása előtt, akkor automatikusan legenerálódnak és hozzáadódnak az adatbázishoz. Beazonosításuk a nevük alapján történik, így a véletlenül vagy szándékosan máshogyan írt nevek új entitásként fognak létrejönni.
+
+Konvenciók a szkripthez:
+- a személyeket mindenképpen nyitó és záró címkék között kell felsorolni: &lt;#(...itt van a személyek helye...)#&gt;
+- a személyek mindig '@' jellel kezdődjenek: @Dani
+- '@' karakter nélkül a tartalom összemosódik és egy elemként fog legenerálódni
+- egyszavas szavak preferáltak, ugyanis a szóközök el fognak tűnni a feldolgozás során
+- különleges karakterek figyelmen kívül lesznek hagyva '@' kivételével. Ezek is eltűnnek a feldolgozás során
+- mindig az első nyitó jel és az utolsó záró jel lesz figyelembe véve. Mindig a közöttük lévő érték lesz feldolgozva.
+
+Példák a használatra:
+bemenet: &lt;#@Dani @Jessica @Mike#&gt; hatása: Dani, Jessica és Mike személyek hozzá lesznek adva az őket tartalmazó fotó(k)hoz akár léteztek korábban, akár nem. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#@Dani@Jessica@Mike#&gt; hatása: Dani, Jessica és Mike személyek hozzá lesznek adva az őket tartalmazó fotó(k)hoz akár léteztek korábban, akár nem. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#@Dani,@Jessica     @Mike; @Dave  #&gt; hatása: Hasonlóan a korábbiakhoz, az itt szereplő négy név hozzá lesz adva a fotókhoz. Az egyéb szükségtelen karakterek törlődnek. Itt pl.: szóköz, veszző, pontosvessző. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#Dani, Jessica @Mike#&gt;hatása: DaniJessica és Mike fog hozzáadódni a fényképhez. Gondolom nem éppen ez volt az eredeti szándék, de a konvenciónak megfelelően a '@' jellel elválasztott karakterek azonosíthatóak külön entitásként. DaniJessica pedig összeolvadt, mert a szóköz a speciális karakterekkel együtt törölve lett. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt; @Dani @Jessica#&gt; hatása: a feltételezhető elírás miatt egyik személy sem fog legenerálódni. A leírás mező továbbra is tárolni fogja ezeket az értékeket.</value>
+  </data>
+  <data name="DescriptionScriptShortDescription" xml:space="preserve">
+    <value>A leírás mezőt használhatod okos dolgok véghezviteléhez. Jelenleg az alábbi unkció(k) érhetők el:</value>
+  </data>
+  <data name="DescriptionScriptTitle" xml:space="preserve">
+    <value>Szkriptek a leírás mezőben&lt;béta&gt;</value>
+  </data>
   <data name="Description_colon" xml:space="preserve">
     <value>Leírás:</value>
   </data>
@@ -272,6 +303,9 @@
   </data>
   <data name="DoYouWantBackup_message" xml:space="preserve">
     <value>Szeretnél készíteni egy 'biztonsági mentést' mielőtt törölsz mindent?</value>
+  </data>
+  <data name="EasterEggs" xml:space="preserve">
+    <value>Meglepetés funkciók</value>
   </data>
   <data name="Edit_menu" xml:space="preserve">
     <value>Szerkesztés</value>
@@ -305,6 +339,9 @@
   </data>
   <data name="ExtendOrOverwrite_message" xml:space="preserve">
     <value>Az adatbázisban szerepelnek bejegyzések. A meglévőt szeretnéd 'Bővíteni' vagy inkább 'Felülírod' az egészet?</value>
+  </data>
+  <data name="ExtraFeature" xml:space="preserve">
+    <value>Extrák</value>
   </data>
   <data name="FileHasBeenModifiedFailed_message" xml:space="preserve">
     <value>A fájl nem módosítható</value>

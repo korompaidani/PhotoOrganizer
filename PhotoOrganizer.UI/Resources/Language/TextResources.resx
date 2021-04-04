@@ -247,6 +247,41 @@ If something unusual happens in the app please restart it!</value>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DescriptionScriptLongDescription" xml:space="preserve">
+    <value>You can add peoples easily, if you prefer typing instead of clicking. Just use the start '&lt;#' and end tags '#&gt;'. The text between two tags enjoys special attention. 
+
+You can enlist peoples: It takes effect only if there is no people assignment above in the people section of the photo tab. If you have at least one people there it will overwrite the description field by design because the UI functionality is propagated, in other words it has priority.
+If the given people doesn't exist it will be automatically created in the database, if it is exist with the same name it will be recognized.
+
+There are the following conventions:
+- peoples must be enlisted between tags: &lt;#(...people's place is here...)#&gt;
+- peoples must be named starting width '@': @Dani
+- without '@' the content will be counted as one entity
+- only one words names are accepted, whitespaces are cleaned
+- special characters are ignored, text is cleaned during the process
+- always the first start tag and the last end tag will be observed
+
+Example for usage:
+input: &lt;#@Dani @Jessica @Mike#&gt; result in db: Dani, Jessica and Mike will be added to the photo. Description field will store the names also.
+
+input: &lt;#@Dani@Jessica@Mike#&gt; result in db: Dani, Jessica and Mike will be added to the photo.
+Description field will store the names also.
+
+input: &lt;#@Dani,@Jessica     @Mike; @Dave  #&gt; result in db: Dani, Jessica, Mike and Dave will be added to the photo.
+Description field will store the names also.
+
+input: &lt;#Dani, Jessica @Mike#&gt; result in db: 'DaniJessica' and Mike (this two entities) will be added to the 
+phot. I think this wasn't the purpose.
+Description field will store the names also.
+
+input: &lt; @Dani @Jessica#&gt; result in db: there is a typo so names won't be added to the photo.</value>
+  </data>
+  <data name="DescriptionScriptShortDescription" xml:space="preserve">
+    <value>You can use the description texbox for smart things. The following functionalities are available:</value>
+  </data>
+  <data name="DescriptionScriptTitle" xml:space="preserve">
+    <value>Scripting in Description&lt;beta&gt;</value>
+  </data>
   <data name="Description_colon" xml:space="preserve">
     <value>Description:</value>
   </data>
@@ -273,6 +308,9 @@ If something unusual happens in the app please restart it!</value>
   </data>
   <data name="DoYouWantBackup_message" xml:space="preserve">
     <value>Would you like to 'backup' database first before erase all photo data?</value>
+  </data>
+  <data name="EasterEggs" xml:space="preserve">
+    <value>Easter Eggs</value>
   </data>
   <data name="Edit_menu" xml:space="preserve">
     <value>Edit</value>
@@ -306,6 +344,9 @@ If something unusual happens in the app please restart it!</value>
   </data>
   <data name="ExtendOrOverwrite_message" xml:space="preserve">
     <value>The database has entry(s). Would you like to 'Extend' existing data or 'Overwrite' them?</value>
+  </data>
+  <data name="ExtraFeature" xml:space="preserve">
+    <value>Extra feature</value>
   </data>
   <data name="FileHasBeenModifiedFailed_message" xml:space="preserve">
     <value>File cannot be modified</value>

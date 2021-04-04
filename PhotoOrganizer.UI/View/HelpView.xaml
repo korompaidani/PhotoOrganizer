@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
-            <TextBlock Text="{x:Static resources:TextResources.HowToUseTitle}" Margin="25 25 0 25" FontSize="25"/>
+            <TextBlock Text="{x:Static resources:TextResources.HowToUseTitle}" Margin="25 15 0 15" FontSize="25" FontWeight="Bold"/>
             <TextBlock Text="{x:Static resources:TextResources.ButtonsTitle}" Margin="25 0 0 5" FontSize="20"/>
-            <Border BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" BorderThickness="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="600">
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" BorderThickness="1" Margin="25 0 25 0">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="500" >
         <Grid HorizontalAlignment="Center" Margin="0 15 0 15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
@@ -148,7 +148,29 @@
                         <TextBlock Grid.Column="2" Grid.Row="24" Text="{x:Static resources:TextResources.SelectFinalized_tooltip}" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="5 0 5 0" FontSize="14" VerticalAlignment="Center" TextWrapping="Wrap"/>
                     </Grid>
         </ScrollViewer>
+            
             </Border>
+            <TextBlock Text="{x:Static resources:TextResources.ExtraFeature}" Margin="25 15 0 5" FontSize="20"/>
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.Gray7}" BorderThickness="1" Margin="25 0 25 0">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" Height="300">
+                    <Grid HorizontalAlignment="Center" Margin="0 15 0 15" VerticalAlignment="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="360"/>
+                            <ColumnDefinition Width="900"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="40"/>
+                            <RowDefinition MinHeight="40"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{x:Static resources:TextResources.DescriptionScriptTitle}" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="5 0 5 0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Static resources:TextResources.DescriptionScriptLongDescription}" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="5 0 5 0" FontSize="14" VerticalAlignment="Center" TextWrapping="Wrap" FontStyle="Italic"/>
+                    </Grid>
+                    
+                </ScrollViewer>
+                
+            </Border>
+            <Grid Height="200"/>
         </StackPanel>
         <Button Content="X" FontSize="50" Background="Transparent" Foreground="White" Margin="0 0 20 0"
                 Command="{Binding OpenWorkbenchCommand}">

@@ -458,6 +458,36 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can add peoples easily, if you prefer typing instead of clicking. Just use the start &apos;&lt;#&apos; and end tags &apos;#&gt;&apos;. The text between two tags enjoys special attention. 
+        ///
+        ///You can enlist peoples: It takes effect only if there is no people assignment above in the people section of the photo tab. If you have at least one people there it will overwrite the description field by design because the UI functionality is propagated, in other words it has priority.
+        ///If the given people doesn&apos;t exist it will be automatic [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DescriptionScriptLongDescription {
+            get {
+                return ResourceManager.GetString("DescriptionScriptLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use the description texbox for smart things. The following functionalities are available:.
+        /// </summary>
+        public static string DescriptionScriptShortDescription {
+            get {
+                return ResourceManager.GetString("DescriptionScriptShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scripting in Description&lt;beta&gt;.
+        /// </summary>
+        public static string DescriptionScriptTitle {
+            get {
+                return ResourceManager.GetString("DescriptionScriptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deselect all.
         /// </summary>
         public static string DeselectAll {
@@ -526,6 +556,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string DoYouWantBackup_message {
             get {
                 return ResourceManager.GetString("DoYouWantBackup_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easter Eggs.
+        /// </summary>
+        public static string EasterEggs {
+            get {
+                return ResourceManager.GetString("EasterEggs", resourceCulture);
             }
         }
         
@@ -625,6 +664,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         public static string ExtendOrOverwrite_message {
             get {
                 return ResourceManager.GetString("ExtendOrOverwrite_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra feature.
+        /// </summary>
+        public static string ExtraFeature {
+            get {
+                return ResourceManager.GetString("ExtraFeature", resourceCulture);
             }
         }
         
