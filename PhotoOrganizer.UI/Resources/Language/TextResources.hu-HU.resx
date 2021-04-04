@@ -240,6 +240,9 @@
   <data name="DefaultError_message" xml:space="preserve">
     <value>{0} típusú hiba történt a feldolgozás során. A program bezárása után a hiba leírását tartalmazó fájl itt lesz megtalálható: {1} Ha ezek után bármi az alkalmazás nem a tőle várt módon viselkedne, kérlek indítsd újra a programot!</value>
   </data>
+  <data name="DefaultWarning_warningMessage" xml:space="preserve">
+    <value>Az alábbi az észrevételem: {0}</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Törlés</value>
   </data>

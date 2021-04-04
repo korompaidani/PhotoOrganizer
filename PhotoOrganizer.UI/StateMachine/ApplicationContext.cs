@@ -31,6 +31,7 @@ namespace PhotoOrganizer.UI.StateMachine
         private List<IDetailViewModel> _openedAlbumDetailViewModels;
         private List<IDetailViewModel> _openedLocationDetailViewModels;
         private List<KeyValuePair<ErrorTypes, string>> _errorMessages;
+        private List<KeyValuePair<WarningTypes, string>> _warningMessages;
 
         public ApplicationContext(
             IMessageDialogService messageDialogService,
@@ -51,6 +52,7 @@ namespace PhotoOrganizer.UI.StateMachine
             _openedAlbumDetailViewModels = new List<IDetailViewModel>();
             _openedLocationDetailViewModels = new List<IDetailViewModel>();
             _errorMessages = new List<KeyValuePair<ErrorTypes, string>>();
+            _warningMessages = new List<KeyValuePair<WarningTypes, string>>();
 
             _eventAggregator.GetEvent<WriteAllMetadataEvent>()
                 .Subscribe(WriteAllMetadata);
@@ -94,11 +96,17 @@ namespace PhotoOrganizer.UI.StateMachine
             }
         }
 
-
         public void AddErrorMessage(ErrorTypes errorType, string errorMessage)
         {            
             _errorMessages.Add(new KeyValuePair<ErrorTypes, string>(errorType, errorMessage));
             var message = string.Format(TextResources.DefaultError_message, errorType, Path.GetFullPath(FilePaths.ErrorLogPath));
+            _messageDialogService.ShowInfoDialogAsync(message);
+        }
+
+        public void AddWarningMessage(WarningTypes warningType, string warningMessage)
+        {
+            _warningMessages.Add(new KeyValuePair<WarningTypes, string>(warningType, warningMessage));
+            var message = string.Format(TextResources.DefaultWarning_warningMessage, warningType);
             _messageDialogService.ShowInfoDialogAsync(message);
         }
 

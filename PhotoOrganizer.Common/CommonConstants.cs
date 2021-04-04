@@ -31,6 +31,11 @@ namespace PhotoOrganizer.Common
         DataBaseError
     }
 
+    public enum WarningTypes
+    {
+        DescriptionScriptWarning
+    }
+
     public enum MetaProperty
     {
         Author = 40093,

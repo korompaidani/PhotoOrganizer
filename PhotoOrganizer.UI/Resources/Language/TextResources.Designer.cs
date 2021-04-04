@@ -431,6 +431,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following warning happened: {0}.
+        /// </summary>
+        public static string DefaultWarning_warningMessage {
+            get {
+                return ResourceManager.GetString("DefaultWarning_warningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

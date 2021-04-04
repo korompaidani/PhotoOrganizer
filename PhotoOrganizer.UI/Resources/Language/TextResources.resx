@@ -241,6 +241,9 @@
     <value>{0} error happened during the process. After closing the application an error log will be generated here: {1}
 If something unusual happens in the app please restart it!</value>
   </data>
+  <data name="DefaultWarning_warningMessage" xml:space="preserve">
+    <value>The following warning happened: {0}</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
