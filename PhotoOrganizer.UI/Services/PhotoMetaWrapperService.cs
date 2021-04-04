@@ -322,7 +322,7 @@ namespace PhotoOrganizer.UI.Services
             var start = description.IndexOf(startTag);
             var end = description.LastIndexOf(endTag);            
 
-            if (start == -1)
+            if (start == -1 || end == -1)
             {
                 return;
             }
