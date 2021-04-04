@@ -1,4 +1,3 @@
-- exiflib
 - langmap
 - dispose pattern for backup manager
 
@@ -7,9 +6,8 @@ BUGS:
 should be nulled
 - At create backup not the last saved items is written to file but (maybe repo must be closed when photodetail closed)
 - Navi load happens twice (1st due to apply settings 2nd due to MainWindow_onLoad)
-- shelveset problem in relation of bulkset
 - location has been disposed (delete db, open map --> crash)
-- unicode description
+- second allmeta green mark is missing
 - delete existing names
 		 =========================================================================================
 		***************************** UnKnownError *****************************
@@ -22,7 +20,7 @@ should be nulled
 		Store update, insert, or delete statement affected an unexpected number of rows (0). Entities may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=472540 for information on understanding and handling optimistic concurrency exceptions.
 		#########################################################################################
 
-- second allmeta green mark is missing
+
 
 private Shelve GetShelve()
 {

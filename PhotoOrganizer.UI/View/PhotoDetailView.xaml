@@ -17,8 +17,8 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="65"/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="565"/>
+                <ColumnDefinition Width="520"/>
+                <ColumnDefinition Width="575"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -38,7 +38,7 @@
                     </Border>
                     <Border BorderThickness="1" BorderBrush="#2c2c2c">
                         <Grid>
-                                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown" >
+                                <Image DockPanel.Dock="Left" Source="{Binding Photo.FullPath, Converter={StaticResource imageConverter}}" Margin="0" MouseDown="OnMouseDown" MaxHeight="390">
                                     <Image.Style>
                                         <Style>
                                             <Style.Triggers>
@@ -58,7 +58,7 @@
             </Grid>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="65"/>
+                    <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="470"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
