@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhotoOrganizer.UI.View" 
-             xmlns:model="clr-namespace:PhotoOrganizer.Model;assembly=PhotoOrganizer.Model" 
+             xmlns:model="clr-namespace:PhotoOrganizer.Model;assembly=PhotoVersor.Model" 
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
              mc:Ignorable="d" 
