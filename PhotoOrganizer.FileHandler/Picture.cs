@@ -30,10 +30,28 @@ namespace PhotoOrganizer.FileHandler
             Source = path;
             Uri = new Uri(path);
             Thumbnail = BitmapFrame.Create(Uri).Thumbnail;
+            if (Thumbnail == null)
+            {
+                Thumbnail = CreateThumbnail(path);
+            }
         }
 
         public string Source { get; }
         public Uri Uri { get; set; }
         public BitmapSource Thumbnail { get; set; }
+
+        private BitmapSource CreateThumbnail(string path)
+        {
+            using (var stream = File.OpenRead(path))
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = stream;
+                image.DecodePixelWidth = 120;
+                image.EndInit();
+                return image;
+            }
+        }
     }
 }

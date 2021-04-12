@@ -19,6 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PhotoVersorSetup", "PhotoVersorSetup\PhotoVersorSetup.vdproj", "{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProgramData", "ProgramData", "{B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}"
+	ProjectSection(SolutionItems) = preProject
+		ProgramData\appSettings.json = ProgramData\appSettings.json
+		ProgramData\PhotoVersor.mdf = ProgramData\PhotoVersor.mdf
+		ProgramData\PhotoVersor_log.ldf = ProgramData\PhotoVersor_log.ldf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErrorLogs", "ErrorLogs", "{1CA3C7D7-51E0-4179-A91C-4BC8F59F02CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup", "Backup", "{8E9788E0-39E3-4DA7-90C0-002BDC91FD03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +124,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690} = {D0BF328D-2622-4619-ADDE-AD54D769F06F}
+		{1CA3C7D7-51E0-4179-A91C-4BC8F59F02CA} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
+		{8E9788E0-39E3-4DA7-90C0-002BDC91FD03} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6198210-7E2A-4233-A671-FF79FFF2DC69}

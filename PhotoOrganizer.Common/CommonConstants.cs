@@ -38,7 +38,7 @@ namespace PhotoOrganizer.Common
 
     public enum MetaProperty
     {
-        Author = 40093,
+        //Author = 40093,
         Title = 270,
         Comments = 40092,
         Keywords = 40094,

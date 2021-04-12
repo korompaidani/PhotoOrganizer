@@ -1,0 +1,5 @@
+=========================================================================================
+***************************** UnKnownError *****************************
+=========================================================================================
+Egy nem várt hiba történt az alábbi üzenettel: Could not find a part of the path 'C:\Users\korom\Downloads\Photos_export_20210411\DIA FILMS\from 401 to 500 folk dance trips and Niki%EF%80%A8\from 401 to 500 folk dance trips and Niki  - 1 of 88.jpeg'.
+#########################################################################################

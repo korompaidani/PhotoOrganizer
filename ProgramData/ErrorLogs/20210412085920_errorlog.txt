@@ -1,0 +1,625 @@
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_062749_Canon_EOS_450D_IMG_2605.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_063254_iPhone_XR_IMG_2104.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_064353_Canon_EOS_450D_IMG_2616.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_064631_Canon_EOS_450D_IMG_2624.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_064911_Canon_EOS_450D_IMG_2626.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_065044_Canon_EOS_450D_IMG_2630.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_065054_Canon_EOS_450D_IMG_2631.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_065319_Canon_EOS_450D_IMG_2638.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Grand Canyon\SAN_20190318_065351_Canon_EOS_450D_IMG_2642.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_065217_Canon_EOS_450D_IMG_2353.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_081513_Canon_EOS_450D_IMG_2390.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_083152_Canon_EOS_450D_IMG_2417.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_084651_Canon_EOS_450D_IMG_2446.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_085246_Canon_EOS_450D_IMG_2459.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_091308_Canon_EOS_450D_IMG_2476.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_104233_iPhone_XR_IMG_1842.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_105040_Canon_EOS_450D_IMG_2526.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_110242_Canon_EOS_450D_IMG_2542.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190317_112936_Canon_EOS_450D_IMG_2552.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190318_170214_Canon_EOS_450D_IMG_2667.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190318_171037_Canon_EOS_450D_IMG_2682.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190318_171612_Canon_EOS_450D_IMG_2688.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190318_171726_Canon_EOS_450D_IMG_2690.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Las Vegas\SAN_20190318_172713_Canon_EOS_450D_IMG_2698.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190313_161538_iPhone_XR_IMG_0694.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190313_164848_Canon_EOS_450D_IMG_1529.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190313_181950_iPhone_XR_IMG_0734-1.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_064922_Canon_EOS_450D_IMG_1536.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_065555_Canon_EOS_450D_IMG_1543.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_071020_Canon_EOS_450D_IMG_1584.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_071043_Canon_EOS_450D_IMG_1587.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_072021_Canon_EOS_450D_IMG_1596.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_072259_Canon_EOS_450D_IMG_1599.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_072502_Canon_EOS_450D_IMG_1610.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_072805_Canon_EOS_450D_IMG_1612.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_074441_Canon_EOS_450D_IMG_1625.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_074700_Canon_EOS_450D_IMG_1628.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_080308_Canon_EOS_450D_IMG_1645.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_084425_Canon_EOS_450D_IMG_1659.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_084629_Canon_EOS_450D_IMG_1668.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_084714_Canon_EOS_450D_IMG_1669.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_085317_Canon_EOS_450D_IMG_1676.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_090537_Canon_EOS_450D_IMG_1696_stitch.jpg(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_090614_Canon_EOS_450D_IMG_1703.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_091418_Canon_EOS_450D_IMG_1705.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_095722_Canon_EOS_450D_IMG_1711.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_111438_iPhone_XR_IMG_1017.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_120044_Canon_EOS_450D_IMG_1850.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_141545_Canon_EOS_450D_IMG_1864.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_145034_Canon_EOS_450D_IMG_1904.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_154610_iPhone XR_IMG_1106.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_160246_Canon_EOS_450D_IMG_1955.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190314_175326_Canon_EOS_450D_IMG_1981.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_064223_iPhone_XR_IMG_1149.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_072346_Canon_EOS_450D_IMG_1995.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_074344_Canon_EOS_450D_IMG_2024.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_074457_Canon_EOS_450D_IMG_2029.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_081632_iPhone_XR_IMG_1173.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_083122_Canon_EOS_450D_IMG_2069.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_093947_Canon_EOS_450D_IMG_2087.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_095017_Canon_EOS_450D_IMG_2112.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_100244_Canon_EOS_450D_IMG_2123.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_100438_Canon_EOS_450D_IMG_2134.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_101234_Canon_EOS_450D_IMG_2141.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_110649_Canon_EOS_450D_IMG_2146.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_121052_Canon_EOS_450D_IMG_2153.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_123345_iPhone_XR_IMG_1274.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_124043_iPhone_XR_IMG_1286.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_150330_Canon_EOS_450D_IMG_2171.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_151124_Canon_EOS_450D_IMG_2188.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_151609_Canon_EOS_450D_IMG_2206.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_152556_iPhone_XR_IMG_1372.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_152757_Canon_EOS_450D_IMG_2209.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_154617_Canon_EOS_450D_IMG_2227.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_162839_Canon_EOS_450D_IMG_2239.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_163607_Canon_EOS_450D_IMG_2250.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_163943_Canon_EOS_450D_IMG_2263.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_164512_Canon_EOS_450D_IMG_2270.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_174806_Canon_EOS_450D_IMG_2280.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_174840_Canon_EOS_450D_IMG_2281.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_174858_Canon_EOS_450D_IMG_2283.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_185554_iPhone_XR_IMG_1499.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_190655_Canon_EOS_450D_IMG_2286.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_191451_Canon_EOS_450D_IMG_2289.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_191817_iPhone_XR_IMG_1533.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190315_192148_iPhone_XR_IMG_1537.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190316_091514_Canon_EOS_450D_IMG_2293.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190316_103130_Canon_EOS_450D_IMG_2304.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\Los Angeles\SAN_20190316_112923_Canon_EOS_450D_IMG_2344.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_145448_iPhone_XR_IMG_1920.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_165604_Canon_EOS_450D_IMG_2579.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_172724_iPhone_XR_IMG_1982.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_174031_iPhone_XR_IMG_1987.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_174111_iPhone_XR_IMG_1990.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_174136_Canon_EOS_450D_IMG_2587.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_174731_Canon_EOS_450D_IMG_2592.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_175026_iPhone_XR_IMG_2011.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_183636_iPhone_XR_IMG_2041.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\On the Road 66\SAN_20190317_184544_iPhone_XR_IMG_2057.JPEG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190310_192844_Canon_EOS_450D_IMG_0339.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190310_193302_Canon_EOS_450D_IMG_0346.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190310_195743_Canon_EOS_450D_IMG_0367.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_074215_Canon_EOS_450D_IMG_0404.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_083327_Canon_EOS_450D_IMG_0436.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_090847_Canon_EOS_450D_IMG_0484.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_094557_Canon_EOS_450D_IMG_0524.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_094701_Canon_EOS_450D_IMG_0535.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_095520_Canon_EOS_450D_IMG_0562.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_095609_Canon_EOS_450D_IMG_0567.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_095653_Canon_EOS_450D_IMG_0574.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_100839_Canon_EOS_450D_IMG_0608.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_115425_Canon_EOS_450D_IMG_0722.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_145509_Canon_EOS_450D_IMG_0872.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190311_154341_Canon_EOS_450D_IMG_0950.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_094148_Canon_EOS_450D_IMG_1076.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_094906_Canon_EOS_450D_IMG_1082.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_095235_Canon_EOS_450D_IMG_1086.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_095328_Canon_EOS_450D_IMG_1089.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_112248_Canon_EOS_450D_IMG_1205.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_143141_Canon_EOS_450D_IMG_1358.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_174724_Canon_EOS_450D_IMG_1416.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190312_190324_Canon_EOS_450D_IMG_1490.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190319_094659_Canon_EOS_450D_IMG_2720.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190319_094806_Canon_EOS_450D_IMG_2724.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################
+=========================================================================================
+***************************** MetaReadError *****************************
+=========================================================================================
+Az alábbi metaadat: C:\Users\korom\Downloads\PhotoVersor First Release\Sample Photos\San Francisco\SAN_20190319_112215_Canon_EOS_450D_IMG_2761.JPG(BadImageFormatException) : Author nem támogatott formátumban van, de a fájl maga feldolgozásra került.
+#########################################################################################

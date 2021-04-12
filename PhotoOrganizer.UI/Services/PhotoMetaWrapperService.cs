@@ -118,7 +118,7 @@ namespace PhotoOrganizer.UI.Services
                 Day = date.Day,
                 HHMMSS = time,
                 Description = description,
-                Creator = CreatePhotoComformCreator(result)
+                //Creator = CreatePhotoComformCreator(result)
             };
         }
 
@@ -159,14 +159,14 @@ namespace PhotoOrganizer.UI.Services
             return description;
         }
 
-        private string CreatePhotoComformCreator(Dictionary<MetaProperty, string> rawData)
-        {
-            string creator = null;
+        //private string CreatePhotoComformCreator(Dictionary<MetaProperty, string> rawData)
+        //{
+        //    string creator = null;
 
-            rawData.TryGetValue(MetaProperty.Author, out creator);
+        //    rawData.TryGetValue(MetaProperty.Author, out creator);
 
-            return creator;
-        }
+        //    return creator;
+        //}
 
         private string CreatePhotoComformPeoples(Dictionary<MetaProperty, string> rawData)
         {
@@ -253,10 +253,10 @@ namespace PhotoOrganizer.UI.Services
                 properties[MetaProperty.Desciprion] = PutPeoplesToDescription(description, sb.ToString());
             }
 
-            if (photoModel.Creator != null)
-            {
-                properties.Add(MetaProperty.Author, photoModel.Creator);
-            }
+            //if (photoModel.Creator != null)
+            //{
+            //    properties.Add(MetaProperty.Author, photoModel.Creator);
+            //}
 
             if (photoModel.Year > 0)
             {
