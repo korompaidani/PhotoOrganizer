@@ -106,9 +106,8 @@
     <Compile Include="FileSystem.cs" />
     <Compile Include="IExifReaderWriter.cs" />
     <Compile Include="JsonFileHandler.cs" />
-    <Compile Include="Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThumbnailCreator.cs" />
+    <Compile Include="ThumbnailHandler.cs" />
     <Compile Include="XmlWriterComponent.cs" />
   </ItemGroup>
   <ItemGroup>

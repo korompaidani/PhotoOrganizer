@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace PhotoOrganizer.FileHandler
 {
-    public class ThumbnailCreator : IThumbnailCreator
+    public class ThumbnailHandler : IThumbnailCreator
     {
         private const string TargetRootFolder = FilePaths.ThumbnailsRootFolder;
         private const string FileExtension = ".png";
