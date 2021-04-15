@@ -344,3 +344,4 @@ healthchecksdb
 *.ldf
 ProgramData/PhotoVersor.mdf
 ProgramData/PhotoVersor_log.ldf
+/ProgramData/Thumbnails/

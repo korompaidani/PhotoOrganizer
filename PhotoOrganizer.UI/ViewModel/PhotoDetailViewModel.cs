@@ -35,7 +35,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private IBulkAttributeSetterService _bulkAttributeSetter;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
         private bool _isDetailViewInitialized = false;
-        private bool _evenJustFinalized = false;
+        private bool _evenJustFinalizedOrFromOtherReason = false;
         private bool _isAnySelectedNavigationItem = false;
         private bool _isPhotoOnShelve;
 
@@ -497,11 +497,11 @@ namespace PhotoOrganizer.UI.ViewModel
 
         private async Task Save(bool isClosing, bool isOptimistic)
         {
-            if (!_evenJustFinalized)
+            if (!_evenJustFinalizedOrFromOtherReason)
             {
                 SetModifiedFlag();                
             }
-            _evenJustFinalized = false;
+            _evenJustFinalizedOrFromOtherReason = false;
 
             if (isOptimistic)
             {
@@ -546,13 +546,13 @@ namespace PhotoOrganizer.UI.ViewModel
         private void SetFinalizedStateFlag()
         {
             Photo.ColorFlag = ColorSign.Finalized;
-            _evenJustFinalized = true;
+            _evenJustFinalizedOrFromOtherReason = true;
         }
 
         private void SetUnmodifiedStateFlag()
         {
             Photo.ColorFlag = ColorSign.Unmodified;
-            _evenJustFinalized = false;
+            _evenJustFinalizedOrFromOtherReason = false;
         }
 
         private async void OnFinalizeExecute()
@@ -619,6 +619,7 @@ namespace PhotoOrganizer.UI.ViewModel
                 }
             }
 
+            _evenJustFinalizedOrFromOtherReason = true;
             await SaveChanges(false, true);
 
             EventAggregator.GetEvent<BulkSetPhotoDetailAttributesEvent>().Publish(
