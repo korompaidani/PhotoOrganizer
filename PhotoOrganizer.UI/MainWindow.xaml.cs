@@ -29,9 +29,11 @@ namespace PhotoOrganizer.UI
             FadeOutSplashScreen();
 
             ChromiumBrowserEngine.Instance.Initialize();
+            var thumbnailService = Bootstrapper.Container.Resolve<IThumbnailService>();
 
+            await thumbnailService.ClearRemainedThumbnailsAsync();
+            await thumbnailService.LoadCacheAsync();            
             await LoadSettingsAsync();
-
             await _viewModel.LoadWorkbenchAsync();
             _viewModel.OpenWorkbenchCommand.Execute(null);
             splashScreen.Visibility = Visibility.Hidden;

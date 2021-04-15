@@ -85,7 +85,7 @@ namespace PhotoOrganizer.UI.Services
                     // TODO: Dispose will be called here
                     if(item != null)
                     {
-                        item.Picture = null;
+                        item.Thumbnail = null;
                     }
                 }
             }

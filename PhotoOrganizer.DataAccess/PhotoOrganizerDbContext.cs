@@ -5,7 +5,7 @@ namespace PhotoOrganizer.DataAccess
 {
     public class PhotoOrganizerDbContext : DbContext
     {
-        public PhotoOrganizerDbContext() : base("PhotoVersorDb")
+        public PhotoOrganizerDbContext() : base("PhotoVersor")
         {
         }
 

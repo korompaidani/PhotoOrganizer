@@ -89,6 +89,7 @@
     <Compile Include="DirectoryReader.cs" />
     <Compile Include="ErrorMessageWriter.cs" />
     <Compile Include="ExifLibraryReaderWriter.cs" />
+    <Compile Include="IThumbnailCreator.cs" />
     <Compile Include="MetaConverters\CommentsConverter.cs" />
     <Compile Include="MetaConverters\ConverterBase.cs" />
     <Compile Include="MetaConverters\ConverterFactory.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="JsonFileHandler.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThumbnailCreator.cs" />
     <Compile Include="XmlWriterComponent.cs" />
   </ItemGroup>
   <ItemGroup>

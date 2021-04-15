@@ -4,6 +4,7 @@
     {
         public const string TempFilePostfix = @"_temp";
         public const string ProgramData = @".\..\..\..\..\ProgramData\";
+        public const string ThumbnailsRootFolder = @".\..\..\..\..\ProgramData\Thumbnails";
         public const string DefaultBackupFolder = @".\..\..\..\..\ProgramData\Backup";
         public const string DbFullPath = @".\..\..\..\..\ProgramData\PhotoVersor.mdf";
         public const string AppSettingsFile = @".\..\..\..\..\ProgramData\appSettings.json";

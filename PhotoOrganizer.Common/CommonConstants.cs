@@ -28,7 +28,8 @@ namespace PhotoOrganizer.Common
         MetaReadError,
         SettingsError,
         UnKnownError,
-        DataBaseError
+        DataBaseError,
+        ThumbnailError
     }
 
     public enum WarningTypes

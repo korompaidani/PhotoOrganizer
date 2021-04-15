@@ -6,6 +6,7 @@ namespace PhotoOrganizer.Model
     {
         [Key]
         public int Id { get; set; }
-        public string ImageFilePath { get; set; }
+        public string OriginalImagePath { get; set; }
+        public string ThumbnailPath { get; set; }
     }
 }

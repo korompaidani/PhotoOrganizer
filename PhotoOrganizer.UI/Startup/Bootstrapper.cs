@@ -36,7 +36,8 @@ namespace PhotoOrganizer.UI.Startup
 
             builder.RegisterType<DirectoryReaderWrapperService>().As<IDirectoryReaderWrapperService>();
             builder.RegisterType<BackupManager>().AsSelf();
-            
+
+            builder.RegisterType<ThumbnailCreator>().As<IThumbnailCreator>();
             builder.RegisterType<ConverterFactory>().As<IConverterFactory>();
             builder.RegisterType<MyExifReaderWriter>().Keyed<IExifReaderWriter>(nameof(MyExifReaderWriter));
             builder.RegisterType<BackupService>().As<IBackupService>();
@@ -59,6 +60,7 @@ namespace PhotoOrganizer.UI.Startup
             builder.RegisterType<BulkAttributeSetterService>().As<IBulkAttributeSetterService>().SingleInstance();
             builder.RegisterType<PhotoMetaWrapperService>().As<IPhotoMetaWrapperService>().SingleInstance();
             builder.RegisterType<SettingsHandler>().As<ISettingsHandler>().SingleInstance();
+            builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
 
             builder.RegisterType<PhotoDetailContext>().As<IPhotoDetailContext>();
             builder.RegisterType<OpeningPhotoDetailState>().AsSelf();

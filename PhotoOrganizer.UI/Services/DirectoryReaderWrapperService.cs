@@ -9,6 +9,7 @@ using PhotoOrganizer.UI.StateMachine;
 using PhotoOrganizer.UI.View.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace PhotoOrganizer.UI.Services
@@ -21,7 +22,9 @@ namespace PhotoOrganizer.UI.Services
         private IMessageDialogService _messageDialogService;
         private IBackupService _backupService;
         private IPhotoMetaWrapperService _photoMetaWrapperService;
+        private IThumbnailService _thumbnailService;
         private Dictionary<string, People> _peopleTempCache;
+        private ApplicationContext _context;
 
         public IPhotoRepository PhotoRepository
         {
@@ -61,7 +64,8 @@ namespace PhotoOrganizer.UI.Services
             ILocationRepository locationRepository,
             IMessageDialogService messageDialogService,
             IBackupService backupService,
-            IPhotoMetaWrapperService photoMetaWrapperService)
+            IPhotoMetaWrapperService photoMetaWrapperService,
+            IThumbnailService thumbnailService)
         {
             PhotoRepository = photoRepository;
             _locationRepository = locationRepository;
@@ -69,7 +73,9 @@ namespace PhotoOrganizer.UI.Services
             _messageDialogService = messageDialogService;
             _backupService = backupService;
             _photoMetaWrapperService = photoMetaWrapperService;
+            _thumbnailService = thumbnailService;
             _peopleTempCache = new Dictionary<string, People>();
+            _context = Bootstrapper.Container.Resolve<ApplicationContext>();
         }
 
         public async Task<int> LoadSinglePhotoFromLibraryAsync()
@@ -77,11 +83,13 @@ namespace PhotoOrganizer.UI.Services
             var filePath = await _messageDialogService.SelectFileOrFolderDialogAsync(Environment.SpecialFolder.Personal.ToString(), TextResources.SelectPhoto_message, isFileDialog: true);
 
             var photo = _photoMetaWrapperService.CreatePhotoModelFromFile(filePath);
-            await AddPeoplesToPhotoAsync(photo);            
+            await AddPeoplesToPhotoAsync(photo);
             CleanupCaches(_photoMetaWrapperService.PeopleNames);
 
+            await _thumbnailService.CreateThumbnailAsync(Path.GetFullPath(filePath));
             var createdPhoto = CreateNewPhoto(photo);
             await PhotoRepository.SaveAsync();
+            await _thumbnailService.PersistCacheAsync();
             PhotoRepository.DisposeConnection();
             return createdPhoto.Id;
         }       
@@ -128,17 +136,18 @@ namespace PhotoOrganizer.UI.Services
                     PhotoRepository.DisposeConnection();
 
                     await LocationRepository.RemoveAllPhotoFromTableAsync();
+
+                    await _thumbnailService.TearDownThumbnailsAsync();
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    var context = Bootstrapper.Container.Resolve<ApplicationContext>();
                     string innerException = string.Empty;
                     if (ex.InnerException != null && ex.InnerException.Message != null)
                     {
                         innerException = ex.InnerException.Message;
                     }
-                    context.AddErrorMessage(ErrorTypes.DataBaseError, ex.Message + innerException);
+                    _context.AddErrorMessage(ErrorTypes.DataBaseError, ex.Message + innerException);
                     return false;
                 }
             }
@@ -173,7 +182,8 @@ namespace PhotoOrganizer.UI.Services
             if (result)
             {
                 await PhotoRepository.SaveAsync();
-                PhotoRepository.DisposeConnection();
+                await _thumbnailService.PersistCacheAsync();
+                PhotoRepository.DisposeConnection();                
             }
         }
 
@@ -187,13 +197,20 @@ namespace PhotoOrganizer.UI.Services
                 {
                     try
                     {
-                        var photo = await Task<Photo>.Run(() => _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key));
+                        var photo = await Task<Photo>.Run(() => _photoMetaWrapperService.CreatePhotoModelFromFile(file.Key));                        
+                        await _thumbnailService.CreateThumbnailAsync(Path.GetFullPath(file.Key));
                         CreateNewPhoto(photo);
                         await AddPeoplesToPhotoAsync(photo);
                         _photoMetaWrapperService.PeopleNames.Clear();
                     }
-                    catch
+                    catch(Exception ex)
                     {
+                        string innerException = string.Empty;
+                        if (ex.InnerException != null && ex.InnerException.Message != null)
+                        {
+                            innerException = ex.InnerException.Message;
+                        }
+                        _context.AddErrorMessage(ErrorTypes.DirectoryReaderError, ex.Message + innerException);
                     }
                 }
 
@@ -203,14 +220,13 @@ namespace PhotoOrganizer.UI.Services
                 return true;
             }
             catch (Exception ex)
-            {
-                var context = Bootstrapper.Container.Resolve<ApplicationContext>();
+            {                
                 string innerException = string.Empty;
                 if (ex.InnerException != null && ex.InnerException.Message != null)
                 {
                     innerException = ex.InnerException.Message;
                 }
-                context.AddErrorMessage(ErrorTypes.DirectoryReaderError, ex.Message + innerException);
+                _context.AddErrorMessage(ErrorTypes.DirectoryReaderError, ex.Message + innerException);
                 return false;
             }
         }

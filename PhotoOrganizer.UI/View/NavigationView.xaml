@@ -73,8 +73,7 @@
                                     </Border>
 
                                     <Border Padding="0" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1" Width="120">
-                                        <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}">
-                                        </Image>
+                                        <Image Margin="0" VerticalAlignment="Stretch" Source="{Binding Thumbnail}"/>
                                     </Border>
                                     <Label Content="{Binding DisplayMemberItem}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="White" FontSize="10" Margin="0" Padding="2"/>
                                     <Button Content="" 
@@ -146,7 +145,7 @@
                             </Border>
                             <Border Padding="4" Background="{Binding ColorFlag}" BorderBrush="#22000000" BorderThickness="1">
                                 <StackPanel Orientation="Vertical" Width="66" Height="80">
-                                    <Image Margin="0" Height="64" Width="64" VerticalAlignment="Stretch" Source="{Binding Picture.Thumbnail}"/>
+                                    <Image Margin="0" Height="64" Width="64" VerticalAlignment="Stretch" Source="{Binding Thumbnail}"/>
                                     <Label Content="{Binding DisplayMemberItem}" Foreground="Black" FontSize="10" Margin="0" Padding="0"/>
                                 </StackPanel>
                             </Border>

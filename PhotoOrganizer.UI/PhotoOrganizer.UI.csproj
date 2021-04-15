@@ -264,11 +264,13 @@
     <Compile Include="Services\IPageSizeService.cs" />
     <Compile Include="Services\IPhotoMetaWrapperService.cs" />
     <Compile Include="Services\ISettingsHandler.cs" />
+    <Compile Include="Services\IThumbnailService.cs" />
     <Compile Include="Services\Page.cs" />
     <Compile Include="Services\PageSizeService.cs" />
     <Compile Include="Services\PhotoCacheService.cs" />
     <Compile Include="Services\PhotoMetaWrapperService.cs" />
     <Compile Include="Services\SettingsHandler.cs" />
+    <Compile Include="Services\ThumbnailService.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="StateMachine\ApplicationContext.cs" />
     <Compile Include="StateMachine\IPhotoDetailContext.cs" />
@@ -564,10 +566,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

@@ -1,7 +1,8 @@
-﻿using PhotoOrganizer.Common;
-using PhotoOrganizer.FileHandler;
+﻿using Autofac;
+using PhotoOrganizer.Common;
 using PhotoOrganizer.UI.Event;
 using PhotoOrganizer.UI.Services;
+using PhotoOrganizer.UI.Startup;
 using Prism.Commands;
 using Prism.Events;
 using System.Windows.Input;
@@ -14,11 +15,12 @@ namespace PhotoOrganizer.UI.ViewModel
         private string _path;
         private string _colorFlag;
         private string _originalColorFlag;
-        private Picture _picture;
+        private string _thumbnail;
         private bool _isChecked;
         private IEventAggregator _eventAggregator;
         private string _detailViewModelName;
         private IBulkAttributeSetterService _bulkAttributeSetter;
+        private IThumbnailService _thumbnailService;
 
         public ICommand OpenDetailViewCommand { get; }
 
@@ -31,11 +33,12 @@ namespace PhotoOrganizer.UI.ViewModel
             _displayMemberItem = displayMemberItem;
             _path = path;
             _colorFlag = colorFlag;
-            _originalColorFlag = _colorFlag;
-            _picture = new Picture(_path);
+            _originalColorFlag = _colorFlag;            
             _eventAggregator = eventAggregator;
             _detailViewModelName = detailViewModelName;
             _bulkAttributeSetter = bulkAttributeSetter;
+            _thumbnailService = Bootstrapper.Container.Resolve<IThumbnailService>();
+            _thumbnail = _thumbnailService.GetThumbnailPath(_path);
 
             IsChecked = _bulkAttributeSetter.IsCheckedById(Id);
             OpenDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
@@ -73,12 +76,12 @@ namespace PhotoOrganizer.UI.ViewModel
             }
         }
 
-        public Picture Picture
+        public string Thumbnail
         {
-            get { return _picture; }
+            get { return _thumbnail; }
             set
             {
-                _picture = value;
+                _thumbnail = value;
                 OnPropertyChanged();
             }
         }

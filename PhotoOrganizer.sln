@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoOrganizer.Common", "Ph
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installer", "Installer", "{D0BF328D-2622-4619-ADDE-AD54D769F06F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PhotoVersorSetup", "PhotoVersorSetup\PhotoVersorSetup.vdproj", "{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProgramData", "ProgramData", "{B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}"
 	ProjectSection(SolutionItems) = preProject
 		ProgramData\appSettings.json = ProgramData\appSettings.json
@@ -29,6 +27,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ErrorLogs", "ErrorLogs", "{1CA3C7D7-51E0-4179-A91C-4BC8F59F02CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup", "Backup", "{8E9788E0-39E3-4DA7-90C0-002BDC91FD03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Thumbnails", "Thumbnails", "{21C59EDA-9DA1-4ECB-AA3C-591C25AD0E91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,20 +112,14 @@ Global
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x64.Build.0 = Release|x64
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.ActiveCfg = Release|Any CPU
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.Build.0 = Release|Any CPU
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|Any CPU.ActiveCfg = Debug
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|x64.ActiveCfg = Debug
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Debug|x86.ActiveCfg = Debug
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|Any CPU.ActiveCfg = Release
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|x64.ActiveCfg = Release
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6AABD5F9-FBDE-4E9B-B2EE-2368BC95B690} = {D0BF328D-2622-4619-ADDE-AD54D769F06F}
 		{1CA3C7D7-51E0-4179-A91C-4BC8F59F02CA} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
 		{8E9788E0-39E3-4DA7-90C0-002BDC91FD03} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
+		{21C59EDA-9DA1-4ECB-AA3C-591C25AD0E91} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6198210-7E2A-4233-A671-FF79FFF2DC69}

@@ -15,7 +15,7 @@ namespace PhotoOrganizer.UI.StateMachine.MetaSerializationStates
             // Write file name to the db
             if(tempFileFullPath != null)
             {
-                _photoDetailInfo.FileEntry = new FileEntry { ImageFilePath = tempFileFullPath };
+                _photoDetailInfo.FileEntry = new FileEntry { OriginalImagePath = tempFileFullPath };
                 _photoDetailInfo.FullTempFilePath = tempFileFullPath;
                 _maintenanceRepository.Add(_photoDetailInfo.FileEntry);
                 await _maintenanceRepository.SaveAsync();

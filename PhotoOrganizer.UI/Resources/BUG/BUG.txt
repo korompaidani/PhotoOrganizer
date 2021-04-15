@@ -8,6 +8,8 @@ should be nulled
 - Navi load happens twice (1st due to apply settings 2nd due to MainWindow_onLoad)
 - location has been disposed (delete db, open map --> crash)
 - second allmeta green mark is missing
+- bulkset make saved the source image as well
+- navigation items are loaded twice
 - delete existing names
 		 =========================================================================================
 		***************************** UnKnownError *****************************
