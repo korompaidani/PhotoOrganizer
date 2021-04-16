@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup", "Backup", "{8E9788
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Thumbnails", "Thumbnails", "{21C59EDA-9DA1-4ECB-AA3C-591C25AD0E91}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PhotoVersorSetup", "PhotoVersorSetup\PhotoVersorSetup\PhotoVersorSetup.vdproj", "{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,6 +114,12 @@ Global
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x64.Build.0 = Release|x64
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.ActiveCfg = Release|Any CPU
 		{47E30D1E-7D24-49BE-A3BD-D3639736212D}.Release|x86.Build.0 = Release|Any CPU
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Debug|Any CPU.ActiveCfg = Debug
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Debug|x64.ActiveCfg = Debug
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Debug|x86.ActiveCfg = Debug
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Release|Any CPU.ActiveCfg = Release
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Release|x64.ActiveCfg = Release
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +128,7 @@ Global
 		{1CA3C7D7-51E0-4179-A91C-4BC8F59F02CA} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
 		{8E9788E0-39E3-4DA7-90C0-002BDC91FD03} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
 		{21C59EDA-9DA1-4ECB-AA3C-591C25AD0E91} = {B2AA9D37-7C9D-4F14-AE24-6B6B2508FD2A}
+		{61C55FFB-B52F-4E55-A74B-8B5A1A0CFBCF} = {D0BF328D-2622-4619-ADDE-AD54D769F06F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C6198210-7E2A-4233-A671-FF79FFF2DC69}
