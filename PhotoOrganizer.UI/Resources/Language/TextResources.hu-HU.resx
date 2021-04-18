@@ -640,6 +640,12 @@ bemenet: &lt; @Dani @Jessica#&gt; hatása: a feltételezhető elírás miatt egy
   <data name="Title_colon" xml:space="preserve">
     <value>Cím:</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>Ma</value>
+  </data>
+  <data name="Today_tooltip" xml:space="preserve">
+    <value>A mai napra állítja a dátumot.</value>
+  </data>
   <data name="TypeName" xml:space="preserve">
     <value>Írj egy nevet ide…</value>
   </data>

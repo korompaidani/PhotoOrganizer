@@ -643,6 +643,12 @@ input: &lt; @Dani @Jessica#&gt; result in db: there is a typo so names won't be 
   <data name="Title_colon" xml:space="preserve">
     <value>Title:</value>
   </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Today_tooltip" xml:space="preserve">
+    <value>This button sets the date to actual day.</value>
+  </data>
   <data name="TypeName" xml:space="preserve">
     <value>Type a name here:</value>
   </data>

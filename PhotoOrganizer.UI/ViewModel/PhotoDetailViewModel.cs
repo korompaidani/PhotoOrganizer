@@ -50,6 +50,7 @@ namespace PhotoOrganizer.UI.ViewModel
         public ICommand WriteMetadataCommand { get; }
         public ICommand CopyToClipBoardCommand { get; }
         public ICommand OpenCoordinatesInBrowserCommand { get; }
+        public ICommand TodayCommand { get; }        
 
         public ObservableCollection<LookupItem> Locations { get; }
         public ObservableCollection<PeopleItemViewModel> Peoples { get; }
@@ -125,9 +126,15 @@ namespace PhotoOrganizer.UI.ViewModel
             WriteMetadataCommand = new DelegateCommand(OnWriteMetadataExecute, OnWriteMetadataCanExecute);
             CopyToClipBoardCommand = new DelegateCommand(OnCopyToClipBoardExecute);
             OpenCoordinatesInBrowserCommand = new DelegateCommand(OnOpenCoordinatesInBrowserExecute);
+            TodayCommand = new DelegateCommand(OnTodayExecute);
 
             Locations = new ObservableCollection<LookupItem>();
             Peoples = new ObservableCollection<PeopleItemViewModel>();            
+        }
+
+        private void OnTodayExecute()
+        {
+            TakenDate = DateTime.Now;
         }
 
         private void OnOpenCoordinatesInBrowserExecute()

@@ -1559,6 +1559,24 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This button sets the date to actual day..
+        /// </summary>
+        public static string Today_tooltip {
+            get {
+                return ResourceManager.GetString("Today_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type a name here:.
         /// </summary>
         public static string TypeName {

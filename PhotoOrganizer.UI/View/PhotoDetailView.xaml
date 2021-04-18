@@ -196,7 +196,17 @@
                         Format="Custom" 
                         FormatString="HH:mm"
                         FontSize="12"/>
-                    </StackPanel>
+                            <Button Width="52" Height="30" Margin="0 5 5 5" ToolTipService.InitialShowDelay="2000"
+                                    HorizontalAlignment="Left"
+                            Command="{Binding TodayCommand}" Style="{DynamicResource MyMetroSquareButton}">
+                                <Grid>
+                                    <TextBlock Grid.Column="0" Text="{x:Static resources:TextResources.Today}" FontFamily="Segoe UI" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+                                <Button.ToolTip >
+                                    <TextBlock Text="{x:Static resources:TextResources.Today_tooltip}" Width="100" TextWrapping="Wrap"/>
+                                </Button.ToolTip>
+                            </Button>
+                        </StackPanel>
                 </StackPanel>
                     <Button Grid.Row="6" Grid.Column="2" Margin="0 0 5 5" Height="25" VerticalAlignment="Top" Style="{DynamicResource MyMetroSetButton}"
                     Command="{Binding BulkSetAttribute}"
