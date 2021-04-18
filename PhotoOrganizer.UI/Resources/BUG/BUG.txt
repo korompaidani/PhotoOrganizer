@@ -2,14 +2,10 @@
 - dispose pattern for backup manager
 
 BUGS:
-- dictionary in C:\Users\korom\source\repos\PhotoOrganizer\PhotoOrganizer.FileHandler\DirectoryReader.cs
-should be nulled
 - At create backup not the last saved items is written to file but (maybe repo must be closed when photodetail closed)
 - Navi load happens twice (1st due to apply settings 2nd due to MainWindow_onLoad)
 - location has been disposed (delete db, open map --> crash)
 - second allmeta green mark is missing
-- navigation items are loaded twice
-- show progressbar during deletedb
 - delete existing names
 		 =========================================================================================
 		***************************** UnKnownError *****************************
