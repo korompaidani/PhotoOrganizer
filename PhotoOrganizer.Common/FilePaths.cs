@@ -18,8 +18,20 @@ namespace PhotoOrganizer.Common
         public static string TestResources = @".\..\..\..\Resources\TestResources";
         public static string DefaultBackupFile = "_photoOrganizerBackup.xml";
         public static string DefaultPicturePath = @".\..\..\..\Resources\Pictures\DefaultPicture.jpg";
-        public static string MapLocation = @".\..\..\..\Resources\Web\OpenLayersMap.html";        
+        public static string MapLocation = ResolveLocationForMap();
         public static string DataDirectory = "DataDirectory";
         public static string ExplorerExe = "explorer.exe";
+
+        private static string ResolveLocationForMap()
+        {
+            string resultPath = Path.Combine(ProgramData, "Map", "OpenLayersMap.html");
+
+            if (!File.Exists(resultPath))
+            {
+                resultPath = @".\..\..\..\Resources\Web\OpenLayersMap.html";
+            }
+
+            return resultPath;
+        }
     }
 }
