@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_06EA2BD33FA5442887FB5D5F787D90AB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_079A06E9E81C30E451D4E7B9855BE5A2"
         "OwnerKey" = "8:_832881CC06C825C27DB679690B876B23"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,6 +53,12 @@
         {
         "MsmKey" = "8:_1192E1CD62A2FCA4824D4BC0DEDCD2D6"
         "OwnerKey" = "8:_14D787C8CB3E0C7A5267308337776EC8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_139061C3AB0D4CFEAD0152E96EDC1C87"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -425,6 +437,12 @@
         {
         "MsmKey" = "8:_BCA896D8FCC13E7B92E2AF52BC3494EE"
         "OwnerKey" = "8:_BACF2EB2B7B343119A56D94C91DADF9E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE5FCA6A0C4D491B846205D220716CD9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -929,6 +947,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_06EA2BD33FA5442887FB5D5F787D90AB"
+            {
+            "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\appSettings.json"
+            "TargetName" = "8:appSettings.json"
+            "Tag" = "8:"
+            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_079A06E9E81C30E451D4E7B9855BE5A2"
             {
             "AssemblyRegister" = "3:1"
@@ -1020,6 +1058,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_139061C3AB0D4CFEAD0152E96EDC1C87"
+            {
+            "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\PhotoVersor.mdf"
+            "TargetName" = "8:PhotoVersor.mdf"
+            "Tag" = "8:"
+            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14D787C8CB3E0C7A5267308337776EC8"
@@ -2380,6 +2438,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE5FCA6A0C4D491B846205D220716CD9"
+            {
+            "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\PhotoVersor_log.ldf"
+            "TargetName" = "8:PhotoVersor_log.ldf"
+            "Tag" = "8:"
+            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF2A732C4BB64AE49BDD3F86690AA488"
             {
             "SourcePath" = "8:..\\..\\PhotoOrganizer.UI\\bin\\x64\\Release\\PhotoVersor.UI.exe.manifest"
@@ -2600,7 +2678,7 @@
             "SourcePath" = "8:..\\prerequisites\\readme_database.txt"
             "TargetName" = "8:readme_database.txt"
             "Tag" = "8:"
-            "Folder" = "8:_1F9765F71EF04D0D99AEDB04210C1DC5"
+            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2724,50 +2802,6 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_1F9765F71EF04D0D99AEDB04210C1DC5"
-                    {
-                    "Name" = "8:ProgramData"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_A507917D1ADF455E953FBD5458D4C165"
-                        "Folders"
-                        {
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_2550B314E69A40ED8CF00E87AF64AD7B"
-                            {
-                            "Name" = "8:Thumbnails"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_B8862F1E2B7C4001A5D63FD2E2C9CB17"
-                                "Folders"
-                                {
-                                }
-                            }
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4544F30F506344EA87161A9FFCB934F0"
-                            {
-                            "Name" = "8:Backup"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_40CF90F59B80447F919F7378DB49399C"
-                                "Folders"
-                                {
-                                }
-                            }
-                            "{9EF0B969-E518-4E46-987F-47570745A589}:_6F3B9A88794D423E939592F67169C2FB"
-                            {
-                            "Name" = "8:ErrorLogs"
-                            "AlwaysCreate" = "11:FALSE"
-                            "Condition" = "8:"
-                            "Transitive" = "11:FALSE"
-                            "Property" = "8:_3B7B318331E54464950ADDF88A65A01E"
-                                "Folders"
-                                {
-                                }
-                            }
-                        }
-                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_21A5C124598C4D0EBFB6DD939A96152F"
                     {
                     "Name" = "8:Prerequisites"
@@ -2885,6 +2919,62 @@
                                         {
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_2455D33F49C14444B4728BED21F13E7C"
+            {
+            "DefaultLocation" = "8:[CommonAppDataFolder]"
+            "Name" = "8:All User's data"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:COMMONAPPDATAFOLDER"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+                    {
+                    "Name" = "8:ProgramData"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_A507917D1ADF455E953FBD5458D4C165"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_2550B314E69A40ED8CF00E87AF64AD7B"
+                            {
+                            "Name" = "8:Thumbnails"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_B8862F1E2B7C4001A5D63FD2E2C9CB17"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4544F30F506344EA87161A9FFCB934F0"
+                            {
+                            "Name" = "8:Backup"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_40CF90F59B80447F919F7378DB49399C"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_6F3B9A88794D423E939592F67169C2FB"
+                            {
+                            "Name" = "8:ErrorLogs"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_3B7B318331E54464950ADDF88A65A01E"
+                                "Folders"
+                                {
                                 }
                             }
                         }
