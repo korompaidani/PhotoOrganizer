@@ -5,7 +5,7 @@ namespace PhotoOrganizer.Common
 {
     public static class FilePaths
     {
-        public static string DocumentFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+        public static string DocumentFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
         public static string TempFilePostfix = @"_temp";
         public static string ProgramData = Path.Combine(DocumentFolder, "PhotoVersorData"); /*@".\..\..\..\..\ProgramData\";*/

@@ -952,7 +952,7 @@
             "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\appSettings.json"
             "TargetName" = "8:appSettings.json"
             "Tag" = "8:"
-            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Folder" = "8:_7D68D058A3BE4CDCA023A3953A18D2EB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1065,7 +1065,7 @@
             "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\PhotoVersor.mdf"
             "TargetName" = "8:PhotoVersor.mdf"
             "Tag" = "8:"
-            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Folder" = "8:_7D68D058A3BE4CDCA023A3953A18D2EB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2443,7 +2443,7 @@
             "SourcePath" = "8:..\\..\\ProgramData\\EmptyDB\\PhotoVersor_log.ldf"
             "TargetName" = "8:PhotoVersor_log.ldf"
             "Tag" = "8:"
-            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Folder" = "8:_7D68D058A3BE4CDCA023A3953A18D2EB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2678,7 +2678,7 @@
             "SourcePath" = "8:..\\prerequisites\\readme_database.txt"
             "TargetName" = "8:readme_database.txt"
             "Tag" = "8:"
-            "Folder" = "8:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+            "Folder" = "8:_7D68D058A3BE4CDCA023A3953A18D2EB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2925,19 +2925,40 @@
                     }
                 }
             }
-            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_2455D33F49C14444B4728BED21F13E7C"
+            "{1525181F-901A-416C-8A58-119130FE478E}:_750496E16E4F40F18BC9633D5819AE83"
             {
-            "DefaultLocation" = "8:[CommonAppDataFolder]"
-            "Name" = "8:All User's data"
+            "Name" = "8:#1919"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
-            "Property" = "8:COMMONAPPDATAFOLDER"
+            "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5F3B387F12144AF4A60F2BE3E2BFBE6F"
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_C6AC60D782CD4B4985D2B749E321E59C"
+            {
+            "Name" = "8:#1916"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:DesktopFolder"
+                "Folders"
+                {
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_F1E68AC57EC142A08B03B31D2D47B946"
+            {
+            "Name" = "8:#1918"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:PersonalFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_7D68D058A3BE4CDCA023A3953A18D2EB"
                     {
-                    "Name" = "8:ProgramData"
+                    "Name" = "8:PhotoVersorData"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -2979,28 +3000,6 @@
                             }
                         }
                     }
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_750496E16E4F40F18BC9633D5819AE83"
-            {
-            "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:ProgramMenuFolder"
-                "Folders"
-                {
-                }
-            }
-            "{1525181F-901A-416C-8A58-119130FE478E}:_C6AC60D782CD4B4985D2B749E321E59C"
-            {
-            "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:DesktopFolder"
-                "Folders"
-                {
                 }
             }
         }
