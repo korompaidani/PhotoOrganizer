@@ -1,20 +1,25 @@
-﻿namespace PhotoOrganizer.Common
+﻿using System;
+using System.IO;
+
+namespace PhotoOrganizer.Common
 {
     public static class FilePaths
     {
-        public const string TempFilePostfix = @"_temp";
-        public const string ProgramData = @".\..\..\..\..\ProgramData\";
-        public const string ThumbnailsRootFolder = @".\..\..\..\..\ProgramData\Thumbnails";
-        public const string DefaultBackupFolder = @".\..\..\..\..\ProgramData\Backup";
-        public const string DbFullPath = @".\..\..\..\..\ProgramData\PhotoVersor.mdf";
-        public const string AppSettingsFile = @".\..\..\..\..\ProgramData\appSettings.json";
-        public const string ErrorLogPath = @".\..\..\..\..\ProgramData\ErrorLogs";
-        public const string ErrorLogFilePostfix = @"_errorlog.txt";
-        public const string TestResources = @".\..\..\..\Resources\TestResources";
-        public const string DefaultBackupFile = "_photoOrganizerBackup.xml";
-        public const string DefaultPicturePath = @".\..\..\..\Resources\Pictures\DefaultPicture.jpg";
-        public const string MapLocation = @".\..\..\..\Resources\Web\OpenLayersMap.html";        
-        public const string DataDirectory = "DataDirectory";
-        public const string ExplorerExe = "explorer.exe";
+        public static string DocumentFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+
+        public static string TempFilePostfix = @"_temp";
+        public static string ProgramData = Path.Combine(DocumentFolder, "PhotoVersorData"); /*@".\..\..\..\..\ProgramData\";*/
+        public static string ThumbnailsRootFolder = Path.Combine(ProgramData, "Thumbnails"); /*@".\..\..\..\..\ProgramData\Thumbnails";*/
+        public static string DefaultBackupFolder = Path.Combine(ProgramData, "Backup"); /*@".\..\..\..\..\ProgramData\Backup";*/
+        public static string DbFullPath = Path.Combine(ProgramData, "PhotoVersor.mdf"); /*@".\..\..\..\..\ProgramData\PhotoVersor.mdf";*/
+        public static string AppSettingsFile = Path.Combine(ProgramData, "appSettings.json"); /*@".\..\..\..\..\ProgramData\appSettings.json";*/
+        public static string ErrorLogPath = Path.Combine(ProgramData, "ErrorLogs"); /*@".\..\..\..\..\ProgramData\ErrorLogs";*/
+        public static string ErrorLogFilePostfix = @"_errorlog.txt";
+        public static string TestResources = @".\..\..\..\Resources\TestResources";
+        public static string DefaultBackupFile = "_photoOrganizerBackup.xml";
+        public static string DefaultPicturePath = @".\..\..\..\Resources\Pictures\DefaultPicture.jpg";
+        public static string MapLocation = @".\..\..\..\Resources\Web\OpenLayersMap.html";        
+        public static string DataDirectory = "DataDirectory";
+        public static string ExplorerExe = "explorer.exe";
     }
 }

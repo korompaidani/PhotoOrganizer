@@ -8,11 +8,11 @@ using System.Windows.Media.Imaging;
 namespace PhotoOrganizer.FileHandler
 {
     public class ThumbnailHandler : IThumbnailCreator
-    {
-        private const string TargetRootFolder = FilePaths.ThumbnailsRootFolder;
+    {        
         private const string FileExtension = ".png";
         private const int MaxFileCountThreshold = 500;
-        
+        private readonly string TargetRootFolder = FilePaths.ThumbnailsRootFolder;
+
         private string _actualFolder;
         private string _actualFileName;
         private string _actualFullFileName;
