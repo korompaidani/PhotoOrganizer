@@ -196,7 +196,7 @@ namespace PhotoOrganizer.UI.ViewModel
         private async void OnDeleteDatabaseExecute()
         {
             await CloseAllTabsAsync(true);
-            await _directoryReaderWrapperService.EraseFormerData();
+            await _directoryReaderWrapperService.EraseFormerDataAsync();
             await LoadAsync();
         }
 

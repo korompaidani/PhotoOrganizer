@@ -412,6 +412,15 @@ namespace PhotoOrganizer.UI.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erasing data from database in progess....
+        /// </summary>
+        public static string DbDelete_inprogressMessage {
+            get {
+                return ResourceManager.GetString("DbDelete_inprogressMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  .
         /// </summary>
         public static string DefaultCoordinates {

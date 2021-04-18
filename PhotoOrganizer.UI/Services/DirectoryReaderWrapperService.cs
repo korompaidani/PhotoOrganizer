@@ -110,7 +110,7 @@ namespace PhotoOrganizer.UI.Services
                     {
                         return;
                     }
-                    if (!await EraseFormerData())
+                    if (!await EraseFormerDataAsync())
                     {
                         return;
                     }
@@ -125,19 +125,14 @@ namespace PhotoOrganizer.UI.Services
             await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.ReadingFiles_message, ReadAllFilesFromFolder, folderPath);
         }
 
-        public async Task<bool> EraseFormerData()
+        public async Task<bool> EraseFormerDataAsync()
         {
             var result = await _messageDialogService.ShowYesOrNoDialogAsync(TextResources.ConfirmationBeforeErase_message, TextResources.Question_windowTitle);
             if (result == MessageDialogResult.Yes)
             {
                 try
                 {
-                    await PhotoRepository.RemoveAllPhotoFromTableAsync();
-                    PhotoRepository.DisposeConnection();
-
-                    await LocationRepository.RemoveAllPhotoFromTableAsync();
-
-                    await _thumbnailService.TearDownThumbnailsAsync();
+                    await _messageDialogService.ShowProgressDuringTaskAsync(TextResources.PleaseWait_windowTitle, TextResources.DbDelete_inprogressMessage, RemoveFromDbsAndClear);
                     return true;
                 }
                 catch (Exception ex)
@@ -185,6 +180,16 @@ namespace PhotoOrganizer.UI.Services
                 await _thumbnailService.PersistCacheAsync();
                 PhotoRepository.DisposeConnection();                
             }
+        }
+
+        private async Task RemoveFromDbsAndClear()
+        {
+            await PhotoRepository.RemoveAllPhotoFromTableAsync();
+            PhotoRepository.DisposeConnection();
+
+            await LocationRepository.RemoveAllPhotoFromTableAsync();
+
+            await _thumbnailService.TearDownThumbnailsAsync();
         }
 
         private async Task<bool> ConvertFileNamesToPhotosAsync(string folderPath)

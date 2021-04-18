@@ -234,6 +234,9 @@
   <data name="Data_menu" xml:space="preserve">
     <value>Data</value>
   </data>
+  <data name="DbDelete_inprogressMessage" xml:space="preserve">
+    <value>Erasing data from database in progess...</value>
+  </data>
   <data name="DefaultCoordinates" xml:space="preserve">
     <value> </value>
   </data>
