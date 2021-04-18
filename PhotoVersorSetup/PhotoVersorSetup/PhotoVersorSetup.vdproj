@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_00F09D0D0FFA4963BE7E026EEF9F2A10"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_012F37BE9AFDD969F17D6C4942879250"
         "OwnerKey" = "8:_1B1442CE7048465188AABDE019E4D300"
         "MsmSig" = "8:_UNDEFINED"
@@ -916,6 +922,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00F09D0D0FFA4963BE7E026EEF9F2A10"
+            {
+            "SourcePath" = "8:..\\..\\PhotoOrganizer.UI\\Resources\\Web\\OpenLayersMap.html"
+            "TargetName" = "8:OpenLayersMap.html"
+            "Tag" = "8:"
+            "Folder" = "8:_D5D1BF785C1D4957BAE281448A50BE71"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_012F37BE9AFDD969F17D6C4942879250"
             {
             "AssemblyRegister" = "3:1"
@@ -2979,7 +3005,7 @@
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_4544F30F506344EA87161A9FFCB934F0"
                             {
                             "Name" = "8:Backup"
-                            "AlwaysCreate" = "11:FALSE"
+                            "AlwaysCreate" = "11:TRUE"
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_40CF90F59B80447F919F7378DB49399C"
@@ -2994,6 +3020,17 @@
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_3B7B318331E54464950ADDF88A65A01E"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_D5D1BF785C1D4957BAE281448A50BE71"
+                            {
+                            "Name" = "8:Map"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_BA14D17AD5DA4D91BBC57DFDE2DEB4E1"
                                 "Folders"
                                 {
                                 }
@@ -3019,7 +3056,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PhotoVersor"
         "ProductCode" = "8:{712161B8-7CDF-40C1-AC14-5FE926198FCB}"
-        "PackageCode" = "8:{2A3A1068-C896-4056-88C7-EFB1453047F5}"
+        "PackageCode" = "8:{3C41B58A-2DFF-45FC-89FA-579D889F43AD}"
         "UpgradeCode" = "8:{FEF0C767-C3A9-43A8-B1B4-4B0CD2547F68}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
