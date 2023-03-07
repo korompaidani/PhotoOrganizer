@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="PhotoOrganizer.UI.View.PhotoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
+             xmlns:converters="clr-namespace:PhotoOrganizer.UI.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="OnLoaded" Unloaded="OnUnloaded">
+    <UserControl.Resources>
+        <converters:ImageConverter x:Key="imageConverter"></converters:ImageConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Slider Grid.Column="0" Orientation="Vertical" 
+           HorizontalAlignment="Left" Minimum="1" x:Name="slider" Visibility="Hidden"/>
+        <ScrollViewer Name="scrollViewer" Grid.Column="0" 
+              VerticalScrollBarVisibility="Visible" 
+              HorizontalScrollBarVisibility="Visible">
+                <Grid Name="grid" Width="400" 
+              Height="400" RenderTransformOrigin="0.5,0.5">
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaleTransform"/>
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Viewbox Grid.Column="0" Grid.Row="0">
+                        <Image x:Name="ImageFile" Source="{Binding FullPath, Converter={StaticResource imageConverter}}"/>
+                </Viewbox>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+    <Button Content="X" FontSize="50" Background="Transparent" Foreground="White" Margin="0 0 20 0"
+                Command="{Binding OpenWorkbenchCommand}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid">
+                        <ContentPresenter HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>

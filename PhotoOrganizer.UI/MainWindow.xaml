@@ -1,0 +1,28 @@
+﻿<Controls:MetroWindow x:Class="PhotoOrganizer.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:PhotoOrganizer.UI"
+        xmlns:view="clr-namespace:PhotoOrganizer.UI.View"
+        xmlns:viewModel="clr-namespace:PhotoOrganizer.UI.ViewModel"
+        xmlns:mwc="clr-namespace:PhotoOrganizer.UI"
+        mwc:MainWindowClose.CancelClosing="{Binding OpenCancelClosingAppCommand}"
+        mc:Ignorable="d"
+        Title="Korompai PhotoVersor©" MinHeight="760" MinWidth="1280" FontSize="20"
+        WindowStartupLocation="CenterScreen" Closing="WindowClosing">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type view:WorkbenchView}">
+            <view:WorkbenchView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type view:PhotoView}">
+            <view:PhotoView/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <ContentControl x:Name="Pages" DockPanel.Dock="Right" Content="{Binding SelectedViewModel}"/>
+        <Image x:Name="splashScreen" Source="intro_screen.jpg" Stretch="Fill" />
+    </Grid>
+</Controls:MetroWindow>

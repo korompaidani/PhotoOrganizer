@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEB810D4-625A-491A-A376-4900BF9D5C42}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PhotoOrganizer.UI</RootNamespace>
+    <AssemblyName>PhotoVersor.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\korom\Downloads\PhotoVersor First Release\PhotoVersor\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en-US</TargetCulture>
+    <ProductName>Korompai PhotoVersor</ProductName>
+    <PublisherName>Dániel Korompai</PublisherName>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperComponentsUrl>C:\Users\korom\source\repos\PhotoOrganizer\PhotoVersorSetup\prerequisites</BootstrapperComponentsUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PhotoVersor_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A89C35EB6DF774EBEDF55F4F83D766476ED510C7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PhotoOrganizer.UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=6.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.6.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.3\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.774.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.774.44\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=8.0.0.1909, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.0.0.1909\lib\net47\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.0.2\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Data\Lookups\IAlbumLookupDataService.cs" />
+    <Compile Include="Data\Lookups\ILocationLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IShelveLookupDataService.cs" />
+    <Compile Include="Data\Repositories\AlbumRepository.cs" />
+    <Compile Include="Data\Repositories\GenericRepository.cs" />
+    <Compile Include="Data\Repositories\IAlbumRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepository.cs" />
+    <Compile Include="Data\Repositories\IMaintenanceRepository.cs" />
+    <Compile Include="Data\Repositories\IPeopleRepository.cs" />
+    <Compile Include="Data\Repositories\IPhotoRepository.cs" />
+    <Compile Include="Data\Lookups\IPhotoLookupDataService.cs" />
+    <Compile Include="Data\Lookups\LookupDataService.cs" />
+    <Compile Include="Data\Repositories\ILocationRepository.cs" />
+    <Compile Include="Data\Repositories\MaintenanceRepository.cs" />
+    <Compile Include="Data\Repositories\PeopleRepository.cs" />
+    <Compile Include="Data\Repositories\PhotoRepository.cs" />
+    <Compile Include="Data\Repositories\LocationRepository.cs" />
+    <Compile Include="Engines\ChromiumBrowserEngine.cs" />
+    <Compile Include="Engines\IExplorerBrowserEngine.cs" />
+    <Compile Include="Event\AfterBulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\AfterCollectionSavedEvent.cs" />
+    <Compile Include="Event\AfterDetailClosedEvent.cs" />
+    <Compile Include="Event\AfterDetailDeletedEvent.cs" />
+    <Compile Include="Event\AfterDetailRemovedEvent.cs" />
+    <Compile Include="Event\AfterDetailSavedEvent.cs" />
+    <Compile Include="Event\AfterPeopleDeletedEvent.cs" />
+    <Compile Include="Event\AfterTabClosedEvent.cs" />
+    <Compile Include="Event\BulkSetPhotoDetailAttributesEvent.cs" />
+    <Compile Include="Event\OpenHelpMenuEvent.cs" />
+    <Compile Include="Event\OpenStartScreenEvent.cs" />
+    <Compile Include="Event\SaveAllDetailViewEvent.cs" />
+    <Compile Include="Event\CloseProgressWindowEvent.cs" />
+    <Compile Include="Event\CloseSettingsEvent.cs" />
+    <Compile Include="Event\DisplayMessageEvent.cs" />
+    <Compile Include="Event\ErrorEvent.cs" />
+    <Compile Include="Event\LocationChangedEventArgs.cs" />
+    <Compile Include="Event\OpenPhotoDetailViewEvent.cs" />
+    <Compile Include="Event\OpenSettingsEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesAsOverrideEvent.cs" />
+    <Compile Include="Event\SelectionChangedEvent.cs" />
+    <Compile Include="Event\SetCoordinatesEvent.cs" />
+    <Compile Include="Event\SaveCoordinatesAsNewEvent.cs" />
+    <Compile Include="Event\GetBrowserDataEvent.cs" />
+    <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Event\OpenMapViewEvent.cs" />
+    <Compile Include="Event\OpenPhotoViewEvent.cs" />
+    <Compile Include="Event\CloseMapViewEvent.cs" />
+    <Compile Include="Event\WriteAllMetadataEvent.cs" />
+    <Compile Include="Event\WriteMetadataEvent.cs" />
+    <Compile Include="Event\WriteMetadataFinishedEvent.cs" />
+    <Compile Include="Helpers\DirectionArgs.cs" />
+    <Compile Include="Helpers\PhotoDetailInfo.cs" />
+    <Compile Include="MainWindowClose.cs" />
+    <Compile Include="Resources\Language\TextResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextResources.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="Services\BackupService.cs" />
+    <Compile Include="Services\BulkAttributeSetterService.cs" />
+    <Compile Include="Services\CacheServiceBase.cs" />
+    <Compile Include="Services\DirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IBackupService.cs" />
+    <Compile Include="Services\IBulkAttributeSetterService.cs" />
+    <Compile Include="Services\ICacheService.cs" />
+    <Compile Include="Services\IDirectoryReaderWrapperService.cs" />
+    <Compile Include="Services\IPageSizeService.cs" />
+    <Compile Include="Services\IPhotoMetaWrapperService.cs" />
+    <Compile Include="Services\ISettingsHandler.cs" />
+    <Compile Include="Services\IThumbnailService.cs" />
+    <Compile Include="Services\Page.cs" />
+    <Compile Include="Services\PageSizeService.cs" />
+    <Compile Include="Services\PhotoCacheService.cs" />
+    <Compile Include="Services\PhotoMetaWrapperService.cs" />
+    <Compile Include="Services\SettingsHandler.cs" />
+    <Compile Include="Services\ThumbnailService.cs" />
+    <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="StateMachine\ApplicationContext.cs" />
+    <Compile Include="StateMachine\IPhotoDetailContext.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosedPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\ClosingPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\IPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\PhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpeningPhotoDetailState.cs" />
+    <Compile Include="StateMachine\MetaSerializationStates\OpenPhotoDetailState.cs" />
+    <Compile Include="StateMachine\PhotoDetailContext.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
+    <Compile Include="ViewModel\AlbumDetailViewModel.cs" />
+    <Compile Include="ViewModel\AlbumNavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\DetailViewModelBase.cs" />
+    <Compile Include="ViewModel\HelpViewModel.cs" />
+    <Compile Include="ViewModel\IAlbumDetailViewModel.cs" />
+    <Compile Include="ViewModel\IDetailViewModel.cs" />
+    <Compile Include="ViewModel\IMapViewModel.cs" />
+    <Compile Include="ViewModel\INavigationViewModel.cs" />
+    <Compile Include="ViewModel\IPeopleSelectionCreationViewModel.cs" />
+    <Compile Include="ViewModel\IPhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\IPhotoViewModel.cs" />
+    <Compile Include="ViewModel\ISettingsViewModel.cs" />
+    <Compile Include="ViewModel\IShelveViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
+    <Compile Include="ViewModel\PeopleItemViewModel.cs" />
+    <Compile Include="ViewModel\PeopleSelectionCreationViewModel.cs" />
+    <Compile Include="ViewModel\PhotoNavigationItemViewModel.cs" />
+    <Compile Include="ViewModel\NavigationViewModel.cs" />
+    <Compile Include="ViewModel\PhotoDetailViewModel.cs" />
+    <Compile Include="ViewModel\PhotoViewModel.cs" />
+    <Compile Include="ViewModel\SaveModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\ShelveViewModel.cs" />
+    <Compile Include="ViewModel\StartScreenViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\LocationDetailViewModel.cs" />
+    <Compile Include="ViewModel\WorkbenchViewModel.cs" />
+    <Compile Include="ViewModel\WritingToFileViewModel.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AlbumDetailView.xaml.cs">
+      <DependentUpon>AlbumDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NavigationView.xaml.cs">
+      <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PeopleSelectionCreationView.xaml.cs">
+      <DependentUpon>PeopleSelectionCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhotoDetailView.xaml.cs">
+      <DependentUpon>PhotoDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PhotoView.xaml.cs">
+      <DependentUpon>PhotoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaveDialog.xaml.cs">
+      <DependentUpon>SaveDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Services\IMessageDialogService.cs" />
+    <Compile Include="View\Services\MessageDialogService.cs" />
+    <Compile Include="View\LocationDetailView.xaml.cs">
+      <DependentUpon>LocationDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShelveView.xaml.cs">
+      <DependentUpon>ShelveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkbenchView.xaml.cs">
+      <DependentUpon>WorkbenchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WritingToFileView.xaml.cs">
+      <DependentUpon>WritingToFileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wrapper\AlbumWrapper.cs" />
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\PeopleWrapper.cs" />
+    <Compile Include="Wrapper\PhotoWrapper.cs" />
+    <Compile Include="Wrapper\LocationWrapper.cs" />
+    <Compile Include="Wrapper\SettingsWrapper.cs" />
+    <Compile Include="Wrapper\ShelveWrapper.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AlbumDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PeopleSelectionCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LocationDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SaveDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShelveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkbenchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WritingToFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Language\TextResources.hu-HU.resx" />
+    <EmbeddedResource Include="Resources\Language\TextResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="PhotoOrganizer.UI_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Pictures\DefaultPicture.psd" />
+    <None Include="Resources\Pictures\splash_screen.psd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Photos\" />
+    <Folder Include="Resources\psd\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\DefaultPicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Pictures\splash_screen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\button_map_light.png" />
+    <Resource Include="Resources\Icons\button_copy_light.png" />
+    <Resource Include="Resources\Icons\button_down_light.png" />
+    <Resource Include="Resources\Icons\button_set_light.png" />
+    <Resource Include="Resources\Icons\button_up_light.png" />
+    <Resource Include="Resources\Icons\button_selectDeselectAll.png" />
+    <Resource Include="Resources\Icons\button_finalize_light.png" />
+    <Resource Include="Resources\Icons\button_save_light.png" />
+    <Resource Include="Resources\Icons\button_shelve_light.png" />
+    <Resource Include="Resources\Icons\button_unchanged_light.png" />
+    <Resource Include="Resources\Icons\button_unshelve_light.png" />
+    <Resource Include="Resources\Icons\button_writemeta_light.png" />
+    <Resource Include="Resources\Pictures\intro_screen.jpg" />
+    <Resource Include="intro_screen.jpg" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.png" />
+    <Resource Include="Resources\Icons\PhotoVersor_icon.ico" />
+    <Resource Include="PhotoVersor_icon.ico" />
+    <Resource Include="Resources\Icons\arrow_1.png" />
+    <Content Include="Resources\Web\OpenLayersMap.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhotoOrganizer.Common\PhotoOrganizer.Common.csproj">
+      <Project>{47e30d1e-7d24-49be-a3bd-d3639736212d}</Project>
+      <Name>PhotoOrganizer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.DataAccess\PhotoOrganizer.DataAccess.csproj">
+      <Project>{15a32c07-e81e-4b3d-9157-f1f91168d967}</Project>
+      <Name>PhotoOrganizer.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.FileHandler\PhotoOrganizer.FileHandler.csproj">
+      <Project>{16bbe06d-3fa6-4267-9ff7-7e6b74773ed4}</Project>
+      <Name>PhotoOrganizer.FileHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.MapTools\PhotoOrganizer.MapTools.csproj">
+      <Project>{daff572e-755f-43ae-b401-a90e81389347}</Project>
+      <Name>PhotoOrganizer.MapTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoOrganizer.Model\PhotoOrganizer.Model.csproj">
+      <Project>{b548d6ae-15a1-42a2-834f-877368b881ea}</Project>
+      <Name>PhotoOrganizer.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.15.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2019 Express LocalDB</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Visual.C++.14.0.x64">
+      <Visible>False</Visible>
+      <ProductName>Visual C++ "14" Runtime Libraries %28x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="hu-HU\PhotoVersor.UI.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.774.44\build\Microsoft.Web.WebView2.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

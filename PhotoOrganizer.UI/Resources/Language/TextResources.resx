@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutLink" xml:space="preserve">
+    <value>https://github.com/korompaidani/</value>
+  </data>
+  <data name="AboutLinkText" xml:space="preserve">
+    <value>My Github page:</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>I am happy to know that you are using my application. My intention was to create an app which might be a useful tool to modify photo's meta data. I think especially on that ones which have wrong data (e.g. old, scanned photos). In other hand thanks to this project I can practice coding and widen my C#, MVVM, Scipting, XAML, ORM knowledge. I hope you can use this tool as much joy as I made it with.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>Welcome to my app!</value>
+  </data>
+  <data name="About_menu" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ActualSettingIs" xml:space="preserve">
+    <value>The actual setting is: </value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddedPhotos" xml:space="preserve">
+    <value>Added Photos</value>
+  </data>
+  <data name="AddNewPeople_tooltip" xml:space="preserve">
+    <value>Add new people to the photo. After click on it, newly created people will be automatically added to the photo. If you type an exisiting name, that one will be added instead of creating a new one. New people will be available for other photos only after save the photo which originally contains the people.</value>
+  </data>
+  <data name="AddPeople_tooltip" xml:space="preserve">
+    <value>You can add people who appears on the photo. It will be written as a keyword after writing metadata.</value>
+  </data>
+  <data name="AddPhoto_menu" xml:space="preserve">
+    <value>Add Photo...</value>
+  </data>
+  <data name="AddSelectedPeople_button" xml:space="preserve">
+    <value>Add selected people</value>
+  </data>
+  <data name="AddSelectedPeople_tooltip" xml:space="preserve">
+    <value>Add existing people to the photo.</value>
+  </data>
+  <data name="AddToPhoto" xml:space="preserve">
+    <value>Add to photo</value>
+  </data>
+  <data name="AddToShelve" xml:space="preserve">
+    <value>Add to shelve</value>
+  </data>
+  <data name="AddToShelve_tooltip" xml:space="preserve">
+    <value>You can put this image to the shelve. It is useful if you want to set this image data later after processing other images.</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="AutofacLink" xml:space="preserve">
+    <value>https://autofac.org/</value>
+  </data>
+  <data name="AvailablePhotos" xml:space="preserve">
+    <value>Available photos</value>
+  </data>
+  <data name="ButtonsTitle" xml:space="preserve">
+    <value>Buttons</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseFolder_windowTitle" xml:space="preserve">
+    <value>Please choose a target path for the 'backup':</value>
+  </data>
+  <data name="CloseConfirmation_message" xml:space="preserve">
+    <value>You've made changes. Do you really want to close this item?</value>
+  </data>
+  <data name="CloseOpenTabs_menu" xml:space="preserve">
+    <value>Close Open Tabs</value>
+  </data>
+  <data name="ConfirmationBeforeErase_message" xml:space="preserve">
+    <value>This operation will erase all previous data from Database. Are you sure to delete all data?</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Coordinates</value>
+  </data>
+  <data name="Copy_button" xml:space="preserve">
+    <value>copy</value>
+  </data>
+  <data name="Copy_tooltip" xml:space="preserve">
+    <value>Copy the path to the clipboard.</value>
+  </data>
+  <data name="CouldNotLoadEntity_message" xml:space="preserve">
+    <value>Could not load the entity, maybe it was deleted in the meantime by another user. Tha navigation is refreshed for you.</value>
+  </data>
+  <data name="CreateBackup_menu" xml:space="preserve">
+    <value>Create backup...</value>
+  </data>
+  <data name="CreateNewPeople_button" xml:space="preserve">
+    <value>Create new people</value>
+  </data>
+  <data name="CreatingBackup_message" xml:space="preserve">
+    <value>Creating backup...</value>
+  </data>
+  <data name="CreditsText" xml:space="preserve">
+    <value>Thank you for the following components/knowledge:</value>
+  </data>
+  <data name="CreditsTitle" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="CultureInfoHun" xml:space="preserve">
+    <value>hu-HU</value>
+  </data>
+  <data name="CultureInfoUSeng" xml:space="preserve">
+    <value>en-US</value>
+  </data>
+  <data name="CultureInfo_constant" xml:space="preserve">
+    <value>en-US</value>
+  </data>
+  <data name="DataWillReloaded_message" xml:space="preserve">
+    <value>The data will be reloaded. Details:</value>
+  </data>
+  <data name="Data_menu" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DbDelete_inprogressMessage" xml:space="preserve">
+    <value>Erasing data from database in progess...</value>
+  </data>
+  <data name="DefaultCoordinates" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="DefaultError_message" xml:space="preserve">
+    <value>{0} error happened during the process. After closing the application an error log will be generated here: {1}
+If something unusual happens in the app please restart it!</value>
+  </data>
+  <data name="DefaultWarning_warningMessage" xml:space="preserve">
+    <value>The following warning happened: {0}</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DescriptionScriptLongDescription" xml:space="preserve">
+    <value>You can add peoples easily, if you prefer typing instead of clicking. Just use the start '&lt;#' and end tags '#&gt;'. The text between two tags enjoys special attention. 
+
+You can enlist peoples: It takes effect only if there is no people assignment above in the people section of the photo tab. If you have at least one people there it will overwrite the description field by design because the UI functionality is propagated, in other words it has priority.
+If the given people doesn't exist it will be automatically created in the database, if it is exist with the same name it will be recognized.
+
+There are the following conventions:
+- peoples must be enlisted between tags: &lt;#(...people's place is here...)#&gt;
+- peoples must be named starting width '@': @Dani
+- without '@' the content will be counted as one entity
+- only one words names are accepted, whitespaces are cleaned
+- special characters are ignored, text is cleaned during the process
+- always the first start tag and the last end tag will be observed
+
+Example for usage:
+input: &lt;#@Dani @Jessica @Mike#&gt; result in db: Dani, Jessica and Mike will be added to the photo. Description field will store the names also.
+
+input: &lt;#@Dani@Jessica@Mike#&gt; result in db: Dani, Jessica and Mike will be added to the photo.
+Description field will store the names also.
+
+input: &lt;#@Dani,@Jessica     @Mike; @Dave  #&gt; result in db: Dani, Jessica, Mike and Dave will be added to the photo.
+Description field will store the names also.
+
+input: &lt;#Dani, Jessica @Mike#&gt; result in db: 'DaniJessica' and Mike (this two entities) will be added to the 
+phot. I think this wasn't the purpose.
+Description field will store the names also.
+
+input: &lt; @Dani @Jessica#&gt; result in db: there is a typo so names won't be added to the photo.</value>
+  </data>
+  <data name="DescriptionScriptShortDescription" xml:space="preserve">
+    <value>You can use the description texbox for smart things. The following functionalities are available:</value>
+  </data>
+  <data name="DescriptionScriptTitle" xml:space="preserve">
+    <value>Scripting in Description&lt;beta&gt;</value>
+  </data>
+  <data name="Description_colon" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
+  <data name="DidntSave_errorMessage" xml:space="preserve">
+    <value>{0}(id:{1}) didn't saved.</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="DiscardAll" xml:space="preserve">
+    <value>Discard All</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="DownPage_tooltip" xml:space="preserve">
+    <value>Based on page size (you can change it in setting menu) if there is content above this button is enabled.</value>
+  </data>
+  <data name="DoYouReallyWantDelete_message" xml:space="preserve">
+    <value>Do you really want to delete {0}?</value>
+  </data>
+  <data name="DoYouWantBackup_message" xml:space="preserve">
+    <value>Would you like to 'backup' database first before erase all photo data?</value>
+  </data>
+  <data name="EasterEggs" xml:space="preserve">
+    <value>Easter Eggs</value>
+  </data>
+  <data name="Edit_menu" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EntityFramWorkLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/en-us/ef/</value>
+  </data>
+  <data name="EntityHasBeenChanged_message" xml:space="preserve">
+    <value>The entity has been changed in the meantime by a parallel process. Click 'Ok' to save your changes anyway, click 'Cancel' to reload the entity from the database.</value>
+  </data>
+  <data name="EntityHasBeenDeleted_message" xml:space="preserve">
+    <value>The entity has been deleted by another process.</value>
+  </data>
+  <data name="EraseAllData_menu" xml:space="preserve">
+    <value>Erase all data...</value>
+  </data>
+  <data name="ErrorWhileSaveEntities_errorMessage" xml:space="preserve">
+    <value>Error while saving the entities,</value>
+  </data>
+  <data name="Exit_menu" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Extend" xml:space="preserve">
+    <value>Extend</value>
+  </data>
+  <data name="ExtendOrOverwrite_message" xml:space="preserve">
+    <value>The database has entry(s). Would you like to 'Extend' existing data or 'Overwrite' them?</value>
+  </data>
+  <data name="ExtraFeature" xml:space="preserve">
+    <value>Extra feature</value>
+  </data>
+  <data name="FileHasBeenModifiedFailed_message" xml:space="preserve">
+    <value>File cannot be modified</value>
+  </data>
+  <data name="FileHasBeenModifiedSucc_message" xml:space="preserve">
+    <value>File has been succesfully modified</value>
+  </data>
+  <data name="FileProperty_errorMessage" xml:space="preserve">
+    <value>The metadata: {0} is in not supported format, but the file has been processed.</value>
+  </data>
+  <data name="File_menu" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Finalize" xml:space="preserve">
+    <value>Finalize</value>
+  </data>
+  <data name="Finalize_tooltip" xml:space="preserve">
+    <value>It marks the image as 'finalized'. 'Write metadata' doesn't take effect on finalized images until next change and save. It can be helpful if you would like to see the image in 'done' state.</value>
+  </data>
+  <data name="FunctionalitiesTitle" xml:space="preserve">
+    <value>Functionalities</value>
+  </data>
+  <data name="GettingStarted_button" xml:space="preserve">
+    <value>Getting started</value>
+  </data>
+  <data name="GettingStarted_description" xml:space="preserve">
+    <value>With this application you are able to change metadata of your favourite photos easily.. Like in the old time when people took notes on the verso (back page) of photos. It is useful especially in case of older scanned pictures which has originally wrong and/or missing information. Just load your photos from folder and enjoy your work. Let's photoverse!</value>
+  </data>
+  <data name="GettingStarted_Title" xml:space="preserve">
+    <value>Hello!</value>
+  </data>
+  <data name="GithubLink" xml:space="preserve">
+    <value>https://github.com/</value>
+  </data>
+  <data name="Help_menu" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>How to use this app</value>
+  </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Hungarian</value>
+  </data>
+  <data name="Info_windowTitle" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageSettingsDescription" xml:space="preserve">
+    <value>You can change the display language of the application. This change will take effect after restart.</value>
+  </data>
+  <data name="Language_colon" xml:space="preserve">
+    <value>Language: </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+    <comment>C</comment>
+  </data>
+  <data name="LocationCantBeRemovedBecauseItIsUsedByEntity_message" xml:space="preserve">
+    <value>The location {0} can't be removed, as it is referenced by at least one photo.</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
+  <data name="Locations_menu" xml:space="preserve">
+    <value>Locations</value>
+  </data>
+  <data name="Location_colon" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="MahappsLink" xml:space="preserve">
+    <value>https://mahapps.com/</value>
+  </data>
+  <data name="Map_button" xml:space="preserve">
+    <value>map</value>
+  </data>
+  <data name="MarkAsUnchanged" xml:space="preserve">
+    <value>Mark as unchanged</value>
+  </data>
+  <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
+    <value>It marks the image as unchanged. If you do this the image meta info cannot be written until next change and save.</value>
+  </data>
+  <data name="MsdnLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/</value>
+  </data>
+  <data name="mssqlLink" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/download/details.aspx?id=101064</value>
+  </data>
+  <data name="NewAlbum_menu" xml:space="preserve">
+    <value>New Album</value>
+  </data>
+  <data name="NewPlace" xml:space="preserve">
+    <value>New Place</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="OpenInBrowser_button" xml:space="preserve">
+    <value>Open in the web browser</value>
+  </data>
+  <data name="OpenInBrowser_tooltip" xml:space="preserve">
+    <value>Click on it to Open the coordinates in the default internet browser.</value>
+  </data>
+  <data name="OpenLayersLink" xml:space="preserve">
+    <value>https://openlayers.org/</value>
+  </data>
+  <data name="OpenMap_tooltip" xml:space="preserve">
+    <value>Open the map to pick gps coordinates for the photo. You can just simply choose a coordinate or you can save it to be able to use it later again. You can change existing saved location if it is selected in the combo box.</value>
+  </data>
+  <data name="Options_menu" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="PageSizeSettingsDescription" xml:space="preserve">
+    <value>The page size determines how many photo will appear in the 'Navigation Bar'. Memory consumtion is lower and performance is better in case of lower page size.</value>
+  </data>
+  <data name="PageSize_colon" xml:space="preserve">
+    <value>Page size: </value>
+  </data>
+  <data name="Path_colon" xml:space="preserve">
+    <value>Path:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>People</value>
+  </data>
+  <data name="Peoples_colon" xml:space="preserve">
+    <value>Peoples:</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="PhotoCantDeleted_message" xml:space="preserve">
+    <value>{0} can't be deleted as it is part of at least one album.</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Photos</value>
+  </data>
+  <data name="PleaseWait_windowTitle" xml:space="preserve">
+    <value>Please wait</value>
+  </data>
+  <data name="PrismLink" xml:space="preserve">
+    <value>https://www.nuget.org/packages/Prism.Wpf/</value>
+  </data>
+  <data name="Question_windowTitle" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="ReadingFiles_message" xml:space="preserve">
+    <value>Reading files...</value>
+  </data>
+  <data name="ReadPhotoLibrary_menu" xml:space="preserve">
+    <value>Read Photo Library...</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveFromShelve" xml:space="preserve">
+    <value>Remove from shelve</value>
+  </data>
+  <data name="RemoveFromShelve_tooltip" xml:space="preserve">
+    <value>This button removes the image from the shelve.</value>
+  </data>
+  <data name="RemovePeopleFromDb_button" xml:space="preserve">
+    <value>Delete from database</value>
+  </data>
+  <data name="RemovePeople_tooltip" xml:space="preserve">
+    <value>This people will be removed from the photo after click on it. It won't be deleted from the database.</value>
+  </data>
+  <data name="RemoveSelectedPeople_button" xml:space="preserve">
+    <value>Remove selected</value>
+  </data>
+  <data name="RemoveSelectedPeople_tooltip" xml:space="preserve">
+    <value>It will delete selected people from the database. If you do this, it takes effect for other photos.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save All</value>
+  </data>
+  <data name="SaveAllTab_menu" xml:space="preserve">
+    <value>Save All Tab</value>
+  </data>
+  <data name="SaveAsNew" xml:space="preserve">
+    <value>Save As New</value>
+  </data>
+  <data name="SaveAsNew_tooltip" xml:space="preserve">
+    <value>Save location and coordinates in the database as a new item. You can use it in the future here and in case of other photos.</value>
+  </data>
+  <data name="SaveDialog_windowTitle" xml:space="preserve">
+    <value>Save Dialog</value>
+  </data>
+  <data name="SaveDiscardItemByTitle_message" xml:space="preserve">
+    <value>Do you want to save {0}?</value>
+  </data>
+  <data name="SaveExisting" xml:space="preserve">
+    <value>Overwrite Existing</value>
+  </data>
+  <data name="SaveExisting_tooltip" xml:space="preserve">
+    <value>It overrides existing location in the database and also set and save coordinates. If there isn't any pin on the map the coordinates will be filled by wrong data but it doesn't results error in the application.</value>
+  </data>
+  <data name="SaveWindowMessage" xml:space="preserve">
+    <value>Do you want to save opened tabs before close?</value>
+  </data>
+  <data name="Save_tooltip" xml:space="preserve">
+    <value>Save changes of actual tab</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="SelectDeselectAll" xml:space="preserve">
+    <value>Select/Deselect all</value>
+  </data>
+  <data name="SelectDeselectAll_tooltip" xml:space="preserve">
+    <value>Select/Deselect all visible tiles</value>
+  </data>
+  <data name="SelectFinalized" xml:space="preserve">
+    <value>Select finalized</value>
+  </data>
+  <data name="SelectFinalized_tooltip" xml:space="preserve">
+    <value>Select only finalized tiles</value>
+  </data>
+  <data name="SelectPhotoLocation_message" xml:space="preserve">
+    <value>Please select a 'photo' location (subfolders will be processed also):</value>
+  </data>
+  <data name="SelectPhoto_message" xml:space="preserve">
+    <value>Please select a photo</value>
+  </data>
+  <data name="SelectPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="SelectPrevious_tooltip" xml:space="preserve">
+    <value>Select/Deselect previously selected tiles (works only after any set)</value>
+  </data>
+  <data name="SelectSaved" xml:space="preserve">
+    <value>Select saved</value>
+  </data>
+  <data name="SelectSaved_tooltip" xml:space="preserve">
+    <value>Select only saved tiles</value>
+  </data>
+  <data name="SelectUnmodified" xml:space="preserve">
+    <value>Select unmodified</value>
+  </data>
+  <data name="SelectUnmodified_tooltip" xml:space="preserve">
+    <value>Select only unmodified tiles</value>
+  </data>
+  <data name="SetAll" xml:space="preserve">
+    <value>Set all</value>
+  </data>
+  <data name="SetAll_tooltip" xml:space="preserve">
+    <value>All actual data will overrite the selected image(s) in the navigation bar.</value>
+  </data>
+  <data name="SetCoordinate" xml:space="preserve">
+    <value>Set Coordinate</value>
+  </data>
+  <data name="SetCoordinates_button" xml:space="preserve">
+    <value>Set coordinates</value>
+  </data>
+  <data name="SetCoordinates_tooltip" xml:space="preserve">
+    <value>You can set the coordinates only without saving the location to the database. Using this option is recommended if you wouldn't like to use this coordinates again or you use this location rarely.</value>
+  </data>
+  <data name="Settings_menu" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Set_button" xml:space="preserve">
+    <value>set</value>
+  </data>
+  <data name="Set_tooltip" xml:space="preserve">
+    <value>Actual data in the line will overrite the same entry of selected image(s) in the navigation bar.</value>
+  </data>
+  <data name="Shelve" xml:space="preserve">
+    <value>Shelve</value>
+  </data>
+  <data name="StackOverflowLink" xml:space="preserve">
+    <value>https://stackoverflow.com/</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="TakenDate_colon" xml:space="preserve">
+    <value>Taken Date:</value>
+  </data>
+  <data name="TheSelectedPathInvalid_message" xml:space="preserve">
+    <value>The selected path is invalid, would you like to try again?</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Title_colon" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="Today_tooltip" xml:space="preserve">
+    <value>This button sets the date to actual day.</value>
+  </data>
+  <data name="TypeName" xml:space="preserve">
+    <value>Type a name here:</value>
+  </data>
+  <data name="UnhandledExceptionOccurred_errorMessage" xml:space="preserve">
+    <value>An unhandled exception occurred: {0}</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="UpPage_tooltip" xml:space="preserve">
+    <value>Based on page size (you can change it in setting menu) if there is content below this button is enabled.</value>
+  </data>
+  <data name="ViewHelp_menu" xml:space="preserve">
+    <value>View help</value>
+  </data>
+  <data name="Warning_windoTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Web2ViewLink" xml:space="preserve">
+    <value>https://developer.microsoft.com/en-us/microsoft-edge/webview2/</value>
+  </data>
+  <data name="Window_menu" xml:space="preserve">
+    <value>Window</value>
+  </data>
+  <data name="WriteMetadata" xml:space="preserve">
+    <value>Write metadata</value>
+  </data>
+  <data name="WriteMetadata_tooltip" xml:space="preserve">
+    <value>Write actual displayed data directly to the image file. Only the saved pictures will be written.</value>
+  </data>
+  <data name="WriteSavedItemsMetadata_menu" xml:space="preserve">
+    <value>Write Saved Items Metadata</value>
+  </data>
+  <data name="WritingMetadata_message" xml:space="preserve">
+    <value>Writing image metadata...</value>
+  </data>
+  <data name="WritingToFileDialog_windowTitle" xml:space="preserve">
+    <value>Writing To File</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+</root>

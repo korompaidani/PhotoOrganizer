@@ -1,0 +1,34 @@
+- langmap
+- dispose pattern for backup manager
+
+BUGS:
+- At create backup not the last saved items is written to file but (maybe repo must be closed when photodetail closed)
+- Navi load happens twice (1st due to apply settings 2nd due to MainWindow_onLoad)
+- location has been disposed (delete db, open map --> crash)
+- second allmeta green mark is missing
+- delete existing names
+		 =========================================================================================
+		***************************** UnKnownError *****************************
+		=========================================================================================
+		Egy nem várt hiba történt az alábbi üzenettel: An error occurred while saving entities that do not expose foreign key properties for their relationships. The EntityEntries property will return null because a single entity cannot be identified as the source of the exception. Handling of exceptions while saving can be made easier by exposing foreign key properties in your entity types. See the InnerException for details.
+		#########################################################################################
+		=========================================================================================
+		***************************** DetailViewClosingError *****************************
+		=========================================================================================
+		Store update, insert, or delete statement affected an unexpected number of rows (0). Entities may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=472540 for information on understanding and handling optimistic concurrency exceptions.
+		#########################################################################################
+
+
+
+private Shelve GetShelve()
+{
+	return Context.Shelves.FirstOrDefault(s => s.Id > -1);            
+}
+in C:\Users\korom\source\repos\PhotoOrganizer\PhotoOrganizer\Data\Repositories\PhotoRepository.cs
+
+scenario: select items which are closed an open (mixed) and bulk set some data
+
+
+
+34.0079508,-118.499381
+

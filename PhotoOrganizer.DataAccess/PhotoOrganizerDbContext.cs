@@ -5,12 +5,16 @@ namespace PhotoOrganizer.DataAccess
 {
     public class PhotoOrganizerDbContext : DbContext
     {
-        public PhotoOrganizerDbContext() : base("PhotoOrganizerDb")
+        public PhotoOrganizerDbContext() : base("PhotoVersor")
         {
         }
 
         public DbSet<Photo> Photos { get; set; }
-        public DbSet<Year> Years { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<People> People { get; set; }
+        public DbSet<Album> Albums { get; set; }
+        public DbSet<Shelve> Shelves { get; set; }
+        public DbSet<FileEntry> FileEntries { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

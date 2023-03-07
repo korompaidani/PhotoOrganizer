@@ -1,0 +1,1 @@
+Thumbnails will be generated here. Please do not modify this folder and its content!

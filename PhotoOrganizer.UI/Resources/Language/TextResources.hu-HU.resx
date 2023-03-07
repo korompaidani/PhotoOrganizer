@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutLink" xml:space="preserve">
+    <value>https://github.com/korompaidani/</value>
+  </data>
+  <data name="AboutLinkText" xml:space="preserve">
+    <value>Github oldalam:</value>
+  </data>
+  <data name="AboutText" xml:space="preserve">
+    <value>Nagy örömömre szolgál, hogy használod az alkalmazásomat. A célom vele egy olyan program megalkotása volt, amivel könnyedén és intuitíven lehet a képek metaadtait szerkeszteni mindenféle egyéb kiegészítő, de a fő célt zavaró funkciók nélkül. Másodlagos célom pedig a tanulás, amit ennek a projektnek köszönhetően nagy erőbedobással és lelkesedéssel tudtam művelni. Remélem éppen olyan nagy örömmel fogod használni a programomat, amekkora boldogságot okozott nekem a készítése.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>Üdv az Appomban!</value>
+  </data>
+  <data name="About_menu" xml:space="preserve">
+    <value>Névjegy</value>
+  </data>
+  <data name="ActualSettingIs" xml:space="preserve">
+    <value>Az aktuális beállítás:</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Hozzáad</value>
+  </data>
+  <data name="AddedPhotos" xml:space="preserve">
+    <value>Hozzáadott képek</value>
+  </data>
+  <data name="AddNewPeople_tooltip" xml:space="preserve">
+    <value>Hozzáadja az új személyt a képhez. Kattintás után a személy létrejön és automatikusan hozzáadódik a fotóhoz is. Miután a fénykép mentésre kerül, a személy elérhető lesz más fotók számára is.</value>
+  </data>
+  <data name="AddPeople_tooltip" xml:space="preserve">
+    <value>Itt új képen szereplő személyt adhatsz hozzá a fotóhoz. Ha kiírod a meta adatot, akkor azon kulcsszó értékként fog megjelenni.</value>
+  </data>
+  <data name="AddPhoto_menu" xml:space="preserve">
+    <value>Kép hozzáadása…</value>
+  </data>
+  <data name="AddSelectedPeople_button" xml:space="preserve">
+    <value>Kijelölt személy hozzáadása</value>
+  </data>
+  <data name="AddSelectedPeople_tooltip" xml:space="preserve">
+    <value>Már létrehozott személy hozzáadása a képhez.</value>
+  </data>
+  <data name="AddToPhoto" xml:space="preserve">
+    <value>Képhez hozzáadás</value>
+  </data>
+  <data name="AddToShelve" xml:space="preserve">
+    <value>Tedd a Polcra</value>
+  </data>
+  <data name="AddToShelve_tooltip" xml:space="preserve">
+    <value>Feltheted a képet a "polcra". Hasznos lehet, ha később szeretnél a képpel foglalkozni, miután más képek feldolgozásából ötletet merítettél.</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albumok</value>
+  </data>
+  <data name="AutofacLink" xml:space="preserve">
+    <value>https://autofac.org/</value>
+  </data>
+  <data name="AvailablePhotos" xml:space="preserve">
+    <value>Rendelkezésre álló képek</value>
+  </data>
+  <data name="ButtonsTitle" xml:space="preserve">
+    <value>Gombok</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="ChooseFolder_windowTitle" xml:space="preserve">
+    <value>Kérlek válaszd ki a 'biztonsági mentés' helyét:</value>
+  </data>
+  <data name="CloseConfirmation_message" xml:space="preserve">
+    <value>Változtatásaid vannak. Biztosan be szeretnéd zárni?</value>
+  </data>
+  <data name="CloseOpenTabs_menu" xml:space="preserve">
+    <value>Nyitott lapok bezárása</value>
+  </data>
+  <data name="ConfirmationBeforeErase_message" xml:space="preserve">
+    <value>Ez a művelet minden előző adatot törölni fog az adatbázisból. Biztosan ezt szeretnéd?</value>
+  </data>
+  <data name="Coordinates" xml:space="preserve">
+    <value>Koordináták</value>
+  </data>
+  <data name="Copy_button" xml:space="preserve">
+    <value>Másol</value>
+  </data>
+  <data name="Copy_tooltip" xml:space="preserve">
+    <value>Kimásolja az útvonalat a vágólapra.</value>
+  </data>
+  <data name="CouldNotLoadEntity_message" xml:space="preserve">
+    <value>Nem tudja betölteni az elemet, elképzelhető, hogy törölve lett egy párhuzamos művelet során, vagy valamilyen okból nem elérhető. A 'Navigációs Panel' frissülni fog.</value>
+  </data>
+  <data name="CreateBackup_menu" xml:space="preserve">
+    <value>Biztonsági mentés…</value>
+  </data>
+  <data name="CreateNewPeople_button" xml:space="preserve">
+    <value>Új személy létrehozása</value>
+  </data>
+  <data name="CreatingBackup_message" xml:space="preserve">
+    <value>Biztonsági mentés készítése…</value>
+  </data>
+  <data name="CreditsText" xml:space="preserve">
+    <value>Hálás köszönet az alábbi komponensekért/megszerzett tudásért:</value>
+  </data>
+  <data name="CreditsTitle" xml:space="preserve">
+    <value>Kredit</value>
+  </data>
+  <data name="CultureInfoHun" xml:space="preserve">
+    <value>hu-HU</value>
+  </data>
+  <data name="CultureInfoUSeng" xml:space="preserve">
+    <value>en-US</value>
+  </data>
+  <data name="CultureInfo_constant" xml:space="preserve">
+    <value>hu-HU</value>
+  </data>
+  <data name="DataWillReloaded_message" xml:space="preserve">
+    <value>Az adatok újratöltődtek. Részletek:</value>
+  </data>
+  <data name="Data_menu" xml:space="preserve">
+    <value>Adatok</value>
+  </data>
+  <data name="DbDelete_inprogressMessage" xml:space="preserve">
+    <value>Adatok törlése folyamatban...</value>
+  </data>
+  <data name="DefaultCoordinates" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="DefaultError_message" xml:space="preserve">
+    <value>{0} típusú hiba történt a feldolgozás során. A program bezárása után a hiba leírását tartalmazó fájl itt lesz megtalálható: {1} Ha ezek után bármi az alkalmazás nem a tőle várt módon viselkedne, kérlek indítsd újra a programot!</value>
+  </data>
+  <data name="DefaultWarning_warningMessage" xml:space="preserve">
+    <value>Az alábbi az észrevételem: {0}</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
+  <data name="DescriptionScriptLongDescription" xml:space="preserve">
+    <value>Könnyedén hozzáadhatsz embereket, ha jobban szeretsz szkriptet írni, mint kattintgatni. Ehhez csak használnod kell a nyitó '&lt;#' és záró jelölőket '#&gt;'. E kettő között lévő szöveg máris különös figyelemnek örvend majd.
+
+Sorolj fel embereket: Csak akkor lesz hatása, ha leírás mező fölötti emberek szekcióban nem szerepelnek hozzáadott személyek. Ez szándékosan van így, mert a felületen végrehajtott műveletek elsőbbséget élveznek.
+Ha a megadott személyek nem léteztek a szkript megírása előtt, akkor automatikusan legenerálódnak és hozzáadódnak az adatbázishoz. Beazonosításuk a nevük alapján történik, így a véletlenül vagy szándékosan máshogyan írt nevek új entitásként fognak létrejönni.
+
+Konvenciók a szkripthez:
+- a személyeket mindenképpen nyitó és záró címkék között kell felsorolni: &lt;#(...itt van a személyek helye...)#&gt;
+- a személyek mindig '@' jellel kezdődjenek: @Dani
+- '@' karakter nélkül a tartalom összemosódik és egy elemként fog legenerálódni
+- egyszavas szavak preferáltak, ugyanis a szóközök el fognak tűnni a feldolgozás során
+- különleges karakterek figyelmen kívül lesznek hagyva '@' kivételével. Ezek is eltűnnek a feldolgozás során
+- mindig az első nyitó jel és az utolsó záró jel lesz figyelembe véve. Mindig a közöttük lévő érték lesz feldolgozva.
+
+Példák a használatra:
+bemenet: &lt;#@Dani @Jessica @Mike#&gt; hatása: Dani, Jessica és Mike személyek hozzá lesznek adva az őket tartalmazó fotó(k)hoz akár léteztek korábban, akár nem. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#@Dani@Jessica@Mike#&gt; hatása: Dani, Jessica és Mike személyek hozzá lesznek adva az őket tartalmazó fotó(k)hoz akár léteztek korábban, akár nem. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#@Dani,@Jessica     @Mike; @Dave  #&gt; hatása: Hasonlóan a korábbiakhoz, az itt szereplő négy név hozzá lesz adva a fotókhoz. Az egyéb szükségtelen karakterek törlődnek. Itt pl.: szóköz, veszző, pontosvessző. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt;#Dani, Jessica @Mike#&gt;hatása: DaniJessica és Mike fog hozzáadódni a fényképhez. Gondolom nem éppen ez volt az eredeti szándék, de a konvenciónak megfelelően a '@' jellel elválasztott karakterek azonosíthatóak külön entitásként. DaniJessica pedig összeolvadt, mert a szóköz a speciális karakterekkel együtt törölve lett. A leírás mező továbbra is tárolni fogja ezeket az értékeket.
+
+bemenet: &lt; @Dani @Jessica#&gt; hatása: a feltételezhető elírás miatt egyik személy sem fog legenerálódni. A leírás mező továbbra is tárolni fogja ezeket az értékeket.</value>
+  </data>
+  <data name="DescriptionScriptShortDescription" xml:space="preserve">
+    <value>A leírás mezőt használhatod okos dolgok véghezviteléhez. Jelenleg az alábbi unkció(k) érhetők el:</value>
+  </data>
+  <data name="DescriptionScriptTitle" xml:space="preserve">
+    <value>Szkriptek a leírás mezőben&lt;béta&gt;</value>
+  </data>
+  <data name="Description_colon" xml:space="preserve">
+    <value>Leírás:</value>
+  </data>
+  <data name="DeselectAll" xml:space="preserve">
+    <value>Összes kij. Megsz.</value>
+  </data>
+  <data name="DidntSave_errorMessage" xml:space="preserve">
+    <value>{0} (azonosító: {1}) nem lett elmentve.</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Elvetés</value>
+  </data>
+  <data name="DiscardAll" xml:space="preserve">
+    <value>Össz. Elvetése</value>
+  </data>
+  <data name="Down" xml:space="preserve">
+    <value>Le</value>
+  </data>
+  <data name="DownPage_tooltip" xml:space="preserve">
+    <value>Az oldal méret (amit a 'Beállítások' menüben megváltoztathatsz) és teljes tartalom függvényében betöltheted a lejebb szereplő elemeket.</value>
+  </data>
+  <data name="DoYouReallyWantDelete_message" xml:space="preserve">
+    <value>{0}-t biztosan törölni szeretnéd?</value>
+  </data>
+  <data name="DoYouWantBackup_message" xml:space="preserve">
+    <value>Szeretnél készíteni egy 'biztonsági mentést' mielőtt törölsz mindent?</value>
+  </data>
+  <data name="EasterEggs" xml:space="preserve">
+    <value>Meglepetés funkciók</value>
+  </data>
+  <data name="Edit_menu" xml:space="preserve">
+    <value>Szerkesztés</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Vége</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Angol</value>
+  </data>
+  <data name="EntityFramWorkLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/en-us/ef/</value>
+  </data>
+  <data name="EntityHasBeenChanged_message" xml:space="preserve">
+    <value>Ez az elem időközben megváltozott egy másik párhuzamos művelet során. Kattints az 'OK'-ra, hogyha mégis ezt szeretnéd menteni, vagy kattints a 'Mégse'-re, hogy újra töltsem az elemet az adatbázisból.</value>
+  </data>
+  <data name="EntityHasBeenDeleted_message" xml:space="preserve">
+    <value>Ez az elem egy párhuzamos művelet során törölve lett az adatbázisból.</value>
+  </data>
+  <data name="EraseAllData_menu" xml:space="preserve">
+    <value>Adatbázis törlése...</value>
+  </data>
+  <data name="ErrorWhileSaveEntities_errorMessage" xml:space="preserve">
+    <value>Hiba az elemek mentése közben,</value>
+  </data>
+  <data name="Exit_menu" xml:space="preserve">
+    <value>Kilépés</value>
+  </data>
+  <data name="Extend" xml:space="preserve">
+    <value>Bővítés</value>
+  </data>
+  <data name="ExtendOrOverwrite_message" xml:space="preserve">
+    <value>Az adatbázisban szerepelnek bejegyzések. A meglévőt szeretnéd 'Bővíteni' vagy inkább 'Felülírod' az egészet?</value>
+  </data>
+  <data name="ExtraFeature" xml:space="preserve">
+    <value>Extrák</value>
+  </data>
+  <data name="FileHasBeenModifiedFailed_message" xml:space="preserve">
+    <value>A fájl nem módosítható</value>
+  </data>
+  <data name="FileHasBeenModifiedSucc_message" xml:space="preserve">
+    <value>A fájl sikeresen módosult</value>
+  </data>
+  <data name="FileProperty_errorMessage" xml:space="preserve">
+    <value>Az alábbi metaadat: {0} nem támogatott formátumban van, de a fájl maga feldolgozásra került.</value>
+  </data>
+  <data name="File_menu" xml:space="preserve">
+    <value>Fájl</value>
+  </data>
+  <data name="Finalize" xml:space="preserve">
+    <value>Véglegesít</value>
+  </data>
+  <data name="Finalize_tooltip" xml:space="preserve">
+    <value>Ezzel megjelölheted a képet véglegesként. A meta infó fájlba írása nem történik meg ezen a képen egészen a kép következő módosításáig majd mentéséig. Hasznos lehet, ha a képet 'elkészült' állapotban szeretnéd látni.</value>
+  </data>
+  <data name="FunctionalitiesTitle" xml:space="preserve">
+    <value>Funkcionalitások</value>
+  </data>
+  <data name="GettingStarted_button" xml:space="preserve">
+    <value>Itt kezdhetsz</value>
+  </data>
+  <data name="GettingStarted_description" xml:space="preserve">
+    <value>Ezzel az alkalmazással könnyedén módosíthatod a kedvenc képeid meta adatait. Ha úgy tetszik jegyzetelhetsz a képek hátoldalára, mint régen. Különösen azoknál a régi képeknél lehet hasznos, amik szkennelve lettek vagy valamilyen oknál fogva nem a kép valós adatait tartalmazzák. Csak töltsd be a fotóidat és élvezd a munkát velük. Hajrá a photoverse-eléshez!</value>
+  </data>
+  <data name="GettingStarted_Title" xml:space="preserve">
+    <value>Hello!</value>
+  </data>
+  <data name="GithubLink" xml:space="preserve">
+    <value>https://github.com/</value>
+  </data>
+  <data name="Help_menu" xml:space="preserve">
+    <value>Súgó</value>
+  </data>
+  <data name="HowToUseTitle" xml:space="preserve">
+    <value>Hogyan használd az appot</value>
+  </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Magyar</value>
+  </data>
+  <data name="Info_windowTitle" xml:space="preserve">
+    <value>Infó</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="LanguageSettingsDescription" xml:space="preserve">
+    <value>Itt megváltoztathatod a megjelenítés nyelvét. Ez a beállítás csak a program következő indulásakor lesz érvényes.</value>
+  </data>
+  <data name="Language_colon" xml:space="preserve">
+    <value>Nyelv:</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Helyszínek</value>
+  </data>
+  <data name="LocationCantBeRemovedBecauseItIsUsedByEntity_message" xml:space="preserve">
+    <value>A {0} helyszínt nem sikerült törölni, mivel egy vagy több fényképen használva van.</value>
+  </data>
+  <data name="LocationName" xml:space="preserve">
+    <value>Helyszín neve</value>
+  </data>
+  <data name="Locations_menu" xml:space="preserve">
+    <value>Helyszínek</value>
+  </data>
+  <data name="Location_colon" xml:space="preserve">
+    <value>Helyszín:</value>
+  </data>
+  <data name="MahappsLink" xml:space="preserve">
+    <value>https://mahapps.com/</value>
+  </data>
+  <data name="Map_button" xml:space="preserve">
+    <value>Térkép</value>
+  </data>
+  <data name="MarkAsUnchanged" xml:space="preserve">
+    <value>Változatlannak jelöl</value>
+  </data>
+  <data name="MarkAsUnchanged_tooltip" xml:space="preserve">
+    <value>Megjelölheted a képet változatlanként. Ha ezt teszed, akkor a meta adatok írása hatástalan lesz erre a képre egészen annak legközelebbi módosításáig és mentéséig.</value>
+  </data>
+  <data name="MsdnLink" xml:space="preserve">
+    <value>https://docs.microsoft.com/</value>
+  </data>
+  <data name="mssqlLink" xml:space="preserve">
+    <value>https://www.microsoft.com/en-us/download/details.aspx?id=101064</value>
+  </data>
+  <data name="NewAlbum_menu" xml:space="preserve">
+    <value>Új Album</value>
+  </data>
+  <data name="NewPlace" xml:space="preserve">
+    <value>Új helyszín</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nem</value>
+  </data>
+  <data name="OpenInBrowser_button" xml:space="preserve">
+    <value>Megnyitás a böngészőben</value>
+  </data>
+  <data name="OpenInBrowser_tooltip" xml:space="preserve">
+    <value>Kattints a koordinátákra, hogy megnézhesd a helyszínt az alapértelmezett böngészőben.</value>
+  </data>
+  <data name="OpenLayersLink" xml:space="preserve">
+    <value>https://openlayers.org/</value>
+  </data>
+  <data name="OpenMap_tooltip" xml:space="preserve">
+    <value>Nyisd meg a térképet és keresd ki a helyszínt, ahol a fénykép készülhetett. Szimplán választhatsz egy koordinátát de akár el is mentheted a helyszínt vagy módosíthatod a meglévőt, így a későbbiek során könnyen kiválaszthatod más képek esetén is a legördülő menüből.</value>
+  </data>
+  <data name="Options_menu" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Felülírás</value>
+  </data>
+  <data name="PageSizeSettingsDescription" xml:space="preserve">
+    <value>Az oldalméret meghatározza, hogy egyszerre mennyi kép jelenjen meg a 'Navigációs Panelen'. Kisebb oldal méret kevesebb memória használatot és gyorsabb feldolgozást eredményez.</value>
+  </data>
+  <data name="PageSize_colon" xml:space="preserve">
+    <value>Oldal méret:</value>
+  </data>
+  <data name="Path_colon" xml:space="preserve">
+    <value>Útvonal:</value>
+  </data>
+  <data name="People" xml:space="preserve">
+    <value>Személy</value>
+  </data>
+  <data name="Peoples_colon" xml:space="preserve">
+    <value>Személyek:</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Teljesítmény</value>
+  </data>
+  <data name="PhotoCantDeleted_message" xml:space="preserve">
+    <value>{0} nem törölhető, mivel legalább egy albumhoz hozzá van adva.</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Képek</value>
+  </data>
+  <data name="PleaseWait_windowTitle" xml:space="preserve">
+    <value>Kérlek várj</value>
+  </data>
+  <data name="PrismLink" xml:space="preserve">
+    <value>https://www.nuget.org/packages/Prism.Wpf/</value>
+  </data>
+  <data name="Question_windowTitle" xml:space="preserve">
+    <value>Kérdés</value>
+  </data>
+  <data name="ReadingFiles_message" xml:space="preserve">
+    <value>Fájlok beolvasása…</value>
+  </data>
+  <data name="ReadPhotoLibrary_menu" xml:space="preserve">
+    <value>Könyvtár hozzáadása...</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Eltávolít</value>
+  </data>
+  <data name="RemoveFromShelve" xml:space="preserve">
+    <value>Vedd le a Polcról</value>
+  </data>
+  <data name="RemoveFromShelve_tooltip" xml:space="preserve">
+    <value>Ez a gomb eltávolítja a képet a polcról. Vedd le, ha már nincsen szükséged rá, hogy továbbra is ott legyen.</value>
+  </data>
+  <data name="RemovePeopleFromDb_button" xml:space="preserve">
+    <value>Személy törlése</value>
+  </data>
+  <data name="RemovePeople_tooltip" xml:space="preserve">
+    <value>Ez a személy le lesz véve a fotóról ha a nevére kattintasz. Az adatbázisból nem törlődik.</value>
+  </data>
+  <data name="RemoveSelectedPeople_button" xml:space="preserve">
+    <value>Kijelölt törlése</value>
+  </data>
+  <data name="RemoveSelectedPeople_tooltip" xml:space="preserve">
+    <value>Személy törlése az adatbázisból. Ha itt törlöd, akkor törlődik az összes képről, ahol szerepelt.</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Mentés</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Össz. Mentése</value>
+  </data>
+  <data name="SaveAllTab_menu" xml:space="preserve">
+    <value>Nyitott lapok mentése</value>
+  </data>
+  <data name="SaveAsNew" xml:space="preserve">
+    <value>Mentés újként</value>
+  </data>
+  <data name="SaveAsNew_tooltip" xml:space="preserve">
+    <value>Mentsd el a helyszín nevét és koordinátái az adatbázisba új elemként. Így más fényképek esetén is könnyedén hozzáadhatod a helyszínt a térkép megnyitása nélkül a legördülő menü használatával.</value>
+  </data>
+  <data name="SaveDialog_windowTitle" xml:space="preserve">
+    <value>Mentés párbeszédablak</value>
+  </data>
+  <data name="SaveDiscardItemByTitle_message" xml:space="preserve">
+    <value>{0}-t szeretnéd menteni?</value>
+  </data>
+  <data name="SaveExisting" xml:space="preserve">
+    <value>Meglévő felülírása</value>
+  </data>
+  <data name="SaveExisting_tooltip" xml:space="preserve">
+    <value>Felülírja a meglévő helyszínt az itt kitöltöttel és koordinátáit a kiválasztott helyszínnel. Ha nincs kiválasztva semmi a térképen, akkor nem fog hozzá értelmes koordinátát társítani, de hibát nem okoz.</value>
+  </data>
+  <data name="SaveWindowMessage" xml:space="preserve">
+    <value>Kilépés előtt szeretnéd menteni a megnyitott lapokat?</value>
+  </data>
+  <data name="Save_tooltip" xml:space="preserve">
+    <value>Az aktuális lap változtatásainak mentése</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Mindet</value>
+  </data>
+  <data name="SelectDeselectAll" xml:space="preserve">
+    <value>Mindet/Semmit</value>
+  </data>
+  <data name="SelectDeselectAll_tooltip" xml:space="preserve">
+    <value>Minden látható csempét kijelöl vagy visszavonja a kijelölést.</value>
+  </data>
+  <data name="SelectFinalized" xml:space="preserve">
+    <value>Véglegesek</value>
+  </data>
+  <data name="SelectFinalized_tooltip" xml:space="preserve">
+    <value>Csak a véglegesített csempék kijelölése</value>
+  </data>
+  <data name="SelectPhotoLocation_message" xml:space="preserve">
+    <value>Válassz egy fotókat tartalmazó mappát (almappák is feldolgozásra kerülnek):</value>
+  </data>
+  <data name="SelectPhoto_message" xml:space="preserve">
+    <value>Kérlek válassz egy fényképet</value>
+  </data>
+  <data name="SelectPrevious" xml:space="preserve">
+    <value>Korábban jelöltek</value>
+  </data>
+  <data name="SelectPrevious_tooltip" xml:space="preserve">
+    <value>Kijelöli a korábban megjelölt csempéket. Csak azután működik, ha már a tömbös beállítás használva volt.</value>
+  </data>
+  <data name="SelectSaved" xml:space="preserve">
+    <value>Mentettek</value>
+  </data>
+  <data name="SelectSaved_tooltip" xml:space="preserve">
+    <value>Csak az elmentett elmeket jelöli ki</value>
+  </data>
+  <data name="SelectUnmodified" xml:space="preserve">
+    <value>Változatlanok</value>
+  </data>
+  <data name="SelectUnmodified_tooltip" xml:space="preserve">
+    <value>Csak azokat jelöli ki, amelyek még nem lettek módosítva</value>
+  </data>
+  <data name="SetAll" xml:space="preserve">
+    <value>Mindent tömbösen</value>
+  </data>
+  <data name="SetAll_tooltip" xml:space="preserve">
+    <value>Az adott lap minden módosítható adata érvényesítve lesz a 'Navigációs Panelen' kijelölt csempéken, azok vonatkozó adatainak felülírásával.</value>
+  </data>
+  <data name="SetCoordinate" xml:space="preserve">
+    <value>Koordináta beállítása</value>
+  </data>
+  <data name="SetCoordinates_button" xml:space="preserve">
+    <value>Csak koordináta</value>
+  </data>
+  <data name="SetCoordinates_tooltip" xml:space="preserve">
+    <value>Csak a koordinátát állítja be anélkül, hogy a helyszínt magát elmentené az adatbázisba. Célszerű ezt választani a nem túl gyakran használt helyszínek esetén. Így nem duzzad átláthatalan nagyságúra a legördülő menü.</value>
+  </data>
+  <data name="Settings_menu" xml:space="preserve">
+    <value>Konfiguráció</value>
+  </data>
+  <data name="Set_button" xml:space="preserve">
+    <value>tömb</value>
+  </data>
+  <data name="Set_tooltip" xml:space="preserve">
+    <value>A sorban szereplő adat beállításra kerül a 'Navigációs Panelen' kijelölt csempéken azok érintett adatának felülírásával.</value>
+  </data>
+  <data name="Shelve" xml:space="preserve">
+    <value>Polc</value>
+  </data>
+  <data name="StackOverflowLink" xml:space="preserve">
+    <value>https://stackoverflow.com/</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TakenDate_colon" xml:space="preserve">
+    <value>Készítés ideje:</value>
+  </data>
+  <data name="TheSelectedPathInvalid_message" xml:space="preserve">
+    <value>A kiválasztott útvonal érvénytelen, szeretnéd újra megpróbálni?</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Cím</value>
+  </data>
+  <data name="Title_colon" xml:space="preserve">
+    <value>Cím:</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Ma</value>
+  </data>
+  <data name="Today_tooltip" xml:space="preserve">
+    <value>A mai napra állítja a dátumot.</value>
+  </data>
+  <data name="TypeName" xml:space="preserve">
+    <value>Írj egy nevet ide…</value>
+  </data>
+  <data name="UnhandledExceptionOccurred_errorMessage" xml:space="preserve">
+    <value>Egy nem várt hiba történt az alábbi üzenettel: {0}</value>
+  </data>
+  <data name="Up" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="UpPage_tooltip" xml:space="preserve">
+    <value>Oldal méret (ez változtatható a beállítások alatt) és a képek számának függvényében felfelé lapoz, ha van ott tartalom.</value>
+  </data>
+  <data name="ViewHelp_menu" xml:space="preserve">
+    <value>Súgó megtekintése</value>
+  </data>
+  <data name="Warning_windoTitle" xml:space="preserve">
+    <value>Figyelmeztetés</value>
+  </data>
+  <data name="Web2ViewLink" xml:space="preserve">
+    <value>https://developer.microsoft.com/en-us/microsoft-edge/webview2/</value>
+  </data>
+  <data name="Window_menu" xml:space="preserve">
+    <value>Ablak</value>
+  </data>
+  <data name="WriteMetadata" xml:space="preserve">
+    <value>Meta adat írása</value>
+  </data>
+  <data name="WriteMetadata_tooltip" xml:space="preserve">
+    <value>Az aktuális lapon megadott adatokat beleírja a képfájlba. Csak egy már korábban mentett lapon érhető el a funkció.</value>
+  </data>
+  <data name="WriteSavedItemsMetadata_menu" xml:space="preserve">
+    <value>Minden Mentett Kép Meta Adatának Írása</value>
+  </data>
+  <data name="WritingMetadata_message" xml:space="preserve">
+    <value>Meta adatok írása…</value>
+  </data>
+  <data name="WritingToFileDialog_windowTitle" xml:space="preserve">
+    <value>Fájlok Írása</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Igen</value>
+  </data>
+</root>

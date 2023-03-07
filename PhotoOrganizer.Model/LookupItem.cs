@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PhotoOrganizer.Common;
 
 namespace PhotoOrganizer.Model
 {
@@ -10,6 +6,9 @@ namespace PhotoOrganizer.Model
     {
         public int Id { get; set; }
         public string DisplayMemberItem { get; set; }
+        public string PhotoPath { get; set; }
+        public string Coordinates { get; set; }
+        public ColorSign ColorFlag { get; set; }
     }
 
     public class NullLookupItem : LookupItem

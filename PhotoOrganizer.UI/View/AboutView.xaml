@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PhotoOrganizer.UI.View.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="{x:Static resources:TextResources.AboutTitle}" Width="400" TextWrapping="Wrap" FontSize="41" TextAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 5 0 5"/>
+            <TextBlock Text="{x:Static resources:TextResources.AboutText}" Width="400" TextWrapping="Wrap" FontSize="11" TextAlignment="Justify" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="0 5 0 20"/>
+            <Button Content="{x:Static resources:TextResources.AboutLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.AboutLink}" Style="{DynamicResource MyLinkButton}"/>
+<!-- ========================================================================================================================================================================================================================================================== -->
+            <TextBlock Text="{x:Static resources:TextResources.CreditsTitle}" Width="400" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" FontWeight="Bold" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="-319 25 0 5"/>
+            <TextBlock Text="{x:Static resources:TextResources.CreditsText}" Width="400" TextWrapping="Wrap" FontSize="11" TextAlignment="Justify" Foreground="{DynamicResource MahApps.Brushes.Gray7}" Margin="0 5 0 20"/>
+
+            <Button Content="{x:Static resources:TextResources.OpenLayersLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.OpenLayersLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.MahappsLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.MahappsLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.PrismLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.PrismLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.AutofacLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.AutofacLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.GithubLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.GithubLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.EntityFramWorkLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.EntityFramWorkLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.Web2ViewLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.Web2ViewLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.MsdnLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.MsdnLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.mssqlLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.mssqlLink}" Style="{DynamicResource MyLinkButton}"/>
+            <Button Content="{x:Static resources:TextResources.StackOverflowLink}" Width="400" Command="{Binding GoToLinkCommand}" CommandParameter="{x:Static resources:TextResources.StackOverflowLink}" Style="{DynamicResource MyLinkButton}"/>
+        </StackPanel>
+        <Button Content="X" FontSize="50" Background="Transparent" Foreground="White" Margin="0 0 20 0"
+                Command="{Binding OpenWorkbenchCommand}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid">
+                        <ContentPresenter HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>

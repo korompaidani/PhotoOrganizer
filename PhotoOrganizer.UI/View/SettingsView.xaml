@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="PhotoOrganizer.UI.View.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhotoOrganizer.UI.View"
+             xmlns:resources="clr-namespace:PhotoOrganizer.UI.Resources.Language"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="{x:Static resources:TextResources.Settings_menu}" FontSize="25" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+            <GroupBox Header="{x:Static resources:TextResources.Performance}" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static resources:TextResources.PageSize_colon}" TextWrapping="Wrap" Margin="5 0 5 5" FontSize="10" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static resources:TextResources.PageSizeSettingsDescription}" TextWrapping="Wrap" Margin="5 0 5 5" FontSize="10" Foreground="Gray"></TextBlock>
+                    <ComboBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding PageSizes}"
+                          SelectedItem="{Binding SelectedPageSize}"
+                          Margin="5 0 5 5"
+                          Width="100"
+                              Height="25"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Margin="5 0 5 5" FontSize="10" VerticalAlignment="Center">
+                        <Run Text="{x:Static resources:TextResources.ActualSettingIs}" Foreground="Gray"/><Run Text="{Binding ActualPageSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic"/>
+                    </TextBlock>
+                </Grid>
+            </GroupBox>
+            
+            <GroupBox Header="{x:Static resources:TextResources.Language}" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static resources:TextResources.Language_colon}" TextWrapping="Wrap" Margin="5 0 5 5" FontSize="10" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static resources:TextResources.LanguageSettingsDescription}" TextWrapping="Wrap" Margin="5 0 5 5" FontSize="10" Foreground="Gray"></TextBlock>
+                    <ComboBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Languages}"
+                          SelectedItem="{Binding SelectedLanguage}"
+                          Margin="5 0 5 5"
+                          Width="100"
+                              Height="25"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Margin="5 0 5 5" FontSize="10" VerticalAlignment="Center">
+                        <Run Text="{x:Static resources:TextResources.ActualSettingIs}" Foreground="Gray"/><Run Text="{Binding ActualLanguageSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontStyle="Italic"/>
+                    </TextBlock>
+                </Grid>
+                
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Apply" Margin="5 0 5 5" Width="50"
+                        Command="{Binding ApplyCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+            <Button Content="Ok" Margin="5 0 5 5" Width="50"
+                        Command="{Binding OkCommand}" Style="{DynamicResource MyMetroSquareButton}"/>
+        </StackPanel>
+
+        <Button Grid.Column="2" Grid.Row="0" Content="X" FontSize="50" Background="Transparent" Margin="0 0 20 0"
+                Command="{Binding OpenWorkbenchCommand}">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="grid">
+                        <ContentPresenter HorizontalAlignment="Right"
+                                          VerticalAlignment="Top"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="FontWeight" Value="Normal"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>
