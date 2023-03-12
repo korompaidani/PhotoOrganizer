@@ -57,25 +57,39 @@ There are 3 phases regarding to file handling:
 3. Metadata Saved - metadata information is backed into image /green status in the Navigation/
 
 ## Data
+
+![08](https://user-images.githubusercontent.com/22032902/223403540-3cef3f13-e0c3-4b74-865d-3eadca327078.JPG)
+
 * Create backup - create backup file from your database [it is a beta functionality]
 * Erase all data.. - It will empty your database. Before doing so it will ask about making a backup.
-![08](https://user-images.githubusercontent.com/22032902/223403540-3cef3f13-e0c3-4b74-865d-3eadca327078.JPG)
+
 ## Edit
-* Locations - You can edit the formerly saved locations [beta]
+
 ![09](https://user-images.githubusercontent.com/22032902/223403541-1dc1f17b-b15d-4b6d-b1c6-9cc7f770e93d.JPG)
+
+* Locations - You can edit the formerly saved locations [beta]
+
 ## Window
-* Close Open Tabs - Same in English :) It will ask about saving before doing it's job
+
 ![10](https://user-images.githubusercontent.com/22032902/223403543-25dc4589-b2a8-420f-a1a0-308645cca902.JPG)
+
+* Close Open Tabs - Same in English :) It will ask about saving before doing it's job
+
 ## Options
+
 ![11](https://user-images.githubusercontent.com/22032902/223403544-835c9205-80fb-4c27-ba5e-9a0ea1deece7.JPG)
+
 * Settings - You can change the language and page size
 1. All text will be affected by language change (menu, buttons, toopltips, hints, descriptions). English and Hungarian is available.
 2. Page sizes is a performance optimization [beta]. It can influence the memory consumption.
+
 ![13](https://user-images.githubusercontent.com/22032902/223403549-ee6f97b9-1ff5-4a80-8391-adbc9a8215db.JPG)
 
 ## Help
-* View help - Hints, tipps and detailed information about functionality
+
 ![12](https://user-images.githubusercontent.com/22032902/223403547-c0199e67-8473-4571-919e-9fa9fadc855b.JPG)
+
+* View help - Hints, tipps and detailed information about functionality
 
 ![14](https://user-images.githubusercontent.com/22032902/223403552-571611a9-bc3d-4dd6-9e2a-fea1efaea8fb.JPG)
 ![15](https://user-images.githubusercontent.com/22032902/223403555-e0d6612f-207e-4860-ae7c-a14f36c27e9d.JPG)
