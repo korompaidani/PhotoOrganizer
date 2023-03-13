@@ -94,3 +94,24 @@ There are 3 phases regarding to file handling:
 ![14](https://user-images.githubusercontent.com/22032902/223403552-571611a9-bc3d-4dd6-9e2a-fea1efaea8fb.JPG)
 ![15](https://user-images.githubusercontent.com/22032902/223403555-e0d6612f-207e-4860-ae7c-a14f36c27e9d.JPG)
 ![16](https://user-images.githubusercontent.com/22032902/223403558-352c6cad-50a8-44c5-9d43-98c117e642c2.JPG)
+
+### Scripting Hint in text format:
+```
+You can easily add people by typing instead of clicking. Simply use the start tag '<#' and end tag '#>'.
+The text between the two tags receives special attention.
+
+You can list people, but only if there are no people already assigned in the people section of the photo tab.
+If there is at least one person assigned, it will overwrite the description field by design because the UI functionality takes priority.
+
+If the given person does not exist, it will be automatically created in the database.
+If it already exists with the same name, it will be recognized.
+
+The following conventions should be observed:
+
+* People must be enlisted between the tags: <#(...people's names are placed here...)#>
+* People must be named starting with '@': @Dani
+* Without '@', the content will be counted as a single entity
+* Only one-word names are accepted, and white spaces are removed
+* Special characters are ignored, and text is cleaned during the process
+* The first start tag and last end tag will always be observed.
+```
